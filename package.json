@@ -6,5 +6,16 @@
   "repository": "git@github.com:maxmind/GeoIP2-node.git",
   "author": "MaxMind",
   "license": "Apache 2.0",
-  "private": false
+  "private": false,
+  "devDependencies": {
+    "@types/jest": "^23.3.5",
+    "@types/node": "^10.11.6",
+    "jest": "^23.6.0",
+    "prettier": "^1.14.3",
+    "ts-jest": "^23.10.4",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "typescript": "^3.1.2"
+  }
 }
