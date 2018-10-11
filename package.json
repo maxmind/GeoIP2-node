@@ -39,8 +39,8 @@
     ]
   },
   "scripts": {
-    "build": "tsc",
-    "build:docs": "typedoc --out docs --exclude **/*.spec.ts --mode file --readme none",
+    "build": "rimraf dist && tsc",
+    "build:docs": "rimraf docs && typedoc --out docs --exclude **/*.spec.ts --mode file --readme none",
     "deploy:docs": "gh-pages -d docs",
     "prettier:ts": "prettier --parser typescript --single-quote true --trailing-comma es5 --write '{src,stories}/**/*.{ts,tsx}'",
     "prettier:json": "prettier --parser json --write '**/*.json'",
