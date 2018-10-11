@@ -16,5 +16,6 @@
     "target": "es6"
   },
   "compileOnSave": false,
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["**/*.spec.ts"]
 }
