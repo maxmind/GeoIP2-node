@@ -37,7 +37,10 @@
     ]
   },
   "scripts": {
+    "build": "tsc",
     "prettier:ts": "prettier --parser typescript --single-quote true --trailing-comma es5 --write '{src,stories}/**/*.{ts,tsx}'",
-    "prettier:json": "prettier --parser json --write '**/*.json'"
+    "prettier:json": "prettier --parser json --write '**/*.json'",
+    "test": "jest",
+    "test:watch": "jest --watch"
   }
 }
