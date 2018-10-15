@@ -1,0 +1,50 @@
+{
+  "name": "GeoIP2-node",
+  "version": "0.0.1",
+  "description": "Node.js API for GeoIP2 webservice client and database reader",
+  "main": "dist/index.js",
+  "repository": "git@github.com:maxmind/GeoIP2-node.git",
+  "author": "MaxMind",
+  "license": "Apache-2.0",
+  "private": false,
+  "types": "dist/index.d.ts",
+  "devDependencies": {
+    "@types/jest": "^23.3.5",
+    "@types/mock-fs": "^3.6.30",
+    "@types/node": "^10.11.6",
+    "gh-pages": "^2.0.1",
+    "husky": "^1.1.1",
+    "jest": "^23.6.0",
+    "lint-staged": "^7.3.0",
+    "mock-fs": "^4.7.0",
+    "prettier": "^1.14.3",
+    "ts-jest": "^23.10.4",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "typedoc": "^0.13.0",
+    "typescript": "^3.1.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.json": ["prettier --parser json --write", "git add"],
+    "*.ts": [
+      "prettier --parser typescript --single-quote true --trailing-comma es5 --write",
+      "tslint -p tsconfig.json -t stylish",
+      "git add"
+    ]
+  },
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "build:docs": "rimraf docs && typedoc --out docs --exclude **/*.spec.ts --mode file --readme none",
+    "deploy:docs": "gh-pages -d docs",
+    "prettier:ts": "prettier --parser typescript --single-quote true --trailing-comma es5 --write 'src/**/*.ts'",
+    "prettier:json": "prettier --parser json --write '**/*.json'",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  }
+}

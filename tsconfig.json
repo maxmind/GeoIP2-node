@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "allowUnreachableCode": true,
+    "baseUrl": ".",
+    "allowJs": false,
+    "declaration": true,
+    "lib": ["es2015", "es2016", "es2017"],
+    "module": "commonjs",
+    "outDir": "dist",
+    "pretty": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": false,
+    "strict": true,
+    "target": "es6"
+  },
+  "compileOnSave": false,
+  "include": ["src"],
+  "exclude": ["**/*.spec.ts"]
+}
