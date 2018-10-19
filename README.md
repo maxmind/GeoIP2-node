@@ -1,6 +1,6 @@
 # MaxMind GeoIP2 Node.js API
 
-[![Build Status](https://api.travis-ci.org/maxmind/GeoIP2-node.svg?branch=master)](https://travis-ci.org/maxmind/GeoIP2-node)
+[![Build Status](https://api.travis-ci.com/maxmind/GeoIP2-node.svg?branch=master)](https://travis-ci.com/maxmind/GeoIP2-node)
 [![Known Vulnerabilities](https://snyk.io/test/github/maxmind/GeoIP2-node/badge.svg)](https://snyk.io/test/github/maxmind/GeoIP2-node)
 
 ## Copyright and License ##
