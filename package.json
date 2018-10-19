@@ -42,7 +42,9 @@
     "build": "rimraf dist && tsc",
     "build:docs": "rimraf docs && typedoc --out docs --exclude **/*.spec.ts --mode file --readme none",
     "deploy:docs": "gh-pages -d docs",
+    "lint": "tslint -p ./tsconfig.json -t stylish",
     "prettier:ts": "prettier --parser typescript --single-quote true --trailing-comma es5 --write 'src/**/*.ts'",
+    "prettier:ci": "prettier --parser typescript --single-quote true --trailing-comma es5 --list-different 'src/**/*.ts'",
     "prettier:json": "prettier --parser json --write '**/*.json'",
     "test": "jest",
     "test:watch": "jest --watch"

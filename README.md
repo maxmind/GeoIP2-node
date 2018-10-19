@@ -1,5 +1,7 @@
 # MaxMind GeoIP2 Node.js API
 
+[![Build Status](https://travis-ci.org/maxmind/GeoIP2-node.svg?branch=master)](https://travis-ci.org/maxmind/GeoIP2-node)
+
 ## Copyright and License ##
 
 This software is Copyright (c) 2018 by MaxMind, Inc.
