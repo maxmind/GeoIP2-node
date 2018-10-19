@@ -1,12 +1,23 @@
 language: node_js
-node_js:
-  - "6"
-  - "8"
-  - "10"
-  - "node"
+matrix:
+  include:
+    - node_js: "6"
+    - node_js: "8"
+      env: RUN_SNYK=true
+    - node_js: "10"
+    - node_js: "node"
 script:
   - yarn lint
   - yarn test
   - yarn prettier:ci
   - yarn build
-
+before_install:
+  - "if [[ $RUN_SNYK && $SNYK_TOKEN ]]; then npm install -g snyk; fi"
+install:
+  - "if [[ $RUN_SNYK && $SNYK_TOKEN ]]; then snyk test --org=maxmind; fi"
+  - "yarn install"
+after_success:
+  - "if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' && $RUN_SNYK && $SNYK_TOKEN ]]; then snyk monitor --org=maxmind --project-name=maxmind/GeoIP2-node; fi"
+env:
+  global:
+    secure: iK3K+Lhz+trGknjISxsM4Xjf5bWEebu6eyvpMOw8Np+fxzraoJjzPegdy7mL7qyNCtS284irbz1zFOEiXfP0MSIrzQfl3sroNsicBX+oD/Lfk0fNp5UUCFAeng+b2VMwscA06T453/Cia6TYhOfiNK/S410eKqsKvhlwsqpcKiFBh6lkbVxXOfP6ZGOZ4Rc+ocaPFA9vBM6BrdmzpBE9GhhprIQkgN3uyr3/vaWHnxuq0dY2qZh8Fd4KD9wvotvhcXD/IYDXMKCUmCtfss3PcEFi8xk0Gk55aBWc5sl6vccOfRDrGjTGgQ+jhtIinU+s7NV8KYKyaDzidn1zQsEWSjG+r648qZyuXPdsjaau+EOrcFtd2VM2pYOP0pDsbkJQDxzZsyfnMqR5Ud3SKELjVN+73DSe+DmqnvuzuWzY9oSNOl6918WQJCryiPlRLwmgGESjp1O8u45VQ4RhTfxQSLI2kYsQQZDHg1Vj1LU+TgpXko3gUlKa7HvmZyGStbdJsJ/+7kPd+eNmG5FhKHoKM53fs4emDT+/gRqZd2lsW9LG5iTacXdEQY1L2gUjDmBC675FUYJtoekJ0jgJNWl/gcGfbOrOEkPIRMMIGuUavzu2HfP7OOK7uFsil8bsEIEiXnMBHK+avw2OZPkxw+Dc0NMaHPspxQD/T+QszEygDMw=
