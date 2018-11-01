@@ -52,6 +52,6 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "maxmind": "^2.7.0"
+    "maxmind": "^2.8.0"
   }
 }
