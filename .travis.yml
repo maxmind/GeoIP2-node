@@ -8,7 +8,7 @@ matrix:
   - node_js: node
 script:
 - yarn lint
-- yarn test
+- yarn test --coverage
 - yarn prettier:ci
 - yarn build
 before_install:
