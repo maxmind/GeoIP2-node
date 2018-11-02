@@ -5,6 +5,16 @@
     "tslint-config-prettier"
   ],
   "rules": {
-    "jsdoc-format": false
+    "jsdoc-format": false,
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format",
+      "allow-snake-case",
+      "allow-pascal-case"
+    ]
+  },
+  "linterOptions": {
+    "exclude": ["*.json", "**/*.json"]
   }
 }

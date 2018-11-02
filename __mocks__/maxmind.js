@@ -3,13 +3,14 @@ jest.genMockFromModule('maxmind');
 
 const reader = {
   get() {
-    return true;
+    return {
+      city: 'foo',
+    };
   }
 };
 
 mmdb.open = (file, opts, cb) => {
   if (file === 'success.test') {
-    console.log('hello');
     return cb(null, reader)
   }
 

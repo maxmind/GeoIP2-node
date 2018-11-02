@@ -1,5 +1,6 @@
 import mmdb = require('maxmind');
 import Reader from './reader';
+import ReaderModel from './readerModel';
 
 describe('Reader', () => {
   describe('open()', () => {
@@ -12,7 +13,7 @@ describe('Reader', () => {
 
       return Reader.open(file).then(reader => {
         expect(spy).toHaveBeenCalledWith(file, undefined, expect.any(Function));
-        expect(reader.get).toBeDefined();
+        expect(reader).toBeInstanceOf(ReaderModel);
       });
     });
 
@@ -28,7 +29,7 @@ describe('Reader', () => {
 
       return Reader.open(file, options).then(reader => {
         expect(spy).toHaveBeenCalledWith(file, options, expect.any(Function));
-        expect(reader.get).toBeDefined();
+        expect(reader).toBeInstanceOf(ReaderModel);
       });
     });
 
