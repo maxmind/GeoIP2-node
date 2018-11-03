@@ -4,15 +4,15 @@ import { AddressNotFoundError, BadMethodCallError } from './errors';
 import * as models from './models';
 
 /** Class representing the ReaderModel **/
-export default class ReaderModel {
-  private mmdbReader: mmdb.IReader;
+export default class ReaderModel<T> {
+  private mmdbReader: mmdb.IReader<T>;
 
   /**
    * Instanstiates a ReaderModel using node-maxmind reader
    *
    * @param mmdbReader The mmdbReader
    */
-  public constructor(mmdbReader: mmdb.IReader) {
+  public constructor(mmdbReader: mmdb.IReader<T>) {
     this.mmdbReader = mmdbReader;
   }
 
@@ -24,7 +24,7 @@ export default class ReaderModel {
    * @throws {BadMethodCallError} Throws an error when the DB doesn't support City queries
    * @throws {AddressNotFoundError} Throws an error when the IP address isn't found in the database
    */
-  public city(ipAddress: string) {
+  public city(ipAddress: string): models.City {
     return this.modelFor(models.City, 'City', ipAddress, 'city()');
   }
 
@@ -45,7 +45,7 @@ export default class ReaderModel {
       );
     }
 
-    return record;
+    return record as T & object;
   }
 
   private modelFor(

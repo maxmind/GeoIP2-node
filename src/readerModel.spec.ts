@@ -17,7 +17,7 @@ describe('ReaderModel', () => {
       traits: fixture.traits as mmdb.ITraits,
     };
 
-    const mmdbReader: mmdb.IReader = {
+    const mmdbReader: mmdb.IReader<mmdb.ICityResponse> = {
       get(ipAddress: string) {
         if (ipAddress === 'fail.fail') {
           return null;

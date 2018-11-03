@@ -439,6 +439,7 @@ bcrypt-pbkdf@^1.0.0:
 big-integer@^1.6.31:
   version "1.6.36"
   resolved "https://registry.yarnpkg.com/big-integer/-/big-integer-1.6.36.tgz#78631076265d4ae3555c04f85e7d9d2f3a071a36"
+  integrity sha512-t70bfa7HYEA1D9idDbmuv7YbsbVkQ+Hp+8KFSul4aE5e/i1bjCNIRYJZlA8Q8p0r9T8cF/RVvwUgRA//FydEyg==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -2331,7 +2332,7 @@ math-random@^1.0.1:
 
 "maxmind@https://github.com/kevcenteno/node-maxmind.git#kevin/reader-types":
   version "2.8.0"
-  resolved "https://github.com/kevcenteno/node-maxmind.git#c035536798d7113ef9c3d63d77e0f2b9574fd24c"
+  resolved "https://github.com/kevcenteno/node-maxmind.git#6a34752921f0046fd91036283ad27b5151ea8195"
   dependencies:
     big-integer "^1.6.31"
     tiny-lru "^1.6.1"
@@ -3488,6 +3489,7 @@ throat@^4.0.0:
 tiny-lru@^1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/tiny-lru/-/tiny-lru-1.6.1.tgz#addb5c043311d1f07cd3a81d706ae739b8efebb1"
+  integrity sha512-m8oyPnHjnQlbDk8+MCw33qRMp6+BxPxoayN9C743VToeyQ5zZV6F6vkklrYVEI0z9MQ3+jmc+22tKmvPg4gmoA==
 
 tmpl@1.0.x:
   version "1.0.4"
