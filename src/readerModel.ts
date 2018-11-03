@@ -17,7 +17,7 @@ export default class ReaderModel<T> {
   }
 
   /**
-   * Returns the City data for an IP address
+   * Returns the City db data for an IP address
    *
    * @param ipAddress The IP Address you want to query the City db with
    *
@@ -26,6 +26,18 @@ export default class ReaderModel<T> {
    */
   public city(ipAddress: string): models.City {
     return this.modelFor(models.City, 'City', ipAddress, 'city()');
+  }
+
+  /**
+   * Returns the Country db data for an IP address
+   *
+   * @param ipAddress The IP Address you want to query the Country db with
+   *
+   * @throws {BadMethodCallError} Throws an error when the DB doesn't support City queries
+   * @throws {AddressNotFoundError} Throws an error when the IP address isn't found in the database
+   */
+  public country(ipAddress: string): models.City {
+    return this.modelFor(models.Country, 'Country', ipAddress, 'country()');
   }
 
   private getRecord(dbType: string, ipAddress: string, fnName: string) {
