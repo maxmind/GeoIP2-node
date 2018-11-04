@@ -55,6 +55,6 @@
   },
   "dependencies": {
     "lodash.set": "^4.3.2",
-    "maxmind": "https://github.com/kevcenteno/node-maxmind.git#kevin/reader-types"
+    "maxmind": "^2.9.0"
   }
 }
