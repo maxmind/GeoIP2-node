@@ -5,6 +5,7 @@
     "tslint-config-prettier"
   ],
   "rules": {
+    "interface-name": [true, "never-prefix"],
     "jsdoc-format": false,
     "variable-name": [
       true,

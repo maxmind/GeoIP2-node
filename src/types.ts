@@ -1,13 +1,13 @@
 import mmdb = require('maxmind');
 
-export interface IMaxMind {
+export interface MaxMindField {
   queries_remaining: number;
 }
 
-export interface ICountryResponse extends mmdb.ICountryResponse {
-  maxmind?: IMaxMind;
+export interface CountryResponse extends mmdb.ICountryResponse {
+  maxmind?: MaxMindField;
 }
 
-export interface ICityResponse extends mmdb.ICityResponse {
-  maxmind?: IMaxMind;
+export interface CityResponse extends mmdb.ICityResponse {
+  maxmind?: MaxMindField;
 }
