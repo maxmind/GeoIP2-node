@@ -8,17 +8,17 @@ describe('ReaderModel', () => {
   describe('city()', () => {
     const testFixture = {
       city: fixture.city,
-      continent: fixture.continent as mmdb.IContinent,
+      continent: fixture.continent as mmdb.ContinentRecord,
       country: fixture.country,
       location: fixture.location,
       postal: fixture.postal,
       registered_country: fixture.registered_country,
       represented_country: fixture.represented_country,
       subdivisions: fixture.subdivisions,
-      traits: fixture.traits as mmdb.ITraits,
+      traits: fixture.traits as mmdb.TraitsRecord,
     };
 
-    const mmdbReader: mmdb.IReader<mmdb.ICityResponse> = {
+    const mmdbReader = {
       get(ipAddress: string) {
         if (ipAddress === 'fail.fail') {
           return null;
@@ -65,14 +65,14 @@ describe('ReaderModel', () => {
 
   describe('country()', () => {
     const testFixture = {
-      continent: fixture.continent as mmdb.IContinent,
+      continent: fixture.continent as mmdb.ContinentRecord,
       country: fixture.country,
       registered_country: fixture.registered_country,
       represented_country: fixture.represented_country,
-      traits: fixture.traits as mmdb.ITraits,
+      traits: fixture.traits as mmdb.TraitsRecord,
     };
 
-    const mmdbReader: mmdb.IReader<mmdb.ICountryResponse> = {
+    const mmdbReader = {
       get(ipAddress: string) {
         if (ipAddress === 'fail.fail') {
           return null;

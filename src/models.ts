@@ -1,16 +1,18 @@
 /* tslint:disable:max-classes-per-file */
 
 import mmdb = require('maxmind');
-import { CityResponse, CountryResponse, MaxMindField } from './types';
+import { CityResponse, CountryResponse, MaxMindRecord } from './types';
 
 /** Class representing the model of a "Country" response **/
 export class Country {
-  public readonly continent: mmdb.IContinent | undefined;
-  public readonly country: mmdb.ICountry | undefined;
-  public readonly maxmind: MaxMindField | undefined;
-  public readonly registered_country: mmdb.IBaseCountry | undefined;
-  public readonly represented_country: mmdb.IRepresentedCountry | undefined;
-  public readonly traits: mmdb.ITraits;
+  public readonly continent: mmdb.ContinentRecord | undefined;
+  public readonly country: mmdb.CountryRecord | undefined;
+  public readonly maxmind: MaxMindRecord | undefined;
+  public readonly registered_country: mmdb.RegisteredCountryRecord | undefined;
+  public readonly represented_country:
+    | mmdb.RepresentedCountryRecord
+    | undefined;
+  public readonly traits: mmdb.TraitsRecord;
 
   /**
    * Instanstiates a "Country" using fields from the response
@@ -23,16 +25,16 @@ export class Country {
     this.maxmind = response.maxmind;
     this.registered_country = response.registered_country;
     this.represented_country = response.represented_country;
-    this.traits = response.traits as mmdb.ITraits;
+    this.traits = response.traits as mmdb.TraitsRecord;
   }
 }
 
 /** Class representing the model of a "City" response **/
 export class City extends Country {
-  public readonly city: mmdb.ICity | undefined;
-  public readonly location: mmdb.ILocation | undefined;
-  public readonly postal: mmdb.IPostal | undefined;
-  public readonly subdivisions: mmdb.ISubdivisions[] | undefined;
+  public readonly city: mmdb.CityRecord | undefined;
+  public readonly location: mmdb.LocationRecord | undefined;
+  public readonly postal: mmdb.PostalRecord | undefined;
+  public readonly subdivisions: mmdb.SubdivisionsRecord[] | undefined;
 
   /**
    * Instanstiates a "City" using fields from the response

@@ -4,15 +4,15 @@ import { AddressNotFoundError, BadMethodCallError } from './errors';
 import * as models from './models';
 
 /** Class representing the ReaderModel **/
-export default class ReaderModel<T> {
-  private mmdbReader: mmdb.IReader<T>;
+export default class ReaderModel {
+  private mmdbReader: mmdb.Reader;
 
   /**
    * Instanstiates a ReaderModel using node-maxmind reader
    *
    * @param mmdbReader The mmdbReader
    */
-  public constructor(mmdbReader: mmdb.IReader<T>) {
+  public constructor(mmdbReader: mmdb.Reader) {
     this.mmdbReader = mmdbReader;
   }
 
@@ -57,7 +57,7 @@ export default class ReaderModel<T> {
       );
     }
 
-    return record as T & object;
+    return record;
   }
 
   private modelFor(
