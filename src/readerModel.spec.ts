@@ -11,6 +11,7 @@ describe('ReaderModel', () => {
       continent: fixture.continent as mmdb.ContinentRecord,
       country: fixture.country,
       location: fixture.location,
+      maxmind: fixture.maxmind,
       postal: fixture.postal,
       registered_country: fixture.registered_country,
       represented_country: fixture.represented_country,
@@ -22,6 +23,10 @@ describe('ReaderModel', () => {
       get(ipAddress: string) {
         if (ipAddress === 'fail.fail') {
           return null;
+        }
+
+        if (ipAddress === 'empty') {
+          return {};
         }
         return testFixture;
       },
@@ -61,12 +66,33 @@ describe('ReaderModel', () => {
         AddressNotFoundError
       );
     });
+
+    it('returns empty objects/arrays', () => {
+      const cityInstance = new ReaderModel(mmdbReader);
+      const expected = {
+        city: {},
+        continent: {},
+        country: {},
+        location: {},
+        maxmind: {},
+        postal: {},
+        registered_country: {},
+        represented_country: {},
+        subdivisions: [],
+        traits: {
+          ip_address: 'empty',
+        },
+      };
+
+      expect(cityInstance.city('empty')).toEqual(expected);
+    });
   });
 
   describe('country()', () => {
     const testFixture = {
       continent: fixture.continent as mmdb.ContinentRecord,
       country: fixture.country,
+      maxmind: fixture.maxmind,
       registered_country: fixture.registered_country,
       represented_country: fixture.represented_country,
       traits: fixture.traits as mmdb.TraitsRecord,
@@ -76,6 +102,10 @@ describe('ReaderModel', () => {
       get(ipAddress: string) {
         if (ipAddress === 'fail.fail') {
           return null;
+        }
+
+        if (ipAddress === 'empty') {
+          return {};
         }
         return testFixture;
       },
@@ -118,6 +148,22 @@ describe('ReaderModel', () => {
       expect(() => countryInstance.country('fail.fail')).toThrow(
         AddressNotFoundError
       );
+    });
+
+    it('returns empty objects/arrays', () => {
+      const countryInstance = new ReaderModel(mmdbReader);
+      const expected = {
+        continent: {},
+        country: {},
+        maxmind: {},
+        registered_country: {},
+        represented_country: {},
+        traits: {
+          ip_address: 'empty',
+        },
+      };
+
+      expect(countryInstance.country('empty')).toEqual(expected);
     });
   });
 });
