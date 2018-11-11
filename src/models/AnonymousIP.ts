@@ -1,6 +1,6 @@
 import mmdb = require('maxmind');
 
-/** Class representing the model of a "AnonymousIP" response **/
+/** Class representing the model of an "AnonymousIP" response **/
 export default class AnonymousIP {
   public ip_address?: string;
   public readonly is_anonymous?: boolean;

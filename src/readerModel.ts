@@ -19,9 +19,9 @@ export default class ReaderModel {
   /**
    * Returns the AnonymousIP db data for an IP address
    *
-   * @param ipAddress The IP Address you want to query the AnonymousIP db with
+   * @param ipAddress The IP Address you want to query the Anonymous IP db with
    *
-   * @throws {BadMethodCallError} Throws an error when the DB doesn't support City queries
+   * @throws {BadMethodCallError} Throws an error when the DB doesn't support Anonymous IP queries
    * @throws {AddressNotFoundError} Throws an error when the IP address isn't found in the database
    */
   public anonymousIP(ipAddress: string): models.AnonymousIP {
