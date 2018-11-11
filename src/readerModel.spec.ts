@@ -1,5 +1,6 @@
 import { cloneDeep } from 'lodash';
 import mmdb = require('maxmind');
+import * as anonymousIPFixture from '../fixtures/anonymous-ip.json';
 import * as connectionTypeFixture from '../fixtures/geoip2-connection-type.json';
 import * as ispFixture from '../fixtures/geoip2-isp.json';
 import * as fixture from '../fixtures/geoip2.json';
@@ -167,6 +168,71 @@ describe('ReaderModel', () => {
       };
 
       expect(countryInstance.country('empty')).toEqual(expected);
+    });
+  });
+
+  describe('anonymousIP()', () => {
+    const mmdbReader = {
+      get(ipAddress: string) {
+        if (ipAddress === 'fail.fail') {
+          return null;
+        }
+
+        if (ipAddress === 'empty') {
+          return {};
+        }
+        return anonymousIPFixture;
+      },
+      metadata: {
+        binaryFormatMajorVersion: 1,
+        binaryFormatMinorVersion: 2,
+        buildEpoch: new Date(),
+        databaseType: 'GeoIP2-Anonymous-IP',
+        description: 'hello',
+        ipVersion: 5,
+        languages: ['en'],
+        nodeByteSize: 1,
+        nodeCount: 1,
+        recordSize: 1,
+        searchTreeSize: 1,
+        treeDepth: 1,
+      },
+    };
+
+    it('returns anonymousIP data', () => {
+      const anonymousIPInstance = new ReaderModel(mmdbReader);
+      expect(anonymousIPInstance.anonymousIP('123.123')).toEqual(
+        anonymousIPFixture
+      );
+      expect(anonymousIPInstance.anonymousIP('123.123').ip_address).toEqual(
+        '123.123'
+      );
+    });
+
+    it('throws an error if db types do not match', () => {
+      const errReader = cloneDeep(mmdbReader);
+      errReader.metadata.databaseType = 'foo';
+
+      const anonymousIPInstance = new ReaderModel(errReader);
+      expect(() => anonymousIPInstance.anonymousIP('123.123')).toThrow(
+        BadMethodCallError
+      );
+    });
+
+    it('throws an error if IP address is not in database', () => {
+      const anonymousIPInstance = new ReaderModel(mmdbReader);
+      expect(() => anonymousIPInstance.anonymousIP('fail.fail')).toThrow(
+        AddressNotFoundError
+      );
+    });
+
+    it('returns empty objects/arrays', () => {
+      const anonymousIPInstance = new ReaderModel(mmdbReader);
+      const expected = {
+        ip_address: 'empty',
+      };
+
+      expect(anonymousIPInstance.anonymousIP('empty')).toEqual(expected);
     });
   });
 

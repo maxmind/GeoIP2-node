@@ -17,6 +17,24 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-City.mmdb').then(reader => {
 });
 
 ```
+### Anonymous IP Database Example
+
+```
+const reader = require('GeoIP2-node').Reader;
+
+Reader.open('/usr/local/share/GeoIP/GeoIP2-Anonymous-IP.mmdb').then(reader => {
+  const response = reader.anonymousIP('85.25.43.84');
+
+  console.log(response.is_anonymous); // true
+  console.log(response.is_anonymous_vpn); // false
+  console.log(response.is_hosting_provider); // false
+  console.log(response.is_public_proxy); // false
+  console.log(response.is_tor_exit_node); // true
+  console.log(response.ip_address); // '85.25.43.84'
+});
+
+```
+
 ### ASN Example
 
 ```
