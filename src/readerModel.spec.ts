@@ -364,6 +364,93 @@ describe('ReaderModel', () => {
     });
   });
 
+  describe('enterprise()', () => {
+    const testFixture = {
+      city: fixture.city,
+      continent: fixture.continent as mmdb.ContinentRecord,
+      country: fixture.country,
+      location: fixture.location,
+      maxmind: fixture.maxmind,
+      postal: fixture.postal,
+      registered_country: fixture.registered_country,
+      represented_country: fixture.represented_country,
+      subdivisions: fixture.subdivisions,
+      traits: fixture.traits as mmdb.TraitsRecord,
+    };
+
+    const mmdbReader = {
+      get(ipAddress: string) {
+        if (ipAddress === 'fail.fail') {
+          return null;
+        }
+
+        if (ipAddress === 'empty') {
+          return {};
+        }
+        return testFixture;
+      },
+      metadata: {
+        binaryFormatMajorVersion: 1,
+        binaryFormatMinorVersion: 2,
+        buildEpoch: new Date(),
+        databaseType: 'GeoIP2-Enterprise-Super-Special',
+        description: 'hello',
+        ipVersion: 5,
+        languages: ['en'],
+        nodeByteSize: 1,
+        nodeCount: 1,
+        recordSize: 1,
+        searchTreeSize: 1,
+        treeDepth: 1,
+      },
+    };
+
+    it('returns enterprise data', () => {
+      const enterpriseInstance = new ReaderModel(mmdbReader);
+      expect(enterpriseInstance.enterprise('123.123')).toEqual(testFixture);
+      expect(
+        enterpriseInstance.enterprise('123.123').traits.ip_address
+      ).toEqual('123.123');
+    });
+
+    it('throws an error if db types do not match', () => {
+      const errReader = cloneDeep(mmdbReader);
+      errReader.metadata.databaseType = 'foo';
+
+      const enterpriseInstance = new ReaderModel(errReader);
+      expect(() => enterpriseInstance.enterprise('123.123')).toThrow(
+        BadMethodCallError
+      );
+    });
+
+    it('throws an error if IP address is not in database', () => {
+      const enterpriseInstance = new ReaderModel(mmdbReader);
+      expect(() => enterpriseInstance.enterprise('fail.fail')).toThrow(
+        AddressNotFoundError
+      );
+    });
+
+    it('returns empty objects/arrays', () => {
+      const enterpriseInstance = new ReaderModel(mmdbReader);
+      const expected = {
+        city: {},
+        continent: {},
+        country: {},
+        location: {},
+        maxmind: {},
+        postal: {},
+        registered_country: {},
+        represented_country: {},
+        subdivisions: [],
+        traits: {
+          ip_address: 'empty',
+        },
+      };
+
+      expect(enterpriseInstance.enterprise('empty')).toEqual(expected);
+    });
+  });
+
   describe('isp()', () => {
     const mmdbReader = {
       get(ipAddress: string) {
@@ -420,4 +507,5 @@ describe('ReaderModel', () => {
       expect(ispInstance.isp('empty')).toEqual(expected);
     });
   });
+
 });
