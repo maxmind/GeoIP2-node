@@ -127,9 +127,9 @@ export default class ReaderModel {
     const record = this.getRecord(dbType, ipAddress, fnName);
 
     switch (dbType) {
-      case 'GeoIP2-Anonymous-IP':
       case 'ASN':
       case 'Connection-Type':
+      case 'GeoIP2-Anonymous-IP':
       case 'ISP':
         set(record, 'ip_address', ipAddress);
         break;
