@@ -13,6 +13,7 @@
   "private": false,
   "types": "dist/index.d.ts",
   "devDependencies": {
+    "@types/camelcase-keys": "^4.0.0",
     "@types/jest": "^23.3.5",
     "@types/lodash.set": "^4.3.4",
     "@types/node": "^10.11.6",
@@ -54,6 +55,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "camelcase-keys": "^5.0.0",
     "lodash.set": "^4.3.2",
     "maxmind": "^2.11.0"
   }
