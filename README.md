@@ -27,9 +27,9 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Anonymous-IP.mmdb').then(reader => {
 
   console.log(response.is_anonymous); // true
   console.log(response.is_anonymous_vpn); // false
-  console.log(response.is_hosting_provider); // false
+  console.log(response.is_hosting_provider); // true
   console.log(response.is_public_proxy); // false
-  console.log(response.is_tor_exit_node); // true
+  console.log(response.is_tor_exit_node); // false
   console.log(response.ip_address); // '85.25.43.84'
 });
 

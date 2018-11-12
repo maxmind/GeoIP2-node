@@ -226,10 +226,15 @@ describe('ReaderModel', () => {
       );
     });
 
-    it('returns empty objects/arrays', () => {
+    it('returns false for undefined values', () => {
       const anonymousIPInstance = new ReaderModel(mmdbReader);
       const expected = {
         ip_address: 'empty',
+        is_anonymous: false,
+        is_anonymous_vpn: false,
+        is_hosting_provider: false,
+        is_public_proxy: false,
+        is_tor_exit_node: false,
       };
 
       expect(anonymousIPInstance.anonymousIP('empty')).toEqual(expected);

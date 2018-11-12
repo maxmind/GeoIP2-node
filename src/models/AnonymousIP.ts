@@ -16,10 +16,10 @@ export default class AnonymousIP {
    */
   public constructor(response: mmdb.AnonymousIPResponse) {
     this.ip_address = response.ip_address;
-    this.is_anonymous = response.is_anonymous;
-    this.is_anonymous_vpn = response.is_anonymous_vpn;
-    this.is_hosting_provider = response.is_hosting_provider;
-    this.is_public_proxy = response.is_public_proxy;
-    this.is_tor_exit_node = response.is_tor_exit_node;
+    this.is_anonymous = !!response.is_anonymous;
+    this.is_anonymous_vpn = !!response.is_anonymous_vpn;
+    this.is_hosting_provider = !!response.is_hosting_provider;
+    this.is_public_proxy = !!response.is_public_proxy;
+    this.is_tor_exit_node = !!response.is_tor_exit_node;
   }
 }
