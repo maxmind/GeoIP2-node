@@ -40,6 +40,18 @@ export default class ReaderModel {
     return this.modelFor(models.Country, 'Country', ipAddress, 'country()');
   }
 
+  /**
+   * Returns the ASN db data for an IP address
+   *
+   * @param ipAddress The IP Address you want to query the ASN db with
+   *
+   * @throws {BadMethodCallError} Throws an error when the DB doesn't support ASN queries
+   * @throws {AddressNotFoundError} Throws an error when the IP address isn't found in the database
+   */
+  public asn(ipAddress: string): models.Asn {
+    return this.modelFor(models.Asn, 'ASN', ipAddress, 'asn()');
+  }
+
   private getRecord(dbType: string, ipAddress: string, fnName: string) {
     const metaDbType = this.mmdbReader.metadata.databaseType;
 
@@ -67,7 +79,14 @@ export default class ReaderModel {
     fnName: string
   ) {
     const record = this.getRecord(dbType, ipAddress, fnName);
-    set(record, 'traits.ip_address', ipAddress);
+
+    switch (dbType) {
+      case 'ASN':
+        set(record, 'ip_address', ipAddress);
+        break;
+      default:
+        set(record, 'traits.ip_address', ipAddress);
+    }
 
     return new modelClass(record);
   }

@@ -1,6 +1,7 @@
 import { cloneDeep } from 'lodash';
 import mmdb = require('maxmind');
 import * as fixture from '../fixtures/geoip2.json';
+import * as asnFixture from '../fixtures/geolite2-asn.json';
 import { AddressNotFoundError, BadMethodCallError } from './errors';
 import ReaderModel from './readerModel';
 
@@ -164,6 +165,63 @@ describe('ReaderModel', () => {
       };
 
       expect(countryInstance.country('empty')).toEqual(expected);
+    });
+  });
+
+  describe('asn()', () => {
+    const mmdbReader = {
+      get(ipAddress: string) {
+        if (ipAddress === 'fail.fail') {
+          return null;
+        }
+
+        if (ipAddress === 'empty') {
+          return {};
+        }
+        return asnFixture;
+      },
+      metadata: {
+        binaryFormatMajorVersion: 1,
+        binaryFormatMinorVersion: 2,
+        buildEpoch: new Date(),
+        databaseType: 'GeoLite2-ASN',
+        description: 'hello',
+        ipVersion: 5,
+        languages: ['en'],
+        nodeByteSize: 1,
+        nodeCount: 1,
+        recordSize: 1,
+        searchTreeSize: 1,
+        treeDepth: 1,
+      },
+    };
+
+    it('returns asn data', () => {
+      const asnInstance = new ReaderModel(mmdbReader);
+      expect(asnInstance.asn('123.123')).toEqual(asnFixture);
+      expect(asnInstance.asn('123.123').ip_address).toEqual('123.123');
+    });
+
+    it('throws an error if db types do not match', () => {
+      const errReader = cloneDeep(mmdbReader);
+      errReader.metadata.databaseType = 'foo';
+
+      const asnInstance = new ReaderModel(errReader);
+      expect(() => asnInstance.asn('123.123')).toThrow(BadMethodCallError);
+    });
+
+    it('throws an error if IP address is not in database', () => {
+      const asnInstance = new ReaderModel(mmdbReader);
+      expect(() => asnInstance.asn('fail.fail')).toThrow(AddressNotFoundError);
+    });
+
+    it('returns empty objects/arrays', () => {
+      const asnInstance = new ReaderModel(mmdbReader);
+      const expected = {
+        ip_address: 'empty',
+      };
+
+      expect(asnInstance.asn('empty')).toEqual(expected);
     });
   });
 });

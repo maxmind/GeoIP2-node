@@ -47,3 +47,23 @@ export class City extends Country {
     this.subdivisions = response.subdivisions || [];
   }
 }
+
+/** Class representing the model of a "ASN" response **/
+export class Asn {
+  public readonly autonomous_system_number?: number;
+  public readonly autonomous_system_organization?: string;
+  public ip_address?: string;
+
+  /**
+   * Instanstiates an "Asn" using fields from the response
+   *
+   * @param response The GeoLite2 response
+   */
+  public constructor(response: mmdb.AsnResponse) {
+    this.autonomous_system_number =
+      response.autonomous_system_number || undefined;
+    this.autonomous_system_organization =
+      response.autonomous_system_organization || undefined;
+    this.ip_address = response.ip_address;
+  }
+}
