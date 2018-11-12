@@ -13,7 +13,7 @@ const reader = require('GeoIP2-node').Reader;
 Reader.open('/usr/local/share/GeoIP/GeoIP2-City.mmdb').then(reader => {
   const response = reader.city('128.101.101.101');
 
-  console.log(response.country.isoCode) // 'US'
+  console.log(response.country.isoCode); // 'US'
 });
 
 ```
@@ -25,8 +25,26 @@ const reader = require('GeoIP2-node').Reader;
 Reader.open('/usr/local/share/GeoIP/GeoLite2-ASN.mmdb').then(reader => {
   const response = reader.asn('128.101.101.101');
 
-  console.log(response.autonomous_system_number) // 217
-  console.log(response.autonomous_system_organization) // 'University of Minnesota'
+  console.log(response.autonomous_system_number); // 217
+  console.log(response.autonomous_system_organization); // 'University of Minnesota'
+});
+
+```
+
+### ISP Example
+
+```
+const reader = require('GeoIP2-node').Reader;
+
+Reader.open('/usr/local/share/GeoIP/GeoIP2-ISP.mmdb').then(reader => {
+  const response = reader.isp('128.101.101.101');
+
+  console.log(response.autonomous_system_number); // 217
+  console.log(response.autonomous_system_organization); // 'University of Minnesota'
+  console.log(response.isp); // 'University of Minnesota'
+  console.log(response.organization); // 'University of Minnesota'
+
+  console.log(response.ip_address); // '128.101.101.101'
 });
 
 ```
