@@ -86,7 +86,7 @@ const reader = require('GeoIP2-node').Reader;
 Reader.open('/usr/local/share/GeoIP/GeoIP2-Enterprise.mmdb').then(reader => {
   const response = reader.enterprise('128.101.101.101');
 
-  console.log(response.country.isoCode) // 'US'
+  console.log(response.country.iso_code) // 'US'
 });
 
 ```

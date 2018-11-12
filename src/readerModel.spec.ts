@@ -507,5 +507,4 @@ describe('ReaderModel', () => {
       expect(ispInstance.isp('empty')).toEqual(expected);
     });
   });
-
 });
