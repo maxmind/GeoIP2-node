@@ -52,6 +52,23 @@ export default class ReaderModel {
     return this.modelFor(models.Asn, 'ASN', ipAddress, 'asn()');
   }
 
+  /**
+   * Returns the Connection-Type db data for an IP address
+   *
+   * @param ipAddress The IP Address you want to query the Connection-Type db with
+   *
+   * @throws {BadMethodCallError} Throws an error when the DB doesn't support Connection-Type queries
+   * @throws {AddressNotFoundError} Throws an error when the IP address isn't found in the database
+   */
+  public connectionType(ipAddress: string): models.ConnectionType {
+    return this.modelFor(
+      models.ConnectionType,
+      'Connection-Type',
+      ipAddress,
+      'connectionType()'
+    );
+  }
+
   private getRecord(dbType: string, ipAddress: string, fnName: string) {
     const metaDbType = this.mmdbReader.metadata.databaseType;
 
@@ -82,6 +99,7 @@ export default class ReaderModel {
 
     switch (dbType) {
       case 'ASN':
+      case 'Connection-Type':
         set(record, 'ip_address', ipAddress);
         break;
       default:

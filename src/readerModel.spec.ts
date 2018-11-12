@@ -1,5 +1,6 @@
 import { cloneDeep } from 'lodash';
 import mmdb = require('maxmind');
+import * as connectionTypeFixture from '../fixtures/geoip2-connection-type.json';
 import * as fixture from '../fixtures/geoip2.json';
 import * as asnFixture from '../fixtures/geolite2-asn.json';
 import { AddressNotFoundError, BadMethodCallError } from './errors';
@@ -222,6 +223,71 @@ describe('ReaderModel', () => {
       };
 
       expect(asnInstance.asn('empty')).toEqual(expected);
+    });
+  });
+
+  describe('connectionType()', () => {
+    const mmdbReader = {
+      get(ipAddress: string) {
+        if (ipAddress === 'fail.fail') {
+          return null;
+        }
+
+        if (ipAddress === 'empty') {
+          return {};
+        }
+        return connectionTypeFixture;
+      },
+      metadata: {
+        binaryFormatMajorVersion: 1,
+        binaryFormatMinorVersion: 2,
+        buildEpoch: new Date(),
+        databaseType: 'GeoIP2-Connection-Type',
+        description: 'hello',
+        ipVersion: 5,
+        languages: ['en'],
+        nodeByteSize: 1,
+        nodeCount: 1,
+        recordSize: 1,
+        searchTreeSize: 1,
+        treeDepth: 1,
+      },
+    };
+
+    it('returns connection-type data', () => {
+      const connectionTypeInstance = new ReaderModel(mmdbReader);
+      expect(connectionTypeInstance.connectionType('123.123')).toEqual(
+        connectionTypeFixture
+      );
+      expect(
+        connectionTypeInstance.connectionType('123.123').ip_address
+      ).toEqual('123.123');
+    });
+
+    it('throws an error if db types do not match', () => {
+      const errReader = cloneDeep(mmdbReader);
+      errReader.metadata.databaseType = 'foo';
+
+      const connectionTypeInstance = new ReaderModel(errReader);
+      expect(() => connectionTypeInstance.connectionType('123.123')).toThrow(
+        BadMethodCallError
+      );
+    });
+
+    it('throws an error if IP address is not in database', () => {
+      const connectionTypeInstance = new ReaderModel(mmdbReader);
+      expect(() => connectionTypeInstance.connectionType('fail.fail')).toThrow(
+        AddressNotFoundError
+      );
+    });
+
+    it('returns empty objects/arrays', () => {
+      const connectionTypeInstance = new ReaderModel(mmdbReader);
+      const expected = {
+        ip_address: 'empty',
+      };
+
+      expect(connectionTypeInstance.connectionType('empty')).toEqual(expected);
     });
   });
 });
