@@ -1,3 +1,4 @@
+import camelcaseKeys = require('camelcase-keys');
 import { cloneDeep } from 'lodash';
 import mmdb = require('maxmind');
 import * as anonymousIPFixture from '../fixtures/anonymous-ip.json';
@@ -10,15 +11,15 @@ import ReaderModel from './readerModel';
 
 describe('ReaderModel', () => {
   const emptyTraits = {
-    ip_address: 'empty',
-    is_anonymous: false,
-    is_anonymous_proxy: false,
-    is_anonymous_vpn: false,
-    is_hosting_provider: false,
-    is_legitimate_proxy: false,
-    is_public_proxy: false,
-    is_satellite_provider: false,
-    is_tor_exit_node: false,
+    ipAddress: 'empty',
+    isAnonymous: false,
+    isAnonymousProxy: false,
+    isAnonymousVpn: false,
+    isHostingProvider: false,
+    isLegitimateProxy: false,
+    isPublicProxy: false,
+    isSatelliteProvider: false,
+    isTorExitNode: false,
   };
 
   describe('city()', () => {
@@ -64,8 +65,10 @@ describe('ReaderModel', () => {
 
     it('returns city data', () => {
       const cityInstance = new ReaderModel(mmdbReader);
-      expect(cityInstance.city('123.123')).toEqual(testFixture);
-      expect(cityInstance.city('123.123').traits.ip_address).toEqual('123.123');
+      expect(cityInstance.city('123.123')).toEqual(
+        camelcaseKeys(testFixture, { deep: true, exclude: [/\-/] })
+      );
+      expect(cityInstance.city('123.123').traits.ipAddress).toEqual('123.123');
     });
 
     it('throws an error if db types do not match', () => {
@@ -92,8 +95,8 @@ describe('ReaderModel', () => {
         location: {},
         maxmind: {},
         postal: {},
-        registered_country: {},
-        represented_country: {},
+        registeredCountry: {},
+        representedCountry: {},
         subdivisions: [],
         traits: emptyTraits,
       };
@@ -141,8 +144,10 @@ describe('ReaderModel', () => {
 
     it('returns city data', () => {
       const countryInstance = new ReaderModel(mmdbReader);
-      expect(countryInstance.country('123.123')).toEqual(testFixture);
-      expect(countryInstance.country('123.123').traits.ip_address).toEqual(
+      expect(countryInstance.country('123.123')).toEqual(
+        camelcaseKeys(testFixture, { deep: true, exclude: [/\-/] })
+      );
+      expect(countryInstance.country('123.123').traits.ipAddress).toEqual(
         '123.123'
       );
     });
@@ -170,8 +175,8 @@ describe('ReaderModel', () => {
         continent: {},
         country: {},
         maxmind: {},
-        registered_country: {},
-        represented_country: {},
+        registeredCountry: {},
+        representedCountry: {},
         traits: emptyTraits,
       };
 
@@ -210,9 +215,9 @@ describe('ReaderModel', () => {
     it('returns anonymousIP data', () => {
       const anonymousIPInstance = new ReaderModel(mmdbReader);
       expect(anonymousIPInstance.anonymousIP('123.123')).toEqual(
-        anonymousIPFixture
+        camelcaseKeys(anonymousIPFixture)
       );
-      expect(anonymousIPInstance.anonymousIP('123.123').ip_address).toEqual(
+      expect(anonymousIPInstance.anonymousIP('123.123').ipAddress).toEqual(
         '123.123'
       );
     });
@@ -237,12 +242,12 @@ describe('ReaderModel', () => {
     it('returns false for undefined values', () => {
       const anonymousIPInstance = new ReaderModel(mmdbReader);
       const expected = {
-        ip_address: 'empty',
-        is_anonymous: false,
-        is_anonymous_vpn: false,
-        is_hosting_provider: false,
-        is_public_proxy: false,
-        is_tor_exit_node: false,
+        ipAddress: 'empty',
+        isAnonymous: false,
+        isAnonymousVpn: false,
+        isHostingProvider: false,
+        isPublicProxy: false,
+        isTorExitNode: false,
       };
 
       expect(anonymousIPInstance.anonymousIP('empty')).toEqual(expected);
@@ -279,8 +284,8 @@ describe('ReaderModel', () => {
 
     it('returns asn data', () => {
       const asnInstance = new ReaderModel(mmdbReader);
-      expect(asnInstance.asn('123.123')).toEqual(asnFixture);
-      expect(asnInstance.asn('123.123').ip_address).toEqual('123.123');
+      expect(asnInstance.asn('123.123')).toEqual(camelcaseKeys(asnFixture));
+      expect(asnInstance.asn('123.123').ipAddress).toEqual('123.123');
     });
 
     it('throws an error if db types do not match', () => {
@@ -299,7 +304,7 @@ describe('ReaderModel', () => {
     it('returns empty objects/arrays', () => {
       const asnInstance = new ReaderModel(mmdbReader);
       const expected = {
-        ip_address: 'empty',
+        ipAddress: 'empty',
       };
 
       expect(asnInstance.asn('empty')).toEqual(expected);
@@ -338,10 +343,10 @@ describe('ReaderModel', () => {
     it('returns connection-type data', () => {
       const connectionTypeInstance = new ReaderModel(mmdbReader);
       expect(connectionTypeInstance.connectionType('123.123')).toEqual(
-        connectionTypeFixture
+        camelcaseKeys(connectionTypeFixture)
       );
       expect(
-        connectionTypeInstance.connectionType('123.123').ip_address
+        connectionTypeInstance.connectionType('123.123').ipAddress
       ).toEqual('123.123');
     });
 
@@ -365,7 +370,7 @@ describe('ReaderModel', () => {
     it('returns empty objects/arrays', () => {
       const connectionTypeInstance = new ReaderModel(mmdbReader);
       const expected = {
-        ip_address: 'empty',
+        ipAddress: 'empty',
       };
 
       expect(connectionTypeInstance.connectionType('empty')).toEqual(expected);
@@ -415,10 +420,12 @@ describe('ReaderModel', () => {
 
     it('returns enterprise data', () => {
       const enterpriseInstance = new ReaderModel(mmdbReader);
-      expect(enterpriseInstance.enterprise('123.123')).toEqual(testFixture);
-      expect(
-        enterpriseInstance.enterprise('123.123').traits.ip_address
-      ).toEqual('123.123');
+      expect(enterpriseInstance.enterprise('123.123')).toEqual(
+        camelcaseKeys(testFixture, { deep: true, exclude: [/\-/] })
+      );
+      expect(enterpriseInstance.enterprise('123.123').traits.ipAddress).toEqual(
+        '123.123'
+      );
     });
 
     it('throws an error if db types do not match', () => {
@@ -447,8 +454,8 @@ describe('ReaderModel', () => {
         location: {},
         maxmind: {},
         postal: {},
-        registered_country: {},
-        represented_country: {},
+        registeredCountry: {},
+        representedCountry: {},
         subdivisions: [],
         traits: emptyTraits,
       };
@@ -487,8 +494,8 @@ describe('ReaderModel', () => {
 
     it('returns isp data', () => {
       const ispInstance = new ReaderModel(mmdbReader);
-      expect(ispInstance.isp('123.123')).toEqual(ispFixture);
-      expect(ispInstance.isp('123.123').ip_address).toEqual('123.123');
+      expect(ispInstance.isp('123.123')).toEqual(camelcaseKeys(ispFixture));
+      expect(ispInstance.isp('123.123').ipAddress).toEqual('123.123');
     });
 
     it('throws an error if db types do not match', () => {
@@ -507,7 +514,7 @@ describe('ReaderModel', () => {
     it('returns empty objects/arrays', () => {
       const ispInstance = new ReaderModel(mmdbReader);
       const expected = {
-        ip_address: 'empty',
+        ipAddress: 'empty',
       };
 
       expect(ispInstance.isp('empty')).toEqual(expected);

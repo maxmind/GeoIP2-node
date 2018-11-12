@@ -1,8 +1,5 @@
 import mmdb = require('maxmind');
-
-export interface MaxMindRecord {
-  queries_remaining: number;
-}
+import { MaxMindRecord } from './records';
 
 export interface CountryResponse extends mmdb.CountryResponse {
   maxmind?: MaxMindRecord;

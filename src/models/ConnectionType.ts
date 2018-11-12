@@ -7,8 +7,8 @@ export default class ConnectionType {
    * "Dialup", "Cable/DSL", "Corporate", "Cellular".
    * Additional values may be added in the future.
    */
-  public readonly connection_type: string;
-  public ip_address?: string;
+  public readonly connectionType: string;
+  public ipAddress?: string;
 
   /**
    * Instanstiates a "ConnectionType" using fields from the response
@@ -16,7 +16,7 @@ export default class ConnectionType {
    * @param response The GeoIP2 response
    */
   public constructor(response: mmdb.ConnectionTypeResponse) {
-    this.connection_type = response.connection_type;
-    this.ip_address = response.ip_address;
+    this.connectionType = response.connection_type;
+    this.ipAddress = response.ip_address;
   }
 }

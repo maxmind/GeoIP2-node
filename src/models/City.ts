@@ -1,13 +1,14 @@
-import mmdb = require('maxmind');
+import camelcaseKeys = require('camelcase-keys');
+import * as records from '../records';
 import { CityResponse } from '../types';
 import Country from './Country';
 
 /** Class representing the model of a "City" response **/
 export default class City extends Country {
-  public readonly city: mmdb.CityRecord | {};
-  public readonly location: mmdb.LocationRecord | {};
-  public readonly postal: mmdb.PostalRecord | {};
-  public readonly subdivisions: mmdb.SubdivisionsRecord[] | [];
+  public readonly city: records.CityRecord | {};
+  public readonly location: records.LocationRecord | {};
+  public readonly postal: records.PostalRecord | {};
+  public readonly subdivisions: records.SubdivisionsRecord[] | [];
 
   /**
    * Instanstiates a "City" using fields from the response
@@ -16,9 +17,14 @@ export default class City extends Country {
    */
   public constructor(response: CityResponse) {
     super(response);
-    this.city = response.city || {};
-    this.location = response.location || {};
-    this.postal = response.postal || {};
-    this.subdivisions = response.subdivisions || [];
+
+    const camelcaseResponse = camelcaseKeys(response, {
+      deep: true,
+      exclude: [/\-/],
+    });
+    this.city = camelcaseResponse.city || {};
+    this.location = camelcaseResponse.location || {};
+    this.postal = camelcaseResponse.postal || {};
+    this.subdivisions = camelcaseResponse.subdivisions || [];
   }
 }
