@@ -15,6 +15,7 @@ describe('ReaderModel', () => {
     is_anonymous_proxy: false,
     is_anonymous_vpn: false,
     is_hosting_provider: false,
+    is_legitimate_proxy: false,
     is_public_proxy: false,
     is_satellite_provider: false,
     is_tor_exit_node: false,

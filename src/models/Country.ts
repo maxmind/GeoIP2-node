@@ -31,6 +31,7 @@ export default class Country {
       'is_anonymous_proxy',
       'is_anonymous_vpn',
       'is_hosting_provider',
+      'is_legitimate_proxy',
       'is_public_proxy',
       'is_satellite_provider',
       'is_tor_exit_node',
