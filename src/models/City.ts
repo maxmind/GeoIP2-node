@@ -2,7 +2,7 @@ import mmdb = require('maxmind');
 import { CityResponse } from '../types';
 import Country from './Country';
 
-/** Class representing the model of a "City" and "Enterprise" response **/
+/** Class representing the model of a "City" response **/
 export default class City extends Country {
   public readonly city: mmdb.CityRecord | {};
   public readonly location: mmdb.LocationRecord | {};

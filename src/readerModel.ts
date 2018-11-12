@@ -107,7 +107,12 @@ export default class ReaderModel {
    * @throws {AddressNotFoundError} Throws an error when the IP address isn't found in the database
    */
   public enterprise(ipAddress: string): models.City {
-    return this.modelFor(models.City, 'Enterprise', ipAddress, 'enterprise()');
+    return this.modelFor(
+      models.Enterprise,
+      'Enterprise',
+      ipAddress,
+      'enterprise()'
+    );
   }
 
   private getRecord(dbType: string, ipAddress: string, fnName: string) {
