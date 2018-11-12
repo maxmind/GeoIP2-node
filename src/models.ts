@@ -50,9 +50,9 @@ export class City extends Country {
 
 /** Class representing the model of a "ASN" response **/
 export class Asn {
-  public readonly autonomous_system_number: number | undefined;
-  public readonly autonomous_system_organization: string | undefined;
-  public ip_address: string | undefined;
+  public readonly autonomous_system_number?: number;
+  public readonly autonomous_system_organization?: string;
+  public ip_address?: string;
 
   /**
    * Instanstiates an "Asn" using fields from the response
