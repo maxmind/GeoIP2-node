@@ -9,6 +9,17 @@ import { AddressNotFoundError, BadMethodCallError } from './errors';
 import ReaderModel from './readerModel';
 
 describe('ReaderModel', () => {
+  const emptyTraits = {
+    ip_address: 'empty',
+    is_anonymous: false,
+    is_anonymous_proxy: false,
+    is_anonymous_vpn: false,
+    is_hosting_provider: false,
+    is_public_proxy: false,
+    is_satellite_provider: false,
+    is_tor_exit_node: false,
+  };
+
   describe('city()', () => {
     const testFixture = {
       city: fixture.city,
@@ -83,9 +94,7 @@ describe('ReaderModel', () => {
         registered_country: {},
         represented_country: {},
         subdivisions: [],
-        traits: {
-          ip_address: 'empty',
-        },
+        traits: emptyTraits,
       };
 
       expect(cityInstance.city('empty')).toEqual(expected);
@@ -162,9 +171,7 @@ describe('ReaderModel', () => {
         maxmind: {},
         registered_country: {},
         represented_country: {},
-        traits: {
-          ip_address: 'empty',
-        },
+        traits: emptyTraits,
       };
 
       expect(countryInstance.country('empty')).toEqual(expected);
@@ -442,9 +449,7 @@ describe('ReaderModel', () => {
         registered_country: {},
         represented_country: {},
         subdivisions: [],
-        traits: {
-          ip_address: 'empty',
-        },
+        traits: emptyTraits,
       };
 
       expect(enterpriseInstance.enterprise('empty')).toEqual(expected);
