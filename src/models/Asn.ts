@@ -12,10 +12,9 @@ export default class Asn {
    * @param response The GeoLite2 response
    */
   public constructor(response: mmdb.AsnResponse) {
-    this.autonomous_system_number =
-      response.autonomous_system_number || undefined;
+    this.autonomous_system_number = response.autonomous_system_number;
     this.autonomous_system_organization =
-      response.autonomous_system_organization || undefined;
+      response.autonomous_system_organization;
     this.ip_address = response.ip_address;
   }
 }

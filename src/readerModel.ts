@@ -17,6 +17,23 @@ export default class ReaderModel {
   }
 
   /**
+   * Returns the AnonymousIP db data for an IP address
+   *
+   * @param ipAddress The IP Address you want to query the Anonymous IP db with
+   *
+   * @throws {BadMethodCallError} Throws an error when the DB doesn't support Anonymous IP queries
+   * @throws {AddressNotFoundError} Throws an error when the IP address isn't found in the database
+   */
+  public anonymousIP(ipAddress: string): models.AnonymousIP {
+    return this.modelFor(
+      models.AnonymousIP,
+      'GeoIP2-Anonymous-IP',
+      ipAddress,
+      'anonymousIP()'
+    );
+  }
+
+  /**
    * Returns the City db data for an IP address
    *
    * @param ipAddress The IP Address you want to query the City db with
@@ -112,6 +129,7 @@ export default class ReaderModel {
     switch (dbType) {
       case 'ASN':
       case 'Connection-Type':
+      case 'GeoIP2-Anonymous-IP':
       case 'ISP':
         set(record, 'ip_address', ipAddress);
         break;
