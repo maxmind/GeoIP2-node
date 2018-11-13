@@ -1,6 +1,7 @@
 import { cloneDeep } from 'lodash';
 import mmdb = require('maxmind');
 import * as connectionTypeFixture from '../fixtures/geoip2-connection-type.json';
+import * as ispFixture from '../fixtures/geoip2-isp.json';
 import * as fixture from '../fixtures/geoip2.json';
 import * as asnFixture from '../fixtures/geolite2-asn.json';
 import { AddressNotFoundError, BadMethodCallError } from './errors';
@@ -236,6 +237,7 @@ describe('ReaderModel', () => {
         if (ipAddress === 'empty') {
           return {};
         }
+
         return connectionTypeFixture;
       },
       metadata: {
@@ -288,6 +290,63 @@ describe('ReaderModel', () => {
       };
 
       expect(connectionTypeInstance.connectionType('empty')).toEqual(expected);
+    });
+  });
+
+  describe('isp()', () => {
+    const mmdbReader = {
+      get(ipAddress: string) {
+        if (ipAddress === 'fail.fail') {
+          return null;
+        }
+
+        if (ipAddress === 'empty') {
+          return {};
+        }
+        return ispFixture;
+      },
+      metadata: {
+        binaryFormatMajorVersion: 1,
+        binaryFormatMinorVersion: 2,
+        buildEpoch: new Date(),
+        databaseType: 'GeoIP2-ISP',
+        description: 'hello',
+        ipVersion: 5,
+        languages: ['en'],
+        nodeByteSize: 1,
+        nodeCount: 1,
+        recordSize: 1,
+        searchTreeSize: 1,
+        treeDepth: 1,
+      },
+    };
+
+    it('returns isp data', () => {
+      const ispInstance = new ReaderModel(mmdbReader);
+      expect(ispInstance.isp('123.123')).toEqual(ispFixture);
+      expect(ispInstance.isp('123.123').ip_address).toEqual('123.123');
+    });
+
+    it('throws an error if db types do not match', () => {
+      const errReader = cloneDeep(mmdbReader);
+      errReader.metadata.databaseType = 'foo';
+
+      const ispInstance = new ReaderModel(errReader);
+      expect(() => ispInstance.isp('123.123')).toThrow(BadMethodCallError);
+    });
+
+    it('throws an error if IP address is not in database', () => {
+      const ispInstance = new ReaderModel(mmdbReader);
+      expect(() => ispInstance.isp('fail.fail')).toThrow(AddressNotFoundError);
+    });
+
+    it('returns empty objects/arrays', () => {
+      const ispInstance = new ReaderModel(mmdbReader);
+      const expected = {
+        ip_address: 'empty',
+      };
+
+      expect(ispInstance.isp('empty')).toEqual(expected);
     });
   });
 });

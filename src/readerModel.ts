@@ -69,6 +69,18 @@ export default class ReaderModel {
     );
   }
 
+  /**
+   * Returns the ISP db data for an IP address
+   *
+   * @param ipAddress The IP Address you want to query the ISP db with
+   *
+   * @throws {BadMethodCallError} Throws an error when the DB doesn't support ISP queries
+   * @throws {AddressNotFoundError} Throws an error when the IP address isn't found in the database
+   */
+  public isp(ipAddress: string): models.Isp {
+    return this.modelFor(models.Isp, 'ISP', ipAddress, 'isp()');
+  }
+
   private getRecord(dbType: string, ipAddress: string, fnName: string) {
     const metaDbType = this.mmdbReader.metadata.databaseType;
 
@@ -100,6 +112,7 @@ export default class ReaderModel {
     switch (dbType) {
       case 'ASN':
       case 'Connection-Type':
+      case 'ISP':
         set(record, 'ip_address', ipAddress);
         break;
       default:
