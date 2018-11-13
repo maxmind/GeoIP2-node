@@ -1,6 +1,6 @@
 import mmdb = require('maxmind');
 
-/** Class representing the model of a "ASN" response **/
+/** Class representing the model of an "ASN" response **/
 export default class Asn {
   public readonly autonomous_system_number?: number;
   public readonly autonomous_system_organization?: string;
