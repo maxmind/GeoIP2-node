@@ -2,6 +2,11 @@ import mmdb = require('maxmind');
 
 /** Class representing the model of a "ConnectionType" response **/
 export default class ConnectionType {
+  /**
+   * The connection type may take the following values:
+   * "Dialup", "Cable/DSL", "Corporate", "Cellular".
+   * Additional values may be added in the future.
+   */
   public readonly connection_type: string;
   public ip_address?: string;
 
