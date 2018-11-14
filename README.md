@@ -34,7 +34,7 @@ should not be used to identify a particular address or household.
 ## Database Usage
 
 The database reader returns a promise that resolves with a reader instance.
-You may call then call the function corresponding to the request type (e.g.
+You may then call the function corresponding to the request type (e.g.
 `city` or `country`), passing it the IP address you want to look up.
 
 If the request succeeds, the function call will return an object for the GeoIP2
@@ -49,7 +49,7 @@ database reader. As such, you have access to the same
 and can be used like this:
 
 ```
-const reader = require('geoip2-node').Reader;
+const Reader = require('geoip2-node').Reader;
 // Typescript:
 // import { Reader } from 'geoip2-node';
 
@@ -58,7 +58,7 @@ const options = {
 };
 
 Reader.open('/usr/local/database.mmdb', options).then(reader => {
-  reader.country('1.1.1.1');
+  console.log(reader.country('1.1.1.1'));
 });
 ```
 ## Database Examples
@@ -66,7 +66,7 @@ Reader.open('/usr/local/database.mmdb', options).then(reader => {
 ### City Example
 
 ```
-const reader = require('geoip2-node').Reader;
+const Reader = require('geoip2-node').Reader;
 // Typescript:
 // import { Reader } from 'geoip2-node';
 
@@ -80,7 +80,7 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-City.mmdb').then(reader => {
 ### Anonymous IP Database Example
 
 ```
-const reader = require('geoip2-node').Reader;
+const Reader = require('geoip2-node').Reader;
 // Typescript:
 // import { Reader } from 'geoip2-node';
 
@@ -99,7 +99,7 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Anonymous-IP.mmdb').then(reader => {
 ### ASN Example
 
 ```
-const reader = require('geoip2-node').Reader;
+const Reader = require('geoip2-node').Reader;
 // Typescript:
 // import { Reader } from 'geoip2-node';
 
@@ -114,7 +114,7 @@ Reader.open('/usr/local/share/GeoIP/GeoLite2-ASN.mmdb').then(reader => {
 ### ISP Example
 
 ```
-const reader = require('geoip2-node').Reader;
+const Reader = require('geoip2-node').Reader;
 // Typescript:
 // import { Reader } from 'geoip2-node';
 
@@ -133,7 +133,7 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-ISP.mmdb').then(reader => {
 ### Connection-Type Example
 
 ```
-const reader = require('geoip2-node').Reader;
+const Reader = require('geoip2-node').Reader;
 // Typescript:
 // import { Reader } from 'geoip2-node';
 
@@ -148,7 +148,7 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Connection-Type.mmdb').then(reader =>
 ### Enterprise Example
 
 ```
-const reader = require('geoip2-node').Reader;
+const Reader = require('geoip2-node').Reader;
 // Typescript:
 // import { Reader } from 'geoip2-node';
 
@@ -162,7 +162,7 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Enterprise.mmdb').then(reader => {
 ### Domain Example
 
 ```
-const reader = require('geoip2-node').Reader;
+const Reader = require('geoip2-node').Reader;
 // Typescript:
 // import { Reader } from 'geoip2-node';
 
@@ -176,16 +176,18 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Domain.mmdb').then(reader => {
 
 ## Database Exceptions
 
-If the database file does not exist, not readable, invalid, or there is a bug
+If the database file does not exist, is not readable, is invalid, or there is a bug
 in the reader, the promise will be rejected with an `Error` with a message
 explaining the issue.
 
-If the the database file and the reader method does not match (e.g.
+If the database file and the reader method do not match (e.g.
 `reader.city` is used with a Country database), a `BadMethodCalledError` will
-be raised.
+be thrown.
 
 If the IP address is not found in the database, an `AddressNotFoundError` will
-be raised.
+be thrown.
+
+If the IP address is not valid, a `ValueError` will be thrown.
 
 ## Values to use for Database or Object Keys
 
@@ -256,7 +258,7 @@ whenever possible, as we strive to maintain 100% code coverage.
 
 ## Versioning
 
-The GeoIP2 Node.js API uses Semantic Versioning.
+The GeoIP2 Node.js API uses [Semantic Versioning](http://semver.org/).
 
 ## Support
 
