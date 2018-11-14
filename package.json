@@ -1,5 +1,5 @@
 {
-  "name": "GeoIP2-node",
+  "name": "geoip2-node",
   "version": "0.0.1",
   "description": "Node.js API for GeoIP2 webservice client and database reader",
   "main": "dist/index.js",
