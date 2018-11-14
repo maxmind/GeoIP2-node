@@ -1,14 +1,15 @@
-import mmdb = require('maxmind');
-import { CountryResponse, MaxMindRecord } from '../types';
+import camelcaseKeys = require('camelcase-keys');
+import * as records from '../records';
+import { CountryResponse } from '../types';
 
 /** Class representing the model of a "Country" response **/
 export default class Country {
-  public readonly continent: mmdb.ContinentRecord | {};
-  public readonly country: mmdb.CountryRecord | {};
-  public readonly maxmind: MaxMindRecord | {};
-  public readonly registered_country: mmdb.RegisteredCountryRecord | {};
-  public readonly represented_country: mmdb.RepresentedCountryRecord | {};
-  public readonly traits: mmdb.TraitsRecord;
+  public readonly continent: records.ContinentRecord | {};
+  public readonly country: records.CountryRecord | {};
+  public readonly maxmind: records.MaxMindRecord | {};
+  public readonly registeredCountry: records.RegisteredCountryRecord | {};
+  public readonly representedCountry: records.RepresentedCountryRecord | {};
+  public readonly traits: records.TraitsRecord;
 
   /**
    * Instanstiates a "Country" using fields from the response
@@ -16,38 +17,44 @@ export default class Country {
    * @param response The GeoIP2 response
    */
   public constructor(response: CountryResponse) {
-    this.continent = response.continent || {};
-    this.country = response.country || {};
-    this.maxmind = response.maxmind || {};
-    this.registered_country =
-      this.setBooleanRegisteredCountry(response.registered_country) || {};
-    this.represented_country = response.represented_country || {};
-    this.traits = this.setBooleanTraits(response.traits);
+    const camelcaseResponse = camelcaseKeys(response, {
+      deep: true,
+      exclude: [/\-/],
+    });
+
+    this.continent = camelcaseResponse.continent || {};
+    this.country = camelcaseResponse.country || {};
+    this.maxmind = camelcaseResponse.maxmind || {};
+    this.registeredCountry =
+      this.setBooleanRegisteredCountry(camelcaseResponse.registeredCountry) ||
+      {};
+    this.representedCountry = camelcaseResponse.representedCountry || {};
+    this.traits = this.setBooleanTraits(camelcaseResponse.traits);
   }
 
   private setBooleanTraits(traits: any) {
     const booleanTraits = [
-      'is_anonymous',
-      'is_anonymous_proxy',
-      'is_anonymous_vpn',
-      'is_hosting_provider',
-      'is_legitimate_proxy',
-      'is_public_proxy',
-      'is_satellite_provider',
-      'is_tor_exit_node',
+      'isAnonymous',
+      'isAnonymousProxy',
+      'isAnonymousVpn',
+      'isHostingProvider',
+      'isLegitimateProxy',
+      'isPublicProxy',
+      'isSatelliteProvider',
+      'isTorExitNode',
     ];
 
     booleanTraits.forEach(trait => {
       traits[trait] = !!traits[trait];
     });
 
-    return traits as mmdb.TraitsRecord;
+    return traits as records.TraitsRecord;
   }
 
-  private setBooleanRegisteredCountry(records: any) {
-    if (records) {
-      records.is_in_european_union = !!records.is_in_european_union;
+  private setBooleanRegisteredCountry(country: any) {
+    if (country) {
+      country.isInEuropeanUnion = !!country.isInEuropeanUnion;
     }
-    return records as mmdb.RegisteredCountryRecord;
+    return country as records.RegisteredCountryRecord;
   }
 }

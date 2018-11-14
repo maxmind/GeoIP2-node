@@ -25,6 +25,11 @@
   dependencies:
     any-observable "^0.3.0"
 
+"@types/camelcase-keys@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@types/camelcase-keys/-/camelcase-keys-4.0.0.tgz#528da23e7bd41068ee25e3ba52a96a4d0d263ed5"
+  integrity sha1-Uo2iPnvUEGjuJeO6UqlqTQ0mPtU=
+
 "@types/events@*":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@types/events/-/events-1.2.0.tgz#81a6731ce4df43619e5c8c945383b3e62a89ea86"
@@ -599,10 +604,24 @@ callsites@^2.0.0:
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-2.0.0.tgz#06eb84f00eea413da86affefacbffb36093b3c50"
   integrity sha1-BuuE8A7qQT2oav/vrL/7Ngk7PFA=
 
+camelcase-keys@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/camelcase-keys/-/camelcase-keys-5.0.0.tgz#67250d1d2e6617ed0568463e56fa337845706695"
+  integrity sha512-RFdQsUUi4TS/xg4RoLwmpw9hwOp/M0OY+9g3Oa90sH+tueZ1Cd7vXl4fEaCbydiGp1xo+eUr+wq9jLjRPLjhtg==
+  dependencies:
+    camelcase "^5.0.0"
+    map-obj "^3.0.0"
+    quick-lru "^1.0.0"
+
 camelcase@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-4.1.0.tgz#d545635be1e33c542649c69173e5de6acfae34dd"
   integrity sha1-1UVjW+HjPFQmScaRc+Xeas+uNN0=
+
+camelcase@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-5.0.0.tgz#03295527d58bd3cd4aa75363f35b2e8d97be2f42"
+  integrity sha512-faqwZqnWxbxn+F1d399ygeamQNy3lPp/H9H6rNrqYh4FSVCtcY+3cub1MxA8o9mDd55mM8Aghuu/kuyYA6VTsA==
 
 capture-exit@^1.2.0:
   version "1.2.0"
@@ -2668,6 +2687,11 @@ map-cache@^0.2.2:
   resolved "https://registry.yarnpkg.com/map-cache/-/map-cache-0.2.2.tgz#c32abd0bd6525d9b051645bb4f26ac5dc98a0dbf"
   integrity sha1-wyq9C9ZSXZsFFkW7TyasXcmKDb8=
 
+map-obj@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/map-obj/-/map-obj-3.0.0.tgz#4221cc62360f88c0735f9e7c0813bd889657f490"
+  integrity sha512-Ot+2wruG8WqTbJngDxz0Ifm03y2pO4iL+brq/l+yEkGjUza03BnMQqX2XT//Jls8MOOl2VTHviAoLX+/nq/HXw==
+
 map-visit@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/map-visit/-/map-visit-1.0.0.tgz#ecdca8f13144e660f1b5bd41f12f3479d98dfb8f"
@@ -3365,6 +3389,11 @@ query-string@^4.1.0:
   dependencies:
     object-assign "^4.1.0"
     strict-uri-encode "^1.0.0"
+
+quick-lru@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/quick-lru/-/quick-lru-1.1.0.tgz#4360b17c61136ad38078397ff11416e186dcfbb8"
+  integrity sha1-Q2CxfGETatOAeDl/8RQW4Ybc+7g=
 
 randomatic@^3.0.0:
   version "3.1.1"

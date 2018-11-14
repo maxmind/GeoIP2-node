@@ -61,6 +61,7 @@
   "registered_country": {
     "geoname_id": 6252001,
     "iso_code": "US",
+    "is_in_european_union": false,
     "names": {
       "de": "USA",
       "en": "United States",
@@ -108,8 +109,14 @@
     "autonomous_system_organization": "Linkem IR WiMax Network",
     "domain": "example.com",
     "ip_address": "1.2.3.4",
+    "is_anonymous": true,
     "is_anonymous_proxy": true,
+    "is_anonymous_vpn": false,
+    "is_hosting_provider": false,
+    "is_legitimate_proxy": true,
+    "is_public_proxy": true,
     "is_satellite_provider": true,
+    "is_tor_exit_node": true,
     "isp": "Linkem spa",
     "organization": "Linkem IR WiMax Network",
     "user_type": "traveler"
