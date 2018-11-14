@@ -89,6 +89,19 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Enterprise.mmdb').then(reader => {
 });
 ```
 
+### Domain Example
+
+```
+const reader = require('GeoIP2-node').Reader;
+
+Reader.open('/usr/local/share/GeoIP/GeoIP2-Domain.mmdb').then(reader => {
+  const response = reader.domain('128.101.101.101');
+
+  console.log(response.domain) // 'umn.edu'
+  console.log(response.ipAddress) // '128.101.101.101'
+});
+```
+
 ## Copyright and License ##
 
 This software is Copyright (c) 2018 by MaxMind, Inc.

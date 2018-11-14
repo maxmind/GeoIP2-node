@@ -87,6 +87,18 @@ export default class ReaderModel {
   }
 
   /**
+   * Returns the Domain db data for an IP address
+   *
+   * @param ipAddress The IP Address you want to query the Domain db with
+   *
+   * @throws {BadMethodCallError} Throws an error when the DB doesn't support Domain queries
+   * @throws {AddressNotFoundError} Throws an error when the IP address isn't found in the database
+   */
+  public domain(ipAddress: string): models.Domain {
+    return this.modelFor(models.Domain, 'Domain', ipAddress, 'domain()');
+  }
+
+  /**
    * Returns the ISP db data for an IP address
    *
    * @param ipAddress The IP Address you want to query the ISP db with
@@ -146,6 +158,7 @@ export default class ReaderModel {
     switch (dbType) {
       case 'ASN':
       case 'Connection-Type':
+      case 'Domain':
       case 'GeoIP2-Anonymous-IP':
       case 'ISP':
         set(record, 'ip_address', ipAddress);
