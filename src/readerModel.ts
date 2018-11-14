@@ -98,6 +98,23 @@ export default class ReaderModel {
     return this.modelFor(models.Isp, 'ISP', ipAddress, 'isp()');
   }
 
+  /*
+   * Returns the Enterprise db data for an IP address
+   *
+   * @param ipAddress The IP Address you want to query the Enterprise db with
+   *
+   * @throws {BadMethodCallError} Throws an error when the DB doesn't support Enterprise queries
+   * @throws {AddressNotFoundError} Throws an error when the IP address isn't found in the database
+   */
+  public enterprise(ipAddress: string): models.City {
+    return this.modelFor(
+      models.Enterprise,
+      'Enterprise',
+      ipAddress,
+      'enterprise()'
+    );
+  }
+
   private getRecord(dbType: string, ipAddress: string, fnName: string) {
     const metaDbType = this.mmdbReader.metadata.databaseType;
 

@@ -15,8 +15,8 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-City.mmdb').then(reader => {
 
   console.log(response.country.isoCode); // 'US'
 });
-
 ```
+
 ### Anonymous IP Database Example
 
 ```
@@ -32,7 +32,6 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Anonymous-IP.mmdb').then(reader => {
   console.log(response.is_tor_exit_node); // false
   console.log(response.ip_address); // '85.25.43.84'
 });
-
 ```
 
 ### ASN Example
@@ -46,7 +45,6 @@ Reader.open('/usr/local/share/GeoIP/GeoLite2-ASN.mmdb').then(reader => {
   console.log(response.autonomous_system_number); // 217
   console.log(response.autonomous_system_organization); // 'University of Minnesota'
 });
-
 ```
 
 ### ISP Example
@@ -64,7 +62,6 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-ISP.mmdb').then(reader => {
 
   console.log(response.ip_address); // '128.101.101.101'
 });
-
 ```
 
 ### Connection-Type Example
@@ -78,7 +75,18 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Connection-Type.mmdb').then(reader =>
   console.log(response.connection_type) // 'Cable/DSL'
   console.log(response.ip_address) // '128.101.101.101'
 });
+```
 
+### Enterprise Example
+
+```
+const reader = require('GeoIP2-node').Reader;
+
+Reader.open('/usr/local/share/GeoIP/GeoIP2-Enterprise.mmdb').then(reader => {
+  const response = reader.enterprise('128.101.101.101');
+
+  console.log(response.country.iso_code) // 'US'
+});
 ```
 
 ## Copyright and License ##

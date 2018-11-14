@@ -19,8 +19,35 @@ export default class Country {
     this.continent = response.continent || {};
     this.country = response.country || {};
     this.maxmind = response.maxmind || {};
-    this.registered_country = response.registered_country || {};
+    this.registered_country =
+      this.setBooleanRegisteredCountry(response.registered_country) || {};
     this.represented_country = response.represented_country || {};
-    this.traits = response.traits as mmdb.TraitsRecord;
+    this.traits = this.setBooleanTraits(response.traits);
+  }
+
+  private setBooleanTraits(traits: any) {
+    const booleanTraits = [
+      'is_anonymous',
+      'is_anonymous_proxy',
+      'is_anonymous_vpn',
+      'is_hosting_provider',
+      'is_legitimate_proxy',
+      'is_public_proxy',
+      'is_satellite_provider',
+      'is_tor_exit_node',
+    ];
+
+    booleanTraits.forEach(trait => {
+      traits[trait] = !!traits[trait];
+    });
+
+    return traits as mmdb.TraitsRecord;
+  }
+
+  private setBooleanRegisteredCountry(records: any) {
+    if (records) {
+      records.is_in_european_union = !!records.is_in_european_union;
+    }
+    return records as mmdb.RegisteredCountryRecord;
   }
 }
