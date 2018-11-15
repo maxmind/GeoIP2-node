@@ -1,4 +1,6 @@
+import * as fs from 'fs';
 import mmdb = require('maxmind');
+import { InvalidDbBufferError } from './errors';
 import Reader from './reader';
 import ReaderModel from './readerModel';
 
@@ -36,6 +38,19 @@ describe('Reader', () => {
     it('rejects the promise if node-maxmind errors out', () => {
       return expect(Reader.open('fail.test')).rejects.toThrowError(
         'some mocked error'
+      );
+    });
+  });
+
+  describe('openBuffer()', () => {
+    it('returns a reader model if the buffer is a valid DB', () => {
+      const buffer = fs.readFileSync('./fixtures/GeoIP2-City-Test.mmdb');
+      expect(Reader.openBuffer(new Buffer(buffer))).toBeInstanceOf(ReaderModel);
+    });
+
+    it('throws an InvalidDbBufferError if buffer is not a valid DB', () => {
+      expect(() => Reader.openBuffer(new Buffer('foo'))).toThrowError(
+        InvalidDbBufferError
       );
     });
   });
