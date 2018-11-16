@@ -7,16 +7,23 @@ import * as domainFixture from '../fixtures/geoip2-domain.json';
 import * as ispFixture from '../fixtures/geoip2-isp.json';
 import * as geoip2Fixture from '../fixtures/geoip2.json';
 import * as asnFixture from '../fixtures/geolite2-asn.json';
-import { AddressNotFoundError, BadMethodCallError } from './errors';
+import { AddressNotFoundError, BadMethodCallError, ValueError } from './errors';
 import ReaderModel from './readerModel';
+
+const ips = {
+  empty: '88.88.88.88',
+  invalid: 'foobar',
+  notFound: '99.99.99.99',
+  valid: '11.11.11.11',
+};
 
 const createMmdbReaderMock = (databaseType: string, fixture: any) => ({
   get(ipAddress: string) {
-    if (ipAddress === 'fail.fail') {
-      return null;
+    if (ipAddress === ips.notFound) {
+      throw new Error('ip address not found');
     }
 
-    if (ipAddress === 'empty') {
+    if (ipAddress === ips.empty) {
       return {};
     }
     return fixture;
@@ -39,7 +46,7 @@ const createMmdbReaderMock = (databaseType: string, fixture: any) => ({
 
 describe('ReaderModel', () => {
   const emptyTraits = {
-    ipAddress: 'empty',
+    ipAddress: ips.empty,
     isAnonymous: false,
     isAnonymousProxy: false,
     isAnonymousVpn: false,
@@ -71,10 +78,15 @@ describe('ReaderModel', () => {
 
     it('returns city data', () => {
       const cityInstance = new ReaderModel(mmdbReader);
-      expect(cityInstance.city('123.123')).toEqual(
+      expect(cityInstance.city(ips.valid)).toEqual(
         camelcaseKeys(testFixture, { deep: true, exclude: [/\-/] })
       );
-      expect(cityInstance.city('123.123').traits.ipAddress).toEqual('123.123');
+      expect(cityInstance.city(ips.valid).traits.ipAddress).toEqual(ips.valid);
+    });
+
+    it('throws an error if IP address is not valid', () => {
+      const instance = new ReaderModel(mmdbReader);
+      expect(() => instance.city(ips.invalid)).toThrow(ValueError);
     });
 
     it('throws an error if db types do not match', () => {
@@ -82,12 +94,12 @@ describe('ReaderModel', () => {
       errReader.metadata.databaseType = 'foo';
 
       const cityInstance = new ReaderModel(errReader);
-      expect(() => cityInstance.city('123.123')).toThrow(BadMethodCallError);
+      expect(() => cityInstance.city(ips.valid)).toThrow(BadMethodCallError);
     });
 
     it('throws an error if IP address is not in database', () => {
       const cityInstance = new ReaderModel(mmdbReader);
-      expect(() => cityInstance.city('fail.fail')).toThrow(
+      expect(() => cityInstance.city(ips.notFound)).toThrow(
         AddressNotFoundError
       );
     });
@@ -107,7 +119,7 @@ describe('ReaderModel', () => {
         traits: emptyTraits,
       };
 
-      expect(cityInstance.city('empty')).toEqual(expected);
+      expect(cityInstance.city(ips.empty)).toEqual(expected);
     });
   });
 
@@ -128,11 +140,11 @@ describe('ReaderModel', () => {
 
     it('returns city data', () => {
       const countryInstance = new ReaderModel(mmdbReader);
-      expect(countryInstance.country('123.123')).toEqual(
+      expect(countryInstance.country(ips.valid)).toEqual(
         camelcaseKeys(testFixture, { deep: true, exclude: [/\-/] })
       );
-      expect(countryInstance.country('123.123').traits.ipAddress).toEqual(
-        '123.123'
+      expect(countryInstance.country(ips.valid).traits.ipAddress).toEqual(
+        ips.valid
       );
     });
 
@@ -141,16 +153,21 @@ describe('ReaderModel', () => {
       errReader.metadata.databaseType = 'foo';
 
       const countryInstance = new ReaderModel(errReader);
-      expect(() => countryInstance.country('123.123')).toThrow(
+      expect(() => countryInstance.country(ips.valid)).toThrow(
         BadMethodCallError
       );
     });
 
     it('throws an error if IP address is not in database', () => {
       const countryInstance = new ReaderModel(mmdbReader);
-      expect(() => countryInstance.country('fail.fail')).toThrow(
+      expect(() => countryInstance.country(ips.notFound)).toThrow(
         AddressNotFoundError
       );
+    });
+
+    it('throws an error if IP address is not valid', () => {
+      const instance = new ReaderModel(mmdbReader);
+      expect(() => instance.country(ips.invalid)).toThrow(ValueError);
     });
 
     it('returns empty objects/arrays', () => {
@@ -164,7 +181,7 @@ describe('ReaderModel', () => {
         traits: emptyTraits,
       };
 
-      expect(countryInstance.country('empty')).toEqual(expected);
+      expect(countryInstance.country(ips.empty)).toEqual(expected);
     });
   });
 
@@ -176,11 +193,11 @@ describe('ReaderModel', () => {
 
     it('returns anonymousIP data', () => {
       const anonymousIPInstance = new ReaderModel(mmdbReader);
-      expect(anonymousIPInstance.anonymousIP('123.123')).toEqual(
+      expect(anonymousIPInstance.anonymousIP(ips.valid)).toEqual(
         camelcaseKeys(anonymousIPFixture)
       );
-      expect(anonymousIPInstance.anonymousIP('123.123').ipAddress).toEqual(
-        '123.123'
+      expect(anonymousIPInstance.anonymousIP(ips.valid).ipAddress).toEqual(
+        ips.valid
       );
     });
 
@@ -189,22 +206,27 @@ describe('ReaderModel', () => {
       errReader.metadata.databaseType = 'foo';
 
       const anonymousIPInstance = new ReaderModel(errReader);
-      expect(() => anonymousIPInstance.anonymousIP('123.123')).toThrow(
+      expect(() => anonymousIPInstance.anonymousIP(ips.valid)).toThrow(
         BadMethodCallError
       );
     });
 
     it('throws an error if IP address is not in database', () => {
       const anonymousIPInstance = new ReaderModel(mmdbReader);
-      expect(() => anonymousIPInstance.anonymousIP('fail.fail')).toThrow(
+      expect(() => anonymousIPInstance.anonymousIP(ips.notFound)).toThrow(
         AddressNotFoundError
       );
+    });
+
+    it('throws an error if IP address is not valid', () => {
+      const instance = new ReaderModel(mmdbReader);
+      expect(() => instance.anonymousIP(ips.invalid)).toThrow(ValueError);
     });
 
     it('returns false for undefined values', () => {
       const anonymousIPInstance = new ReaderModel(mmdbReader);
       const expected = {
-        ipAddress: 'empty',
+        ipAddress: ips.empty,
         isAnonymous: false,
         isAnonymousVpn: false,
         isHostingProvider: false,
@@ -212,7 +234,7 @@ describe('ReaderModel', () => {
         isTorExitNode: false,
       };
 
-      expect(anonymousIPInstance.anonymousIP('empty')).toEqual(expected);
+      expect(anonymousIPInstance.anonymousIP(ips.empty)).toEqual(expected);
     });
   });
 
@@ -221,8 +243,8 @@ describe('ReaderModel', () => {
 
     it('returns asn data', () => {
       const asnInstance = new ReaderModel(mmdbReader);
-      expect(asnInstance.asn('123.123')).toEqual(camelcaseKeys(asnFixture));
-      expect(asnInstance.asn('123.123').ipAddress).toEqual('123.123');
+      expect(asnInstance.asn(ips.valid)).toEqual(camelcaseKeys(asnFixture));
+      expect(asnInstance.asn(ips.valid).ipAddress).toEqual(ips.valid);
     });
 
     it('throws an error if db types do not match', () => {
@@ -230,21 +252,26 @@ describe('ReaderModel', () => {
       errReader.metadata.databaseType = 'foo';
 
       const asnInstance = new ReaderModel(errReader);
-      expect(() => asnInstance.asn('123.123')).toThrow(BadMethodCallError);
+      expect(() => asnInstance.asn(ips.valid)).toThrow(BadMethodCallError);
     });
 
     it('throws an error if IP address is not in database', () => {
       const asnInstance = new ReaderModel(mmdbReader);
-      expect(() => asnInstance.asn('fail.fail')).toThrow(AddressNotFoundError);
+      expect(() => asnInstance.asn(ips.notFound)).toThrow(AddressNotFoundError);
+    });
+
+    it('throws an error if IP address is not valid', () => {
+      const instance = new ReaderModel(mmdbReader);
+      expect(() => instance.asn(ips.invalid)).toThrow(ValueError);
     });
 
     it('returns empty objects/arrays', () => {
       const asnInstance = new ReaderModel(mmdbReader);
       const expected = {
-        ipAddress: 'empty',
+        ipAddress: ips.empty,
       };
 
-      expect(asnInstance.asn('empty')).toEqual(expected);
+      expect(asnInstance.asn(ips.empty)).toEqual(expected);
     });
   });
 
@@ -256,12 +283,12 @@ describe('ReaderModel', () => {
 
     it('returns connection-type data', () => {
       const connectionTypeInstance = new ReaderModel(mmdbReader);
-      expect(connectionTypeInstance.connectionType('123.123')).toEqual(
+      expect(connectionTypeInstance.connectionType(ips.valid)).toEqual(
         camelcaseKeys(connectionTypeFixture)
       );
       expect(
-        connectionTypeInstance.connectionType('123.123').ipAddress
-      ).toEqual('123.123');
+        connectionTypeInstance.connectionType(ips.valid).ipAddress
+      ).toEqual(ips.valid);
     });
 
     it('throws an error if db types do not match', () => {
@@ -269,25 +296,32 @@ describe('ReaderModel', () => {
       errReader.metadata.databaseType = 'foo';
 
       const connectionTypeInstance = new ReaderModel(errReader);
-      expect(() => connectionTypeInstance.connectionType('123.123')).toThrow(
+      expect(() => connectionTypeInstance.connectionType(ips.valid)).toThrow(
         BadMethodCallError
       );
     });
 
     it('throws an error if IP address is not in database', () => {
       const connectionTypeInstance = new ReaderModel(mmdbReader);
-      expect(() => connectionTypeInstance.connectionType('fail.fail')).toThrow(
+      expect(() => connectionTypeInstance.connectionType(ips.notFound)).toThrow(
         AddressNotFoundError
       );
+    });
+
+    it('throws an error if IP address is not valid', () => {
+      const instance = new ReaderModel(mmdbReader);
+      expect(() => instance.connectionType(ips.invalid)).toThrow(ValueError);
     });
 
     it('returns empty objects/arrays', () => {
       const connectionTypeInstance = new ReaderModel(mmdbReader);
       const expected = {
-        ipAddress: 'empty',
+        ipAddress: ips.empty,
       };
 
-      expect(connectionTypeInstance.connectionType('empty')).toEqual(expected);
+      expect(connectionTypeInstance.connectionType(ips.empty)).toEqual(
+        expected
+      );
     });
   });
 
@@ -312,11 +346,11 @@ describe('ReaderModel', () => {
 
     it('returns enterprise data', () => {
       const enterpriseInstance = new ReaderModel(mmdbReader);
-      expect(enterpriseInstance.enterprise('123.123')).toEqual(
+      expect(enterpriseInstance.enterprise(ips.valid)).toEqual(
         camelcaseKeys(testFixture, { deep: true, exclude: [/\-/] })
       );
-      expect(enterpriseInstance.enterprise('123.123').traits.ipAddress).toEqual(
-        '123.123'
+      expect(enterpriseInstance.enterprise(ips.valid).traits.ipAddress).toEqual(
+        ips.valid
       );
     });
 
@@ -325,16 +359,21 @@ describe('ReaderModel', () => {
       errReader.metadata.databaseType = 'foo';
 
       const enterpriseInstance = new ReaderModel(errReader);
-      expect(() => enterpriseInstance.enterprise('123.123')).toThrow(
+      expect(() => enterpriseInstance.enterprise(ips.valid)).toThrow(
         BadMethodCallError
       );
     });
 
     it('throws an error if IP address is not in database', () => {
       const enterpriseInstance = new ReaderModel(mmdbReader);
-      expect(() => enterpriseInstance.enterprise('fail.fail')).toThrow(
+      expect(() => enterpriseInstance.enterprise(ips.notFound)).toThrow(
         AddressNotFoundError
       );
+    });
+
+    it('throws an error if IP address is not valid', () => {
+      const instance = new ReaderModel(mmdbReader);
+      expect(() => instance.enterprise(ips.invalid)).toThrow(ValueError);
     });
 
     it('returns empty objects/arrays', () => {
@@ -352,7 +391,7 @@ describe('ReaderModel', () => {
         traits: emptyTraits,
       };
 
-      expect(enterpriseInstance.enterprise('empty')).toEqual(expected);
+      expect(enterpriseInstance.enterprise(ips.empty)).toEqual(expected);
     });
   });
 
@@ -361,8 +400,8 @@ describe('ReaderModel', () => {
 
     it('returns isp data', () => {
       const ispInstance = new ReaderModel(mmdbReader);
-      expect(ispInstance.isp('123.123')).toEqual(camelcaseKeys(ispFixture));
-      expect(ispInstance.isp('123.123').ipAddress).toEqual('123.123');
+      expect(ispInstance.isp(ips.valid)).toEqual(camelcaseKeys(ispFixture));
+      expect(ispInstance.isp(ips.valid).ipAddress).toEqual(ips.valid);
     });
 
     it('throws an error if db types do not match', () => {
@@ -370,21 +409,26 @@ describe('ReaderModel', () => {
       errReader.metadata.databaseType = 'foo';
 
       const ispInstance = new ReaderModel(errReader);
-      expect(() => ispInstance.isp('123.123')).toThrow(BadMethodCallError);
+      expect(() => ispInstance.isp(ips.valid)).toThrow(BadMethodCallError);
     });
 
     it('throws an error if IP address is not in database', () => {
       const ispInstance = new ReaderModel(mmdbReader);
-      expect(() => ispInstance.isp('fail.fail')).toThrow(AddressNotFoundError);
+      expect(() => ispInstance.isp(ips.notFound)).toThrow(AddressNotFoundError);
+    });
+
+    it('throws an error if IP address is not valid', () => {
+      const instance = new ReaderModel(mmdbReader);
+      expect(() => instance.isp(ips.invalid)).toThrow(ValueError);
     });
 
     it('returns empty objects/arrays', () => {
       const ispInstance = new ReaderModel(mmdbReader);
       const expected = {
-        ipAddress: 'empty',
+        ipAddress: ips.empty,
       };
 
-      expect(ispInstance.isp('empty')).toEqual(expected);
+      expect(ispInstance.isp(ips.empty)).toEqual(expected);
     });
   });
 
@@ -393,10 +437,10 @@ describe('ReaderModel', () => {
 
     it('returns domain data', () => {
       const domainInstance = new ReaderModel(mmdbReader);
-      expect(domainInstance.domain('123.123')).toEqual(
+      expect(domainInstance.domain(ips.valid)).toEqual(
         camelcaseKeys(domainFixture)
       );
-      expect(domainInstance.domain('123.123').ipAddress).toEqual('123.123');
+      expect(domainInstance.domain(ips.valid).ipAddress).toEqual(ips.valid);
     });
 
     it('throws an error if db types do not match', () => {
@@ -404,25 +448,30 @@ describe('ReaderModel', () => {
       errReader.metadata.databaseType = 'foo';
 
       const domainInstance = new ReaderModel(errReader);
-      expect(() => domainInstance.domain('123.123')).toThrow(
+      expect(() => domainInstance.domain(ips.valid)).toThrow(
         BadMethodCallError
       );
     });
 
     it('throws an error if IP address is not in database', () => {
       const domainInstance = new ReaderModel(mmdbReader);
-      expect(() => domainInstance.domain('fail.fail')).toThrow(
+      expect(() => domainInstance.domain(ips.notFound)).toThrow(
         AddressNotFoundError
       );
+    });
+
+    it('throws an error if IP address is not valid', () => {
+      const instance = new ReaderModel(mmdbReader);
+      expect(() => instance.domain(ips.invalid)).toThrow(ValueError);
     });
 
     it('returns empty objects/arrays', () => {
       const domainInstance = new ReaderModel(mmdbReader);
       const expected = {
-        ipAddress: 'empty',
+        ipAddress: ips.empty,
       };
 
-      expect(domainInstance.domain('empty')).toEqual(expected);
+      expect(domainInstance.domain(ips.empty)).toEqual(expected);
     });
   });
 });
