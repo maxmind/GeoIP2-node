@@ -1,6 +1,6 @@
 {
-  "name": "geoip2-node",
-  "version": "0.0.1",
+  "name": "@maxmind/geoip2-node",
+  "version": "0.0.0",
   "description": "Node.js API for GeoIP2 webservice client and database reader",
   "main": "dist/index.js",
   "homepage": "https://github.com/maxmind/GeoIP2-node",
@@ -11,6 +11,18 @@
   "author": "MaxMind",
   "license": "Apache-2.0",
   "private": false,
+  "keywords": [
+    "geoip",
+    "geoip2",
+    "geoip precision",
+    "geoip2 precision",
+    "geolite",
+    "geolite2",
+    "maxmind",
+    "maxminddb",
+    "mmdb"
+  ],
+  "files": ["dist"],
   "types": "dist/index.d.ts",
   "devDependencies": {
     "@types/camelcase-keys": "^4.0.0",
@@ -22,6 +34,7 @@
     "jest": "^23.6.0",
     "lint-staged": "^7.3.0",
     "lodash": "^4.17.11",
+    "np": "^3.0.4",
     "prettier": "^1.14.3",
     "ts-jest": "^23.10.4",
     "tslint": "^5.11.0",
@@ -43,6 +56,9 @@
       "git add"
     ]
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "rimraf dist && tsc",
     "build:docs": "rimraf docs && typedoc --out docs --exclude \"**/*.spec.ts\" --mode file --readme none",
@@ -51,8 +67,10 @@
     "prettier:ts": "prettier --parser typescript --single-quote true --trailing-comma es5 --write 'src/**/*.ts'",
     "prettier:ci": "prettier --parser typescript --single-quote true --trailing-comma es5 --list-different 'src/**/*.ts'",
     "prettier:json": "prettier --parser json --write '**/*.json'",
+    "release": "np",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "version": "yarn build:docs && yarn deploy:docs"
   },
   "dependencies": {
     "camelcase-keys": "^5.0.0",
