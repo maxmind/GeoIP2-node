@@ -11,6 +11,17 @@
   "author": "MaxMind",
   "license": "Apache-2.0",
   "private": false,
+  "keywords": [
+    "geoip",
+    "geoip2",
+    "geoip precision",
+    "geoip2 precision",
+    "geolite",
+    "geolite2",
+    "maxmind",
+    "maxminddb",
+    "mmdb"
+  ],
   "files": ["dist"],
   "types": "dist/index.d.ts",
   "devDependencies": {
