@@ -15,13 +15,13 @@ databases](https://dev.maxmind.com/geoip/geoip2/geolite2/).
 ## Installation
 
 ```
-yarn add geoip2-node
+yarn add @maxmind/geoip2-node
 ```
 
 If you are not able to use `yarn`, you may also use `npm`:
 
 ```
-npm install geoip2-node
+npm install @maxmind/geoip2-node
 ```
 
 
@@ -49,9 +49,9 @@ database reader. As such, you have access to the same
 and can be used like this:
 
 ```
-const Reader = require('geoip2-node').Reader;
+const Reader = require('@maxmind/geoip2-node').Reader;
 // Typescript:
-// import { Reader } from 'geoip2-node';
+// import { Reader } from '@maxmind/geoip2-node';
 
 const options = {
   // you can use options like `cache` or `watchForUpdates`
@@ -66,9 +66,9 @@ Reader.open('/usr/local/database.mmdb', options).then(reader => {
 ### Anonymous IP Database Example
 
 ```
-const Reader = require('geoip2-node').Reader;
+const Reader = require('@maxmind/geoip2-node').Reader;
 // Typescript:
-// import { Reader } from 'geoip2-node';
+// import { Reader } from '@maxmind/geoip2-node';
 
 Reader.open('/usr/local/share/GeoIP/GeoIP2-Anonymous-IP.mmdb').then(reader => {
   const response = reader.anonymousIP('85.25.43.84');
@@ -85,9 +85,9 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Anonymous-IP.mmdb').then(reader => {
 ### ASN Example
 
 ```
-const Reader = require('geoip2-node').Reader;
+const Reader = require('@maxmind/geoip2-node').Reader;
 // Typescript:
-// import { Reader } from 'geoip2-node';
+// import { Reader } from '@maxmind/geoip2-node';
 
 Reader.open('/usr/local/share/GeoIP/GeoLite2-ASN.mmdb').then(reader => {
   const response = reader.asn('128.101.101.101');
@@ -100,9 +100,9 @@ Reader.open('/usr/local/share/GeoIP/GeoLite2-ASN.mmdb').then(reader => {
 ### City Example
 
 ```
-const Reader = require('geoip2-node').Reader;
+const Reader = require('@maxmind/geoip2-node').Reader;
 // Typescript:
-// import { Reader } from 'geoip2-node';
+// import { Reader } from '@maxmind/geoip2-node';
 
 Reader.open('/usr/local/share/GeoIP/GeoIP2-City.mmdb').then(reader => {
   const response = reader.city('128.101.101.101');
@@ -114,9 +114,9 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-City.mmdb').then(reader => {
 ### Connection-Type Example
 
 ```
-const Reader = require('geoip2-node').Reader;
+const Reader = require('@maxmind/geoip2-node').Reader;
 // Typescript:
-// import { Reader } from 'geoip2-node';
+// import { Reader } from '@maxmind/geoip2-node';
 
 Reader.open('/usr/local/share/GeoIP/GeoIP2-Connection-Type.mmdb').then(reader => {
   const response = reader.connectionType('128.101.101.101');
@@ -129,9 +129,9 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Connection-Type.mmdb').then(reader =>
 ### Country Example
 
 ```
-const Reader = require('geoip2-node').Reader;
+const Reader = require('@maxmind/geoip2-node').Reader;
 // Typescript:
-// import { Reader } from 'geoip2-node';
+// import { Reader } from '@maxmind/geoip2-node';
 
 Reader.open('/usr/local/share/GeoIP/GeoIP2-Country.mmdb').then(reader => {
   const response = reader.country('128.101.101.101');
@@ -143,9 +143,9 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Country.mmdb').then(reader => {
 ### Domain Example
 
 ```
-const Reader = require('geoip2-node').Reader;
+const Reader = require('@maxmind/geoip2-node').Reader;
 // Typescript:
-// import { Reader } from 'geoip2-node';
+// import { Reader } from '@maxmind/geoip2-node';
 
 Reader.open('/usr/local/share/GeoIP/GeoIP2-Domain.mmdb').then(reader => {
   const response = reader.domain('128.101.101.101');
@@ -158,9 +158,9 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Domain.mmdb').then(reader => {
 ### Enterprise Example
 
 ```
-const Reader = require('geoip2-node').Reader;
+const Reader = require('@maxmind/geoip2-node').Reader;
 // Typescript:
-// import { Reader } from 'geoip2-node';
+// import { Reader } from '@maxmind/geoip2-node';
 
 Reader.open('/usr/local/share/GeoIP/GeoIP2-Enterprise.mmdb').then(reader => {
   const response = reader.enterprise('128.101.101.101');
@@ -172,9 +172,9 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Enterprise.mmdb').then(reader => {
 ### ISP Example
 
 ```
-const Reader = require('geoip2-node').Reader;
+const Reader = require('@maxmind/geoip2-node').Reader;
 // Typescript:
-// import { Reader } from 'geoip2-node';
+// import { Reader } from '@maxmind/geoip2-node';
 
 Reader.open('/usr/local/share/GeoIP/GeoIP2-ISP.mmdb').then(reader => {
   const response = reader.isp('128.101.101.101');

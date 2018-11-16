@@ -1,5 +1,5 @@
 {
-  "name": "geoip2-node",
+  "name": "@maxmind/geoip2-node",
   "version": "0.0.0",
   "description": "Node.js API for GeoIP2 webservice client and database reader",
   "main": "dist/index.js",
@@ -55,6 +55,9 @@
       "tslint -p tsconfig.lint.json -t stylish",
       "git add"
     ]
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "build": "rimraf dist && tsc",
