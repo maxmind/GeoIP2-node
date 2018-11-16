@@ -63,20 +63,6 @@ Reader.open('/usr/local/database.mmdb', options).then(reader => {
 ```
 ## Database Examples
 
-### City Example
-
-```
-const Reader = require('geoip2-node').Reader;
-// Typescript:
-// import { Reader } from 'geoip2-node';
-
-Reader.open('/usr/local/share/GeoIP/GeoIP2-City.mmdb').then(reader => {
-  const response = reader.city('128.101.101.101');
-
-  console.log(response.country.isoCode); // 'US'
-});
-```
-
 ### Anonymous IP Database Example
 
 ```
@@ -111,22 +97,17 @@ Reader.open('/usr/local/share/GeoIP/GeoLite2-ASN.mmdb').then(reader => {
 });
 ```
 
-### ISP Example
+### City Example
 
 ```
 const Reader = require('geoip2-node').Reader;
 // Typescript:
 // import { Reader } from 'geoip2-node';
 
-Reader.open('/usr/local/share/GeoIP/GeoIP2-ISP.mmdb').then(reader => {
-  const response = reader.isp('128.101.101.101');
+Reader.open('/usr/local/share/GeoIP/GeoIP2-City.mmdb').then(reader => {
+  const response = reader.city('128.101.101.101');
 
-  console.log(response.autonomousSystemNumber); // 217
-  console.log(response.autonomousSystemOrganization); // 'University of Minnesota'
-  console.log(response.isp); // 'University of Minnesota'
-  console.log(response.organization); // 'University of Minnesota'
-
-  console.log(response.ipAddress); // '128.101.101.101'
+  console.log(response.country.isoCode); // 'US'
 });
 ```
 
@@ -145,17 +126,17 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Connection-Type.mmdb').then(reader =>
 });
 ```
 
-### Enterprise Example
+### Country Example
 
 ```
 const Reader = require('geoip2-node').Reader;
 // Typescript:
 // import { Reader } from 'geoip2-node';
 
-Reader.open('/usr/local/share/GeoIP/GeoIP2-Enterprise.mmdb').then(reader => {
-  const response = reader.enterprise('128.101.101.101');
+Reader.open('/usr/local/share/GeoIP/GeoIP2-Country.mmdb').then(reader => {
+  const response = reader.country('128.101.101.101');
 
-  console.log(response.country.isoCode) // 'US'
+  console.log(response.country.isoCode); // 'US'
 });
 ```
 
@@ -171,6 +152,39 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Domain.mmdb').then(reader => {
 
   console.log(response.domain) // 'umn.edu'
   console.log(response.ipAddress) // '128.101.101.101'
+});
+```
+
+### Enterprise Example
+
+```
+const Reader = require('geoip2-node').Reader;
+// Typescript:
+// import { Reader } from 'geoip2-node';
+
+Reader.open('/usr/local/share/GeoIP/GeoIP2-Enterprise.mmdb').then(reader => {
+  const response = reader.enterprise('128.101.101.101');
+
+  console.log(response.country.isoCode) // 'US'
+});
+```
+
+### ISP Example
+
+```
+const Reader = require('geoip2-node').Reader;
+// Typescript:
+// import { Reader } from 'geoip2-node';
+
+Reader.open('/usr/local/share/GeoIP/GeoIP2-ISP.mmdb').then(reader => {
+  const response = reader.isp('128.101.101.101');
+
+  console.log(response.autonomousSystemNumber); // 217
+  console.log(response.autonomousSystemOrganization); // 'University of Minnesota'
+  console.log(response.isp); // 'University of Minnesota'
+  console.log(response.organization); // 'University of Minnesota'
+
+  console.log(response.ipAddress); // '128.101.101.101'
 });
 ```
 
