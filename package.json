@@ -11,6 +11,7 @@
   "author": "MaxMind",
   "license": "Apache-2.0",
   "private": false,
+  "files": ["dist"],
   "types": "dist/index.d.ts",
   "devDependencies": {
     "@types/camelcase-keys": "^4.0.0",
