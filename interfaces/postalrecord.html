@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>GeoIP2 | GeoIP2-node</title>
+	<title>PostalRecord | @maxmind/geoip2-node</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">GeoIP2-node</a>
+					<a href="../index.html" class="title">@maxmind/geoip2-node</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -53,31 +53,24 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="../index.html">Globals</a>
+					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="geoip2.html">GeoIP2</a>
+					<a href="postalrecord.html">PostalRecord</a>
 				</li>
 			</ul>
-			<h1>Class GeoIP2</h1>
+			<h1>Interface PostalRecord</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Class representing the GeoIP2-node library</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">GeoIP2</span>
+						<span class="target">PostalRecord</span>
 					</li>
 				</ul>
 			</section>
@@ -86,46 +79,36 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Methods</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="geoip2.html#open" class="tsd-kind-icon">open</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="postalrecord.html#code" class="tsd-kind-icon">code</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="postalrecord.html#confidence" class="tsd-kind-icon">confidence</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="open" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> open</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">open<span class="tsd-signature-symbol">(</span>filename<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/2552a13/src/index.ts#L9">index.ts:9</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Open an mmdb database file</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>filename: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The mmdb database file to open</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="code" class="tsd-anchor"></a>
+					<h3>code</h3>
+					<div class="tsd-signature tsd-kind-icon">code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/f66214b/src/records.ts#L50">records.ts:50</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="confidence" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> confidence</h3>
+					<div class="tsd-signature tsd-kind-icon">confidence<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/f66214b/src/records.ts#L51">records.ts:51</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -133,24 +116,102 @@
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class="globals  ">
-						<a href="../index.html"><em>Globals</em></a>
+						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="../classes/addressnotfounderror.html" class="tsd-kind-icon">Address<wbr>Not<wbr>Found<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/anonymousip.html" class="tsd-kind-icon">AnonymousIP</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/asn.html" class="tsd-kind-icon">Asn</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/badmethodcallerror.html" class="tsd-kind-icon">Bad<wbr>Method<wbr>Call<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/city.html" class="tsd-kind-icon">City</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/connectiontype.html" class="tsd-kind-icon">Connection<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/country.html" class="tsd-kind-icon">Country</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/domain.html" class="tsd-kind-icon">Domain</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/enterprise.html" class="tsd-kind-icon">Enterprise</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/isp.html" class="tsd-kind-icon">Isp</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/reader.html" class="tsd-kind-icon">Reader</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/readermodel.html" class="tsd-kind-icon">Reader<wbr>Model</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/valueerror.html" class="tsd-kind-icon">Value<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="cityrecord.html" class="tsd-kind-icon">City<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="cityresponse.html" class="tsd-kind-icon">City<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="continentrecord.html" class="tsd-kind-icon">Continent<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="countryrecord.html" class="tsd-kind-icon">Country<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="countryresponse.html" class="tsd-kind-icon">Country<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="locationrecord.html" class="tsd-kind-icon">Location<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="maxmindrecord.html" class="tsd-kind-icon">Max<wbr>Mind<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="names.html" class="tsd-kind-icon">Names</a>
+					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class">
-						<a href="geoip2.html" class="tsd-kind-icon">GeoIP2</a>
+					<li class="current tsd-kind-interface">
+						<a href="postalrecord.html" class="tsd-kind-icon">Postal<wbr>Record</a>
 						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="geoip2.html#open" class="tsd-kind-icon">open</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="postalrecord.html#code" class="tsd-kind-icon">code</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="postalrecord.html#confidence" class="tsd-kind-icon">confidence</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface">
+						<a href="registeredcountryrecord.html" class="tsd-kind-icon">Registered<wbr>Country<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="representedcountryrecord.html" class="tsd-kind-icon">Represented<wbr>Country<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="subdivisionsrecord.html" class="tsd-kind-icon">Subdivisions<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="traitsrecord.html" class="tsd-kind-icon">Traits<wbr>Record</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>GeoIP2-node</title>
+	<title>@maxmind/geoip2-node</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">GeoIP2-node</a>
+					<a href="index.html" class="title">@maxmind/geoip2-node</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -53,42 +53,299 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="index.html">Globals</a>
+					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> GeoIP2-node</h1>
+			<h1> @maxmind/geoip2-node</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel-group tsd-index-group">
-				<h2>Index</h2>
-				<section class="tsd-panel tsd-index-panel">
-					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
-							<h3>Classes</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-class"><a href="classes/geoip2.html" class="tsd-kind-icon">GeoIP2</a></li>
-							</ul>
-						</section>
-					</div>
-				</section>
-			</section>
+			<div class="tsd-panel tsd-typography">
+				<h1 id="maxmind-geoip2-node-js-api-beta-">MaxMind GeoIP2 Node.js API (BETA)</h1>
+				<p><a href="https://travis-ci.com/maxmind/GeoIP2-node"><img src="https://api.travis-ci.com/maxmind/GeoIP2-node.svg?branch=master" alt="Build Status"></a>
+				<a href="https://snyk.io/test/github/maxmind/GeoIP2-node"><img src="https://snyk.io/test/github/maxmind/GeoIP2-node/badge.svg" alt="Known Vulnerabilities"></a></p>
+				<h2 id="description">Description</h2>
+				<p>This package provides an API for the <a href="https://dev.maxmind.com/geoip/geoip2/downloadable">GeoIP2
+					databases</a>, and will
+					provide an API for the <a href="https://dev.maxmind.com/geoip/geoip2/web-services">GeoIP2 Precision web
+					services</a>.  This API also
+					works with MaxMind&#39;s free <a href="https://dev.maxmind.com/geoip/geoip2/geolite2/">GeoLite2
+				databases</a>.</p>
+				<h2 id="installation">Installation</h2>
+				<pre><code>yarn add @maxmind/geoip2-<span class="hljs-keyword">node</span><span class="hljs-title"></span></code></pre><p>If you are not able to use <code>yarn</code>, you may also use <code>npm</code>:</p>
+				<pre><code>npm install @maxmind/geoip2-<span class="hljs-keyword">node</span><span class="hljs-title"></span></code></pre><h2 id="ip-geolocation-usage">IP Geolocation Usage</h2>
+				<p>IP geolocation is inherently imprecise. Locations are often near the center of
+					the population. Any location provided by a GeoIP2 database or web service
+				should not be used to identify a particular address or household.</p>
+				<h2 id="database-usage">Database Usage</h2>
+				<p>The database reader returns a promise that resolves with a reader instance.
+					You may then call the function corresponding to the request type (e.g.
+				<code>city</code> or <code>country</code>), passing it the IP address you want to look up.</p>
+				<p>If the request succeeds, the function call will return an object for the GeoIP2
+					lookup. The object in turn contains multiple record objects, each of which
+				represents part of the data returned by the database.</p>
+				<h3 id="options">Options</h3>
+				<p>We use the <a href="https://github.com/runk/node-maxmind">node-maxmind</a> library as the
+					database reader. As such, you have access to the same
+					<a href="https://github.com/runk/node-maxmind#options">options</a> found in that library
+				and can be used like this:</p>
+				<pre><code><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).Reader;
+<span class="hljs-comment">// Typescript:</span>
+<span class="hljs-comment">// import { Reader } from '@maxmind/geoip2-node';</span>
+
+<span class="hljs-keyword">const</span> options = {
+  <span class="hljs-comment">// you can use options like `cache` or `watchForUpdates`</span>
+};
+
+Reader.open(<span class="hljs-string">'/usr/local/database.mmdb'</span>, options).then(<span class="hljs-function"><span class="hljs-params">reader</span> =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(reader.country(<span class="hljs-string">'1.1.1.1'</span>));
+});</code></pre><h2 id="database-examples">Database Examples</h2>
+				<h3 id="anonymous-ip-database-example">Anonymous IP Database Example</h3>
+				<pre><code><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).Reader;
+<span class="hljs-comment">// Typescript:</span>
+<span class="hljs-comment">// import { Reader } from '@maxmind/geoip2-node';</span>
+
+Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-Anonymous-IP.mmdb'</span>).then(<span class="hljs-function"><span class="hljs-params">reader</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> response = reader.anonymousIP(<span class="hljs-string">'85.25.43.84'</span>);
+
+  <span class="hljs-built_in">console</span>.log(response.isAnonymous); <span class="hljs-comment">// true</span>
+  <span class="hljs-built_in">console</span>.log(response.isAnonymousVpn); <span class="hljs-comment">// false</span>
+  <span class="hljs-built_in">console</span>.log(response.isHostingProvider); <span class="hljs-comment">// true</span>
+  <span class="hljs-built_in">console</span>.log(response.isPublicProxy); <span class="hljs-comment">// false</span>
+  <span class="hljs-built_in">console</span>.log(response.isTorExitNode); <span class="hljs-comment">// false</span>
+  <span class="hljs-built_in">console</span>.log(response.ipAddress); <span class="hljs-comment">// '85.25.43.84'</span>
+});</code></pre><h3 id="asn-example">ASN Example</h3>
+				<pre><code><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).Reader;
+<span class="hljs-comment">// Typescript:</span>
+<span class="hljs-comment">// import { Reader } from '@maxmind/geoip2-node';</span>
+
+Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoLite2-ASN.mmdb'</span>).then(<span class="hljs-function"><span class="hljs-params">reader</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> response = reader.asn(<span class="hljs-string">'128.101.101.101'</span>);
+
+  <span class="hljs-built_in">console</span>.log(response.autonomousSystemNumber); <span class="hljs-comment">// 217</span>
+  <span class="hljs-built_in">console</span>.log(response.autonomousSystemOrganization); <span class="hljs-comment">// 'University of Minnesota'</span>
+});</code></pre><h3 id="city-example">City Example</h3>
+				<pre><code><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).Reader;
+<span class="hljs-comment">// Typescript:</span>
+<span class="hljs-comment">// import { Reader } from '@maxmind/geoip2-node';</span>
+
+Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-City.mmdb'</span>).then(<span class="hljs-function"><span class="hljs-params">reader</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> response = reader.city(<span class="hljs-string">'128.101.101.101'</span>);
+
+  <span class="hljs-built_in">console</span>.log(response.country.isoCode); <span class="hljs-comment">// 'US'</span>
+});</code></pre><h3 id="connection-type-example">Connection-Type Example</h3>
+				<pre><code><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).Reader;
+<span class="hljs-comment">// Typescript:</span>
+<span class="hljs-comment">// import { Reader } from '@maxmind/geoip2-node';</span>
+
+Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-Connection-Type.mmdb'</span>).then(<span class="hljs-function"><span class="hljs-params">reader</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> response = reader.connectionType(<span class="hljs-string">'128.101.101.101'</span>);
+
+  <span class="hljs-built_in">console</span>.log(response.connectionType) <span class="hljs-comment">// 'Cable/DSL'</span>
+  <span class="hljs-built_in">console</span>.log(response.ipAddress) <span class="hljs-comment">// '128.101.101.101'</span>
+});</code></pre><h3 id="country-example">Country Example</h3>
+				<pre><code><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).Reader;
+<span class="hljs-comment">// Typescript:</span>
+<span class="hljs-comment">// import { Reader } from '@maxmind/geoip2-node';</span>
+
+Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-Country.mmdb'</span>).then(<span class="hljs-function"><span class="hljs-params">reader</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> response = reader.country(<span class="hljs-string">'128.101.101.101'</span>);
+
+  <span class="hljs-built_in">console</span>.log(response.country.isoCode); <span class="hljs-comment">// 'US'</span>
+});</code></pre><h3 id="domain-example">Domain Example</h3>
+				<pre><code><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).Reader;
+<span class="hljs-comment">// Typescript:</span>
+<span class="hljs-comment">// import { Reader } from '@maxmind/geoip2-node';</span>
+
+Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-Domain.mmdb'</span>).then(<span class="hljs-function"><span class="hljs-params">reader</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> response = reader.domain(<span class="hljs-string">'128.101.101.101'</span>);
+
+  <span class="hljs-built_in">console</span>.log(response.domain) <span class="hljs-comment">// 'umn.edu'</span>
+  <span class="hljs-built_in">console</span>.log(response.ipAddress) <span class="hljs-comment">// '128.101.101.101'</span>
+});</code></pre><h3 id="enterprise-example">Enterprise Example</h3>
+				<pre><code><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).Reader;
+<span class="hljs-comment">// Typescript:</span>
+<span class="hljs-comment">// import { Reader } from '@maxmind/geoip2-node';</span>
+
+Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-Enterprise.mmdb'</span>).then(<span class="hljs-function"><span class="hljs-params">reader</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> response = reader.enterprise(<span class="hljs-string">'128.101.101.101'</span>);
+
+  <span class="hljs-built_in">console</span>.log(response.country.isoCode) <span class="hljs-comment">// 'US'</span>
+});</code></pre><h3 id="isp-example">ISP Example</h3>
+				<pre><code><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).Reader;
+<span class="hljs-comment">// Typescript:</span>
+<span class="hljs-comment">// import { Reader } from '@maxmind/geoip2-node';</span>
+
+Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-ISP.mmdb'</span>).then(<span class="hljs-function"><span class="hljs-params">reader</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> response = reader.isp(<span class="hljs-string">'128.101.101.101'</span>);
+
+  <span class="hljs-built_in">console</span>.log(response.autonomousSystemNumber); <span class="hljs-comment">// 217</span>
+  <span class="hljs-built_in">console</span>.log(response.autonomousSystemOrganization); <span class="hljs-comment">// 'University of Minnesota'</span>
+  <span class="hljs-built_in">console</span>.log(response.isp); <span class="hljs-comment">// 'University of Minnesota'</span>
+  <span class="hljs-built_in">console</span>.log(response.organization); <span class="hljs-comment">// 'University of Minnesota'</span>
+
+  <span class="hljs-built_in">console</span>.log(response.ipAddress); <span class="hljs-comment">// '128.101.101.101'</span>
+});</code></pre><h2 id="database-exceptions">Database Exceptions</h2>
+				<p>If the database file does not exist, is not readable, is invalid, or there is a bug
+					in the reader, the promise will be rejected with an <code>Error</code> with a message
+				explaining the issue.</p>
+				<p>If the database file and the reader method do not match (e.g.
+					<code>reader.city</code> is used with a Country database), a <code>BadMethodCalledError</code> will
+				be thrown.</p>
+				<p>If the IP address is not found in the database, an <code>AddressNotFoundError</code> will
+				be thrown.</p>
+				<p>If the IP address is not valid, a <code>ValueError</code> will be thrown.</p>
+				<h2 id="values-to-use-for-database-or-object-keys">Values to use for Database or Object Keys</h2>
+				<p>We strongly discourage you from using a value from any <code>names</code> property as a
+				key in a database or object.</p>
+				<p>These names may change between releases. Instead we recommend using one of the
+				following:</p>
+				<ul>
+					<li>geoip2-node.CityRecord - <code>city.geonameId</code></li>
+					<li>geoip2-node.ContinentRecord - <code>continent.code</code> or <code>continent.geonameId</code></li>
+					<li>geoip2-node.CountryRecord and geoip2.records.RepresentedCountry - <code>country.isoCode</code> or <code>country.geonameId</code></li>
+					<li>geoip2-node.SubdivisionsRecord - <code>subdivision.isoCode</code> or <code>subdivision.geonameId</code></li>
+				</ul>
+				<h2 id="what-data-is-returned-">What data is returned?</h2>
+				<p>While many of the models contain the same basic records, the attributes which
+					can be populated vary between web service end points or databases. In addition,
+					while a model may offer a particular piece of data, MaxMind does not always
+				have every piece of data for any given IP address.</p>
+				<p>Because of these factors, it is possible for any request to return a record
+				where some or all of the attributes are unpopulated.</p>
+				<p>The only piece of data which is always returned is the <code>ipAddress</code> attribute in
+				the <code>geoip2-node.TraitsRecord</code> record.</p>
+				<h2 id="integration-with-geonames">Integration with GeoNames</h2>
+				<p><a href="http://www.geonames.org/">GeoNames</a> offers web services and downloadable databases with data on
+					geographical features around the world, including populated places. They offer
+					both free and paid premium data. Each feature is uniquely identified by a
+				<code>geonameId</code>, which is an integer.</p>
+				<p>Many of the records returned by the GeoIP web services and databases include a
+					<code>geonameId</code> field. This is the ID of a geographical feature (city, region,
+				country, etc.) in the GeoNames database.</p>
+				<p>Some of the data that MaxMind provides is also sourced from GeoNames. We source
+					things like place names, ISO codes, and other similar data from the GeoNames
+				premium data set.</p>
+				<h2 id="reporting-data-problems">Reporting Data Problems</h2>
+				<p>If the problem you find is that an IP address is incorrectly mapped, please
+				<a href="https://support.maxmind.com/geoip-data-correction-request/">submit your correction to MaxMind</a>.</p>
+				<p>If you find some other sort of mistake, like an incorrect spelling,
+					please check <a href="http://www.geonames.org/">the GeoNames site</a> first. Once
+					you&#39;ve searched for a place and found it on the GeoNames map view, there
+					are a number of links you can use to correct data (&quot;move&quot;, &quot;edit&quot;,
+					&quot;alternate names&quot;, etc.). Once the correction is part of the GeoNames
+					data set, it will be automatically incorporated into future MaxMind
+				releases.</p>
+				<p>If you are a paying MaxMind customer and you&#39;re not sure where to submit a
+				correction, please <a href="https://support.maxmind.com/contact-us/">contact MaxMind support for help</a>.</p>
+				<h2 id="requirements">Requirements</h2>
+				<p>MaxMind has tested this API with Node.js versions 6, 8, 10.  We aim to support
+				active LTS versions of Node.js, as well as the latest stable release.</p>
+				<h2 id="contributing">Contributing</h2>
+				<p>Patches and pull requests are encouraged. Please include unit tests
+				whenever possible, as we strive to maintain 100% code coverage.</p>
+				<h2 id="versioning">Versioning</h2>
+				<p>The GeoIP2 Node.js API uses <a href="http://semver.org/">Semantic Versioning</a>.</p>
+				<h2 id="support">Support</h2>
+				<p>Please report all issues with this code using the <a href="https://github.com/maxmind/GeoIP2-node/issues">GitHub issue
+				tracker</a></p>
+				<p>If you are having an issue with a MaxMind service that is not specific to the
+				client API, please contact <a href="https://support.maxmind.com/contact-us/">MaxMind support for assistance</a>.</p>
+				<h2 id="copyright-and-license">Copyright and License</h2>
+				<p>This software is Copyright (c) 2018 by MaxMind, Inc.</p>
+				<p>This is free software, licensed under the Apache License, Version 2.0.</p>
+			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals current ">
-						<a href="index.html"><em>Globals</em></a>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class">
-						<a href="classes/geoip2.html" class="tsd-kind-icon">GeoIP2</a>
+						<a href="classes/addressnotfounderror.html" class="tsd-kind-icon">Address<wbr>Not<wbr>Found<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/anonymousip.html" class="tsd-kind-icon">AnonymousIP</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/asn.html" class="tsd-kind-icon">Asn</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/badmethodcallerror.html" class="tsd-kind-icon">Bad<wbr>Method<wbr>Call<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/city.html" class="tsd-kind-icon">City</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/connectiontype.html" class="tsd-kind-icon">Connection<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/country.html" class="tsd-kind-icon">Country</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/domain.html" class="tsd-kind-icon">Domain</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/enterprise.html" class="tsd-kind-icon">Enterprise</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/isp.html" class="tsd-kind-icon">Isp</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/reader.html" class="tsd-kind-icon">Reader</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/readermodel.html" class="tsd-kind-icon">Reader<wbr>Model</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/valueerror.html" class="tsd-kind-icon">Value<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/cityrecord.html" class="tsd-kind-icon">City<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/cityresponse.html" class="tsd-kind-icon">City<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/continentrecord.html" class="tsd-kind-icon">Continent<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/countryrecord.html" class="tsd-kind-icon">Country<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/countryresponse.html" class="tsd-kind-icon">Country<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/locationrecord.html" class="tsd-kind-icon">Location<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/maxmindrecord.html" class="tsd-kind-icon">Max<wbr>Mind<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/names.html" class="tsd-kind-icon">Names</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/postalrecord.html" class="tsd-kind-icon">Postal<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/registeredcountryrecord.html" class="tsd-kind-icon">Registered<wbr>Country<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/representedcountryrecord.html" class="tsd-kind-icon">Represented<wbr>Country<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/subdivisionsrecord.html" class="tsd-kind-icon">Subdivisions<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/traitsrecord.html" class="tsd-kind-icon">Traits<wbr>Record</a>
 					</li>
 				</ul>
 			</nav>
