@@ -67,7 +67,7 @@
     "prettier:ts": "prettier --parser typescript --single-quote true --trailing-comma es5 --write 'src/**/*.ts'",
     "prettier:ci": "prettier --parser typescript --single-quote true --trailing-comma es5 --list-different 'src/**/*.ts'",
     "prettier:json": "prettier --parser json --write '**/*.json'",
-    "release": "np",
+    "release": "yarn build && np",
     "test": "jest",
     "test:watch": "jest --watch",
     "version": "yarn build:docs && yarn deploy:docs"
