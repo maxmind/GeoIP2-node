@@ -1,4 +1,4 @@
-# MaxMind GeoIP2 Node.js API
+# MaxMind GeoIP2 Node.js API (BETA)
 
 [![Build Status](https://api.travis-ci.com/maxmind/GeoIP2-node.svg?branch=master)](https://travis-ci.com/maxmind/GeoIP2-node)
 [![Known Vulnerabilities](https://snyk.io/test/github/maxmind/GeoIP2-node/badge.svg)](https://snyk.io/test/github/maxmind/GeoIP2-node)
