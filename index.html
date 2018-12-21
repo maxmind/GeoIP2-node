@@ -102,7 +102,20 @@
 
 Reader.open(<span class="hljs-string">'/usr/local/database.mmdb'</span>, options).then(<span class="hljs-function"><span class="hljs-params">reader</span> =&gt;</span> {
   <span class="hljs-built_in">console</span>.log(reader.country(<span class="hljs-string">'1.1.1.1'</span>));
-});</code></pre><h2 id="database-examples">Database Examples</h2>
+});</code></pre><h3 id="using-a-buffer">Using a Buffer</h3>
+				<p>If you prefer to use a <code>Buffer</code> instead of using a <code>Promise</code> to open the
+				database, you can use <code>Reader.openBuffer()</code>.  Use cases include:</p>
+				<ul>
+					<li>You want to open the database in a synchronous manner.</li>
+					<li>You want to fetch the database from an external source.</li>
+				</ul>
+				<pre><code>const fs = require('fs');
+const Reader = require('geoip2-node').Reader;
+
+const dbBuffer = fs.<span class="hljs-keyword">open</span><span class="hljs-constructor">FileSync('<span class="hljs-operator">/</span><span class="hljs-params">usr</span><span class="hljs-operator">/</span><span class="hljs-params">local</span><span class="hljs-operator">/</span><span class="hljs-params">city</span>-<span class="hljs-params">database</span>.<span class="hljs-params">mmdb</span>')</span>;
+const reader = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Reader</span>.</span></span><span class="hljs-keyword">open</span><span class="hljs-constructor">Buffer(<span class="hljs-params">dbBuffer</span>)</span>;
+
+console.log(reader.city('<span class="hljs-number">1.1</span>.<span class="hljs-number">1.1</span>'));</code></pre><h2 id="database-examples">Database Examples</h2>
 				<h3 id="anonymous-ip-database-example">Anonymous IP Database Example</h3>
 				<pre><code><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).Reader;
 <span class="hljs-comment">// Typescript:</span>
@@ -198,6 +211,7 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-ISP.mmdb'</
 				<p>If the IP address is not found in the database, an <code>AddressNotFoundError</code> will
 				be thrown.</p>
 				<p>If the IP address is not valid, a <code>ValueError</code> will be thrown.</p>
+				<p>If the database buffer is not a valid database, an <code>InvalidDbBufferError</code> will be thrown.</p>
 				<h2 id="values-to-use-for-database-or-object-keys">Values to use for Database or Object Keys</h2>
 				<p>We strongly discourage you from using a value from any <code>names</code> property as a
 				key in a database or object.</p>
@@ -295,6 +309,9 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-ISP.mmdb'</
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/enterprise.html" class="tsd-kind-icon">Enterprise</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/invaliddbbuffererror.html" class="tsd-kind-icon">Invalid<wbr>DbBuffer<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/isp.html" class="tsd-kind-icon">Isp</a>
