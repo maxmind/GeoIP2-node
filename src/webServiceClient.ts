@@ -1,14 +1,5 @@
 import https = require('https');
 import mmdb = require('maxmind');
-import {
-  AddressNotFoundError,
-  AuthenticationError,
-  HttpError,
-  InvalidRequestError,
-  OutOfQueriesError,
-  PermissionError,
-  ValueError,
-} from './errors';
 import * as models from './models';
 
 type servicePaths = 'city' | 'country' | 'insights';

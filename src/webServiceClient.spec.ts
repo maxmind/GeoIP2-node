@@ -2,15 +2,6 @@ import camelcaseKeys = require('camelcase-keys');
 import mmdb = require('maxmind');
 import nock = require('nock');
 import * as geoip2Fixture from '../fixtures/geoip2.json';
-import {
-  AddressNotFoundError,
-  AuthenticationError,
-  HttpError,
-  InvalidRequestError,
-  OutOfQueriesError,
-  PermissionError,
-  ValueError,
-} from './errors';
 import Client from './webServiceClient';
 
 const baseUrl = 'https://geoip.maxmind.com';
