@@ -13,7 +13,8 @@ import {
 } from './errors';
 import Client from './webServiceClient';
 
-const nockInstance = nock('https://geoip.maxmind.com');
+const baseUrl = 'https://geoip.maxmind.com';
+const nockInstance = nock(baseUrl);
 const fullPath = (path: string, ipAddress: string) =>
   `/geoip/v2.1/${path}/${ipAddress}`;
 const auth = {
@@ -111,9 +112,10 @@ describe('WebServiceClient', () => {
       const ip = 'foo';
       expect.assertions(1);
 
-      return expect(client.city(ip)).rejects.toEqual(
-        new ValueError(`${ip} is invalid`)
-      );
+      return expect(client.city(ip)).rejects.toEqual({
+        code: 'IP_ADDRESS_INVALID',
+        error: 'The IP address provided is invalid',
+      });
     });
 
     it('handles 5xx level errors', () => {
@@ -125,14 +127,27 @@ describe('WebServiceClient', () => {
         .basicAuth(auth)
         .reply(500);
 
-      return expect(client.city(ip)).rejects.toEqual(
-        new HttpError(
-          `Received a server error or an unexpected HTTP status. Status code: "500", Path: "${fullPath(
-            'city',
-            ip
-          )}"`
-        )
-      );
+      return expect(client.city(ip)).rejects.toEqual({
+        code: 'SERVER_ERROR',
+        message: 'Received a server error with HTTP status code: 500',
+        url: baseUrl + fullPath('city', ip),
+      });
+    });
+
+    it('handles 3xx level errors', () => {
+      const ip = '8.8.8.8';
+      expect.assertions(1);
+
+      nockInstance
+        .get(fullPath('city', ip))
+        .basicAuth(auth)
+        .reply(300);
+
+      return expect(client.city(ip)).rejects.toEqual({
+        code: 'HTTP_STATUS_CODE_ERROR',
+        message: 'Received an unexpected HTTP status code: 300',
+        url: baseUrl + fullPath('city', ip),
+      });
     });
 
     it('handles errors with unknown payload', () => {
@@ -144,60 +159,47 @@ describe('WebServiceClient', () => {
         .basicAuth(auth)
         .reply(401, { foo: 'bar' });
 
-      return expect(client.city(ip)).rejects.toEqual(
-        new HttpError(
-          `Received a server error or an unexpected HTTP status. Status code: "401", Path: "${fullPath(
-            'city',
-            ip
-          )}"`
-        )
-      );
+      return expect(client.city(ip)).rejects.toEqual({
+        code: 'INVALID_RESPONSE_BODY',
+        message: 'Received an invalid or unparseable response body',
+        url: baseUrl + fullPath('city', ip),
+      });
     });
 
     it('handles general http.request errors', () => {
       const ip = '8.8.8.8';
+
+      const error = {
+        code: 'FOO_ERR',
+        message: 'some foo error',
+      };
+
+      const expected = {
+        code: error.code,
+        error: error.message,
+      };
+
       expect.assertions(1);
 
       nockInstance
         .get(fullPath('city', ip))
         .basicAuth(auth)
-        .replyWithError('some generic error');
+        .replyWithError(error);
 
-      return expect(client.city(ip)).rejects.toEqual(
-        new Error('some generic error')
-      );
-    });
-
-    it('handles errors with unknown code', () => {
-      const ip = '8.8.8.8';
-      expect.assertions(1);
-
-      nockInstance
-        .get(fullPath('city', ip))
-        .basicAuth(auth)
-        .reply(401, { code: 'bar', error: 'foo' });
-
-      return expect(client.city(ip)).rejects.toEqual(
-        new HttpError(
-          `Unknown error. Please report this error to MaxMind. Code: "bar", Error: "foo", Path: "${fullPath(
-            'city',
-            ip
-          )}"`
-        )
-      );
+      return expect(client.city(ip)).rejects.toEqual(expected);
     });
 
     test.each`
-      status | code                       | error                     | errorType
-      ${400} | ${'IP_ADDRESS_INVALID'}    | ${'ip address invalid'}   | ${AddressNotFoundError}
-      ${400} | ${'IP_ADDRESS_REQUIRED'}   | ${'ip address required'}  | ${AddressNotFoundError}
-      ${400} | ${'IP_ADDRESS_RESERVED'}   | ${'ip address reserved'}  | ${AddressNotFoundError}
-      ${404} | ${'IP_ADDRESS_NOT_FOUND'}  | ${'ip address not found'} | ${AddressNotFoundError}
-      ${401} | ${'AUTHORIZATION_INVALID'} | ${'auth required'}        | ${AuthenticationError}
-      ${401} | ${'LICENSE_KEY_REQUIRED'}  | ${'license key required'} | ${AuthenticationError}
-      ${401} | ${'USER_ID_REQUIRED'}      | ${'user id required'}     | ${AuthenticationError}
-      ${402} | ${'OUT_OF_QUERIES'}        | ${'out of queries'}       | ${OutOfQueriesError}
-      ${403} | ${'PERMISSION_REQUIRED'}   | ${'permission required'}  | ${PermissionError}
+      status | code                       | error
+      ${400} | ${'IP_ADDRESS_INVALID'}    | ${'ip address invalid'}
+      ${400} | ${'IP_ADDRESS_REQUIRED'}   | ${'ip address required'}
+      ${400} | ${'IP_ADDRESS_RESERVED'}   | ${'ip address reserved'}
+      ${404} | ${'IP_ADDRESS_NOT_FOUND'}  | ${'ip address not found'}
+      ${401} | ${'AUTHORIZATION_INVALID'} | ${'auth required'}
+      ${401} | ${'LICENSE_KEY_REQUIRED'}  | ${'license key required'}
+      ${401} | ${'USER_ID_REQUIRED'}      | ${'user id required'}
+      ${402} | ${'OUT_OF_QUERIES'}        | ${'out of queries'}
+      ${403} | ${'PERMISSION_REQUIRED'}   | ${'permission required'}
     `('handles $code error', ({ code, error, errorType, status }) => {
       const ip = '8.8.8.8';
 
@@ -207,7 +209,11 @@ describe('WebServiceClient', () => {
         .reply(status, { code, error });
       expect.assertions(1);
 
-      return expect(client.city(ip)).rejects.toEqual(new errorType(error));
+      return expect(client.city(ip)).rejects.toEqual({
+        code,
+        error,
+        url: baseUrl + fullPath('city', ip),
+      });
     });
   });
 });

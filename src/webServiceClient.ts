@@ -13,19 +13,37 @@ import * as models from './models';
 
 type servicePaths = 'city' | 'country' | 'insights';
 
+/** Class representing the WebServiceClient **/
 export default class WebServiceClient {
   private accountID: string;
   private licenseKey: string;
+  private host = 'geoip.maxmind.com';
 
+  /**
+   * Instanstiates a WebServiceClient
+   *
+   * @param accountID The account ID
+   * @param licenseKey The license key
+   */
   public constructor(accountID: string, licenseKey: string) {
     this.accountID = accountID;
     this.licenseKey = licenseKey;
   }
 
+  /**
+   * Returns a Promise with the City Precision data for an IP address.
+   *
+   * @param ipAddress The IP Address you want to query the City webservice with
+   */
   public city(ipAddress: string): Promise<models.City> {
     return this.responseFor<models.City>('city', ipAddress, models.City);
   }
 
+  /**
+   * Returns a Promise with the Country Precision data for an IP address.
+   *
+   * @param ipAddress The IP Address you want to query the Country webservice with
+   */
   public country(ipAddress: string): Promise<models.Country> {
     return this.responseFor<models.Country>(
       'country',
@@ -34,6 +52,11 @@ export default class WebServiceClient {
     );
   }
 
+  /**
+   * Returns a Promise with the Insights Precision data for an IP address.
+   *
+   * @param ipAddress The IP Address you want to query the Insights webservice with
+   */
   public insights(ipAddress: string): Promise<models.Insights> {
     return this.responseFor<models.Insights>(
       'insights',
@@ -48,14 +71,17 @@ export default class WebServiceClient {
     modelClass: any
   ): Promise<T> {
     if (!mmdb.validate(ipAddress)) {
-      return Promise.reject(new ValueError(`${ipAddress} is invalid`));
+      return Promise.reject({
+        code: 'IP_ADDRESS_INVALID',
+        error: 'The IP address provided is invalid',
+      });
     }
 
     const parsedPath = `/geoip/v2.1/${path}/${ipAddress}`;
 
     const options = {
       auth: `${this.accountID}:${this.licenseKey}`,
-      host: 'geoip.maxmind.com',
+      host: this.host,
       method: 'GET',
       path: parsedPath,
     };
@@ -75,18 +101,18 @@ export default class WebServiceClient {
             return reject(this.handleError({}, response, parsedPath));
           }
 
-          if (
-            response.statusCode &&
-            (response.statusCode < 200 || response.statusCode >= 400)
-          ) {
+          if (response.statusCode && response.statusCode !== 200) {
             return reject(this.handleError(data, response, parsedPath));
           }
 
           return resolve(new modelClass(data));
         });
       });
-      req.on('error', err => {
-        return reject(err);
+      req.on('error', (err: NodeJS.ErrnoException) => {
+        return reject({
+          code: err.code,
+          error: err.message,
+        });
       });
 
       req.end();
@@ -94,39 +120,36 @@ export default class WebServiceClient {
   }
 
   private handleError(data?: any, response?: any, path?: string) {
-    if (
-      response.statusCode >= 500 ||
-      !data.code ||
-      !data.error ||
-      response.statusCode < 400
-    ) {
-      return new HttpError(
-        `Received a server error or an unexpected HTTP status. Status code: "${
+    const url = `https://${this.host}${path}`;
+
+    if (response.statusCode >= 500 && response.statusCode < 600) {
+      return {
+        code: 'SERVER_ERROR',
+        message: `Received a server error with HTTP status code: ${
           response.statusCode
-        }", Path: "${path}"`
-      );
+        }`,
+        url,
+      };
     }
 
-    switch (data.code) {
-      case 'IP_ADDRESS_INVALID':
-      case 'IP_ADDRESS_REQUIRED':
-      case 'IP_ADDRESS_RESERVED':
-      case 'IP_ADDRESS_NOT_FOUND':
-        return new AddressNotFoundError(data.error);
-      case 'AUTHORIZATION_INVALID':
-      case 'LICENSE_KEY_REQUIRED':
-      case 'USER_ID_REQUIRED':
-        return new AuthenticationError(data.error);
-      case 'OUT_OF_QUERIES':
-        return new OutOfQueriesError(data.error);
-      case 'PERMISSION_REQUIRED':
-        return new PermissionError(data.error);
-      default:
-        return new InvalidRequestError(
-          `Unknown error. Please report this error to MaxMind. Code: "${
-            data.code
-          }", Error: "${data.error}", Path: "${path}"`
-        );
+    if (response.statusCode < 400 || response.statusCode >= 600) {
+      return {
+        code: 'HTTP_STATUS_CODE_ERROR',
+        message: `Received an unexpected HTTP status code: ${
+          response.statusCode
+        }`,
+        url,
+      };
     }
+
+    if (!data.code || !data.error) {
+      return {
+        code: 'INVALID_RESPONSE_BODY',
+        message: 'Received an invalid or unparseable response body',
+        url,
+      };
+    }
+
+    return { ...data, url };
   }
 }
