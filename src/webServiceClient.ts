@@ -81,6 +81,10 @@ export default class WebServiceClient {
 
     const options = {
       auth: `${this.accountID}:${this.licenseKey}`,
+      headers: {
+        Accept: 'application/json',
+        'User-Agent': `GeoIP2-node/${process.env.npm_package_version}`,
+      },
       host: this.host,
       method: 'GET',
       path: parsedPath,
