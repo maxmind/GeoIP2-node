@@ -2,7 +2,7 @@ import https = require('https');
 import mmdb = require('maxmind');
 import * as models from './models';
 
-type servicePaths = 'city' | 'country' | 'insights';
+type servicePath = 'city' | 'country' | 'insights';
 
 /** Class representing the WebServiceClient **/
 export default class WebServiceClient {
@@ -59,7 +59,7 @@ export default class WebServiceClient {
   }
 
   private responseFor<T>(
-    path: servicePaths,
+    path: servicePath,
     ipAddress: string,
     modelClass: any
   ): Promise<T> {
