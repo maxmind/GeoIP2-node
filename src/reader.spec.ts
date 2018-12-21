@@ -45,11 +45,11 @@ describe('Reader', () => {
   describe('openBuffer()', () => {
     it('returns a reader model if the buffer is a valid DB', () => {
       const buffer = fs.readFileSync('./fixtures/GeoIP2-City-Test.mmdb');
-      expect(Reader.openBuffer(new Buffer(buffer))).toBeInstanceOf(ReaderModel);
+      expect(Reader.openBuffer(buffer)).toBeInstanceOf(ReaderModel);
     });
 
     it('throws an InvalidDbBufferError if buffer is not a valid DB', () => {
-      expect(() => Reader.openBuffer(new Buffer('foo'))).toThrowError(
+      expect(() => Reader.openBuffer(Buffer.from('foo'))).toThrowError(
         InvalidDbBufferError
       );
     });

@@ -64,7 +64,8 @@ Reader.open('/usr/local/database.mmdb', options).then(reader => {
 
 ### Using a Buffer
 
-If you prefer to use a `Buffer` instead of using a `Promise` to open the database, you can use `Reader.openBuffer()`.  Use cases include:
+If you prefer to use a `Buffer` instead of using a `Promise` to open the
+database, you can use `Reader.openBuffer()`.  Use cases include:
 
 * You want to open the database in a synchronous manner.
 * You want to fetch the database from an external source.

@@ -31,6 +31,11 @@ export default class Reader {
     });
   }
 
+  /**
+   * Opens a buffer that contains mmdb data and returns a ReaderModel
+   *
+   * @param buffer The buffer to open
+   */
   public static openBuffer(buffer: Buffer): ReaderModel {
     let reader;
     try {
