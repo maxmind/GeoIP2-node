@@ -8,6 +8,7 @@ type servicePaths = 'city' | 'country' | 'insights';
 export default class WebServiceClient {
   private accountID: string;
   private licenseKey: string;
+  private timeout: number;
   private host = 'geoip.maxmind.com';
 
   /**
@@ -16,9 +17,10 @@ export default class WebServiceClient {
    * @param accountID The account ID
    * @param licenseKey The license key
    */
-  public constructor(accountID: string, licenseKey: string) {
+  public constructor(accountID: string, licenseKey: string, timeout?: number) {
     this.accountID = accountID;
     this.licenseKey = licenseKey;
+    this.timeout = timeout || 3000;
   }
 
   /**
@@ -79,6 +81,7 @@ export default class WebServiceClient {
       host: this.host,
       method: 'GET',
       path: parsedPath,
+      timeout: this.timeout,
     };
 
     return new Promise((resolve, reject) => {

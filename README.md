@@ -34,8 +34,9 @@ should not be used to identify a particular address or household.
 ## Web Service Usage
 
 To use the web service API, you must create a new `WebServiceClient`, using
-your MaxMind `accountID` and `licenseKey` as parameters.  You may then call the
-function corresponding to a specific end point, passing it the IP address you want
+your MaxMind `accountID` and `licenseKey` as parameters.  You may also set a
+`timeout`, which defaults to `3000`. You may then call the function
+corresponding to a specific end point, passing it the IP address you want
 to lookup.
 
 If the request succeeds, the function's Promise will resolve with the model

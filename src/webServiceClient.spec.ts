@@ -191,7 +191,7 @@ describe('WebServiceClient', () => {
       ${401} | ${'USER_ID_REQUIRED'}      | ${'user id required'}
       ${402} | ${'OUT_OF_QUERIES'}        | ${'out of queries'}
       ${403} | ${'PERMISSION_REQUIRED'}   | ${'permission required'}
-    `('handles $code error', ({ code, error, errorType, status }) => {
+    `('handles $code error', ({ code, error, status }) => {
       const ip = '8.8.8.8';
 
       nockInstance
