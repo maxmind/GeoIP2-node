@@ -5,6 +5,7 @@ import ConnectionType from './ConnectionType';
 import Country from './Country';
 import Domain from './Domain';
 import Enterprise from './Enterprise';
+import Insights from './Insights';
 import Isp from './Isp';
 
 export {
@@ -15,5 +16,6 @@ export {
   Country,
   Domain,
   Enterprise,
+  Insights,
   Isp,
 };
