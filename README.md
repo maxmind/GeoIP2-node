@@ -61,6 +61,25 @@ Reader.open('/usr/local/database.mmdb', options).then(reader => {
   console.log(reader.country('1.1.1.1'));
 });
 ```
+
+### Using a Buffer
+
+If you prefer to use a `Buffer` instead of using a `Promise` to open the
+database, you can use `Reader.openBuffer()`.  Use cases include:
+
+* You want to open the database in a synchronous manner.
+* You want to fetch the database from an external source.
+
+```
+const fs = require('fs');
+const Reader = require('geoip2-node').Reader;
+
+const dbBuffer = fs.openFileSync('/usr/local/city-database.mmdb');
+const reader = Reader.openBuffer(dbBuffer);
+
+console.log(reader.city('1.1.1.1'));
+```
+
 ## Database Examples
 
 ### Anonymous IP Database Example
@@ -202,6 +221,8 @@ If the IP address is not found in the database, an `AddressNotFoundError` will
 be thrown.
 
 If the IP address is not valid, a `ValueError` will be thrown.
+
+If the database buffer is not a valid database, an `InvalidDbBufferError` will be thrown.
 
 ## Values to use for Database or Object Keys
 
