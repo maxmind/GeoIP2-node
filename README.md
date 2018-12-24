@@ -110,7 +110,7 @@ with the following object structure:
 }
 ```
 
-In addition to the possible errors returned by the webservice, the following error
+In addition to the possible errors returned by the web service, the following error
 codes are provided:
 * `SERVER_ERROR` for 5xx level errors
 * `HTTP_STATUS_CODE_ERROR` for unexpected HTTP status codes
