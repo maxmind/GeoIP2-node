@@ -72,9 +72,11 @@ database, you can use `Reader.openBuffer()`.  Use cases include:
 
 ```
 const fs = require('fs');
-const Reader = require('geoip2-node').Reader;
+const Reader = require('@maxmind/geoip2-node').Reader;
+// Typescript:
+// import { Reader } from '@maxmind/geoip2-node';
 
-const dbBuffer = fs.openFileSync('/usr/local/city-database.mmdb');
+const dbBuffer = fs.readFileSync('/usr/local/city-database.mmdb');
 const reader = Reader.openBuffer(dbBuffer);
 
 console.log(reader.city('1.1.1.1'));
