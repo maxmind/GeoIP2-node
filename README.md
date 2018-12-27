@@ -105,8 +105,8 @@ with the following object structure:
 ```
 {
   code: THE_ERROR_CODE,
-  message: 'some message',
-  url: 'https://geoip.maxmind.com...', // this is not guaranteed to be available.
+  error: 'some human readable error',
+  url: 'https://geoip.maxmind.com...',
 }
 ```
 

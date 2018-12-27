@@ -12,7 +12,7 @@ export default class Country {
   public readonly traits: records.TraitsRecord;
 
   /**
-   * Instanstiates a "Country" using fields from the response
+   * Instantiates a "Country" using fields from the response
    *
    * @param response The GeoIP2 response
    */

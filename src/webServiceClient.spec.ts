@@ -106,6 +106,7 @@ describe('WebServiceClient', () => {
       return expect(client.city(ip)).rejects.toEqual({
         code: 'IP_ADDRESS_INVALID',
         error: 'The IP address provided is invalid',
+        url: baseUrl + fullPath('city', ip),
       });
     });
 
@@ -120,7 +121,7 @@ describe('WebServiceClient', () => {
 
       return expect(client.city(ip)).rejects.toEqual({
         code: 'SERVER_ERROR',
-        message: 'Received a server error with HTTP status code: 500',
+        error: 'Received a server error with HTTP status code: 500',
         url: baseUrl + fullPath('city', ip),
       });
     });
@@ -136,7 +137,7 @@ describe('WebServiceClient', () => {
 
       return expect(client.city(ip)).rejects.toEqual({
         code: 'HTTP_STATUS_CODE_ERROR',
-        message: 'Received an unexpected HTTP status code: 300',
+        error: 'Received an unexpected HTTP status code: 300',
         url: baseUrl + fullPath('city', ip),
       });
     });
@@ -152,7 +153,7 @@ describe('WebServiceClient', () => {
 
       return expect(client.city(ip)).rejects.toEqual({
         code: 'INVALID_RESPONSE_BODY',
-        message: 'Received an invalid or unparseable response body',
+        error: 'Received an invalid or unparseable response body',
         url: baseUrl + fullPath('city', ip),
       });
     });
@@ -168,6 +169,7 @@ describe('WebServiceClient', () => {
       const expected = {
         code: error.code,
         error: error.message,
+        url: baseUrl + fullPath('city', ip),
       };
 
       expect.assertions(1);
