@@ -109,13 +109,15 @@ Reader.open(<span class="hljs-string">'/usr/local/database.mmdb'</span>, options
 					<li>You want to open the database in a synchronous manner.</li>
 					<li>You want to fetch the database from an external source.</li>
 				</ul>
-				<pre><code>const fs = require('fs');
-const Reader = require('geoip2-node').Reader;
+				<pre><code><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
+<span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).Reader;
+<span class="hljs-regexp">// Typescript:
+//</span> <span class="hljs-keyword">import</span> { Reader } <span class="hljs-keyword">from</span> <span class="hljs-string">'@maxmind/geoip2-node'</span>;
 
-const dbBuffer = fs.<span class="hljs-keyword">open</span><span class="hljs-constructor">FileSync('<span class="hljs-operator">/</span><span class="hljs-params">usr</span><span class="hljs-operator">/</span><span class="hljs-params">local</span><span class="hljs-operator">/</span><span class="hljs-params">city</span>-<span class="hljs-params">database</span>.<span class="hljs-params">mmdb</span>')</span>;
-const reader = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Reader</span>.</span></span><span class="hljs-keyword">open</span><span class="hljs-constructor">Buffer(<span class="hljs-params">dbBuffer</span>)</span>;
+<span class="hljs-keyword">const</span> dbBuffer = fs.readFileSync(<span class="hljs-string">'/usr/local/city-database.mmdb'</span>);
+<span class="hljs-keyword">const</span> reader = Reader.openBuffer(dbBuffer);
 
-console.log(reader.city('<span class="hljs-number">1.1</span>.<span class="hljs-number">1.1</span>'));</code></pre><h2 id="database-examples">Database Examples</h2>
+<span class="hljs-built_in">console</span>.log(reader.city(<span class="hljs-string">'1.1.1.1'</span>));</code></pre><h2 id="database-examples">Database Examples</h2>
 				<h3 id="anonymous-ip-database-example">Anonymous IP Database Example</h3>
 				<pre><code><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).Reader;
 <span class="hljs-comment">// Typescript:</span>
