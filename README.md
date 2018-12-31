@@ -31,6 +31,92 @@ IP geolocation is inherently imprecise. Locations are often near the center of
 the population. Any location provided by a GeoIP2 database or web service
 should not be used to identify a particular address or household.
 
+## Web Service Usage
+
+To use the web service API, you must create a new `WebServiceClient`, using
+your MaxMind `accountID` and `licenseKey` as parameters.  You may also set a
+`timeout`, which defaults to `3000`. You may then call the function
+corresponding to a specific end point, passing it the IP address you want
+to lookup.
+
+If the request succeeds, the function's Promise will resolve with the model
+for the end point you called. This model in turn contains multiple
+records, each of which represents part of the data returned by the web service.
+
+If the request fails, the function's Promise will reject with an error object.
+
+See the API documentation for more details.
+
+## Web Service Example
+
+### Country Service
+
+```
+const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
+// Typescript:
+// import { WebServiceClient } from '@maxmind/geoip2-node';
+
+const client = new WebServiceClient('1234', 'licenseKey');
+
+client.country('142.1.1.1').then(response => {
+  console.log(response.country.isoCode); // 'CA'
+});
+```
+
+### City Service
+
+```
+const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
+// Typescript:
+// import { WebServiceClient } from '@maxmind/geoip2-node';
+
+const client = new WebServiceClient('1234', 'licenseKey');
+
+client.city('142.1.1.1').then(response => {
+  console.log(response.country.isoCode); // 'CA'
+  console.log(response.postal.code); // 'M5S'
+});
+```
+
+### Insights Service
+
+```
+const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
+// Typescript:
+// import { WebServiceClient } from '@maxmind/geoip2-node';
+
+const client = new WebServiceClient('1234', 'licenseKey');
+
+client.insights('142.1.1.1').then(response => {
+  console.log(response.country.isoCode); // 'CA'
+  console.log(response.postal.code); // 'M5S'
+  console.log(response.traits.userType); // 'school'
+});
+```
+
+## Web Service Errors
+For details on the possible errors returned by the web service itself, [see
+the GeoIP2 Precision web service
+documentation](https://dev.maxmind.com/geoip2/geoip/web-services).
+
+If the web service returns an explicit error document, the promise will be rejected
+with the following object structure:
+
+```
+{
+  code: 'THE_ERROR_CODE',
+  error: 'some human readable error',
+  url: 'https://geoip.maxmind.com...',
+}
+```
+
+In addition to the possible errors returned by the web service, the following error
+codes are provided:
+* `SERVER_ERROR` for 5xx level errors
+* `HTTP_STATUS_CODE_ERROR` for unexpected HTTP status codes
+* `INVALID_RESPONSE_BODY` for invalid JSON responses or unparseable response bodies
+* [General Node.js error codes](https://nodejs.org/api/errors.html#errors_node_js_error_codes)
+
 ## Database Usage
 
 The database reader returns a promise that resolves with a reader instance.

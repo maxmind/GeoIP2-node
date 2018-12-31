@@ -8,3 +8,9 @@ export interface CountryResponse extends mmdb.CountryResponse {
 export interface CityResponse extends mmdb.CityResponse {
   maxmind?: MaxMindRecord;
 }
+
+export interface WebServiceClientError {
+  code: string;
+  error: string;
+  url: string;
+}
