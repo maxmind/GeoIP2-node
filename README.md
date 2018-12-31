@@ -104,7 +104,7 @@ with the following object structure:
 
 ```
 {
-  code: THE_ERROR_CODE,
+  code: 'THE_ERROR_CODE',
   error: 'some human readable error',
   url: 'https://geoip.maxmind.com...',
 }
