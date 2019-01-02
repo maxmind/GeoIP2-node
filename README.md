@@ -6,8 +6,8 @@
 ## Description
 
 This package provides an API for the [GeoIP2
-databases](https://dev.maxmind.com/geoip/geoip2/downloadable), and will
-provide an API for the [GeoIP2 Precision web
+databases](https://dev.maxmind.com/geoip/geoip2/downloadable), and an API for
+the [GeoIP2 Precision web
 services](https://dev.maxmind.com/geoip/geoip2/web-services).  This API also
 works with MaxMind's free [GeoLite2
 databases](https://dev.maxmind.com/geoip/geoip2/geolite2/).
