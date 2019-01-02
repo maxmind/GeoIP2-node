@@ -69,8 +69,8 @@
 				<a href="https://snyk.io/test/github/maxmind/GeoIP2-node"><img src="https://snyk.io/test/github/maxmind/GeoIP2-node/badge.svg" alt="Known Vulnerabilities"></a></p>
 				<h2 id="description">Description</h2>
 				<p>This package provides an API for the <a href="https://dev.maxmind.com/geoip/geoip2/downloadable">GeoIP2
-					databases</a>, and will
-					provide an API for the <a href="https://dev.maxmind.com/geoip/geoip2/web-services">GeoIP2 Precision web
+					databases</a>, and an API for
+					the <a href="https://dev.maxmind.com/geoip/geoip2/web-services">GeoIP2 Precision web
 					services</a>.  This API also
 					works with MaxMind&#39;s free <a href="https://dev.maxmind.com/geoip/geoip2/geolite2/">GeoLite2
 				databases</a>.</p>
@@ -80,6 +80,66 @@
 				<p>IP geolocation is inherently imprecise. Locations are often near the center of
 					the population. Any location provided by a GeoIP2 database or web service
 				should not be used to identify a particular address or household.</p>
+				<h2 id="web-service-usage">Web Service Usage</h2>
+				<p>To use the web service API, you must create a new <code>WebServiceClient</code>, using
+					your MaxMind <code>accountID</code> and <code>licenseKey</code> as parameters.  You may also set a
+					<code>timeout</code>, which defaults to <code>3000</code>. You may then call the function
+					corresponding to a specific end point, passing it the IP address you want
+				to lookup.</p>
+				<p>If the request succeeds, the function&#39;s Promise will resolve with the model
+					for the end point you called. This model in turn contains multiple
+				records, each of which represents part of the data returned by the web service.</p>
+				<p>If the request fails, the function&#39;s Promise will reject with an error object.</p>
+				<p>See the API documentation for more details.</p>
+				<h2 id="web-service-example">Web Service Example</h2>
+				<h3 id="country-service">Country Service</h3>
+				<pre><code><span class="hljs-keyword">const</span> WebServiceClient = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).WebServiceClient;
+<span class="hljs-comment">// Typescript:</span>
+<span class="hljs-comment">// import { WebServiceClient } from '@maxmind/geoip2-node';</span>
+
+<span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> WebServiceClient(<span class="hljs-string">'1234'</span>, <span class="hljs-string">'licenseKey'</span>);
+
+client.country(<span class="hljs-string">'142.1.1.1'</span>).then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(response.country.isoCode); <span class="hljs-comment">// 'CA'</span>
+});</code></pre><h3 id="city-service">City Service</h3>
+				<pre><code><span class="hljs-keyword">const</span> WebServiceClient = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).WebServiceClient;
+<span class="hljs-comment">// Typescript:</span>
+<span class="hljs-comment">// import { WebServiceClient } from '@maxmind/geoip2-node';</span>
+
+<span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> WebServiceClient(<span class="hljs-string">'1234'</span>, <span class="hljs-string">'licenseKey'</span>);
+
+client.city(<span class="hljs-string">'142.1.1.1'</span>).then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(response.country.isoCode); <span class="hljs-comment">// 'CA'</span>
+  <span class="hljs-built_in">console</span>.log(response.postal.code); <span class="hljs-comment">// 'M5S'</span>
+});</code></pre><h3 id="insights-service">Insights Service</h3>
+				<pre><code><span class="hljs-keyword">const</span> WebServiceClient = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).WebServiceClient;
+<span class="hljs-comment">// Typescript:</span>
+<span class="hljs-comment">// import { WebServiceClient } from '@maxmind/geoip2-node';</span>
+
+<span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> WebServiceClient(<span class="hljs-string">'1234'</span>, <span class="hljs-string">'licenseKey'</span>);
+
+client.insights(<span class="hljs-string">'142.1.1.1'</span>).then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(response.country.isoCode); <span class="hljs-comment">// 'CA'</span>
+  <span class="hljs-built_in">console</span>.log(response.postal.code); <span class="hljs-comment">// 'M5S'</span>
+  <span class="hljs-built_in">console</span>.log(response.traits.userType); <span class="hljs-comment">// 'school'</span>
+});</code></pre><h2 id="web-service-errors">Web Service Errors</h2>
+				<p>For details on the possible errors returned by the web service itself, <a href="https://dev.maxmind.com/geoip2/geoip/web-services">see
+						the GeoIP2 Precision web service
+				documentation</a>.</p>
+				<p>If the web service returns an explicit error document, the promise will be rejected
+				with the following object structure:</p>
+				<pre><code>{
+  <span class="hljs-attribute">code</span>: <span class="hljs-string">'THE_ERROR_CODE'</span>,
+  error: <span class="hljs-string">'some human readable error'</span>,
+  url: <span class="hljs-string">'https://geoip.maxmind.com...'</span>,
+}</code></pre><p>In addition to the possible errors returned by the web service, the following error
+				codes are provided:</p>
+				<ul>
+					<li><code>SERVER_ERROR</code> for 5xx level errors</li>
+					<li><code>HTTP_STATUS_CODE_ERROR</code> for unexpected HTTP status codes</li>
+					<li><code>INVALID_RESPONSE_BODY</code> for invalid JSON responses or unparseable response bodies</li>
+					<li><a href="https://nodejs.org/api/errors.html#errors_node_js_error_codes">General Node.js error codes</a></li>
+				</ul>
 				<h2 id="database-usage">Database Usage</h2>
 				<p>The database reader returns a promise that resolves with a reader instance.
 					You may then call the function corresponding to the request type (e.g.
@@ -313,6 +373,9 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-ISP.mmdb'</
 						<a href="classes/enterprise.html" class="tsd-kind-icon">Enterprise</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="classes/insights.html" class="tsd-kind-icon">Insights</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="classes/invaliddbbuffererror.html" class="tsd-kind-icon">Invalid<wbr>DbBuffer<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -326,6 +389,9 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-ISP.mmdb'</
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/valueerror.html" class="tsd-kind-icon">Value<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/webserviceclient.html" class="tsd-kind-icon">Web<wbr>Service<wbr>Client</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/cityrecord.html" class="tsd-kind-icon">City<wbr>Record</a>
@@ -360,11 +426,20 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-ISP.mmdb'</
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/representedcountryrecord.html" class="tsd-kind-icon">Represented<wbr>Country<wbr>Record</a>
 					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="interfaces/responseerror.html" class="tsd-kind-icon">Response<wbr>Error</a>
+					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/subdivisionsrecord.html" class="tsd-kind-icon">Subdivisions<wbr>Record</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/traitsrecord.html" class="tsd-kind-icon">Traits<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/webserviceclienterror.html" class="tsd-kind-icon">Web<wbr>Service<wbr>Client<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#servicepath" class="tsd-kind-icon">service<wbr>Path</a>
 					</li>
 				</ul>
 			</nav>

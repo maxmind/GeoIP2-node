@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CityResponse | @maxmind/geoip2-node</title>
+	<title>WebServiceClientError | @maxmind/geoip2-node</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="cityresponse.html">CityResponse</a>
+					<a href="webserviceclienterror.html">WebServiceClientError</a>
 				</li>
 			</ul>
-			<h1>Interface CityResponse</h1>
+			<h1>Interface WebServiceClientError</h1>
 		</div>
 	</div>
 </header>
@@ -70,12 +70,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="tsd-signature-type">CityResponse</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">CityResponse</span>
-							</li>
-						</ul>
+						<span class="target">WebServiceClientError</span>
 					</li>
 				</ul>
 			</section>
@@ -86,16 +81,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="cityresponse.html#city" class="tsd-kind-icon">city</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="cityresponse.html#continent" class="tsd-kind-icon">continent</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="cityresponse.html#country" class="tsd-kind-icon">country</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="cityresponse.html#location" class="tsd-kind-icon">location</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="cityresponse.html#maxmind" class="tsd-kind-icon">maxmind</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="cityresponse.html#postal" class="tsd-kind-icon">postal</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="cityresponse.html#registered_country" class="tsd-kind-icon">registered_<wbr>country</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="cityresponse.html#represented_country" class="tsd-kind-icon">represented_<wbr>country</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="cityresponse.html#subdivisions" class="tsd-kind-icon">subdivisions</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="cityresponse.html#traits" class="tsd-kind-icon">traits</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="webserviceclienterror.html#code" class="tsd-kind-icon">code</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="webserviceclienterror.html#error" class="tsd-kind-icon">error</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="webserviceclienterror.html#url" class="tsd-kind-icon">url</a></li>
 							</ul>
 						</section>
 					</div>
@@ -103,112 +91,33 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="city" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> city</h3>
-					<div class="tsd-signature tsd-kind-icon">city<span class="tsd-signature-symbol">:</span> <a href="cityrecord.html" class="tsd-signature-type">CityRecord</a></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="code" class="tsd-anchor"></a>
+					<h3>code</h3>
+					<div class="tsd-signature tsd-kind-icon">code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from CityResponse.city</p>
 						<ul>
-							<li>Defined in /home/vagrant/repos/GeoIP2-node/node_modules/maxmind/index.d.ts:110</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="continent" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> continent</h3>
-					<div class="tsd-signature tsd-kind-icon">continent<span class="tsd-signature-symbol">:</span> <a href="continentrecord.html" class="tsd-signature-type">ContinentRecord</a></div>
-					<aside class="tsd-sources">
-						<p>Inherited from CountryResponse.continent</p>
-						<ul>
-							<li>Defined in /home/vagrant/repos/GeoIP2-node/node_modules/maxmind/index.d.ts:102</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="country" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> country</h3>
-					<div class="tsd-signature tsd-kind-icon">country<span class="tsd-signature-symbol">:</span> <a href="countryrecord.html" class="tsd-signature-type">CountryRecord</a></div>
-					<aside class="tsd-sources">
-						<p>Inherited from CountryResponse.country</p>
-						<ul>
-							<li>Defined in /home/vagrant/repos/GeoIP2-node/node_modules/maxmind/index.d.ts:103</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="location" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> location</h3>
-					<div class="tsd-signature tsd-kind-icon">location<span class="tsd-signature-symbol">:</span> <a href="locationrecord.html" class="tsd-signature-type">LocationRecord</a></div>
-					<aside class="tsd-sources">
-						<p>Inherited from CityResponse.location</p>
-						<ul>
-							<li>Defined in /home/vagrant/repos/GeoIP2-node/node_modules/maxmind/index.d.ts:111</li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/5c79b7a/src/types.ts#L13">types.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="maxmind" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> maxmind</h3>
-					<div class="tsd-signature tsd-kind-icon">maxmind<span class="tsd-signature-symbol">:</span> <a href="maxmindrecord.html" class="tsd-signature-type">MaxMindRecord</a></div>
+					<a name="error" class="tsd-anchor"></a>
+					<h3>error</h3>
+					<div class="tsd-signature tsd-kind-icon">error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/5c79b7a/src/types.ts#L9">types.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/5c79b7a/src/types.ts#L14">types.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="postal" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> postal</h3>
-					<div class="tsd-signature tsd-kind-icon">postal<span class="tsd-signature-symbol">:</span> <a href="postalrecord.html" class="tsd-signature-type">PostalRecord</a></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="url" class="tsd-anchor"></a>
+					<h3>url</h3>
+					<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from CityResponse.postal</p>
 						<ul>
-							<li>Defined in /home/vagrant/repos/GeoIP2-node/node_modules/maxmind/index.d.ts:112</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="registered_country" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> registered_<wbr>country</h3>
-					<div class="tsd-signature tsd-kind-icon">registered_<wbr>country<span class="tsd-signature-symbol">:</span> <a href="registeredcountryrecord.html" class="tsd-signature-type">RegisteredCountryRecord</a></div>
-					<aside class="tsd-sources">
-						<p>Inherited from CountryResponse.registered_country</p>
-						<ul>
-							<li>Defined in /home/vagrant/repos/GeoIP2-node/node_modules/maxmind/index.d.ts:104</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="represented_country" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> represented_<wbr>country</h3>
-					<div class="tsd-signature tsd-kind-icon">represented_<wbr>country<span class="tsd-signature-symbol">:</span> <a href="representedcountryrecord.html" class="tsd-signature-type">RepresentedCountryRecord</a></div>
-					<aside class="tsd-sources">
-						<p>Inherited from CountryResponse.represented_country</p>
-						<ul>
-							<li>Defined in /home/vagrant/repos/GeoIP2-node/node_modules/maxmind/index.d.ts:105</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="subdivisions" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> subdivisions</h3>
-					<div class="tsd-signature tsd-kind-icon">subdivisions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">SubdivisionsRecord</span><span class="tsd-signature-symbol">[]</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from CityResponse.subdivisions</p>
-						<ul>
-							<li>Defined in /home/vagrant/repos/GeoIP2-node/node_modules/maxmind/index.d.ts:113</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="traits" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> traits</h3>
-					<div class="tsd-signature tsd-kind-icon">traits<span class="tsd-signature-symbol">:</span> <a href="traitsrecord.html" class="tsd-signature-type">TraitsRecord</a></div>
-					<aside class="tsd-sources">
-						<p>Inherited from CountryResponse.traits</p>
-						<ul>
-							<li>Defined in /home/vagrant/repos/GeoIP2-node/node_modules/maxmind/index.d.ts:106</li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/5c79b7a/src/types.ts#L15">types.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -275,45 +184,9 @@
 					<li class=" tsd-kind-interface">
 						<a href="cityrecord.html" class="tsd-kind-icon">City<wbr>Record</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface">
+					<li class=" tsd-kind-interface">
 						<a href="cityresponse.html" class="tsd-kind-icon">City<wbr>Response</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="cityresponse.html#city" class="tsd-kind-icon">city</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="cityresponse.html#continent" class="tsd-kind-icon">continent</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="cityresponse.html#country" class="tsd-kind-icon">country</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="cityresponse.html#location" class="tsd-kind-icon">location</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="cityresponse.html#maxmind" class="tsd-kind-icon">maxmind</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="cityresponse.html#postal" class="tsd-kind-icon">postal</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="cityresponse.html#registered_country" class="tsd-kind-icon">registered_<wbr>country</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="cityresponse.html#represented_country" class="tsd-kind-icon">represented_<wbr>country</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="cityresponse.html#subdivisions" class="tsd-kind-icon">subdivisions</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="cityresponse.html#traits" class="tsd-kind-icon">traits</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="continentrecord.html" class="tsd-kind-icon">Continent<wbr>Record</a>
 					</li>
@@ -350,9 +223,24 @@
 					<li class=" tsd-kind-interface">
 						<a href="traitsrecord.html" class="tsd-kind-icon">Traits<wbr>Record</a>
 					</li>
-					<li class=" tsd-kind-interface">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface">
 						<a href="webserviceclienterror.html" class="tsd-kind-icon">Web<wbr>Service<wbr>Client<wbr>Error</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="webserviceclienterror.html#code" class="tsd-kind-icon">code</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="webserviceclienterror.html#error" class="tsd-kind-icon">error</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="webserviceclienterror.html#url" class="tsd-kind-icon">url</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-type-alias tsd-is-not-exported">
 						<a href="../globals.html#servicepath" class="tsd-kind-icon">service<wbr>Path</a>
 					</li>
