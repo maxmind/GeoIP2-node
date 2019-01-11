@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+0.4.0 (2018-01-11)
+------------------
+
+* Drop support for Node 6.
+* Fix export of models and record interfaces.
+
 0.3.0 (2018-01-02)
 ------------------
 
