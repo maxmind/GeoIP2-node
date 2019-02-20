@@ -51,7 +51,7 @@ See the API documentation for more details.
 
 ### Country Service
 
-```
+```js
 const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
 // Typescript:
 // import { WebServiceClient } from '@maxmind/geoip2-node';
@@ -65,7 +65,7 @@ client.country('142.1.1.1').then(response => {
 
 ### City Service
 
-```
+```js
 const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
 // Typescript:
 // import { WebServiceClient } from '@maxmind/geoip2-node';
@@ -80,7 +80,7 @@ client.city('142.1.1.1').then(response => {
 
 ### Insights Service
 
-```
+```js
 const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
 // Typescript:
 // import { WebServiceClient } from '@maxmind/geoip2-node';
@@ -102,7 +102,7 @@ documentation](https://dev.maxmind.com/geoip2/geoip/web-services).
 If the web service returns an explicit error document, the promise will be rejected
 with the following object structure:
 
-```
+```js
 {
   code: 'THE_ERROR_CODE',
   error: 'some human readable error',
@@ -134,7 +134,7 @@ database reader. As such, you have access to the same
 [options](https://github.com/runk/node-maxmind#options) found in that library
 and can be used like this:
 
-```
+```js
 const Reader = require('@maxmind/geoip2-node').Reader;
 // Typescript:
 // import { Reader } from '@maxmind/geoip2-node';
@@ -156,7 +156,7 @@ database, you can use `Reader.openBuffer()`.  Use cases include:
 * You want to open the database in a synchronous manner.
 * You want to fetch the database from an external source.
 
-```
+```js
 const fs = require('fs');
 const Reader = require('@maxmind/geoip2-node').Reader;
 // Typescript:
@@ -172,7 +172,7 @@ console.log(reader.city('1.1.1.1'));
 
 ### Anonymous IP Database Example
 
-```
+```js
 const Reader = require('@maxmind/geoip2-node').Reader;
 // Typescript:
 // import { Reader } from '@maxmind/geoip2-node';
@@ -191,7 +191,7 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Anonymous-IP.mmdb').then(reader => {
 
 ### ASN Example
 
-```
+```js
 const Reader = require('@maxmind/geoip2-node').Reader;
 // Typescript:
 // import { Reader } from '@maxmind/geoip2-node';
@@ -206,7 +206,7 @@ Reader.open('/usr/local/share/GeoIP/GeoLite2-ASN.mmdb').then(reader => {
 
 ### City Example
 
-```
+```js
 const Reader = require('@maxmind/geoip2-node').Reader;
 // Typescript:
 // import { Reader } from '@maxmind/geoip2-node';
@@ -220,7 +220,7 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-City.mmdb').then(reader => {
 
 ### Connection-Type Example
 
-```
+```js
 const Reader = require('@maxmind/geoip2-node').Reader;
 // Typescript:
 // import { Reader } from '@maxmind/geoip2-node';
@@ -235,7 +235,7 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Connection-Type.mmdb').then(reader =>
 
 ### Country Example
 
-```
+```js
 const Reader = require('@maxmind/geoip2-node').Reader;
 // Typescript:
 // import { Reader } from '@maxmind/geoip2-node';
@@ -249,7 +249,7 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Country.mmdb').then(reader => {
 
 ### Domain Example
 
-```
+```js
 const Reader = require('@maxmind/geoip2-node').Reader;
 // Typescript:
 // import { Reader } from '@maxmind/geoip2-node';
@@ -264,7 +264,7 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Domain.mmdb').then(reader => {
 
 ### Enterprise Example
 
-```
+```js
 const Reader = require('@maxmind/geoip2-node').Reader;
 // Typescript:
 // import { Reader } from '@maxmind/geoip2-node';
@@ -278,7 +278,7 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Enterprise.mmdb').then(reader => {
 
 ### ISP Example
 
-```
+```js
 const Reader = require('@maxmind/geoip2-node').Reader;
 // Typescript:
 // import { Reader } from '@maxmind/geoip2-node';
