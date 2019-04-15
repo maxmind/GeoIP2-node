@@ -21,7 +21,8 @@ export default class City extends Country {
     const camelcaseResponse = camelcaseKeys(response, {
       deep: true,
       exclude: [/\-/],
-    });
+    }) as City;
+
     this.city = camelcaseResponse.city || {};
     this.location = camelcaseResponse.location || {};
     this.postal = camelcaseResponse.postal || {};
