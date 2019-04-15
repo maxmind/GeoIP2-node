@@ -20,7 +20,7 @@ export default class Country {
     const camelcaseResponse = camelcaseKeys(response, {
       deep: true,
       exclude: [/\-/],
-    });
+    }) as Country;
 
     this.continent = camelcaseResponse.continent || {};
     this.country = camelcaseResponse.country || {};
