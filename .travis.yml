@@ -14,9 +14,13 @@ script:
 before_install:
 - if [[ $RUN_SNYK && $SNYK_TOKEN ]]; then npm install -g snyk; fi
 install:
+- if [[ $RUN_SNYK && $SNYK_TOKEN ]]; then snyk auth $SNYK_TOKEN; fi
 - if [[ $RUN_SNYK && $SNYK_TOKEN ]]; then snyk test --org=maxmind; fi
 - yarn install
 after_success:
+- if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' && $RUN_SNYK
+  && $SNYK_TOKEN ]]; then snyk auth $SNYK_TOKEN;
+  fi
 - if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' && $RUN_SNYK
   && $SNYK_TOKEN ]]; then snyk monitor --org=maxmind --project-name=maxmind/GeoIP2-node;
   fi
