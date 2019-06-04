@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+0.6.0 (2019-06-04)
+------------------
+
+* Fix incorrect readerModel return type for country
+* Update yarn.lock modules
+
 0.5.0 (2019-04-15)
 ------------------
 
