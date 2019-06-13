@@ -14,3 +14,7 @@ export interface WebServiceClientError {
   error: string;
   url: string;
 }
+
+export interface Json {
+  [key: string]: unknown;
+}
