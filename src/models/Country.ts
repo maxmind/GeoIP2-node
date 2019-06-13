@@ -1,6 +1,6 @@
 import camelcaseKeys = require('camelcase-keys');
 import * as records from '../records';
-import { CountryResponse } from '../types';
+import { CountryResponse, Json } from '../types';
 
 /** Class representing the model of a "Country" response **/
 export default class Country {
@@ -17,10 +17,10 @@ export default class Country {
    * @param response The GeoIP2 response
    */
   public constructor(response: CountryResponse) {
-    const camelcaseResponse = camelcaseKeys(response, {
+    const camelcaseResponse = (camelcaseKeys(response as Json, {
       deep: true,
       exclude: [/\-/],
-    }) as Country;
+    }) as unknown) as Country;
 
     this.continent = camelcaseResponse.continent || {};
     this.country = camelcaseResponse.country || {};
