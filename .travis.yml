@@ -12,6 +12,7 @@ script:
 - yarn prettier:ci
 - yarn build
 before_install:
+- npm install -g yarn
 - if [[ $RUN_SNYK && $SNYK_TOKEN ]]; then npm install -g snyk; fi
 install:
 - if [[ $RUN_SNYK && $SNYK_TOKEN ]]; then snyk test --org=maxmind; fi

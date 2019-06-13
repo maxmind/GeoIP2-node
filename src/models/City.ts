@@ -1,6 +1,6 @@
 import camelcaseKeys = require('camelcase-keys');
 import * as records from '../records';
-import { CityResponse } from '../types';
+import { CityResponse, Json } from '../types';
 import Country from './Country';
 
 /** Class representing the model of a "City" response **/
@@ -18,10 +18,10 @@ export default class City extends Country {
   public constructor(response: CityResponse) {
     super(response);
 
-    const camelcaseResponse = camelcaseKeys(response, {
+    const camelcaseResponse = (camelcaseKeys(response as Json, {
       deep: true,
       exclude: [/\-/],
-    }) as City;
+    }) as unknown) as City;
 
     this.city = camelcaseResponse.city || {};
     this.location = camelcaseResponse.location || {};
