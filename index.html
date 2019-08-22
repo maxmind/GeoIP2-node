@@ -64,22 +64,33 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="maxmind-geoip2-node-js-api">MaxMind GeoIP2 Node.js API</h1>
+				<a href="#maxmind-geoip2-nodejs-api" id="maxmind-geoip2-nodejs-api" style="color: inherit; text-decoration: none;">
+					<h1>MaxMind GeoIP2 Node.js API</h1>
+				</a>
 				<p><a href="https://travis-ci.com/maxmind/GeoIP2-node"><img src="https://api.travis-ci.com/maxmind/GeoIP2-node.svg?branch=master" alt="Build Status"></a></p>
-				<h2 id="description">Description</h2>
+				<a href="#description" id="description" style="color: inherit; text-decoration: none;">
+					<h2>Description</h2>
+				</a>
 				<p>This package provides an API for the <a href="https://dev.maxmind.com/geoip/geoip2/downloadable">GeoIP2
 					databases</a>, and an API for
 					the <a href="https://dev.maxmind.com/geoip/geoip2/web-services">GeoIP2 Precision web
 					services</a>.  This API also
 					works with MaxMind&#39;s free <a href="https://dev.maxmind.com/geoip/geoip2/geolite2/">GeoLite2
 				databases</a>.</p>
-				<h2 id="installation">Installation</h2>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
+				</a>
 				<pre><code>yarn add @maxmind/geoip2-<span class="hljs-keyword">node</span><span class="hljs-title"></span></code></pre><p>If you are not able to use <code>yarn</code>, you may also use <code>npm</code>:</p>
-				<pre><code>npm install @maxmind/geoip2-<span class="hljs-keyword">node</span><span class="hljs-title"></span></code></pre><h2 id="ip-geolocation-usage">IP Geolocation Usage</h2>
+				<pre><code>npm install @maxmind/geoip2-<span class="hljs-keyword">node</span><span class="hljs-title"></span></code></pre>
+				<a href="#ip-geolocation-usage" id="ip-geolocation-usage" style="color: inherit; text-decoration: none;">
+					<h2>IP Geolocation Usage</h2>
+				</a>
 				<p>IP geolocation is inherently imprecise. Locations are often near the center of
 					the population. Any location provided by a GeoIP2 database or web service
 				should not be used to identify a particular address or household.</p>
-				<h2 id="web-service-usage">Web Service Usage</h2>
+				<a href="#web-service-usage" id="web-service-usage" style="color: inherit; text-decoration: none;">
+					<h2>Web Service Usage</h2>
+				</a>
 				<p>To use the web service API, you must create a new <code>WebServiceClient</code>, using
 					your MaxMind <code>accountID</code> and <code>licenseKey</code> as parameters.  You may also set a
 					<code>timeout</code>, which defaults to <code>3000</code>. You may then call the function
@@ -90,8 +101,12 @@
 				records, each of which represents part of the data returned by the web service.</p>
 				<p>If the request fails, the function&#39;s Promise will reject with an error object.</p>
 				<p>See the API documentation for more details.</p>
-				<h2 id="web-service-example">Web Service Example</h2>
-				<h3 id="country-service">Country Service</h3>
+				<a href="#web-service-example" id="web-service-example" style="color: inherit; text-decoration: none;">
+					<h2>Web Service Example</h2>
+				</a>
+				<a href="#country-service" id="country-service" style="color: inherit; text-decoration: none;">
+					<h3>Country Service</h3>
+				</a>
 				<pre><code class="language-js"><span class="hljs-keyword">const</span> WebServiceClient = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).WebServiceClient;
 <span class="hljs-comment">// Typescript:</span>
 <span class="hljs-comment">// import { WebServiceClient } from '@maxmind/geoip2-node';</span>
@@ -101,7 +116,9 @@
 client.country(<span class="hljs-string">'142.1.1.1'</span>).then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
   <span class="hljs-built_in">console</span>.log(response.country.isoCode); <span class="hljs-comment">// 'CA'</span>
 });</code></pre>
-				<h3 id="city-service">City Service</h3>
+				<a href="#city-service" id="city-service" style="color: inherit; text-decoration: none;">
+					<h3>City Service</h3>
+				</a>
 				<pre><code class="language-js"><span class="hljs-keyword">const</span> WebServiceClient = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).WebServiceClient;
 <span class="hljs-comment">// Typescript:</span>
 <span class="hljs-comment">// import { WebServiceClient } from '@maxmind/geoip2-node';</span>
@@ -112,7 +129,9 @@ client.city(<span class="hljs-string">'142.1.1.1'</span>).then(<span class="hljs
   <span class="hljs-built_in">console</span>.log(response.country.isoCode); <span class="hljs-comment">// 'CA'</span>
   <span class="hljs-built_in">console</span>.log(response.postal.code); <span class="hljs-comment">// 'M5S'</span>
 });</code></pre>
-				<h3 id="insights-service">Insights Service</h3>
+				<a href="#insights-service" id="insights-service" style="color: inherit; text-decoration: none;">
+					<h3>Insights Service</h3>
+				</a>
 				<pre><code class="language-js"><span class="hljs-keyword">const</span> WebServiceClient = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).WebServiceClient;
 <span class="hljs-comment">// Typescript:</span>
 <span class="hljs-comment">// import { WebServiceClient } from '@maxmind/geoip2-node';</span>
@@ -124,7 +143,9 @@ client.insights(<span class="hljs-string">'142.1.1.1'</span>).then(<span class="
   <span class="hljs-built_in">console</span>.log(response.postal.code); <span class="hljs-comment">// 'M5S'</span>
   <span class="hljs-built_in">console</span>.log(response.traits.userType); <span class="hljs-comment">// 'school'</span>
 });</code></pre>
-				<h2 id="web-service-errors">Web Service Errors</h2>
+				<a href="#web-service-errors" id="web-service-errors" style="color: inherit; text-decoration: none;">
+					<h2>Web Service Errors</h2>
+				</a>
 				<p>For details on the possible errors returned by the web service itself, <a href="https://dev.maxmind.com/geoip2/geoip/web-services">see
 						the GeoIP2 Precision web service
 				documentation</a>.</p>
@@ -143,14 +164,18 @@ client.insights(<span class="hljs-string">'142.1.1.1'</span>).then(<span class="
 					<li><code>INVALID_RESPONSE_BODY</code> for invalid JSON responses or unparseable response bodies</li>
 					<li><a href="https://nodejs.org/api/errors.html#errors_node_js_error_codes">General Node.js error codes</a></li>
 				</ul>
-				<h2 id="database-usage">Database Usage</h2>
+				<a href="#database-usage" id="database-usage" style="color: inherit; text-decoration: none;">
+					<h2>Database Usage</h2>
+				</a>
 				<p>The database reader returns a promise that resolves with a reader instance.
 					You may then call the function corresponding to the request type (e.g.
 				<code>city</code> or <code>country</code>), passing it the IP address you want to look up.</p>
 				<p>If the request succeeds, the function call will return an object for the GeoIP2
 					lookup. The object in turn contains multiple record objects, each of which
 				represents part of the data returned by the database.</p>
-				<h3 id="options">Options</h3>
+				<a href="#options" id="options" style="color: inherit; text-decoration: none;">
+					<h3>Options</h3>
+				</a>
 				<p>We use the <a href="https://github.com/runk/node-maxmind">node-maxmind</a> library as the
 					database reader. As such, you have access to the same
 					<a href="https://github.com/runk/node-maxmind#options">options</a> found in that library
@@ -166,7 +191,9 @@ client.insights(<span class="hljs-string">'142.1.1.1'</span>).then(<span class="
 Reader.open(<span class="hljs-string">'/usr/local/database.mmdb'</span>, options).then(<span class="hljs-function"><span class="hljs-params">reader</span> =&gt;</span> {
   <span class="hljs-built_in">console</span>.log(reader.country(<span class="hljs-string">'1.1.1.1'</span>));
 });</code></pre>
-				<h3 id="using-a-buffer">Using a Buffer</h3>
+				<a href="#using-a-buffer" id="using-a-buffer" style="color: inherit; text-decoration: none;">
+					<h3>Using a Buffer</h3>
+				</a>
 				<p>If you prefer to use a <code>Buffer</code> instead of using a <code>Promise</code> to open the
 				database, you can use <code>Reader.openBuffer()</code>.  Use cases include:</p>
 				<ul>
@@ -182,8 +209,12 @@ Reader.open(<span class="hljs-string">'/usr/local/database.mmdb'</span>, options
 <span class="hljs-keyword">const</span> reader = Reader.openBuffer(dbBuffer);
 
 <span class="hljs-built_in">console</span>.log(reader.city(<span class="hljs-string">'1.1.1.1'</span>));</code></pre>
-				<h2 id="database-examples">Database Examples</h2>
-				<h3 id="anonymous-ip-database-example">Anonymous IP Database Example</h3>
+				<a href="#database-examples" id="database-examples" style="color: inherit; text-decoration: none;">
+					<h2>Database Examples</h2>
+				</a>
+				<a href="#anonymous-ip-database-example" id="anonymous-ip-database-example" style="color: inherit; text-decoration: none;">
+					<h3>Anonymous IP Database Example</h3>
+				</a>
 				<pre><code class="language-js"><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).Reader;
 <span class="hljs-comment">// Typescript:</span>
 <span class="hljs-comment">// import { Reader } from '@maxmind/geoip2-node';</span>
@@ -198,7 +229,9 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-Anonymous-I
   <span class="hljs-built_in">console</span>.log(response.isTorExitNode); <span class="hljs-comment">// false</span>
   <span class="hljs-built_in">console</span>.log(response.ipAddress); <span class="hljs-comment">// '85.25.43.84'</span>
 });</code></pre>
-				<h3 id="asn-example">ASN Example</h3>
+				<a href="#asn-example" id="asn-example" style="color: inherit; text-decoration: none;">
+					<h3>ASN Example</h3>
+				</a>
 				<pre><code class="language-js"><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).Reader;
 <span class="hljs-comment">// Typescript:</span>
 <span class="hljs-comment">// import { Reader } from '@maxmind/geoip2-node';</span>
@@ -209,7 +242,9 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoLite2-ASN.mmdb'
   <span class="hljs-built_in">console</span>.log(response.autonomousSystemNumber); <span class="hljs-comment">// 217</span>
   <span class="hljs-built_in">console</span>.log(response.autonomousSystemOrganization); <span class="hljs-comment">// 'University of Minnesota'</span>
 });</code></pre>
-				<h3 id="city-example">City Example</h3>
+				<a href="#city-example" id="city-example" style="color: inherit; text-decoration: none;">
+					<h3>City Example</h3>
+				</a>
 				<pre><code class="language-js"><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).Reader;
 <span class="hljs-comment">// Typescript:</span>
 <span class="hljs-comment">// import { Reader } from '@maxmind/geoip2-node';</span>
@@ -219,7 +254,9 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-City.mmdb'<
 
   <span class="hljs-built_in">console</span>.log(response.country.isoCode); <span class="hljs-comment">// 'US'</span>
 });</code></pre>
-				<h3 id="connection-type-example">Connection-Type Example</h3>
+				<a href="#connection-type-example" id="connection-type-example" style="color: inherit; text-decoration: none;">
+					<h3>Connection-Type Example</h3>
+				</a>
 				<pre><code class="language-js"><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).Reader;
 <span class="hljs-comment">// Typescript:</span>
 <span class="hljs-comment">// import { Reader } from '@maxmind/geoip2-node';</span>
@@ -230,7 +267,9 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-Connection-
   <span class="hljs-built_in">console</span>.log(response.connectionType) <span class="hljs-comment">// 'Cable/DSL'</span>
   <span class="hljs-built_in">console</span>.log(response.ipAddress) <span class="hljs-comment">// '128.101.101.101'</span>
 });</code></pre>
-				<h3 id="country-example">Country Example</h3>
+				<a href="#country-example" id="country-example" style="color: inherit; text-decoration: none;">
+					<h3>Country Example</h3>
+				</a>
 				<pre><code class="language-js"><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).Reader;
 <span class="hljs-comment">// Typescript:</span>
 <span class="hljs-comment">// import { Reader } from '@maxmind/geoip2-node';</span>
@@ -240,7 +279,9 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-Country.mmd
 
   <span class="hljs-built_in">console</span>.log(response.country.isoCode); <span class="hljs-comment">// 'US'</span>
 });</code></pre>
-				<h3 id="domain-example">Domain Example</h3>
+				<a href="#domain-example" id="domain-example" style="color: inherit; text-decoration: none;">
+					<h3>Domain Example</h3>
+				</a>
 				<pre><code class="language-js"><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).Reader;
 <span class="hljs-comment">// Typescript:</span>
 <span class="hljs-comment">// import { Reader } from '@maxmind/geoip2-node';</span>
@@ -251,7 +292,9 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-Domain.mmdb
   <span class="hljs-built_in">console</span>.log(response.domain) <span class="hljs-comment">// 'umn.edu'</span>
   <span class="hljs-built_in">console</span>.log(response.ipAddress) <span class="hljs-comment">// '128.101.101.101'</span>
 });</code></pre>
-				<h3 id="enterprise-example">Enterprise Example</h3>
+				<a href="#enterprise-example" id="enterprise-example" style="color: inherit; text-decoration: none;">
+					<h3>Enterprise Example</h3>
+				</a>
 				<pre><code class="language-js"><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).Reader;
 <span class="hljs-comment">// Typescript:</span>
 <span class="hljs-comment">// import { Reader } from '@maxmind/geoip2-node';</span>
@@ -261,7 +304,9 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-Enterprise.
 
   <span class="hljs-built_in">console</span>.log(response.country.isoCode) <span class="hljs-comment">// 'US'</span>
 });</code></pre>
-				<h3 id="isp-example">ISP Example</h3>
+				<a href="#isp-example" id="isp-example" style="color: inherit; text-decoration: none;">
+					<h3>ISP Example</h3>
+				</a>
 				<pre><code class="language-js"><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@maxmind/geoip2-node'</span>).Reader;
 <span class="hljs-comment">// Typescript:</span>
 <span class="hljs-comment">// import { Reader } from '@maxmind/geoip2-node';</span>
@@ -276,7 +321,9 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-ISP.mmdb'</
 
   <span class="hljs-built_in">console</span>.log(response.ipAddress); <span class="hljs-comment">// '128.101.101.101'</span>
 });</code></pre>
-				<h2 id="database-exceptions">Database Exceptions</h2>
+				<a href="#database-exceptions" id="database-exceptions" style="color: inherit; text-decoration: none;">
+					<h2>Database Exceptions</h2>
+				</a>
 				<p>If the database file does not exist, is not readable, is invalid, or there is a bug
 					in the reader, the promise will be rejected with an <code>Error</code> with a message
 				explaining the issue.</p>
@@ -287,7 +334,9 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-ISP.mmdb'</
 				be thrown.</p>
 				<p>If the IP address is not valid, a <code>ValueError</code> will be thrown.</p>
 				<p>If the database buffer is not a valid database, an <code>InvalidDbBufferError</code> will be thrown.</p>
-				<h2 id="values-to-use-for-database-or-object-keys">Values to use for Database or Object Keys</h2>
+				<a href="#values-to-use-for-database-or-object-keys" id="values-to-use-for-database-or-object-keys" style="color: inherit; text-decoration: none;">
+					<h2>Values to use for Database or Object Keys</h2>
+				</a>
 				<p>We strongly discourage you from using a value from any <code>names</code> property as a
 				key in a database or object.</p>
 				<p>These names may change between releases. Instead we recommend using one of the
@@ -298,7 +347,9 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-ISP.mmdb'</
 					<li>geoip2-node.CountryRecord and geoip2.records.RepresentedCountry - <code>country.isoCode</code> or <code>country.geonameId</code></li>
 					<li>geoip2-node.SubdivisionsRecord - <code>subdivision.isoCode</code> or <code>subdivision.geonameId</code></li>
 				</ul>
-				<h2 id="what-data-is-returned-">What data is returned?</h2>
+				<a href="#what-data-is-returned" id="what-data-is-returned" style="color: inherit; text-decoration: none;">
+					<h2>What data is returned?</h2>
+				</a>
 				<p>While many of the models contain the same basic records, the attributes which
 					can be populated vary between web service end points or databases. In addition,
 					while a model may offer a particular piece of data, MaxMind does not always
@@ -307,7 +358,9 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-ISP.mmdb'</
 				where some or all of the attributes are unpopulated.</p>
 				<p>The only piece of data which is always returned is the <code>ipAddress</code> attribute in
 				the <code>geoip2-node.TraitsRecord</code> record.</p>
-				<h2 id="integration-with-geonames">Integration with GeoNames</h2>
+				<a href="#integration-with-geonames" id="integration-with-geonames" style="color: inherit; text-decoration: none;">
+					<h2>Integration with GeoNames</h2>
+				</a>
 				<p><a href="http://www.geonames.org/">GeoNames</a> offers web services and downloadable databases with data on
 					geographical features around the world, including populated places. They offer
 					both free and paid premium data. Each feature is uniquely identified by a
@@ -318,7 +371,9 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-ISP.mmdb'</
 				<p>Some of the data that MaxMind provides is also sourced from GeoNames. We source
 					things like place names, ISO codes, and other similar data from the GeoNames
 				premium data set.</p>
-				<h2 id="reporting-data-problems">Reporting Data Problems</h2>
+				<a href="#reporting-data-problems" id="reporting-data-problems" style="color: inherit; text-decoration: none;">
+					<h2>Reporting Data Problems</h2>
+				</a>
 				<p>If the problem you find is that an IP address is incorrectly mapped, please
 				<a href="https://support.maxmind.com/geoip-data-correction-request/">submit your correction to MaxMind</a>.</p>
 				<p>If you find some other sort of mistake, like an incorrect spelling,
@@ -330,20 +385,30 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-ISP.mmdb'</
 				releases.</p>
 				<p>If you are a paying MaxMind customer and you&#39;re not sure where to submit a
 				correction, please <a href="https://support.maxmind.com/contact-us/">contact MaxMind support for help</a>.</p>
-				<h2 id="requirements">Requirements</h2>
+				<a href="#requirements" id="requirements" style="color: inherit; text-decoration: none;">
+					<h2>Requirements</h2>
+				</a>
 				<p>MaxMind has tested this API with Node.js versions 8 and 10.  We aim to support
 				active LTS versions of Node.js, as well as the latest stable release.</p>
-				<h2 id="contributing">Contributing</h2>
+				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
+					<h2>Contributing</h2>
+				</a>
 				<p>Patches and pull requests are encouraged. Please include unit tests
 				whenever possible, as we strive to maintain 100% code coverage.</p>
-				<h2 id="versioning">Versioning</h2>
+				<a href="#versioning" id="versioning" style="color: inherit; text-decoration: none;">
+					<h2>Versioning</h2>
+				</a>
 				<p>The GeoIP2 Node.js API uses <a href="http://semver.org/">Semantic Versioning</a>.</p>
-				<h2 id="support">Support</h2>
+				<a href="#support" id="support" style="color: inherit; text-decoration: none;">
+					<h2>Support</h2>
+				</a>
 				<p>Please report all issues with this code using the <a href="https://github.com/maxmind/GeoIP2-node/issues">GitHub issue
 				tracker</a></p>
 				<p>If you are having an issue with a MaxMind service that is not specific to the
 				client API, please contact <a href="https://support.maxmind.com/contact-us/">MaxMind support for assistance</a>.</p>
-				<h2 id="copyright-and-license">Copyright and License</h2>
+				<a href="#copyright-and-license" id="copyright-and-license" style="color: inherit; text-decoration: none;">
+					<h2>Copyright and License</h2>
+				</a>
 				<p>This software is Copyright (c) 2018 by MaxMind, Inc.</p>
 				<p>This is free software, licensed under the Apache License, Version 2.0.</p>
 			</div>
@@ -474,6 +539,7 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-ISP.mmdb'</
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
@@ -522,7 +588,7 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-ISP.mmdb'</
 	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="assets/js/main.js"></script>
