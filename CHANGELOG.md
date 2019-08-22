@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+1.0.0 (2019-08-22)
+------------------
+
+* Fix user-agent header in request
+* Point package.json's main to dist/src/index.js
+
 0.6.0 (2019-06-04)
 ------------------
 
