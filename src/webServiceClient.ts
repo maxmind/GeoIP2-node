@@ -1,6 +1,7 @@
 import http = require('http');
 import https = require('https');
 import mmdb = require('maxmind');
+import { version } from '../package.json';
 import * as models from './models';
 import { WebServiceClientError } from './types';
 
@@ -84,7 +85,7 @@ export default class WebServiceClient {
       auth: `${this.accountID}:${this.licenseKey}`,
       headers: {
         Accept: 'application/json',
-        'User-Agent': `GeoIP2-node/${process.env.npm_package_version}`,
+        'User-Agent': `GeoIP2-node/${version}`,
       },
       host: this.host,
       method: 'GET',
