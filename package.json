@@ -23,7 +23,7 @@
     "mmdb"
   ],
   "files": ["dist"],
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "devDependencies": {
     "@types/jest": "^24.0.9",
     "@types/lodash.set": "^4.3.4",
