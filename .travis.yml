@@ -1,26 +1,31 @@
+---
 language: node_js
 cache: yarn
 matrix:
   include:
-  - node_js: '8'
-    env: RUN_SNYK=true
-  - node_js: '10'
-  - node_js: node
+    - node_js: '8'
+    - node_js: '10'
+      env: RUN_SNYK=true
+    - node_js: node
 script:
-- yarn lint
-- yarn test --coverage
-- yarn prettier:ci
-- yarn build
+  - yarn lint
+  - yarn test --coverage
+  - yarn prettier:ci
+  - yarn build
 before_install:
-- npm install -g yarn
-- if [[ $RUN_SNYK && $SNYK_TOKEN ]]; then npm install -g snyk; fi
+  - npm install -g yarn
+  - if [[ $RUN_SNYK && $SNYK_TOKEN ]]; then npm install -g snyk; fi
 install:
-- if [[ $RUN_SNYK && $SNYK_TOKEN ]]; then snyk test --org=maxmind; fi
-- yarn install
+  - if [[ $RUN_SNYK && $SNYK_TOKEN ]]; then snyk test --org=maxmind; fi
+  - yarn install
 after_success:
-- if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' && $RUN_SNYK
-  && $SNYK_TOKEN ]]; then snyk monitor --org=maxmind --project-name=maxmind/GeoIP2-node;
-  fi
+  - if [[ $TRAVIS_BRANCH == 'master'
+         && $TRAVIS_PULL_REQUEST == 'false'
+         && $RUN_SNYK
+         && $SNYK_TOKEN
+    ]]; then
+      snyk monitor --org=maxmind --project-name=maxmind/GeoIP2-node;
+    fi
 env:
   global:
-  - secure: ks7L7XChEsmVTE3l9cwU6yufoO/7ENaRu09oTO76l64lwgD6v2BgqEParj3w/QXMjoETvHJA4/biiP4WOp3PmMc0bhtcwI9vFDHaKr8PuWLV7QtuFGgZp8RGakeY8eNQMDMvcxdLMOlKrhTmdpT5PfDC7hFMTdiXphpMni+C1poUcqmoElq++aEO3eMFl50Yc7ACS2Im53C3yY8UJ3zp51UDqCx9P6uU96m6RMvq0Eg796BG3rVJaBlrNI4HGBOpqXfQUx0SC2IQ/aHAHvmHp+tvEvPD6DGFM7/vRIREdMLN99eK+M8ooMSKD/6XYU9LuPO9+9Umj/1GtjgZVH/RSge98RoK86apYTHUJwTq5ZGZ9yw8UTBDXh/s7Rn5hduL0PnE3/+nCG/BFPLG2iPeSOEKA9HyAsRFdXs2IJuI9KG70LgN4H0SfML5em1OM/fCD10jF9I+vsscKKa1Kv7stiHaHYSkp+JskAmKx0T6DocvOJYJ+8nMA1DU6P9nChCxtTNaQ8vS/vRbyIkyj3/J3udjjZZwns76AHkqZE2SayhW+08rqJdhyCum/J5Ngb2QdwAwIr4nXK1meBLKYcYz+b6S8ox0zwSuGWRS1sSoO24F2zT4CT7Wg6GK4yJkVfzv0yMroOC48UipzAk1ckxtLPXvSOU3ZJWuQzcbyIXQHak=
+  - secure: uFkgqd28i3Zan7h/vKcg7vEgzIo34iBGaUUpdWHGjSfvFngo4Q2PRC1eJzgR9I3qG1n4DpiwUidrVC0wp3aOinkn5eDe78OVUlCLFmdoTDSMFZx101F1+GuMA0J5IDgHvgZGkp4wZqOUAc8qL5t4D/KHE+x79vg1RHm72Z7OalzGtQlbKeSeKYNoGxaAALrv4Z9MYanROhDFiEjtjajRSVLFPH7f2Bn5fmEOFxx84iEe5LFnP82EFAZgmTDgzefFMIEX7TYidDySIe1L6ubcTvI8WRK6+zV49cWY0zvEBivySha+dHH7W3zCleIQCPD7ybcKPySPuW5/X3QPfjoXHG1UhShWhovCzkbXP7tAfdHEedbKDrlzMXeM34rICcBqfMJa4onsS7MNvo9B+OnVRCCJ58/WVuATvSLH0VgdVSSj8C/A/41hGdZVsRQVjyiu3YIS20xjrkYdBHzclePc7cdNCDIj9EgcRpL+9OlEKs1BKx9AK+4tf0brcHMEFXUM52lUB3Ltgh4DnmQF2pOu7oJmOagH3jPHOz7u8QG6Pets4mgA4wIas9JltCedNgDzmiZYlMSgcxkQIiizxXjClkrB6mRJ3uE0oMXPslOaHeolT1p16ZFa/2pBmwPHQ583Ys+87W1hxkUdnaSCDs40WtdVmFhU5iUI11j1IP8dfes=
