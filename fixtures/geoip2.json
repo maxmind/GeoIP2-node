@@ -119,6 +119,7 @@
     "is_tor_exit_node": true,
     "isp": "Linkem spa",
     "organization": "Linkem IR WiMax Network",
+    "user_count": 2,
     "user_type": "traveler"
   }
 }

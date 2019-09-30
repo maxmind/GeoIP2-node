@@ -77,6 +77,7 @@ export interface TraitsRecord {
   readonly isTorExitNode?: boolean;
   readonly isp?: string;
   readonly organization?: string;
+  readonly userCount?: string;
   readonly userType?:
     | 'business'
     | 'cafe'
