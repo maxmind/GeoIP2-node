@@ -76,6 +76,6 @@
   "dependencies": {
     "camelcase-keys": "^6.0.1",
     "lodash.set": "^4.3.2",
-    "maxmind": "^2.11.0"
+    "maxmind": "^3.1.2"
   }
 }
