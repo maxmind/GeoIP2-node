@@ -1,5 +1,4 @@
-const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
-const Reader = require('@maxmind/geoip2-node').Reader;
+import { Reader, WebServiceClient } from '@maxmind/geoip2-node';
 
 describe('WebServiceClient', () => {
   it('exists', async () => {
@@ -8,7 +7,7 @@ describe('WebServiceClient', () => {
 
     try {
       await client.country('1.1.1.1');
-    } catch(err) {
+    } catch (err) {
       expect(err).toHaveProperty('code');
     }
   });

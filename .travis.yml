@@ -17,6 +17,10 @@ script:
   - yarn
   - yarn link '@maxmind/geoip2-node'
   - yarn jest
+  - cd ../ts
+  - yarn
+  - yarn link '@maxmind/geoip2-node'
+  - yarn jest
 before_install:
   - npm install -g yarn
   - if [[ $RUN_SNYK && $SNYK_TOKEN ]]; then npm install -g snyk; fi
