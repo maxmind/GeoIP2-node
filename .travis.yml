@@ -12,6 +12,15 @@ script:
   - yarn test --coverage
   - yarn prettier:ci
   - yarn build
+  - yarn link
+  - cd e2e/js
+  - yarn
+  - yarn link '@maxmind/geoip2-node'
+  - yarn jest
+  - cd ../ts
+  - yarn
+  - yarn link '@maxmind/geoip2-node'
+  - yarn jest
 before_install:
   - npm install -g yarn
   - if [[ $RUN_SNYK && $SNYK_TOKEN ]]; then npm install -g snyk; fi
