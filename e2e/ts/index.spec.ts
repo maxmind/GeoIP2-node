@@ -1,15 +1,10 @@
 import { Reader, WebServiceClient } from '@maxmind/geoip2-node';
 
 describe('WebServiceClient', () => {
-  it('exists', async () => {
-    expect.assertions(1);
-    const client = new WebServiceClient('1234', 'foo');
+  it('exists', () => {
+    const client = () => new WebServiceClient('1234', 'foo');
 
-    try {
-      await client.country('1.1.1.1');
-    } catch (err) {
-      expect(err).toHaveProperty('code');
-    }
+    expect(client).not.toThrowError();
   });
 });
 
