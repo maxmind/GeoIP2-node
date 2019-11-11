@@ -930,9 +930,9 @@ camelcase-keys@^4.0.0:
     quick-lru "^1.0.0"
 
 camelcase-keys@^6.0.1:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/camelcase-keys/-/camelcase-keys-6.1.0.tgz#3ca09b3cae196a58e291a6913ce97ffc8f8ae850"
-  integrity sha512-43tBGDIs3SBDA5R5mYzkiBP3lt2IKhLDp1wVGS9XTq6SR3+7ZNdi/VwBJsk4NKgySoaziTrKM+N8hhT04NBVUA==
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/camelcase-keys/-/camelcase-keys-6.1.1.tgz#0d24dde78cea4c7d2da7f4ea40b7995083328c8d"
+  integrity sha512-kEPCddRFChEzO0d6w61yh0WbBiSv9gBnfZWGfXRYPlGqIdIGef6HMR6pgqVSEWCYkrp8B0AtEpEXNY+Jx0xk1A==
   dependencies:
     camelcase "^5.3.1"
     map-obj "^4.0.0"
