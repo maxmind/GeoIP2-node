@@ -1977,12 +1977,19 @@ glob@^7.0.0, glob@^7.0.3, glob@^7.1.1, glob@^7.1.2, glob@^7.1.3:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-global-dirs@^0.1.0, global-dirs@^0.1.1:
+global-dirs@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/global-dirs/-/global-dirs-0.1.1.tgz#b319c0dd4607f353f3be9cca4c72fc148c49f445"
   integrity sha1-sxnA3UYH81PzvpzKTHL8FIxJ9EU=
   dependencies:
     ini "^1.3.4"
+
+global-dirs@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/global-dirs/-/global-dirs-2.0.1.tgz#acdf3bb6685bcd55cb35e8a052266569e9469201"
+  integrity sha512-5HqUqdhkEovj2Of/ms3IeS/EekcO54ytHRLV4PEY2rhRwrHXLQjeVEES0Lhka0xwNDtGYn58wyC4s5+MHsOO6A==
+  dependencies:
+    ini "^1.3.5"
 
 globals@^11.1.0:
   version "11.12.0"
@@ -2261,7 +2268,7 @@ inherits@2, inherits@~2.0.3:
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
   integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
 
-ini@^1.3.4, ini@~1.3.0:
+ini@^1.3.4, ini@^1.3.5, ini@~1.3.0:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.5.tgz#eee25f56db1c9ec6085e0c22778083f596abf927"
   integrity sha512-RZY5huIKCMRWDUqZlEi72f/lmXKMvuszcMBduliQ3nnWbx9X/ZBQO7DijMEYS9EhHBb2qacRUMtC7svLwe0lcw==
@@ -2454,13 +2461,13 @@ is-installed-globally@^0.1.0:
     global-dirs "^0.1.0"
     is-path-inside "^1.0.0"
 
-is-installed-globally@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/is-installed-globally/-/is-installed-globally-0.2.0.tgz#8cde07ade508458b51f14bcda315ffaf4898de30"
-  integrity sha512-g3TzWCnR/eO4Q3abCwgFjOFw7uVOfxG4m8hMr/39Jcf2YvE5mHrFKqpyuraWV4zwx9XhjnVO4nY0ZI4llzl0Pg==
+is-installed-globally@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/is-installed-globally/-/is-installed-globally-0.3.1.tgz#679afef819347a72584617fd19497f010b8ed35f"
+  integrity sha512-oiEcGoQbGc+3/iijAijrK2qFpkNoNjsHOm/5V5iaeydyrS/hnwaRCEgH5cpW0P3T1lSjV5piB7S5b5lEugNLhg==
   dependencies:
-    global-dirs "^0.1.1"
-    is-path-inside "^2.1.0"
+    global-dirs "^2.0.1"
+    is-path-inside "^3.0.1"
 
 is-npm@^3.0.0:
   version "3.0.0"
@@ -3795,9 +3802,9 @@ normalize-url@^4.1.0:
   integrity sha512-rjH3yRt0Ssx19mUwS0hrDUOdG9VI+oRLpLHJ7tXRdjcuQ7v7wo6qPvOZppHRrqfslTKr0L2yBhjj4UXd7c3cQg==
 
 np@^5.0.1:
-  version "5.1.2"
-  resolved "https://registry.yarnpkg.com/np/-/np-5.1.2.tgz#0339e9a28c6996f8dbc1fbf971b3f9aa9eb7bfea"
-  integrity sha512-r+Gh5MRzkw38ulD8+VhpfAjJUiFJTKJv9a2NVPFelXm1jQcugSHs+IntqlAA/ydwgxwNe+EDnyvGjtZuFyeVFg==
+  version "5.1.3"
+  resolved "https://registry.yarnpkg.com/np/-/np-5.1.3.tgz#b4d999709d88ebf51586c0bd7c932f5cd85c0454"
+  integrity sha512-np8ZranFku8KSKYZzjpyb45P2HMAAoWufwB957mTjZSYg/8ZvU83qT0rYHGXgmwxM2jbsVMtRj9cEgUbPJfV5A==
   dependencies:
     "@samverschueren/stream-to-observable" "^0.3.0"
     any-observable "^0.4.0"
@@ -3811,7 +3818,7 @@ np@^5.0.1:
     has-yarn "^2.1.0"
     hosted-git-info "^3.0.0"
     inquirer "^7.0.0"
-    is-installed-globally "^0.2.0"
+    is-installed-globally "^0.3.1"
     is-scoped "^2.1.0"
     issue-regex "^2.0.0"
     listr "^0.14.3"
