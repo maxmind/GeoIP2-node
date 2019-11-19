@@ -214,6 +214,8 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-City.mmdb').then(reader => {
   const response = reader.city('128.101.101.101');
 
   console.log(response.country.isoCode); // 'US'
+  console.log(response.city.names.en); // 'Minneapolis'
+  console.log(response.postal.code); // '55407'
 });
 ```
 
