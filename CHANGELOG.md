@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+1.1.0
+------------------
+
+* Add the `userCount` property to `TraitsRecord`. This is an integer which
+  indicates the estimated number of users sharing the IP/network during the
+  past 24 hours. This output is available from GeoIP2 Precision Insights.
+
 1.0.0 (2019-08-22)
 ------------------
 
