@@ -4,6 +4,10 @@ CHANGELOG
 1.1.0
 ------------------
 
+* Drop support for Node 8.
+* A `network` property has been added to the various response models. This
+  represents the largest network where all the fields besides the IP address
+  are the same.
 * Add the `userCount` property to `TraitsRecord`. This is an integer which
   indicates the estimated number of users sharing the IP/network during the
   past 24 hours. This output is available from GeoIP2 Precision Insights.
