@@ -60,7 +60,7 @@ describe('ReaderModel', () => {
   describe('city()', () => {
     const testFixture = {
       city: geoip2Fixture.city,
-      continent: geoip2Fixture.continent as mmdb.ContinentRecord,
+      continent: geoip2Fixture.continent,
       country: geoip2Fixture.country,
       location: geoip2Fixture.location,
       maxmind: geoip2Fixture.maxmind,
@@ -68,7 +68,7 @@ describe('ReaderModel', () => {
       registered_country: geoip2Fixture.registered_country,
       represented_country: geoip2Fixture.represented_country,
       subdivisions: geoip2Fixture.subdivisions,
-      traits: geoip2Fixture.traits as mmdb.TraitsRecord,
+      traits: geoip2Fixture.traits,
     };
 
     const mmdbReader = createMmdbReaderMock(
@@ -125,12 +125,12 @@ describe('ReaderModel', () => {
 
   describe('country()', () => {
     const testFixture = {
-      continent: geoip2Fixture.continent as mmdb.ContinentRecord,
+      continent: geoip2Fixture.continent,
       country: geoip2Fixture.country,
       maxmind: geoip2Fixture.maxmind,
       registered_country: geoip2Fixture.registered_country,
       represented_country: geoip2Fixture.represented_country,
-      traits: geoip2Fixture.traits as mmdb.TraitsRecord,
+      traits: geoip2Fixture.traits,
     };
 
     const mmdbReader = createMmdbReaderMock(
@@ -328,7 +328,7 @@ describe('ReaderModel', () => {
   describe('enterprise()', () => {
     const testFixture = {
       city: geoip2Fixture.city,
-      continent: geoip2Fixture.continent as mmdb.ContinentRecord,
+      continent: geoip2Fixture.continent,
       country: geoip2Fixture.country,
       location: geoip2Fixture.location,
       maxmind: geoip2Fixture.maxmind,
@@ -336,7 +336,7 @@ describe('ReaderModel', () => {
       registered_country: geoip2Fixture.registered_country,
       represented_country: geoip2Fixture.represented_country,
       subdivisions: geoip2Fixture.subdivisions,
-      traits: geoip2Fixture.traits as mmdb.TraitsRecord,
+      traits: geoip2Fixture.traits,
     };
 
     const mmdbReader = createMmdbReaderMock(

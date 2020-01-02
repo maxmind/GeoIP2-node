@@ -5,14 +5,14 @@ import * as models from './models';
 
 /** Class representing the ReaderModel **/
 export default class ReaderModel {
-  private mmdbReader: mmdb.Reader;
+  private mmdbReader: mmdb.Reader<any>;
 
   /**
    * Instanstiates a ReaderModel using node-maxmind reader
    *
    * @param mmdbReader The mmdbReader
    */
-  public constructor(mmdbReader: mmdb.Reader) {
+  public constructor(mmdbReader: mmdb.Reader<any>) {
     this.mmdbReader = mmdbReader;
   }
 

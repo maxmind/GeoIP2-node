@@ -14,7 +14,7 @@ describe('Reader', () => {
       expect.assertions(2);
 
       return Reader.open(file).then(reader => {
-        expect(spy).toHaveBeenCalledWith(file, undefined, expect.any(Function));
+        expect(spy).toHaveBeenCalledWith(file, undefined);
         expect(reader).toBeInstanceOf(ReaderModel);
       });
     });
@@ -30,7 +30,7 @@ describe('Reader', () => {
       expect.assertions(2);
 
       return Reader.open(file, options).then(reader => {
-        expect(spy).toHaveBeenCalledWith(file, options, expect.any(Function));
+        expect(spy).toHaveBeenCalledWith(file, options);
         expect(reader).toBeInstanceOf(ReaderModel);
       });
     });
