@@ -1,3 +1,4 @@
+import ip6addr = require('ip6addr');
 import set = require('lodash.set');
 import mmdb = require('maxmind');
 import { AddressNotFoundError, BadMethodCallError, ValueError } from './errors';
@@ -164,7 +165,7 @@ export default class ReaderModel {
       );
     }
 
-    return [record, prefixLength];
+    return [record, ip6addr.createCIDR(ipAddress, prefixLength).toString()];
   }
 
   private modelFor(
@@ -173,7 +174,9 @@ export default class ReaderModel {
     ipAddress: string,
     fnName: string
   ) {
-    const [record, _] = this.getRecord(dbType, ipAddress, fnName);
+    const [record, network] = this.getRecord(dbType, ipAddress, fnName);
+
+    const model = new modelClass(record);
 
     switch (dbType) {
       case 'ASN':
@@ -181,12 +184,14 @@ export default class ReaderModel {
       case 'Domain':
       case 'GeoIP2-Anonymous-IP':
       case 'ISP':
-        set(record, 'ip_address', ipAddress);
+        set(model, 'ipAddress', ipAddress);
+        set(model, 'network', network);
         break;
       default:
-        set(record, 'traits.ip_address', ipAddress);
+        set(model, 'traits.ipAddress', ipAddress);
+        set(model, 'traits.network', network);
     }
 
-    return new modelClass(record);
+    return model;
   }
 }

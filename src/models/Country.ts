@@ -29,7 +29,7 @@ export default class Country {
       this.setBooleanRegisteredCountry(camelcaseResponse.registeredCountry) ||
       {};
     this.representedCountry = camelcaseResponse.representedCountry || {};
-    this.traits = this.setBooleanTraits(camelcaseResponse.traits);
+    this.traits = this.setBooleanTraits(camelcaseResponse.traits || {});
   }
 
   private setBooleanTraits(traits: any) {
