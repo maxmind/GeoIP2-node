@@ -2,10 +2,10 @@ const mmdb = require('maxmind');
 jest.genMockFromModule('maxmind');
 
 const reader = {
-  get() {
-    return {
+  getWithPrefixLength() {
+    return [{
       city: 'foo',
-    };
+    }, 24,];
   }
 };
 

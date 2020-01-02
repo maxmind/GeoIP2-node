@@ -149,11 +149,13 @@ export default class ReaderModel {
     }
 
     let record;
+    let prefixLength;
 
     try {
-      record = this.mmdbReader.get(ipAddress);
+      [record, prefixLength] = this.mmdbReader.getWithPrefixLength(ipAddress);
     } catch {
       record = undefined;
+      prefixLength = undefined;
     }
 
     if (!record) {
@@ -162,7 +164,7 @@ export default class ReaderModel {
       );
     }
 
-    return record;
+    return [record, prefixLength];
   }
 
   private modelFor(
@@ -171,7 +173,7 @@ export default class ReaderModel {
     ipAddress: string,
     fnName: string
   ) {
-    const record = this.getRecord(dbType, ipAddress, fnName);
+    const [record, _] = this.getRecord(dbType, ipAddress, fnName);
 
     switch (dbType) {
       case 'ASN':

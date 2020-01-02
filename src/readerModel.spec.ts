@@ -17,16 +17,20 @@ const ips = {
   valid: '11.11.11.11',
 };
 
-const createMmdbReaderMock = (databaseType: string, fixture: any) => ({
-  get(ipAddress: string) {
+const createMmdbReaderMock: any = (
+  databaseType: string,
+  fixture: any,
+  prefixLength: number
+) => ({
+  getWithPrefixLength(ipAddress: string) {
     if (ipAddress === ips.notFound) {
       throw new Error('ip address not found');
     }
 
     if (ipAddress === ips.empty) {
-      return {};
+      return [{}, 32];
     }
-    return fixture;
+    return [fixture, prefixLength];
   },
   metadata: {
     binaryFormatMajorVersion: 1,
@@ -73,7 +77,8 @@ describe('ReaderModel', () => {
 
     const mmdbReader = createMmdbReaderMock(
       'GeoIP2-City-Super-Special',
-      testFixture
+      testFixture,
+      24
     );
 
     it('returns city data', () => {
@@ -135,7 +140,8 @@ describe('ReaderModel', () => {
 
     const mmdbReader = createMmdbReaderMock(
       'GeoIP2-Country-Super-Special',
-      testFixture
+      testFixture,
+      28
     );
 
     it('returns city data', () => {
@@ -188,7 +194,8 @@ describe('ReaderModel', () => {
   describe('anonymousIP()', () => {
     const mmdbReader = createMmdbReaderMock(
       'GeoIP2-Anonymous-IP',
-      anonymousIPFixture
+      anonymousIPFixture,
+      32
     );
 
     it('returns anonymousIP data', () => {
@@ -239,7 +246,7 @@ describe('ReaderModel', () => {
   });
 
   describe('asn()', () => {
-    const mmdbReader = createMmdbReaderMock('GeoLite2-ASN', asnFixture);
+    const mmdbReader = createMmdbReaderMock('GeoLite2-ASN', asnFixture, 16);
 
     it('returns asn data', () => {
       const asnInstance = new ReaderModel(mmdbReader);
@@ -278,7 +285,8 @@ describe('ReaderModel', () => {
   describe('connectionType()', () => {
     const mmdbReader = createMmdbReaderMock(
       'GeoIP2-Connection-Type',
-      connectionTypeFixture
+      connectionTypeFixture,
+      20
     );
 
     it('returns connection-type data', () => {
@@ -341,7 +349,8 @@ describe('ReaderModel', () => {
 
     const mmdbReader = createMmdbReaderMock(
       'GeoIP2-Enterprise-Super-Special',
-      testFixture
+      testFixture,
+      30
     );
 
     it('returns enterprise data', () => {
@@ -396,7 +405,7 @@ describe('ReaderModel', () => {
   });
 
   describe('isp()', () => {
-    const mmdbReader = createMmdbReaderMock('GeoIP2-ISP', ispFixture);
+    const mmdbReader = createMmdbReaderMock('GeoIP2-ISP', ispFixture, 28);
 
     it('returns isp data', () => {
       const ispInstance = new ReaderModel(mmdbReader);
@@ -433,7 +442,7 @@ describe('ReaderModel', () => {
   });
 
   describe('domain()', () => {
-    const mmdbReader = createMmdbReaderMock('GeoIP2-Domain', domainFixture);
+    const mmdbReader = createMmdbReaderMock('GeoIP2-Domain', domainFixture, 24);
 
     it('returns domain data', () => {
       const domainInstance = new ReaderModel(mmdbReader);
