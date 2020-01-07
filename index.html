@@ -253,6 +253,8 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-City.mmdb'<
   <span class="hljs-keyword">const</span> response = reader.city(<span class="hljs-string">'128.101.101.101'</span>);
 
   <span class="hljs-built_in">console</span>.log(response.country.isoCode); <span class="hljs-comment">// 'US'</span>
+  <span class="hljs-built_in">console</span>.log(response.city.names.en); <span class="hljs-comment">// 'Minneapolis'</span>
+  <span class="hljs-built_in">console</span>.log(response.postal.code); <span class="hljs-comment">// '55407'</span>
 });</code></pre>
 				<a href="#connection-type-example" id="connection-type-example" style="color: inherit; text-decoration: none;">
 					<h3>Connection-Type Example</h3>
@@ -361,10 +363,10 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-ISP.mmdb'</
 				<a href="#integration-with-geonames" id="integration-with-geonames" style="color: inherit; text-decoration: none;">
 					<h2>Integration with GeoNames</h2>
 				</a>
-				<p><a href="http://www.geonames.org/">GeoNames</a> offers web services and downloadable databases with data on
-					geographical features around the world, including populated places. They offer
-					both free and paid premium data. Each feature is uniquely identified by a
-				<code>geonameId</code>, which is an integer.</p>
+				<p><a href="https://www.geonames.org/">GeoNames</a> offers web services and downloadable
+					databases with data on geographical features around the world, including
+					populated places. They offer both free and paid premium data. Each feature
+				is uniquely identified by a <code>geonameId</code>, which is an integer.</p>
 				<p>Many of the records returned by the GeoIP web services and databases include a
 					<code>geonameId</code> field. This is the ID of a geographical feature (city, region,
 				country, etc.) in the GeoNames database.</p>
@@ -377,7 +379,7 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-ISP.mmdb'</
 				<p>If the problem you find is that an IP address is incorrectly mapped, please
 				<a href="https://support.maxmind.com/geoip-data-correction-request/">submit your correction to MaxMind</a>.</p>
 				<p>If you find some other sort of mistake, like an incorrect spelling,
-					please check <a href="http://www.geonames.org/">the GeoNames site</a> first. Once
+					please check <a href="https://www.geonames.org/">the GeoNames site</a> first. Once
 					you&#39;ve searched for a place and found it on the GeoNames map view, there
 					are a number of links you can use to correct data (&quot;move&quot;, &quot;edit&quot;,
 					&quot;alternate names&quot;, etc.). Once the correction is part of the GeoNames
@@ -388,7 +390,7 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-ISP.mmdb'</
 				<a href="#requirements" id="requirements" style="color: inherit; text-decoration: none;">
 					<h2>Requirements</h2>
 				</a>
-				<p>MaxMind has tested this API with Node.js versions 8 and 10.  We aim to support
+				<p>MaxMind has tested this API with Node.js versions 10 and 12.  We aim to support
 				active LTS versions of Node.js, as well as the latest stable release.</p>
 				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
 					<h2>Contributing</h2>
@@ -398,7 +400,7 @@ Reader.open(<span class="hljs-string">'/usr/local/share/GeoIP/GeoIP2-ISP.mmdb'</
 				<a href="#versioning" id="versioning" style="color: inherit; text-decoration: none;">
 					<h2>Versioning</h2>
 				</a>
-				<p>The GeoIP2 Node.js API uses <a href="http://semver.org/">Semantic Versioning</a>.</p>
+				<p>The GeoIP2 Node.js API uses <a href="https://semver.org/">Semantic Versioning</a>.</p>
 				<a href="#support" id="support" style="color: inherit; text-decoration: none;">
 					<h2>Support</h2>
 				</a>
