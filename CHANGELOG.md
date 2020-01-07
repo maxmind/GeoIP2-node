@@ -1,10 +1,10 @@
 CHANGELOG
 =========
 
-1.1.0
+1.4.0
 ------------------
 
-* Drop support for Node 8.
+* **Drop support for Node 8.**
 * A `network` property has been added to the various response models. This
   represents the largest network where all the fields besides the IP address
   are the same.
@@ -14,6 +14,10 @@ CHANGELOG
 * Add the `staticIpScore` property to `TraitsRecord`. This is
   a float which indicates how static or dynamic an IP address is. This
   output is available from GeoIP2 Precision Insights.
+
+1.1.0 - 1.3.0
+------------------
+* Upgrade yarn dependencies
 
 1.0.0 (2019-08-22)
 ------------------
