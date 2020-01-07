@@ -3,8 +3,8 @@ language: node_js
 cache: yarn
 matrix:
   include:
-    - node_js: '8'
     - node_js: '10'
+    - node_js: '12'
       env: RUN_SNYK=true
     - node_js: node
 script:

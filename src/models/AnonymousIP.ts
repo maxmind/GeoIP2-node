@@ -8,6 +8,7 @@ export default class AnonymousIP {
   public readonly isHostingProvider?: boolean;
   public readonly isPublicProxy?: boolean;
   public readonly isTorExitNode?: boolean;
+  public network?: string;
 
   /**
    * Instanstiates an "AnonymousIP" using fields from the response

@@ -1,3 +1,4 @@
+import ip6addr = require('ip6addr');
 import set = require('lodash.set');
 import mmdb = require('maxmind');
 import { AddressNotFoundError, BadMethodCallError, ValueError } from './errors';
@@ -5,14 +6,14 @@ import * as models from './models';
 
 /** Class representing the ReaderModel **/
 export default class ReaderModel {
-  private mmdbReader: mmdb.Reader;
+  private mmdbReader: mmdb.Reader<any>;
 
   /**
    * Instanstiates a ReaderModel using node-maxmind reader
    *
    * @param mmdbReader The mmdbReader
    */
-  public constructor(mmdbReader: mmdb.Reader) {
+  public constructor(mmdbReader: mmdb.Reader<any>) {
     this.mmdbReader = mmdbReader;
   }
 
@@ -149,11 +150,13 @@ export default class ReaderModel {
     }
 
     let record;
+    let prefixLength;
 
     try {
-      record = this.mmdbReader.get(ipAddress);
+      [record, prefixLength] = this.mmdbReader.getWithPrefixLength(ipAddress);
     } catch {
       record = undefined;
+      prefixLength = undefined;
     }
 
     if (!record) {
@@ -162,7 +165,7 @@ export default class ReaderModel {
       );
     }
 
-    return record;
+    return [record, ip6addr.createCIDR(ipAddress, prefixLength).toString()];
   }
 
   private modelFor(
@@ -171,7 +174,9 @@ export default class ReaderModel {
     ipAddress: string,
     fnName: string
   ) {
-    const record = this.getRecord(dbType, ipAddress, fnName);
+    const [record, network] = this.getRecord(dbType, ipAddress, fnName);
+
+    const model = new modelClass(record);
 
     switch (dbType) {
       case 'ASN':
@@ -179,12 +184,14 @@ export default class ReaderModel {
       case 'Domain':
       case 'GeoIP2-Anonymous-IP':
       case 'ISP':
-        set(record, 'ip_address', ipAddress);
+        set(model, 'ipAddress', ipAddress);
+        set(model, 'network', network);
         break;
       default:
-        set(record, 'traits.ip_address', ipAddress);
+        set(model, 'traits.ipAddress', ipAddress);
+        set(model, 'traits.network', network);
     }
 
-    return new modelClass(record);
+    return model;
   }
 }

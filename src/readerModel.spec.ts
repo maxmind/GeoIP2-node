@@ -17,16 +17,21 @@ const ips = {
   valid: '11.11.11.11',
 };
 
-const createMmdbReaderMock = (databaseType: string, fixture: any) => ({
-  get(ipAddress: string) {
+const networks = {
+  empty: '88.88.88.88/32',
+  valid: '11.11.11.0/24',
+};
+
+const createMmdbReaderMock: any = (databaseType: string, fixture: any) => ({
+  getWithPrefixLength(ipAddress: string) {
     if (ipAddress === ips.notFound) {
       throw new Error('ip address not found');
     }
 
     if (ipAddress === ips.empty) {
-      return {};
+      return [{}, 32];
     }
-    return fixture;
+    return [fixture, 24];
   },
   metadata: {
     binaryFormatMajorVersion: 1,
@@ -55,12 +60,13 @@ describe('ReaderModel', () => {
     isPublicProxy: false,
     isSatelliteProvider: false,
     isTorExitNode: false,
+    network: networks.empty,
   };
 
   describe('city()', () => {
     const testFixture = {
       city: geoip2Fixture.city,
-      continent: geoip2Fixture.continent as mmdb.ContinentRecord,
+      continent: geoip2Fixture.continent,
       country: geoip2Fixture.country,
       location: geoip2Fixture.location,
       maxmind: geoip2Fixture.maxmind,
@@ -68,7 +74,7 @@ describe('ReaderModel', () => {
       registered_country: geoip2Fixture.registered_country,
       represented_country: geoip2Fixture.represented_country,
       subdivisions: geoip2Fixture.subdivisions,
-      traits: geoip2Fixture.traits as mmdb.TraitsRecord,
+      traits: geoip2Fixture.traits,
     };
 
     const mmdbReader = createMmdbReaderMock(
@@ -125,12 +131,12 @@ describe('ReaderModel', () => {
 
   describe('country()', () => {
     const testFixture = {
-      continent: geoip2Fixture.continent as mmdb.ContinentRecord,
+      continent: geoip2Fixture.continent,
       country: geoip2Fixture.country,
       maxmind: geoip2Fixture.maxmind,
       registered_country: geoip2Fixture.registered_country,
       represented_country: geoip2Fixture.represented_country,
-      traits: geoip2Fixture.traits as mmdb.TraitsRecord,
+      traits: geoip2Fixture.traits,
     };
 
     const mmdbReader = createMmdbReaderMock(
@@ -193,12 +199,10 @@ describe('ReaderModel', () => {
 
     it('returns anonymousIP data', () => {
       const anonymousIPInstance = new ReaderModel(mmdbReader);
-      expect(anonymousIPInstance.anonymousIP(ips.valid)).toEqual(
-        camelcaseKeys(anonymousIPFixture)
-      );
-      expect(anonymousIPInstance.anonymousIP(ips.valid).ipAddress).toEqual(
-        ips.valid
-      );
+      const expected: any = camelcaseKeys(anonymousIPFixture);
+      expected.ipAddress = ips.valid;
+      expected.network = networks.valid;
+      expect(anonymousIPInstance.anonymousIP(ips.valid)).toEqual(expected);
     });
 
     it('throws an error if db types do not match', () => {
@@ -232,6 +236,7 @@ describe('ReaderModel', () => {
         isHostingProvider: false,
         isPublicProxy: false,
         isTorExitNode: false,
+        network: networks.empty,
       };
 
       expect(anonymousIPInstance.anonymousIP(ips.empty)).toEqual(expected);
@@ -243,8 +248,10 @@ describe('ReaderModel', () => {
 
     it('returns asn data', () => {
       const asnInstance = new ReaderModel(mmdbReader);
-      expect(asnInstance.asn(ips.valid)).toEqual(camelcaseKeys(asnFixture));
-      expect(asnInstance.asn(ips.valid).ipAddress).toEqual(ips.valid);
+      const expected: any = camelcaseKeys(asnFixture);
+      expected.ipAddress = ips.valid;
+      expected.network = networks.valid;
+      expect(asnInstance.asn(ips.valid)).toEqual(expected);
     });
 
     it('throws an error if db types do not match', () => {
@@ -269,6 +276,7 @@ describe('ReaderModel', () => {
       const asnInstance = new ReaderModel(mmdbReader);
       const expected = {
         ipAddress: ips.empty,
+        network: networks.empty,
       };
 
       expect(asnInstance.asn(ips.empty)).toEqual(expected);
@@ -283,12 +291,12 @@ describe('ReaderModel', () => {
 
     it('returns connection-type data', () => {
       const connectionTypeInstance = new ReaderModel(mmdbReader);
+      const expected: any = camelcaseKeys(connectionTypeFixture);
+      expected.ipAddress = ips.valid;
+      expected.network = networks.valid;
       expect(connectionTypeInstance.connectionType(ips.valid)).toEqual(
-        camelcaseKeys(connectionTypeFixture)
+        expected
       );
-      expect(
-        connectionTypeInstance.connectionType(ips.valid).ipAddress
-      ).toEqual(ips.valid);
     });
 
     it('throws an error if db types do not match', () => {
@@ -317,6 +325,7 @@ describe('ReaderModel', () => {
       const connectionTypeInstance = new ReaderModel(mmdbReader);
       const expected = {
         ipAddress: ips.empty,
+        network: networks.empty,
       };
 
       expect(connectionTypeInstance.connectionType(ips.empty)).toEqual(
@@ -328,7 +337,7 @@ describe('ReaderModel', () => {
   describe('enterprise()', () => {
     const testFixture = {
       city: geoip2Fixture.city,
-      continent: geoip2Fixture.continent as mmdb.ContinentRecord,
+      continent: geoip2Fixture.continent,
       country: geoip2Fixture.country,
       location: geoip2Fixture.location,
       maxmind: geoip2Fixture.maxmind,
@@ -336,7 +345,7 @@ describe('ReaderModel', () => {
       registered_country: geoip2Fixture.registered_country,
       represented_country: geoip2Fixture.represented_country,
       subdivisions: geoip2Fixture.subdivisions,
-      traits: geoip2Fixture.traits as mmdb.TraitsRecord,
+      traits: geoip2Fixture.traits,
     };
 
     const mmdbReader = createMmdbReaderMock(
@@ -346,12 +355,14 @@ describe('ReaderModel', () => {
 
     it('returns enterprise data', () => {
       const enterpriseInstance = new ReaderModel(mmdbReader);
-      expect(enterpriseInstance.enterprise(ips.valid)).toEqual(
-        camelcaseKeys(testFixture, { deep: true, exclude: [/\-/] })
-      );
-      expect(enterpriseInstance.enterprise(ips.valid).traits.ipAddress).toEqual(
-        ips.valid
-      );
+      const expected: any = camelcaseKeys(testFixture, {
+        deep: true,
+        exclude: [/\-/],
+      });
+      camelcaseKeys(connectionTypeFixture);
+      expected.traits.ipAddress = ips.valid;
+      expected.traits.network = networks.valid;
+      expect(enterpriseInstance.enterprise(ips.valid)).toEqual(expected);
     });
 
     it('throws an error if db types do not match', () => {
@@ -400,8 +411,10 @@ describe('ReaderModel', () => {
 
     it('returns isp data', () => {
       const ispInstance = new ReaderModel(mmdbReader);
-      expect(ispInstance.isp(ips.valid)).toEqual(camelcaseKeys(ispFixture));
-      expect(ispInstance.isp(ips.valid).ipAddress).toEqual(ips.valid);
+      const expected: any = camelcaseKeys(ispFixture);
+      expected.ipAddress = ips.valid;
+      expected.network = networks.valid;
+      expect(ispInstance.isp(ips.valid)).toEqual(expected);
     });
 
     it('throws an error if db types do not match', () => {
@@ -426,6 +439,7 @@ describe('ReaderModel', () => {
       const ispInstance = new ReaderModel(mmdbReader);
       const expected = {
         ipAddress: ips.empty,
+        network: networks.empty,
       };
 
       expect(ispInstance.isp(ips.empty)).toEqual(expected);
@@ -437,10 +451,10 @@ describe('ReaderModel', () => {
 
     it('returns domain data', () => {
       const domainInstance = new ReaderModel(mmdbReader);
-      expect(domainInstance.domain(ips.valid)).toEqual(
-        camelcaseKeys(domainFixture)
-      );
-      expect(domainInstance.domain(ips.valid).ipAddress).toEqual(ips.valid);
+      const expected: any = camelcaseKeys(domainFixture);
+      expected.ipAddress = ips.valid;
+      expected.network = networks.valid;
+      expect(domainInstance.domain(ips.valid)).toEqual(expected);
     });
 
     it('throws an error if db types do not match', () => {
@@ -469,6 +483,7 @@ describe('ReaderModel', () => {
       const domainInstance = new ReaderModel(mmdbReader);
       const expected = {
         ipAddress: ips.empty,
+        network: networks.empty,
       };
 
       expect(domainInstance.domain(ips.empty)).toEqual(expected);

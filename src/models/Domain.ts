@@ -4,6 +4,7 @@ import { DomainResponse } from 'maxmind';
 export default class Domain {
   public readonly domain?: string;
   public ipAddress?: string;
+  public network?: string;
 
   /**
    * Instanstiates an "Domain" using fields from the response

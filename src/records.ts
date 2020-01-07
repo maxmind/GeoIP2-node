@@ -75,6 +75,7 @@ export interface TraitsRecord {
   readonly isPublicProxy?: boolean;
   readonly isSatelliteProvider?: boolean;
   readonly isTorExitNode?: boolean;
+  network?: string;
   readonly isp?: string;
   readonly organization?: string;
   readonly staticIPScore?: number;

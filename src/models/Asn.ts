@@ -5,6 +5,7 @@ export default class Asn {
   public readonly autonomousSystemNumber?: number;
   public readonly autonomousSystemOrganization?: string;
   public ipAddress?: string;
+  public network?: string;
 
   /**
    * Instanstiates an "Asn" using fields from the response

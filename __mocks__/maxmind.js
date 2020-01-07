@@ -2,19 +2,19 @@ const mmdb = require('maxmind');
 jest.genMockFromModule('maxmind');
 
 const reader = {
-  get() {
-    return {
+  getWithPrefixLength() {
+    return [{
       city: 'foo',
-    };
+    }, 24,];
   }
 };
 
-mmdb.open = (file, opts, cb) => {
+mmdb.open = (file, opts) => {
   if (file === 'success.test') {
-    return cb(null, reader)
+    return Promise.resolve(reader);
   }
 
-  return cb(new Error('some mocked error'));
+  return Promise.reject(new Error('some mocked error'));
 };
 
 module.exports = mmdb;

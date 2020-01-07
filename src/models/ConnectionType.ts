@@ -9,6 +9,7 @@ export default class ConnectionType {
    */
   public readonly connectionType: string;
   public ipAddress?: string;
+  public network?: string;
 
   /**
    * Instanstiates a "ConnectionType" using fields from the response
