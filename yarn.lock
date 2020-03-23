@@ -3400,9 +3400,9 @@ marked@^0.8.0:
   integrity sha512-MyUe+T/Pw4TZufHkzAfDj6HarCBWia2y27/bhuYkTaiUnfDYFnCP3KUN+9oM7Wi6JA2rymtVYbQu3spE0GCmxQ==
 
 maxmind@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/maxmind/-/maxmind-4.1.0.tgz#d42c10f74ff9e27c338ea5f7001e0e080557a04c"
-  integrity sha512-rcJ9EDNDFttuD8zrJSrcBwladOfrGbm37kF8OpgUn7N2ZtgyBQzxtg81Chqkmq2pFyCClBhQ8Nv2zBvoeIuqiQ==
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/maxmind/-/maxmind-4.1.1.tgz#9a485a011ec006b861589f0ac46d56c18f47deee"
+  integrity sha512-UXl4Gs/mt13xK+mCsH9KmFra3u1xyaVXtKS1bG3o7CFyidyDmMgkP/qbQqGDxH/C2Q1jkcfrMS6DbFLOf0B/dQ==
   dependencies:
     tiny-lru "7.0.2"
 
