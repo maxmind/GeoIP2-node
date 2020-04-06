@@ -20,7 +20,7 @@ export default class Reader {
    * @param opts Options for opening the file.  See https://github.com/runk/node-maxmind#options
    */
   public static open(file: string, opts?: mmdb.OpenOpts): Promise<ReaderModel> {
-    return mmdb.open(file, opts).then(reader => new ReaderModel(reader));
+    return mmdb.open(file, opts).then((reader) => new ReaderModel(reader));
   }
 
   /**

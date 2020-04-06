@@ -44,7 +44,7 @@ export default class Country {
       'isTorExitNode',
     ];
 
-    booleanTraits.forEach(trait => {
+    booleanTraits.forEach((trait) => {
       traits[trait] = !!traits[trait];
     });
 

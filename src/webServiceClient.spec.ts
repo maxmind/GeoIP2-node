@@ -114,10 +114,7 @@ describe('WebServiceClient', () => {
       const ip = '8.8.8.8';
       expect.assertions(1);
 
-      nockInstance
-        .get(fullPath('city', ip))
-        .basicAuth(auth)
-        .reply(500);
+      nockInstance.get(fullPath('city', ip)).basicAuth(auth).reply(500);
 
       return expect(client.city(ip)).rejects.toEqual({
         code: 'SERVER_ERROR',
@@ -130,10 +127,7 @@ describe('WebServiceClient', () => {
       const ip = '8.8.8.8';
       expect.assertions(1);
 
-      nockInstance
-        .get(fullPath('city', ip))
-        .basicAuth(auth)
-        .reply(300);
+      nockInstance.get(fullPath('city', ip)).basicAuth(auth).reply(300);
 
       return expect(client.city(ip)).rejects.toEqual({
         code: 'HTTP_STATUS_CODE_ERROR',

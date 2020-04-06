@@ -94,10 +94,10 @@ export default class WebServiceClient {
     };
 
     return new Promise((resolve, reject) => {
-      const req = https.request(options, response => {
+      const req = https.request(options, (response) => {
         let data = '';
 
-        response.on('data', chunk => {
+        response.on('data', (chunk) => {
           data += chunk;
         });
 
