@@ -2,7 +2,13 @@ import mmdb = require('maxmind');
 import Asn from './Asn';
 
 export default class Isp extends Asn {
+  /**
+   * The name of the ISP associated with the IP address.
+   */
   public readonly isp: string;
+  /**
+   * The name of the organization associated with the IP address.
+   */
   public readonly organization: string;
 
   /**
