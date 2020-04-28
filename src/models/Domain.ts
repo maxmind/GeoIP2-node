@@ -16,7 +16,7 @@ export default class Domain {
   public ipAddress?: string;
   /**
    * The network associated with the record. In particular, this is the largest
-   * network where all of the fields besides ipAddress have the same value.
+   * network where all of the fields besides `ipAddress` have the same value.
    */
   public network?: string;
 

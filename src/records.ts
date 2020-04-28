@@ -1,6 +1,6 @@
 /**
- * The name of the city based on the locales list passed to the
- * WebServiceClient constructor. Don't use any of these names as a database or
+ * The name of the place based on the locales list passed to the
+ * `WebServiceClient` constructor. Don't use any of these names as a database or
  * dictionary key. Use the ID or relevant code instead.
  */
 export interface Names {
@@ -19,7 +19,7 @@ export interface Names {
  */
 export interface MaxMindRecord {
   /**
-   * The number of remaining queried in your account for the web service end
+   * The number of remaining queries in your account for the web service end
    * point. This will be null when using a local database.
    */
   queriesRemaining: number;
@@ -58,7 +58,7 @@ export interface ContinentRecord {
    */
   readonly code: 'AF' | 'AN' | 'AS' | 'EU' | 'NA' | 'OC' | 'SA';
   /**
-   * The GeoName ID for the city.
+   * The GeoName ID for the continent.
    */
   readonly geonameId: number;
   /**
@@ -70,13 +70,13 @@ export interface ContinentRecord {
 }
 
 /**
- * Contains data for the country record associated with an IP address. Do not
+ * Contains data for the registered country record associated with an IP address. Do not
  * use any of the country names as a database or dictionary key. Use the ID or
  * relevant code instead.
  */
 export interface RegisteredCountryRecord {
   /**
-   * The GeoName ID for the city.
+   * The GeoName ID for the country.
    */
   readonly geonameId: number;
   /**
@@ -199,7 +199,7 @@ export interface SubdivisionsRecord {
    */
   readonly confidence?: number;
   /**
-   * The GeoName ID for the city.
+   * The GeoName ID for the subdivision.
    */
   readonly geonameId: number;
   /**
@@ -262,7 +262,7 @@ export interface TraitsRecord {
   readonly isAnonymousVpn?: boolean;
   /**
    * This is true if the IP address belongs to a hosting or VPN provider (see
-   * description of IsAnonymousVpn property). This value is only available from
+   * description of `IsAnonymousVpn` property). This value is only available from
    * GeoIP2 Precision Insights.
    */
   readonly isHostingProvider?: boolean;
