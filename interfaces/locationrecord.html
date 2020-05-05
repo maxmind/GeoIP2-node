@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>LocationRecord | @maxmind/geoip2-node</title>
-	<meta name="description" content="">
+	<meta name="description" content="Documentation for @maxmind/geoip2-node">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -13,7 +13,7 @@
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -66,6 +66,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Contains data for the location record associated with an IP address.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -101,9 +108,17 @@
 					<div class="tsd-signature tsd-kind-icon">accuracy<wbr>Radius<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/fe99006/src/records.ts#L40">src/records.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L122">src/records.ts:122</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The approximate accuracy radius in kilometers around the latitude and
+								longitude for the IP address. This is the radius where we have a 67%
+								confidence that the device using the IP address resides within the circle
+							centered at the latitude and longitude with the provided radius.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="averageincome" class="tsd-anchor"></a>
@@ -111,9 +126,14 @@
 					<div class="tsd-signature tsd-kind-icon">average<wbr>Income<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/fe99006/src/records.ts#L41">src/records.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L126">src/records.ts:126</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The average income in US dollars associated with the IP address.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="latitude" class="tsd-anchor"></a>
@@ -121,9 +141,16 @@
 					<div class="tsd-signature tsd-kind-icon">latitude<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/fe99006/src/records.ts#L42">src/records.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L132">src/records.ts:132</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The approximate latitude of the location associated with the IP address.
+								This value is not precise and should not be used to identify a particular
+							address or household.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="longitude" class="tsd-anchor"></a>
@@ -131,9 +158,16 @@
 					<div class="tsd-signature tsd-kind-icon">longitude<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/fe99006/src/records.ts#L43">src/records.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L138">src/records.ts:138</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The approximate longitude of the location associated with the IP address.
+								This value is not precise and should not be used to identify a particular
+							address or household.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="metrocode" class="tsd-anchor"></a>
@@ -141,9 +175,15 @@
 					<div class="tsd-signature tsd-kind-icon">metro<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/fe99006/src/records.ts#L44">src/records.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L143">src/records.ts:143</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The metro code of the location if the location is in the US. MaxMind
+							returns the same metro codes as the Google AdWords API.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="populationdensity" class="tsd-anchor"></a>
@@ -151,9 +191,14 @@
 					<div class="tsd-signature tsd-kind-icon">population<wbr>Density<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/fe99006/src/records.ts#L45">src/records.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L147">src/records.ts:147</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The estimated number of people per square kilometer.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="timezone" class="tsd-anchor"></a>
@@ -161,9 +206,15 @@
 					<div class="tsd-signature tsd-kind-icon">time<wbr>Zone<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/fe99006/src/records.ts#L46">src/records.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L152">src/records.ts:152</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The time zone associated with location, as specified by the IANA Time Zone
+							Database , e.g., &quot;America/New_York&quot;.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -288,7 +339,7 @@
 					<li class=" tsd-kind-interface">
 						<a href="representedcountryrecord.html" class="tsd-kind-icon">Represented<wbr>Country<wbr>Record</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-is-not-exported">
+					<li class=" tsd-kind-interface">
 						<a href="responseerror.html" class="tsd-kind-icon">Response<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -300,8 +351,26 @@
 					<li class=" tsd-kind-interface">
 						<a href="webserviceclienterror.html" class="tsd-kind-icon">Web<wbr>Service<wbr>Client<wbr>Error</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#servicepath" class="tsd-kind-icon">service<wbr>Path</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#camelcasekeys" class="tsd-kind-icon">camelcase<wbr>Keys</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#http" class="tsd-kind-icon">http</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#https" class="tsd-kind-icon">https</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#ip6addr" class="tsd-kind-icon">ip6addr</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#mmdb" class="tsd-kind-icon">mmdb</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#set" class="tsd-kind-icon">set</a>
 					</li>
 				</ul>
 			</nav>
@@ -313,57 +382,23 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
-				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
-				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
 				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
-				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
 			</ul>
 		</div>
 	</div>
