@@ -107,6 +107,7 @@
   "traits": {
     "autonomous_system_number": 1239,
     "autonomous_system_organization": "Linkem IR WiMax Network",
+    "connection_type": "cable",
     "domain": "example.com",
     "ip_address": "11.11.11.11",
     "is_anonymous": true,

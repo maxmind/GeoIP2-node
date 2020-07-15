@@ -231,6 +231,12 @@ export interface TraitsRecord {
    */
   readonly autonomousSystemOrganization?: string;
   /**
+   * The connection type may take the following values:
+   * "Dialup", "Cable/DSL", "Corporate", "Cellular".
+   * Additional values may be added in the future.
+   */
+  readonly connectionType?: string;
+  /**
    * The second level domain associated with the IP address. This will be
    * something like "example.com" or "example.co.uk", not "foo.example.com".
    * This value is only set when using the City or Insights web service or the
