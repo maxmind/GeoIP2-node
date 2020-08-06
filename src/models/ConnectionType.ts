@@ -1,4 +1,5 @@
 import mmdb = require('maxmind');
+import { ConnectionType as ConnType } from '../types';
 
 /** Class representing the model of a "ConnectionType" response **/
 export default class ConnectionType {
@@ -7,7 +8,7 @@ export default class ConnectionType {
    * "Dialup", "Cable/DSL", "Corporate", "Cellular".
    * Additional values may be added in the future.
    */
-  public readonly connectionType: string;
+  public readonly connectionType: ConnType;
   /**
    * The IP address that the data in the model is for. If you performed a "me"
    * lookup against the web service, this will be the externally routable IP
@@ -26,7 +27,7 @@ export default class ConnectionType {
    * @param response The GeoIP2 response
    */
   public constructor(response: mmdb.ConnectionTypeResponse) {
-    this.connectionType = response.connection_type;
+    this.connectionType = response.connection_type as ConnType;
     this.ipAddress = response.ip_address;
   }
 }

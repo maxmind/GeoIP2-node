@@ -18,3 +18,5 @@ export interface WebServiceClientError {
 export interface Json {
   [key: string]: unknown;
 }
+
+export type ConnectionType = 'Cable/DSL' | 'Cellular' | 'Corporate' | 'Dialup';
