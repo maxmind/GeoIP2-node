@@ -1,6 +1,14 @@
 CHANGELOG
 =========
 
+1.5.0 (2020-08-07)
+------------------
+
+* Add `connection-type` to traits (Enterprise database)
+* Add API ts-doc documentation
+
+
+* **Drop support for Node 8.**
 1.4.0
 ------------------
 
