@@ -90,6 +90,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="traitsrecord.html#autonomoussystemnumber" class="tsd-kind-icon">autonomous<wbr>System<wbr>Number</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="traitsrecord.html#autonomoussystemorganization" class="tsd-kind-icon">autonomous<wbr>System<wbr>Organization</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="traitsrecord.html#connectiontype" class="tsd-kind-icon">connection<wbr>Type</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="traitsrecord.html#domain" class="tsd-kind-icon">domain</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="traitsrecord.html#ipaddress" class="tsd-kind-icon">ip<wbr>Address</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="traitsrecord.html#isanonymous" class="tsd-kind-icon">is<wbr>Anonymous</a></li>
@@ -118,11 +119,11 @@
 				<h2>Other Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="autonomoussystemnumber" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> autonomous<wbr>System<wbr>Number</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> autonomous<wbr>System<wbr>Number</h3>
 					<div class="tsd-signature tsd-kind-icon">autonomous<wbr>System<wbr>Number<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L226">src/records.ts:226</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/08ac301/src/records.ts#L228">src/records.ts:228</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -135,11 +136,11 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="autonomoussystemorganization" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> autonomous<wbr>System<wbr>Organization</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> autonomous<wbr>System<wbr>Organization</h3>
 					<div class="tsd-signature tsd-kind-icon">autonomous<wbr>System<wbr>Organization<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L232">src/records.ts:232</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/08ac301/src/records.ts#L234">src/records.ts:234</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -151,12 +152,29 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="connectiontype" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> connection<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">connection<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../classes/connectiontype.html" class="tsd-signature-type">ConnectionType</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/08ac301/src/records.ts#L240">src/records.ts:240</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The connection type may take the following values:
+								&quot;Dialup&quot;, &quot;Cable/DSL&quot;, &quot;Corporate&quot;, &quot;Cellular&quot;.
+							Additional values may be added in the future.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="domain" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> domain</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> domain</h3>
 					<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L239">src/records.ts:239</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/08ac301/src/records.ts#L247">src/records.ts:247</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -174,7 +192,7 @@
 					<div class="tsd-signature tsd-kind-icon">ip<wbr>Address<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L246">src/records.ts:246</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/08ac301/src/records.ts#L254">src/records.ts:254</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -188,11 +206,11 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="isanonymous" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> is<wbr>Anonymous</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> is<wbr>Anonymous</h3>
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Anonymous<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L251">src/records.ts:251</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/08ac301/src/records.ts#L259">src/records.ts:259</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -204,11 +222,11 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="isanonymousvpn" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> is<wbr>Anonymous<wbr>Vpn</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> is<wbr>Anonymous<wbr>Vpn</h3>
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Anonymous<wbr>Vpn<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L262">src/records.ts:262</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/08ac301/src/records.ts#L270">src/records.ts:270</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -220,11 +238,11 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="ishostingprovider" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> is<wbr>Hosting<wbr>Provider</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> is<wbr>Hosting<wbr>Provider</h3>
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Hosting<wbr>Provider<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L268">src/records.ts:268</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/08ac301/src/records.ts#L276">src/records.ts:276</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -237,11 +255,11 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="islegitimateproxy" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> is<wbr>Legitimate<wbr>Proxy</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> is<wbr>Legitimate<wbr>Proxy</h3>
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Legitimate<wbr>Proxy<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L274">src/records.ts:274</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/08ac301/src/records.ts#L282">src/records.ts:282</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -254,11 +272,11 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="ispublicproxy" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> is<wbr>Public<wbr>Proxy</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> is<wbr>Public<wbr>Proxy</h3>
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Public<wbr>Proxy<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L279">src/records.ts:279</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/08ac301/src/records.ts#L287">src/records.ts:287</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -270,11 +288,11 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="istorexitnode" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> is<wbr>Tor<wbr>Exit<wbr>Node</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> is<wbr>Tor<wbr>Exit<wbr>Node</h3>
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Tor<wbr>Exit<wbr>Node<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L290">src/records.ts:290</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/08ac301/src/records.ts#L298">src/records.ts:298</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -286,11 +304,11 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="isp" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> isp</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> isp</h3>
 					<div class="tsd-signature tsd-kind-icon">isp<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L300">src/records.ts:300</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/08ac301/src/records.ts#L308">src/records.ts:308</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -306,7 +324,7 @@
 					<div class="tsd-signature tsd-kind-icon">network<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L295">src/records.ts:295</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/08ac301/src/records.ts#L303">src/records.ts:303</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -318,11 +336,11 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="organization" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> organization</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> organization</h3>
 					<div class="tsd-signature tsd-kind-icon">organization<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L306">src/records.ts:306</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/08ac301/src/records.ts#L314">src/records.ts:314</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -335,11 +353,11 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="staticipscore" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> staticIPScore</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> staticIPScore</h3>
 					<div class="tsd-signature tsd-kind-icon">staticIPScore<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L313">src/records.ts:313</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/08ac301/src/records.ts#L321">src/records.ts:321</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -353,11 +371,11 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="usercount" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> user<wbr>Count</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> user<wbr>Count</h3>
 					<div class="tsd-signature tsd-kind-icon">user<wbr>Count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L320">src/records.ts:320</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/08ac301/src/records.ts#L328">src/records.ts:328</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -371,11 +389,11 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="usertype" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> user<wbr>Type</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> user<wbr>Type</h3>
 					<div class="tsd-signature tsd-kind-icon">user<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"business"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"cafe"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"cellular"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"college"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"content_delivery_network"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"dialup"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"government"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"hosting"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"library"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"military"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"residential"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"router"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"school"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"search_engine_spider"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"traveler"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L325">src/records.ts:325</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/08ac301/src/records.ts#L333">src/records.ts:333</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -390,11 +408,11 @@
 				<h2>deprecated Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="isanonymousproxy" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> is<wbr>Anonymous<wbr>Proxy</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> is<wbr>Anonymous<wbr>Proxy</h3>
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Anonymous<wbr>Proxy<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L257">src/records.ts:257</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/08ac301/src/records.ts#L265">src/records.ts:265</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -409,11 +427,11 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="issatelliteprovider" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> is<wbr>Satellite<wbr>Provider</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> is<wbr>Satellite<wbr>Provider</h3>
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Satellite<wbr>Provider<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/bcffdda/src/records.ts#L285">src/records.ts:285</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/08ac301/src/records.ts#L293">src/records.ts:293</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -540,6 +558,9 @@
 								<a href="traitsrecord.html#autonomoussystemorganization" class="tsd-kind-icon">autonomous<wbr>System<wbr>Organization</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="traitsrecord.html#connectiontype" class="tsd-kind-icon">connection<wbr>Type</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="traitsrecord.html#domain" class="tsd-kind-icon">domain</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
@@ -651,6 +672,5 @@
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>
