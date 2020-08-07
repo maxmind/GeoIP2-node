@@ -1,3 +1,5 @@
+import { ConnectionType } from './types';
+
 /**
  * The name of the place based on the locales list passed to the
  * `WebServiceClient` constructor. Don't use any of these names as a database or
@@ -230,6 +232,12 @@ export interface TraitsRecord {
    * web service or the Enterprise database.
    */
   readonly autonomousSystemOrganization?: string;
+  /**
+   * The connection type may take the following values:
+   * "Dialup", "Cable/DSL", "Corporate", "Cellular".
+   * Additional values may be added in the future.
+   */
+  readonly connectionType?: ConnectionType;
   /**
    * The second level domain associated with the IP address. This will be
    * something like "example.com" or "example.co.uk", not "foo.example.com".
