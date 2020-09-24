@@ -28,7 +28,7 @@ export default class City extends Country {
   public readonly subdivisions: records.SubdivisionsRecord[] | [];
 
   /**
-   * Instanstiates a "City" using fields from the response
+   * Instantiates a "City" using fields from the response
    *
    * @param response The GeoIP2 response
    */

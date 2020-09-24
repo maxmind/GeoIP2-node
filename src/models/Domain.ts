@@ -21,7 +21,7 @@ export default class Domain {
   public network?: string;
 
   /**
-   * Instanstiates an "Domain" using fields from the response
+   * Instantiates an "Domain" using fields from the response
    *
    * @param response The GeoIP2 response
    */

@@ -12,7 +12,7 @@ export default class Isp extends Asn {
   public readonly organization: string;
 
   /**
-   * Instanstiates an "Isp" using fields from the response
+   * Instantiates an "Isp" using fields from the response
    *
    * @param response The GeoLite2 response
    */

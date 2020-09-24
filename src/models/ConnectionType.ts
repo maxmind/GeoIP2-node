@@ -22,7 +22,7 @@ export default class ConnectionType {
   public network?: string;
 
   /**
-   * Instanstiates a "ConnectionType" using fields from the response
+   * Instantiates a "ConnectionType" using fields from the response
    *
    * @param response The GeoIP2 response
    */

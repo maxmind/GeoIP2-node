@@ -37,7 +37,7 @@ export default class AnonymousIP {
   public network?: string;
 
   /**
-   * Instanstiates an "AnonymousIP" using fields from the response
+   * Instantiates an "AnonymousIP" using fields from the response
    *
    * @param response The GeoIP2 response
    */
