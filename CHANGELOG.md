@@ -8,7 +8,6 @@ CHANGELOG
 * Add API ts-doc documentation
 
 
-* **Drop support for Node 8.**
 1.4.0
 ------------------
 
