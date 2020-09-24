@@ -394,6 +394,6 @@ client API, please contact [MaxMind support for assistance](https://support.maxm
 
 ## Copyright and License ##
 
-This software is Copyright (c) 2018 by MaxMind, Inc.
+This software is Copyright (c) 2018-2020 by MaxMind, Inc.
 
 This is free software, licensed under the Apache License, Version 2.0.
