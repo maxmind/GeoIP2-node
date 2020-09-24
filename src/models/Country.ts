@@ -63,6 +63,7 @@ export default class Country {
       'isHostingProvider',
       'isLegitimateProxy',
       'isPublicProxy',
+      'isResidentialProxy',
       'isSatelliteProvider',
       'isTorExitNode',
     ];
