@@ -1,7 +1,7 @@
 CHANGELOG
 =========
 
-1.6.0
+1.6.0 (2020-09-29)
 ------------------
 
 * Add the `isResidentialProxy` property to `AnonymousIP` and `TraitsRecord`
