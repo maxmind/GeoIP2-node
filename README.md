@@ -183,6 +183,7 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Anonymous-IP.mmdb').then(reader => {
   console.log(response.isAnonymousVpn); // false
   console.log(response.isHostingProvider); // true
   console.log(response.isPublicProxy); // false
+  console.log(response.isResidentialProxy); // false
   console.log(response.isTorExitNode); // false
   console.log(response.ipAddress); // '85.25.43.84'
 });
@@ -394,6 +395,6 @@ client API, please contact [MaxMind support for assistance](https://support.maxm
 
 ## Copyright and License ##
 
-This software is Copyright (c) 2018 by MaxMind, Inc.
+This software is Copyright (c) 2018-2020 by MaxMind, Inc.
 
 This is free software, licensed under the Apache License, Version 2.0.

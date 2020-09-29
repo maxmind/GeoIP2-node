@@ -58,6 +58,7 @@ describe('ReaderModel', () => {
     isHostingProvider: false,
     isLegitimateProxy: false,
     isPublicProxy: false,
+    isResidentialProxy: false,
     isSatelliteProvider: false,
     isTorExitNode: false,
     network: networks.empty,
@@ -235,6 +236,7 @@ describe('ReaderModel', () => {
         isAnonymousVpn: false,
         isHostingProvider: false,
         isPublicProxy: false,
+        isResidentialProxy: false,
         isTorExitNode: false,
         network: networks.empty,
       };

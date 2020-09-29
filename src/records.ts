@@ -286,6 +286,12 @@ export interface TraitsRecord {
    */
   readonly isPublicProxy?: boolean;
   /**
+   * This is true if the IP address is on a suspected anonymizing network and
+   * belongs to a residential ISP. This value is only available from GeoIP2
+   * Precision Insights.
+   */
+  readonly isResidentialProxy?: boolean;
+  /**
    * This is true if the IP belong to a satellite Internet provider.
    * @category deprecated
    * @deprecated

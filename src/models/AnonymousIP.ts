@@ -27,6 +27,11 @@ export default class AnonymousIP {
    */
   public readonly isPublicProxy?: boolean;
   /**
+   * `true` if the IP address is on a suspected anonymizing network and belongs
+   * to a residential ISP.
+   */
+  public readonly isResidentialProxy?: boolean;
+  /**
    * `true` if IP is a Tor exit node.
    */
   public readonly isTorExitNode?: boolean;
@@ -37,7 +42,7 @@ export default class AnonymousIP {
   public network?: string;
 
   /**
-   * Instanstiates an "AnonymousIP" using fields from the response
+   * Instantiates an "AnonymousIP" using fields from the response
    *
    * @param response The GeoIP2 response
    */
@@ -47,6 +52,7 @@ export default class AnonymousIP {
     this.isAnonymousVpn = !!response.is_anonymous_vpn;
     this.isHostingProvider = !!response.is_hosting_provider;
     this.isPublicProxy = !!response.is_public_proxy;
+    this.isResidentialProxy = !!response.is_residential_proxy;
     this.isTorExitNode = !!response.is_tor_exit_node;
   }
 }

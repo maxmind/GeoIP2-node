@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+1.6.0
+------------------
+
+* Add the `isResidentialProxy` property to `AnonymousIP` and `TraitsRecord`
+  for use with the Anonymous IP database and GeoIP2 Precision Insights.
+
 1.5.0 (2020-08-07)
 ------------------
 
@@ -8,7 +14,6 @@ CHANGELOG
 * Add API ts-doc documentation
 
 
-* **Drop support for Node 8.**
 1.4.0
 ------------------
 

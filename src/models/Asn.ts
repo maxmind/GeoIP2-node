@@ -25,7 +25,7 @@ export default class Asn {
   public network?: string;
 
   /**
-   * Instanstiates an "Asn" using fields from the response
+   * Instantiates an "Asn" using fields from the response
    *
    * @param response The GeoLite2 response
    */

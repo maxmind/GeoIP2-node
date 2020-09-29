@@ -9,7 +9,7 @@ export default class ReaderModel {
   private mmdbReader: mmdb.Reader<any>;
 
   /**
-   * Instanstiates a ReaderModel using node-maxmind reader
+   * Instantiates a ReaderModel using node-maxmind reader
    *
    * @param mmdbReader The mmdbReader
    */
