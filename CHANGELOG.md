@@ -13,8 +13,7 @@ CHANGELOG
 * Add `connection-type` to traits (Enterprise database)
 * Add API ts-doc documentation
 
-
-1.4.0
+1.4.0 (2020-01-07)
 ------------------
 
 * **Drop support for Node 8.**
@@ -28,8 +27,24 @@ CHANGELOG
   a float which indicates how static or dynamic an IP address is. This
   output is available from GeoIP2 Precision Insights.
 
-1.1.0 - 1.3.0
+1.3.0 (2019-09-25)
 ------------------
+
+* Upgrade yarn dependencies
+
+1.2.0 (2020-09-19)
+------------------
+
+* Upgrade yarn dependencies
+
+1.1.1 (2020-09-03)
+------------------
+
+* Fix path to types. GitHub #53.
+
+1.1.0 (2020-09-03)
+------------------
+
 * Upgrade yarn dependencies
 
 1.0.0 (2019-08-22)
