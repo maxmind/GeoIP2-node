@@ -3574,7 +3574,7 @@ marked@^1.1.1:
   resolved "https://registry.yarnpkg.com/marked/-/marked-1.2.0.tgz#7221ce2395fa6cf6d722e6f2871a32d3513c85ca"
   integrity sha512-tiRxakgbNPBr301ihe/785NntvYyhxlqcL3YaC8CaxJQh7kiaEtrN9B/eK2I2943Yjkh5gw25chYFDQhOMCwMA==
 
-maxmind@^4.1.0:
+maxmind@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/maxmind/-/maxmind-4.2.0.tgz#912e5ec4a961807d20d7fb541160aeb5ea802c1c"
   integrity sha512-TADiE11Q10IjvLtlo05tTD52xLqfCJMhE3eYJHmpYIKg668STi/fQZGH9X3FpqpIP/2WPgKFxf899awFvfMtQA==
