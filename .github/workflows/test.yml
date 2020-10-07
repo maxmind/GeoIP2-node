@@ -1,5 +1,9 @@
 name: Run tests
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '3 2 * * SUN'
 jobs:
   test:
     runs-on: ubuntu-latest
