@@ -1,0 +1,33 @@
+name: Run tests
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '3 2 * * SUN'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: [10, 12]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.version }}
+      - run: yarn install
+      - run: yarn test --coverage
+      - run: yarn build
+      - run: yarn link
+      - run: yarn
+        working-directory: e2e/js
+      - run: yarn link '@maxmind/geoip2-node'
+        working-directory: e2e/js
+      - run: yarn jest
+        working-directory: e2e/js
+      - run: yarn
+        working-directory: e2e/ts
+      - run: yarn link '@maxmind/geoip2-node'
+        working-directory: e2e/ts
+      - run: yarn jest
+        working-directory: e2e/ts
