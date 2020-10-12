@@ -3609,10 +3609,11 @@ marked@^1.1.1:
   integrity sha512-tiRxakgbNPBr301ihe/785NntvYyhxlqcL3YaC8CaxJQh7kiaEtrN9B/eK2I2943Yjkh5gw25chYFDQhOMCwMA==
 
 maxmind@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/maxmind/-/maxmind-4.2.0.tgz#912e5ec4a961807d20d7fb541160aeb5ea802c1c"
-  integrity sha512-TADiE11Q10IjvLtlo05tTD52xLqfCJMhE3eYJHmpYIKg668STi/fQZGH9X3FpqpIP/2WPgKFxf899awFvfMtQA==
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/maxmind/-/maxmind-4.3.0.tgz#0e04f00503e3693615efe848e94ec959500d7573"
+  integrity sha512-qYdCsoivX7xGW8L5UhjZNxx57odwzmzFPtSt3YvGwW8moSKoIwnCq2NbmfHdmqYzj5ffzSzxKM3lqURN8INyzA==
   dependencies:
+    mmdb-lib "1.2.0"
     tiny-lru "7.0.6"
 
 mem@^4.3.0:
@@ -3750,6 +3751,11 @@ mkdirp@^0.5.3:
   integrity sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==
   dependencies:
     minimist "^1.2.5"
+
+mmdb-lib@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/mmdb-lib/-/mmdb-lib-1.2.0.tgz#0ecd93f4942f65a2d09be0502fa9126939606727"
+  integrity sha512-3XYebkStxqCgWJjsmT9FCaE19Yi4Tvs2SBPKhUks3rJJh52oF1AKAd9kei+LTutud3a6RCZ0o2Um96Fn7o3zVA==
 
 ms@2.0.0:
   version "2.0.0"
