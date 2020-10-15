@@ -1,7 +1,5 @@
 # MaxMind GeoIP2 Node.js API
 
-[![Build Status](https://api.travis-ci.com/maxmind/GeoIP2-node.svg?branch=master)](https://travis-ci.com/maxmind/GeoIP2-node)
-
 ## Description
 
 This package provides an API for the [GeoIP2
