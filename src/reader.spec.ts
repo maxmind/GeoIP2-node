@@ -6,7 +6,7 @@ import ReaderModel from './readerModel';
 
 describe('Reader', () => {
   describe('open()', () => {
-    const file = 'success.test';
+    const file = './test/data/test-data/GeoIP2-City-Test.mmdb';
 
     it('passes the file to node-maxmind and resolves', () => {
       const spy = jest.spyOn(mmdb, 'open');
@@ -37,14 +37,16 @@ describe('Reader', () => {
 
     it('rejects the promise if node-maxmind errors out', () => {
       return expect(Reader.open('fail.test')).rejects.toThrowError(
-        'some mocked error'
+        "ENOENT: no such file or directory, open 'fail.test'"
       );
     });
   });
 
   describe('openBuffer()', () => {
+    const file = './test/data/test-data/GeoIP2-City-Test.mmdb';
+
     it('returns a reader model if the buffer is a valid DB', () => {
-      const buffer = fs.readFileSync('./fixtures/GeoIP2-City-Test.mmdb');
+      const buffer = fs.readFileSync(file);
       expect(Reader.openBuffer(buffer)).toBeInstanceOf(ReaderModel);
     });
 
