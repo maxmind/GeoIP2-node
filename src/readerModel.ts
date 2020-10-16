@@ -152,12 +152,7 @@ export default class ReaderModel {
     let record;
     let prefixLength;
 
-    try {
-      [record, prefixLength] = this.mmdbReader.getWithPrefixLength(ipAddress);
-    } catch {
-      record = undefined;
-      prefixLength = undefined;
-    }
+    [record, prefixLength] = this.mmdbReader.getWithPrefixLength(ipAddress);
 
     if (!record) {
       throw new AddressNotFoundError(
