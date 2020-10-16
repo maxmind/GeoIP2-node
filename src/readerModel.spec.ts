@@ -50,20 +50,6 @@ const createMmdbReaderMock: any = (databaseType: string, fixture: any) => ({
 });
 
 describe('ReaderModel', () => {
-  const emptyTraits = {
-    ipAddress: ips.empty,
-    isAnonymous: false,
-    isAnonymousProxy: false,
-    isAnonymousVpn: false,
-    isHostingProvider: false,
-    isLegitimateProxy: false,
-    isPublicProxy: false,
-    isResidentialProxy: false,
-    isSatelliteProvider: false,
-    isTorExitNode: false,
-    network: networks.empty,
-  };
-
   describe('city()', () => {
     const testFixture = {
       city: geoip2Fixture.city,
@@ -109,24 +95,6 @@ describe('ReaderModel', () => {
       expect(() => cityInstance.city(ips.notFound)).toThrow(
         AddressNotFoundError
       );
-    });
-
-    it('returns empty objects/arrays', () => {
-      const cityInstance = new ReaderModel(mmdbReader);
-      const expected = {
-        city: {},
-        continent: {},
-        country: {},
-        location: {},
-        maxmind: {},
-        postal: {},
-        registeredCountry: {},
-        representedCountry: {},
-        subdivisions: [],
-        traits: emptyTraits,
-      };
-
-      expect(cityInstance.city(ips.empty)).toEqual(expected);
     });
   });
 
@@ -175,20 +143,6 @@ describe('ReaderModel', () => {
     it('throws an error if IP address is not valid', () => {
       const instance = new ReaderModel(mmdbReader);
       expect(() => instance.country(ips.invalid)).toThrow(ValueError);
-    });
-
-    it('returns empty objects/arrays', () => {
-      const countryInstance = new ReaderModel(mmdbReader);
-      const expected = {
-        continent: {},
-        country: {},
-        maxmind: {},
-        registeredCountry: {},
-        representedCountry: {},
-        traits: emptyTraits,
-      };
-
-      expect(countryInstance.country(ips.empty)).toEqual(expected);
     });
   });
 
@@ -273,16 +227,6 @@ describe('ReaderModel', () => {
       const instance = new ReaderModel(mmdbReader);
       expect(() => instance.asn(ips.invalid)).toThrow(ValueError);
     });
-
-    it('returns empty objects/arrays', () => {
-      const asnInstance = new ReaderModel(mmdbReader);
-      const expected = {
-        ipAddress: ips.empty,
-        network: networks.empty,
-      };
-
-      expect(asnInstance.asn(ips.empty)).toEqual(expected);
-    });
   });
 
   describe('connectionType()', () => {
@@ -321,18 +265,6 @@ describe('ReaderModel', () => {
     it('throws an error if IP address is not valid', () => {
       const instance = new ReaderModel(mmdbReader);
       expect(() => instance.connectionType(ips.invalid)).toThrow(ValueError);
-    });
-
-    it('returns empty objects/arrays', () => {
-      const connectionTypeInstance = new ReaderModel(mmdbReader);
-      const expected = {
-        ipAddress: ips.empty,
-        network: networks.empty,
-      };
-
-      expect(connectionTypeInstance.connectionType(ips.empty)).toEqual(
-        expected
-      );
     });
   });
 
@@ -388,24 +320,6 @@ describe('ReaderModel', () => {
       const instance = new ReaderModel(mmdbReader);
       expect(() => instance.enterprise(ips.invalid)).toThrow(ValueError);
     });
-
-    it('returns empty objects/arrays', () => {
-      const enterpriseInstance = new ReaderModel(mmdbReader);
-      const expected = {
-        city: {},
-        continent: {},
-        country: {},
-        location: {},
-        maxmind: {},
-        postal: {},
-        registeredCountry: {},
-        representedCountry: {},
-        subdivisions: [],
-        traits: emptyTraits,
-      };
-
-      expect(enterpriseInstance.enterprise(ips.empty)).toEqual(expected);
-    });
   });
 
   describe('isp()', () => {
@@ -435,16 +349,6 @@ describe('ReaderModel', () => {
     it('throws an error if IP address is not valid', () => {
       const instance = new ReaderModel(mmdbReader);
       expect(() => instance.isp(ips.invalid)).toThrow(ValueError);
-    });
-
-    it('returns empty objects/arrays', () => {
-      const ispInstance = new ReaderModel(mmdbReader);
-      const expected = {
-        ipAddress: ips.empty,
-        network: networks.empty,
-      };
-
-      expect(ispInstance.isp(ips.empty)).toEqual(expected);
     });
   });
 
@@ -479,16 +383,6 @@ describe('ReaderModel', () => {
     it('throws an error if IP address is not valid', () => {
       const instance = new ReaderModel(mmdbReader);
       expect(() => instance.domain(ips.invalid)).toThrow(ValueError);
-    });
-
-    it('returns empty objects/arrays', () => {
-      const domainInstance = new ReaderModel(mmdbReader);
-      const expected = {
-        ipAddress: ips.empty,
-        network: networks.empty,
-      };
-
-      expect(domainInstance.domain(ips.empty)).toEqual(expected);
     });
   });
 });
