@@ -636,32 +636,55 @@ describe('ReaderModel', () => {
   });
 
   describe('isp()', () => {
-    const mmdbReader = createMmdbReaderMock('GeoIP2-ISP', ispFixture);
+    it('returns isp data', async () => {
+      expect.assertions(1);
 
-    it('returns isp data', () => {
-      const ispInstance = new ReaderModel(mmdbReader);
-      const expected: any = camelcaseKeys(ispFixture);
-      expected.ipAddress = ips.valid;
-      expected.network = networks.valid;
-      expect(ispInstance.isp(ips.valid)).toEqual(expected);
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-ISP-Test.mmdb'
+      );
+
+      const model: any = reader.isp('1.128.0.1');
+
+      const expected = {
+        autonomousSystemNumber: 1221,
+        autonomousSystemOrganization: 'Telstra Pty Ltd',
+        ipAddress: '1.128.0.1',
+        isp: 'Telstra Internet',
+        network: '1.128.0.0/11',
+        organization: 'Telstra Internet',
+      };
+
+      expect(model).toEqual(expected);
     });
 
-    it('throws an error if db types do not match', () => {
-      const errReader = cloneDeep(mmdbReader);
-      errReader.metadata.databaseType = 'foo';
+    it('throws an error if db types do not match', async () => {
+      expect.assertions(1);
 
-      const ispInstance = new ReaderModel(errReader);
-      expect(() => ispInstance.isp(ips.valid)).toThrow(BadMethodCallError);
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-ISP-Test.mmdb'
+      );
+
+      expect(() => reader.city('1.2.3.4')).toThrow(BadMethodCallError);
     });
 
-    it('throws an error if IP address is not in database', () => {
-      const ispInstance = new ReaderModel(mmdbReader);
-      expect(() => ispInstance.isp(ips.notFound)).toThrow(AddressNotFoundError);
+    it('throws an error if IP address is not in database', async () => {
+      expect.assertions(1);
+
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-ISP-Test.mmdb'
+      );
+
+      expect(() => reader.isp('255.1.1.1')).toThrow(AddressNotFoundError);
     });
 
-    it('throws an error if IP address is not valid', () => {
-      const instance = new ReaderModel(mmdbReader);
-      expect(() => instance.isp(ips.invalid)).toThrow(ValueError);
+    it('throws an error if IP address is not valid', async () => {
+      expect.assertions(1);
+
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-ISP-Test.mmdb'
+      );
+
+      expect(() => reader.isp('foobar')).toThrow(ValueError);
     });
   });
 
