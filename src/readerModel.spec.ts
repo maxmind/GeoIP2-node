@@ -196,50 +196,112 @@ describe('ReaderModel', () => {
   });
 
   describe('country()', () => {
-    const testFixture = {
-      continent: geoip2Fixture.continent,
-      country: geoip2Fixture.country,
-      maxmind: geoip2Fixture.maxmind,
-      registered_country: geoip2Fixture.registered_country,
-      represented_country: geoip2Fixture.represented_country,
-      traits: geoip2Fixture.traits,
-    };
+    it('returns country data', async () => {
+      expect.assertions(1);
 
-    const mmdbReader = createMmdbReaderMock(
-      'GeoIP2-Country-Super-Special',
-      testFixture
-    );
+      const countryInstance = await Reader.open(
+        './test/data/test-data/GeoIP2-Country-Test.mmdb'
+      );
 
-    it('returns city data', () => {
-      const countryInstance = new ReaderModel(mmdbReader);
-      expect(countryInstance.country(ips.valid)).toEqual(
-        camelcaseKeys(testFixture, { deep: true, exclude: [/\-/] })
-      );
-      expect(countryInstance.country(ips.valid).traits.ipAddress).toEqual(
-        ips.valid
-      );
+      const countryModel: any = countryInstance.country('2.125.160.216');
+
+      const expected = {
+        continent: {
+          code: 'EU',
+          geonameId: 6255148,
+          names: {
+            de: 'Europa',
+            en: 'Europe',
+            es: 'Europa',
+            fr: 'Europe',
+            ja: 'ヨーロッパ',
+            'pt-BR': 'Europa',
+            ru: 'Европа',
+            'zh-CN': '欧洲',
+          },
+        },
+        country: {
+          geonameId: 2635167,
+          isInEuropeanUnion: true,
+          isoCode: 'GB',
+          names: {
+            de: 'Vereinigtes Königreich',
+            en: 'United Kingdom',
+            es: 'Reino Unido',
+            fr: 'Royaume-Uni',
+            ja: 'イギリス',
+            'pt-BR': 'Reino Unido',
+            ru: 'Великобритания',
+            'zh-CN': '英国',
+          },
+        },
+        maxmind: {},
+        registeredCountry: {
+          geonameId: 3017382,
+          isInEuropeanUnion: true,
+          isoCode: 'FR',
+          names: {
+            de: 'Frankreich',
+            en: 'France',
+            es: 'Francia',
+            fr: 'France',
+            ja: 'フランス共和国',
+            'pt-BR': 'França',
+            ru: 'Франция',
+            'zh-CN': '法国',
+          },
+        },
+        representedCountry: {},
+        traits: {
+          ipAddress: '2.125.160.216',
+          isAnonymous: false,
+          isAnonymousProxy: false,
+          isAnonymousVpn: false,
+          isHostingProvider: false,
+          isLegitimateProxy: false,
+          isPublicProxy: false,
+          isResidentialProxy: false,
+          isSatelliteProvider: false,
+          isTorExitNode: false,
+          network: '2.125.160.216/29',
+        },
+      };
+
+      expect(countryModel).toEqual(expected);
     });
 
-    it('throws an error if db types do not match', () => {
-      const errReader = cloneDeep(mmdbReader);
-      errReader.metadata.databaseType = 'foo';
+    it('throws an error if db types do not match', async () => {
+      expect.assertions(1);
 
-      const countryInstance = new ReaderModel(errReader);
-      expect(() => countryInstance.country(ips.valid)).toThrow(
+      const countryInstance = await Reader.open(
+        './test/data/test-data/GeoIP2-Country-Test.mmdb'
+      );
+
+      expect(() => countryInstance.anonymousIP('1.2.3.4')).toThrow(
         BadMethodCallError
       );
     });
 
-    it('throws an error if IP address is not in database', () => {
-      const countryInstance = new ReaderModel(mmdbReader);
-      expect(() => countryInstance.country(ips.notFound)).toThrow(
+    it('throws an error if IP address is not in database', async () => {
+      expect.assertions(1);
+
+      const countryInstance = await Reader.open(
+        './test/data/test-data/GeoIP2-Country-Test.mmdb'
+      );
+
+      expect(() => countryInstance.country('1.2.3.4')).toThrow(
         AddressNotFoundError
       );
     });
 
-    it('throws an error if IP address is not valid', () => {
-      const instance = new ReaderModel(mmdbReader);
-      expect(() => instance.country(ips.invalid)).toThrow(ValueError);
+    it('throws an error if IP address is not valid', async () => {
+      expect.assertions(1);
+
+      const countryInstance = await Reader.open(
+        './test/data/test-data/GeoIP2-Country-Test.mmdb'
+      );
+
+      expect(() => countryInstance.country('foobar')).toThrow(ValueError);
     });
   });
 
