@@ -12,6 +12,8 @@ jobs:
         version: [10, 12]
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: true
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.version }}

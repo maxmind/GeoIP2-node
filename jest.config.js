@@ -7,7 +7,7 @@ module.exports = {
       statements: 0,
     }
   },
-  roots: ['<rootDir>/src', '<rootDir>/__mocks__'],
+  roots: ['<rootDir>/src'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
