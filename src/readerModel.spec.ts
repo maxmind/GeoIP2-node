@@ -113,6 +113,98 @@ describe('ReaderModel', () => {
       expect(cityModel).toEqual(expected);
     });
 
+    it('returns data when record only contains city record', async () => {
+      expect.assertions(1);
+
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-City-Test.mmdb'
+      );
+
+      const model: any = reader.city('2.2.3.1');
+
+      const expected = {
+        city: {
+          geonameId: 2655045,
+          names: {
+            en: 'Boxford',
+          },
+        },
+        continent: {},
+        country: {},
+        location: {},
+        maxmind: {},
+        postal: {},
+        registeredCountry: {},
+        representedCountry: {},
+        subdivisions: [],
+        traits: {
+          ipAddress: '2.2.3.1',
+          isAnonymous: false,
+          isAnonymousProxy: false,
+          isAnonymousVpn: false,
+          isHostingProvider: false,
+          isLegitimateProxy: false,
+          isPublicProxy: false,
+          isResidentialProxy: false,
+          isSatelliteProvider: false,
+          isTorExitNode: false,
+          network: '2.2.3.0/24',
+        },
+      };
+
+      expect(model).toEqual(expected);
+    });
+
+    it('returns data when record only contains continent record', async () => {
+      expect.assertions(1);
+
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-City-Test.mmdb'
+      );
+
+      const model: any = reader.city('2.3.3.1');
+
+      const expected = {
+        city: {},
+        continent: {
+          code: 'EU',
+          geonameId: 6255148,
+          names: {
+            de: 'Europa',
+            en: 'Europe',
+            es: 'Europa',
+            fr: 'Europe',
+            ja: 'ヨーロッパ',
+            'pt-BR': 'Europa',
+            ru: 'Европа',
+            'zh-CN': '欧洲',
+          },
+        },
+        country: {},
+        location: {},
+        maxmind: {},
+        postal: {},
+        registeredCountry: {},
+        representedCountry: {},
+        subdivisions: [],
+        traits: {
+          ipAddress: '2.3.3.1',
+          isAnonymous: false,
+          isAnonymousProxy: false,
+          isAnonymousVpn: false,
+          isHostingProvider: false,
+          isLegitimateProxy: false,
+          isPublicProxy: false,
+          isResidentialProxy: false,
+          isSatelliteProvider: false,
+          isTorExitNode: false,
+          network: '2.3.3.0/24',
+        },
+      };
+
+      expect(model).toEqual(expected);
+    });
+
     it('throws an error if IP address is not valid', async () => {
       expect.assertions(1);
 
