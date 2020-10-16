@@ -306,55 +306,82 @@ describe('ReaderModel', () => {
   });
 
   describe('anonymousIP()', () => {
-    const mmdbReader = createMmdbReaderMock(
-      'GeoIP2-Anonymous-IP',
-      anonymousIPFixture
-    );
+    it('returns anonymousIP data', async () => {
+      expect.assertions(1);
 
-    it('returns anonymousIP data', () => {
-      const anonymousIPInstance = new ReaderModel(mmdbReader);
-      const expected: any = camelcaseKeys(anonymousIPFixture);
-      expected.ipAddress = ips.valid;
-      expected.network = networks.valid;
-      expect(anonymousIPInstance.anonymousIP(ips.valid)).toEqual(expected);
-    });
-
-    it('throws an error if db types do not match', () => {
-      const errReader = cloneDeep(mmdbReader);
-      errReader.metadata.databaseType = 'foo';
-
-      const anonymousIPInstance = new ReaderModel(errReader);
-      expect(() => anonymousIPInstance.anonymousIP(ips.valid)).toThrow(
-        BadMethodCallError
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-Anonymous-IP-Test.mmdb'
       );
+
+      const model: any = reader.anonymousIP('81.2.69.1');
+
+      const expected = {
+        ipAddress: '81.2.69.1',
+        isAnonymous: true,
+        isAnonymousVpn: true,
+        isHostingProvider: true,
+        isPublicProxy: true,
+        isResidentialProxy: true,
+        isTorExitNode: true,
+        network: '81.2.69.0/24',
+      };
+
+      expect(model).toEqual(expected);
     });
 
-    it('throws an error if IP address is not in database', () => {
-      const anonymousIPInstance = new ReaderModel(mmdbReader);
-      expect(() => anonymousIPInstance.anonymousIP(ips.notFound)).toThrow(
+    it('throws an error if db types do not match', async () => {
+      expect.assertions(1);
+
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-Anonymous-IP-Test.mmdb'
+      );
+
+      expect(() => reader.city('1.2.3.4')).toThrow(BadMethodCallError);
+    });
+
+    it('throws an error if IP address is not in database', async () => {
+      expect.assertions(1);
+
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-Anonymous-IP-Test.mmdb'
+      );
+
+      expect(() => reader.anonymousIP('255.2.3.4')).toThrow(
         AddressNotFoundError
       );
     });
 
-    it('throws an error if IP address is not valid', () => {
-      const instance = new ReaderModel(mmdbReader);
-      expect(() => instance.anonymousIP(ips.invalid)).toThrow(ValueError);
+    it('throws an error if IP address is not valid', async () => {
+      expect.assertions(1);
+
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-Anonymous-IP-Test.mmdb'
+      );
+
+      expect(() => reader.anonymousIP('foobar')).toThrow(ValueError);
     });
 
-    it('returns false for undefined values', () => {
-      const anonymousIPInstance = new ReaderModel(mmdbReader);
+    it('returns false for undefined values', async () => {
+      expect.assertions(1);
+
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-Anonymous-IP-Test.mmdb'
+      );
+
+      const model: any = reader.anonymousIP('2.125.160.216');
+
       const expected = {
-        ipAddress: ips.empty,
+        ipAddress: '2.125.160.216',
         isAnonymous: false,
         isAnonymousVpn: false,
         isHostingProvider: false,
         isPublicProxy: false,
         isResidentialProxy: false,
         isTorExitNode: false,
-        network: networks.empty,
+        network: '2.0.0.0/7',
       };
 
-      expect(anonymousIPInstance.anonymousIP(ips.empty)).toEqual(expected);
+      expect(model).toEqual(expected);
     });
   });
 
