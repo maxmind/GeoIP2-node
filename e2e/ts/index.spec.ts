@@ -11,7 +11,9 @@ describe('WebServiceClient', () => {
 describe('Reader', () => {
   it('exists', async () => {
     expect.assertions(1);
-    const response = await Reader.open('../GeoIP2-City-Test.mmdb');
+    const response = await Reader.open(
+      '../../test/data/test-data/GeoIP2-City-Test.mmdb'
+    );
     expect(response.city('175.16.199.1')).toHaveProperty('city.geonameId');
   });
 });
