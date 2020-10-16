@@ -386,32 +386,53 @@ describe('ReaderModel', () => {
   });
 
   describe('asn()', () => {
-    const mmdbReader = createMmdbReaderMock('GeoLite2-ASN', asnFixture);
+    it('returns asn data', async () => {
+      expect.assertions(1);
 
-    it('returns asn data', () => {
-      const asnInstance = new ReaderModel(mmdbReader);
-      const expected: any = camelcaseKeys(asnFixture);
-      expected.ipAddress = ips.valid;
-      expected.network = networks.valid;
-      expect(asnInstance.asn(ips.valid)).toEqual(expected);
+      const reader = await Reader.open(
+        './test/data/test-data/GeoLite2-ASN-Test.mmdb'
+      );
+
+      const model: any = reader.asn('1.128.0.1');
+
+      const expected = {
+        autonomousSystemNumber: 1221,
+        autonomousSystemOrganization: 'Telstra Pty Ltd',
+        ipAddress: '1.128.0.1',
+        network: '1.128.0.0/11',
+      };
+
+      expect(model).toEqual(expected);
     });
 
-    it('throws an error if db types do not match', () => {
-      const errReader = cloneDeep(mmdbReader);
-      errReader.metadata.databaseType = 'foo';
+    it('throws an error if db types do not match', async () => {
+      expect.assertions(1);
 
-      const asnInstance = new ReaderModel(errReader);
-      expect(() => asnInstance.asn(ips.valid)).toThrow(BadMethodCallError);
+      const reader = await Reader.open(
+        './test/data/test-data/GeoLite2-ASN-Test.mmdb'
+      );
+
+      expect(() => reader.city('1.2.3.4')).toThrow(BadMethodCallError);
     });
 
-    it('throws an error if IP address is not in database', () => {
-      const asnInstance = new ReaderModel(mmdbReader);
-      expect(() => asnInstance.asn(ips.notFound)).toThrow(AddressNotFoundError);
+    it('throws an error if IP address is not in database', async () => {
+      expect.assertions(1);
+
+      const reader = await Reader.open(
+        './test/data/test-data/GeoLite2-ASN-Test.mmdb'
+      );
+
+      expect(() => reader.asn('1.2.3.4')).toThrow(AddressNotFoundError);
     });
 
-    it('throws an error if IP address is not valid', () => {
-      const instance = new ReaderModel(mmdbReader);
-      expect(() => instance.asn(ips.invalid)).toThrow(ValueError);
+    it('throws an error if IP address is not valid', async () => {
+      expect.assertions(1);
+
+      const reader = await Reader.open(
+        './test/data/test-data/GeoLite2-ASN-Test.mmdb'
+      );
+
+      expect(() => reader.asn('foobar')).toThrow(ValueError);
     });
   });
 
