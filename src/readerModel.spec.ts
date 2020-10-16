@@ -489,56 +489,149 @@ describe('ReaderModel', () => {
   });
 
   describe('enterprise()', () => {
-    const testFixture = {
-      city: geoip2Fixture.city,
-      continent: geoip2Fixture.continent,
-      country: geoip2Fixture.country,
-      location: geoip2Fixture.location,
-      maxmind: geoip2Fixture.maxmind,
-      postal: geoip2Fixture.postal,
-      registered_country: geoip2Fixture.registered_country,
-      represented_country: geoip2Fixture.represented_country,
-      subdivisions: geoip2Fixture.subdivisions,
-      traits: geoip2Fixture.traits,
-    };
+    it('returns enterprise data', async () => {
+      expect.assertions(1);
 
-    const mmdbReader = createMmdbReaderMock(
-      'GeoIP2-Enterprise-Super-Special',
-      testFixture
-    );
-
-    it('returns enterprise data', () => {
-      const enterpriseInstance = new ReaderModel(mmdbReader);
-      const expected: any = camelcaseKeys(testFixture, {
-        deep: true,
-        exclude: [/\-/],
-      });
-      camelcaseKeys(connectionTypeFixture);
-      expected.traits.ipAddress = ips.valid;
-      expected.traits.network = networks.valid;
-      expect(enterpriseInstance.enterprise(ips.valid)).toEqual(expected);
-    });
-
-    it('throws an error if db types do not match', () => {
-      const errReader = cloneDeep(mmdbReader);
-      errReader.metadata.databaseType = 'foo';
-
-      const enterpriseInstance = new ReaderModel(errReader);
-      expect(() => enterpriseInstance.enterprise(ips.valid)).toThrow(
-        BadMethodCallError
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-Enterprise-Test.mmdb'
       );
+
+      const model: any = reader.enterprise('2.125.160.216');
+
+      const expected = {
+        city: {
+          confidence: 50,
+          geonameId: 2655045,
+          names: {
+            en: 'Boxford',
+          },
+        },
+        continent: {
+          code: 'EU',
+          geonameId: 6255148,
+          names: {
+            de: 'Europa',
+            en: 'Europe',
+            es: 'Europa',
+            fr: 'Europe',
+            ja: 'ヨーロッパ',
+            'pt-BR': 'Europa',
+            ru: 'Европа',
+            'zh-CN': '欧洲',
+          },
+        },
+        country: {
+          confidence: 95,
+          geonameId: 2635167,
+          isInEuropeanUnion: true,
+          isoCode: 'GB',
+          names: {
+            de: 'Vereinigtes Königreich',
+            en: 'United Kingdom',
+            es: 'Reino Unido',
+            fr: 'Royaume-Uni',
+            ja: 'イギリス',
+            'pt-BR': 'Reino Unido',
+            ru: 'Великобритания',
+            'zh-CN': '英国',
+          },
+        },
+        location: {
+          accuracyRadius: 100,
+          latitude: 51.75,
+          longitude: -1.25,
+          timeZone: 'Europe/London',
+        },
+        maxmind: {},
+        postal: {
+          code: 'OX1',
+          confidence: 20,
+        },
+        registeredCountry: {
+          geonameId: 3017382,
+          isInEuropeanUnion: true,
+          isoCode: 'FR',
+          names: {
+            de: 'Frankreich',
+            en: 'France',
+            es: 'Francia',
+            fr: 'France',
+            ja: 'フランス共和国',
+            'pt-BR': 'França',
+            ru: 'Франция',
+            'zh-CN': '法国',
+          },
+        },
+        representedCountry: {},
+        subdivisions: [
+          {
+            confidence: 70,
+            geonameId: 6269131,
+            isoCode: 'ENG',
+            names: {
+              en: 'England',
+              es: 'Inglaterra',
+              fr: 'Angleterre',
+              'pt-BR': 'Inglaterra',
+            },
+          },
+          {
+            geonameId: 3333217,
+            isoCode: 'WBK',
+            names: {
+              en: 'West Berkshire',
+              ru: 'Западный Беркшир',
+              'zh-CN': '西伯克郡',
+            },
+          },
+        ],
+        traits: {
+          ipAddress: '2.125.160.216',
+          isAnonymous: false,
+          isAnonymousProxy: false,
+          isAnonymousVpn: false,
+          isHostingProvider: false,
+          isLegitimateProxy: false,
+          isPublicProxy: false,
+          isResidentialProxy: false,
+          isSatelliteProvider: false,
+          isTorExitNode: false,
+          network: '2.125.160.216/29',
+          staticIpScore: 0.27,
+        },
+      };
+
+      expect(model).toEqual(expected);
     });
 
-    it('throws an error if IP address is not in database', () => {
-      const enterpriseInstance = new ReaderModel(mmdbReader);
-      expect(() => enterpriseInstance.enterprise(ips.notFound)).toThrow(
-        AddressNotFoundError
+    it('throws an error if db types do not match', async () => {
+      expect.assertions(1);
+
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-Enterprise-Test.mmdb'
       );
+
+      expect(() => reader.anonymousIP('1.2.3.4')).toThrow(BadMethodCallError);
     });
 
-    it('throws an error if IP address is not valid', () => {
-      const instance = new ReaderModel(mmdbReader);
-      expect(() => instance.enterprise(ips.invalid)).toThrow(ValueError);
+    it('throws an error if IP address is not in database', async () => {
+      expect.assertions(1);
+
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-Enterprise-Test.mmdb'
+      );
+
+      expect(() => reader.enterprise('1.2.3.4')).toThrow(AddressNotFoundError);
+    });
+
+    it('throws an error if IP address is not valid', async () => {
+      expect.assertions(1);
+
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-Enterprise-Test.mmdb'
+      );
+
+      expect(() => reader.enterprise('foobar')).toThrow(ValueError);
     });
   });
 
