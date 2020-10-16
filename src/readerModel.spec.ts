@@ -437,41 +437,54 @@ describe('ReaderModel', () => {
   });
 
   describe('connectionType()', () => {
-    const mmdbReader = createMmdbReaderMock(
-      'GeoIP2-Connection-Type',
-      connectionTypeFixture
-    );
+    it('returns connection-type data', async () => {
+      expect.assertions(1);
 
-    it('returns connection-type data', () => {
-      const connectionTypeInstance = new ReaderModel(mmdbReader);
-      const expected: any = camelcaseKeys(connectionTypeFixture);
-      expected.ipAddress = ips.valid;
-      expected.network = networks.valid;
-      expect(connectionTypeInstance.connectionType(ips.valid)).toEqual(
-        expected
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-Connection-Type-Test.mmdb'
       );
+
+      const model: any = reader.connectionType('1.0.0.1');
+
+      const expected = {
+        connectionType: 'Dialup',
+        ipAddress: '1.0.0.1',
+        network: '1.0.0.0/24',
+      };
+
+      expect(model).toEqual(expected);
     });
 
-    it('throws an error if db types do not match', () => {
-      const errReader = cloneDeep(mmdbReader);
-      errReader.metadata.databaseType = 'foo';
+    it('throws an error if db types do not match', async () => {
+      expect.assertions(1);
 
-      const connectionTypeInstance = new ReaderModel(errReader);
-      expect(() => connectionTypeInstance.connectionType(ips.valid)).toThrow(
-        BadMethodCallError
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-Connection-Type-Test.mmdb'
       );
+
+      expect(() => reader.city('1.2.3.4')).toThrow(BadMethodCallError);
     });
 
-    it('throws an error if IP address is not in database', () => {
-      const connectionTypeInstance = new ReaderModel(mmdbReader);
-      expect(() => connectionTypeInstance.connectionType(ips.notFound)).toThrow(
+    it('throws an error if IP address is not in database', async () => {
+      expect.assertions(1);
+
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-Connection-Type-Test.mmdb'
+      );
+
+      expect(() => reader.connectionType('255.255.0.1')).toThrow(
         AddressNotFoundError
       );
     });
 
-    it('throws an error if IP address is not valid', () => {
-      const instance = new ReaderModel(mmdbReader);
-      expect(() => instance.connectionType(ips.invalid)).toThrow(ValueError);
+    it('throws an error if IP address is not valid', async () => {
+      expect.assertions(1);
+
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-Connection-Type-Test.mmdb'
+      );
+
+      expect(() => reader.connectionType('foobar')).toThrow(ValueError);
     });
   });
 
