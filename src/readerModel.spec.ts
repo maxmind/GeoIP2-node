@@ -689,36 +689,52 @@ describe('ReaderModel', () => {
   });
 
   describe('domain()', () => {
-    const mmdbReader = createMmdbReaderMock('GeoIP2-Domain', domainFixture);
+    it('returns domain data', async () => {
+      expect.assertions(1);
 
-    it('returns domain data', () => {
-      const domainInstance = new ReaderModel(mmdbReader);
-      const expected: any = camelcaseKeys(domainFixture);
-      expected.ipAddress = ips.valid;
-      expected.network = networks.valid;
-      expect(domainInstance.domain(ips.valid)).toEqual(expected);
-    });
-
-    it('throws an error if db types do not match', () => {
-      const errReader = cloneDeep(mmdbReader);
-      errReader.metadata.databaseType = 'foo';
-
-      const domainInstance = new ReaderModel(errReader);
-      expect(() => domainInstance.domain(ips.valid)).toThrow(
-        BadMethodCallError
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-Domain-Test.mmdb'
       );
+
+      const model: any = reader.domain('1.2.0.1');
+
+      const expected = {
+        domain: 'maxmind.com',
+        ipAddress: '1.2.0.1',
+        network: '1.2.0.0/16',
+      };
+
+      expect(model).toEqual(expected);
     });
 
-    it('throws an error if IP address is not in database', () => {
-      const domainInstance = new ReaderModel(mmdbReader);
-      expect(() => domainInstance.domain(ips.notFound)).toThrow(
-        AddressNotFoundError
+    it('throws an error if db types do not match', async () => {
+      expect.assertions(1);
+
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-Domain-Test.mmdb'
       );
+
+      expect(() => reader.city('1.2.3.4')).toThrow(BadMethodCallError);
     });
 
-    it('throws an error if IP address is not valid', () => {
-      const instance = new ReaderModel(mmdbReader);
-      expect(() => instance.domain(ips.invalid)).toThrow(ValueError);
+    it('throws an error if IP address is not in database', async () => {
+      expect.assertions(1);
+
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-Domain-Test.mmdb'
+      );
+
+      expect(() => reader.domain('255.1.1.1')).toThrow(AddressNotFoundError);
+    });
+
+    it('throws an error if IP address is not valid', async () => {
+      expect.assertions(1);
+
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-Domain-Test.mmdb'
+      );
+
+      expect(() => reader.domain('foobar')).toThrow(ValueError);
     });
   });
 });
