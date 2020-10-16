@@ -1,54 +1,5 @@
-import camelcaseKeys = require('camelcase-keys');
-import { cloneDeep } from 'lodash';
-import mmdb = require('maxmind');
-import * as anonymousIPFixture from '../fixtures/anonymous-ip.json';
-import * as connectionTypeFixture from '../fixtures/geoip2-connection-type.json';
-import * as domainFixture from '../fixtures/geoip2-domain.json';
-import * as ispFixture from '../fixtures/geoip2-isp.json';
-import * as geoip2Fixture from '../fixtures/geoip2.json';
-import * as asnFixture from '../fixtures/geolite2-asn.json';
 import { AddressNotFoundError, BadMethodCallError, ValueError } from './errors';
 import Reader from './reader';
-import ReaderModel from './readerModel';
-
-const ips = {
-  empty: '88.88.88.88',
-  invalid: 'foobar',
-  notFound: '99.99.99.99',
-  valid: '11.11.11.11',
-};
-
-const networks = {
-  empty: '88.88.88.88/32',
-  valid: '11.11.11.0/24',
-};
-
-const createMmdbReaderMock: any = (databaseType: string, fixture: any) => ({
-  getWithPrefixLength(ipAddress: string) {
-    if (ipAddress === ips.notFound) {
-      throw new Error('ip address not found');
-    }
-
-    if (ipAddress === ips.empty) {
-      return [{}, 32];
-    }
-    return [fixture, 24];
-  },
-  metadata: {
-    binaryFormatMajorVersion: 1,
-    binaryFormatMinorVersion: 2,
-    buildEpoch: new Date(),
-    databaseType,
-    description: 'hello',
-    ipVersion: 5,
-    languages: ['en'],
-    nodeByteSize: 1,
-    nodeCount: 1,
-    recordSize: 1,
-    searchTreeSize: 1,
-    treeDepth: 1,
-  },
-});
 
 describe('ReaderModel', () => {
   describe('city()', () => {
