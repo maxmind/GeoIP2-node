@@ -8,15 +8,15 @@ export default class City extends Country {
   /**
    * The city for the requested IP address.
    */
-  public readonly city: records.CityRecord | {};
+  public readonly city?: records.CityRecord;
   /**
    * The location for the requested IP address.
    */
-  public readonly location: records.LocationRecord | {};
+  public readonly location?: records.LocationRecord;
   /**
    * The postal object for the requested IP address.
    */
-  public readonly postal: records.PostalRecord | {};
+  public readonly postal?: records.PostalRecord;
   /**
    * An array of SubdivisionsRecord objects representing the country subdivisions for
    * the requested IP address. The number and type of subdivisions varies by
@@ -25,7 +25,7 @@ export default class City extends Country {
    * (smallest). If the response did not contain any subdivisions, this method
    * returns an empty array.
    */
-  public readonly subdivisions: records.SubdivisionsRecord[] | [];
+  public readonly subdivisions?: records.SubdivisionsRecord[];
 
   /**
    * Instantiates a "City" using fields from the response
@@ -40,9 +40,9 @@ export default class City extends Country {
       exclude: [/\-/],
     }) as unknown) as City;
 
-    this.city = camelcaseResponse.city || {};
-    this.location = camelcaseResponse.location || {};
-    this.postal = camelcaseResponse.postal || {};
-    this.subdivisions = camelcaseResponse.subdivisions || [];
+    this.city = camelcaseResponse.city || undefined;
+    this.location = camelcaseResponse.location || undefined;
+    this.postal = camelcaseResponse.postal || undefined;
+    this.subdivisions = camelcaseResponse.subdivisions || undefined;
   }
 }

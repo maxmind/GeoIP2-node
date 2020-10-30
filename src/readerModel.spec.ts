@@ -131,12 +131,12 @@ describe('ReaderModel', () => {
         },
         continent: {},
         country: {},
-        location: {},
+        location: undefined,
         maxmind: {},
-        postal: {},
+        postal: undefined,
         registeredCountry: {},
         representedCountry: {},
-        subdivisions: [],
+        subdivisions: undefined,
         traits: {
           ipAddress: '2.2.3.1',
           isAnonymous: false,
@@ -165,7 +165,7 @@ describe('ReaderModel', () => {
       const model: any = reader.city('2.3.3.1');
 
       const expected = {
-        city: {},
+        city: undefined,
         continent: {
           code: 'EU',
           geonameId: 6255148,
@@ -181,12 +181,12 @@ describe('ReaderModel', () => {
           },
         },
         country: {},
-        location: {},
+        location: undefined,
         maxmind: {},
-        postal: {},
+        postal: undefined,
         registeredCountry: {},
         representedCountry: {},
-        subdivisions: [],
+        subdivisions: undefined,
         traits: {
           ipAddress: '2.3.3.1',
           isAnonymous: false,
