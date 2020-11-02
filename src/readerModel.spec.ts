@@ -54,7 +54,7 @@ describe('ReaderModel', () => {
           longitude: -1.25,
           timeZone: 'Europe/London',
         },
-        maxmind: {},
+        maxmind: undefined,
         postal: {
           code: 'OX1',
         },
@@ -73,7 +73,7 @@ describe('ReaderModel', () => {
             'zh-CN': '法国',
           },
         },
-        representedCountry: {},
+        representedCountry: undefined,
         subdivisions: [
           {
             geonameId: 6269131,
@@ -129,14 +129,14 @@ describe('ReaderModel', () => {
             en: 'Boxford',
           },
         },
-        continent: {},
-        country: {},
-        location: {},
-        maxmind: {},
-        postal: {},
-        registeredCountry: {},
-        representedCountry: {},
-        subdivisions: [],
+        continent: undefined,
+        country: undefined,
+        location: undefined,
+        maxmind: undefined,
+        postal: undefined,
+        registeredCountry: undefined,
+        representedCountry: undefined,
+        subdivisions: undefined,
         traits: {
           ipAddress: '2.2.3.1',
           isAnonymous: false,
@@ -165,7 +165,7 @@ describe('ReaderModel', () => {
       const model: any = reader.city('2.3.3.1');
 
       const expected = {
-        city: {},
+        city: undefined,
         continent: {
           code: 'EU',
           geonameId: 6255148,
@@ -180,13 +180,13 @@ describe('ReaderModel', () => {
             'zh-CN': '欧洲',
           },
         },
-        country: {},
-        location: {},
-        maxmind: {},
-        postal: {},
-        registeredCountry: {},
-        representedCountry: {},
-        subdivisions: [],
+        country: undefined,
+        location: undefined,
+        maxmind: undefined,
+        postal: undefined,
+        registeredCountry: undefined,
+        representedCountry: undefined,
+        subdivisions: undefined,
         traits: {
           ipAddress: '2.3.3.1',
           isAnonymous: false,
@@ -278,7 +278,7 @@ describe('ReaderModel', () => {
             'zh-CN': '英国',
           },
         },
-        maxmind: {},
+        maxmind: undefined,
         registeredCountry: {
           geonameId: 3017382,
           isInEuropeanUnion: true,
@@ -294,7 +294,7 @@ describe('ReaderModel', () => {
             'zh-CN': '法国',
           },
         },
-        representedCountry: {},
+        representedCountry: undefined,
         traits: {
           ipAddress: '2.125.160.216',
           isAnonymous: false,
@@ -585,7 +585,7 @@ describe('ReaderModel', () => {
           longitude: -1.25,
           timeZone: 'Europe/London',
         },
-        maxmind: {},
+        maxmind: undefined,
         postal: {
           code: 'OX1',
           confidence: 20,
@@ -605,7 +605,7 @@ describe('ReaderModel', () => {
             'zh-CN': '法国',
           },
         },
-        representedCountry: {},
+        representedCountry: undefined,
         subdivisions: [
           {
             confidence: 70,
