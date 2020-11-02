@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+2.0.0 (2020-11-02)
+------------------
+
+### Breaking change
+* `country` and `city` values return `undefined` instead of `{}` when empty.
+
+
 1.6.0 (2020-09-29)
 ------------------
 
