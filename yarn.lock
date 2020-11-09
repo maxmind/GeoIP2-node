@@ -3627,9 +3627,9 @@ marked@^1.1.1:
   integrity sha512-tiRxakgbNPBr301ihe/785NntvYyhxlqcL3YaC8CaxJQh7kiaEtrN9B/eK2I2943Yjkh5gw25chYFDQhOMCwMA==
 
 maxmind@^4.2.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/maxmind/-/maxmind-4.3.0.tgz#0e04f00503e3693615efe848e94ec959500d7573"
-  integrity sha512-qYdCsoivX7xGW8L5UhjZNxx57odwzmzFPtSt3YvGwW8moSKoIwnCq2NbmfHdmqYzj5ffzSzxKM3lqURN8INyzA==
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/maxmind/-/maxmind-4.3.1.tgz#b20103f19e9fc12e4d1618814380d89a00f65770"
+  integrity sha512-0CxAgwWIwQy4zF1/qCMOeUPleMTYgfnsuIsZ4Otzx6hzON4PCqivPiH6Kz7iWrC++KOGCbSB3nxkJMvDEdWt6g==
   dependencies:
     mmdb-lib "1.2.0"
     tiny-lru "7.0.6"
