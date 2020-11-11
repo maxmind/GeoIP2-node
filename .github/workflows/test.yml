@@ -1,7 +1,9 @@
 name: Run tests
 on:
-  push:
   pull_request:
+  push:
+    branches:
+      - master
   schedule:
     - cron: '3 2 * * SUN'
 jobs:
@@ -9,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: [10, 12]
+        version: [10, 12, 14, 15]
     steps:
       - uses: actions/checkout@v2
         with:
