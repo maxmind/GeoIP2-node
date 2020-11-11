@@ -1,7 +1,9 @@
 name: Run tests
 on:
-  push:
   pull_request:
+  push:
+    branches:
+      - master
   schedule:
     - cron: '3 2 * * SUN'
 jobs:
