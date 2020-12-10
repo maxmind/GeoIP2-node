@@ -11,16 +11,15 @@ databases](https://dev.maxmind.com/geoip/geoip2/geolite2/).
 
 ## Installation
 
-```
+```sh
 yarn add @maxmind/geoip2-node
 ```
 
 If you are not able to use `yarn`, you may also use `npm`:
 
-```
+```sh
 npm install @maxmind/geoip2-node
 ```
-
 
 ## IP Geolocation Usage
 
@@ -92,6 +91,7 @@ client.insights('142.1.1.1').then(response => {
 ```
 
 ## Web Service Errors
+
 For details on the possible errors returned by the web service itself, [see
 the GeoIP2 Precision web service
 documentation](https://dev.maxmind.com/geoip2/geoip/web-services).
@@ -109,6 +109,7 @@ with the following object structure:
 
 In addition to the possible errors returned by the web service, the following error
 codes are provided:
+
 * `SERVER_ERROR` for 5xx level errors
 * `HTTP_STATUS_CODE_ERROR` for unexpected HTTP status codes
 * `INVALID_RESPONSE_BODY` for invalid JSON responses or unparseable response bodies
@@ -310,7 +311,8 @@ be thrown.
 
 If the IP address is not valid, a `ValueError` will be thrown.
 
-If the database buffer is not a valid database, an `InvalidDbBufferError` will be thrown.
+If the database buffer is not a valid database, an `InvalidDbBufferError` will
+be thrown.
 
 ## Values to use for Database or Object Keys
 
@@ -322,7 +324,8 @@ following:
 
 * geoip2-node.CityRecord - `city.geonameId`
 * geoip2-node.ContinentRecord - `continent.code` or `continent.geonameId`
-* geoip2-node.CountryRecord and geoip2.records.RepresentedCountry - `country.isoCode` or `country.geonameId`
+* geoip2-node.CountryRecord and geoip2.records.RepresentedCountry -
+  `country.isoCode` or `country.geonameId`
 * geoip2-node.SubdivisionsRecord - `subdivision.isoCode` or `subdivision.geonameId`
 
 ## What data is returned?
@@ -391,7 +394,7 @@ tracker](https://github.com/maxmind/GeoIP2-node/issues)
 If you are having an issue with a MaxMind service that is not specific to the
 client API, please contact [MaxMind support for assistance](https://support.maxmind.com/contact-us/).
 
-## Copyright and License ##
+## Copyright and License
 
 This software is Copyright (c) 2018-2020 by MaxMind, Inc.
 
