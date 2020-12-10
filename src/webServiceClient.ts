@@ -23,6 +23,10 @@ export default class WebServiceClient {
    *
    * @param accountID The account ID
    * @param licenseKey The license key
+   * @param timeout The timeout. The default is 3000 ms.
+   * @param host The host to use. The default is "geoip.maxmind.com". To call
+   *             the GeoLite2 web service instead of GeoIP2 Precision, use
+   *             "geolite.info".
    */
   public constructor(
     accountID: string,
@@ -60,6 +64,9 @@ export default class WebServiceClient {
 
   /**
    * Returns a Promise with the Insights Precision data for an IP address.
+   *
+   * Insights is only supported by GeoIP2 Precision. It is not supported by the
+   * GeoLite2 web service.
    *
    * @param ipAddress The IP Address you want to query the Insights web service with
    */

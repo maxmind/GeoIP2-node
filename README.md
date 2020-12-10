@@ -30,10 +30,11 @@ should not be used to identify a particular address or household.
 ## Web Service Usage
 
 To use the web service API, you must create a new `WebServiceClient`, using
-your MaxMind `accountID` and `licenseKey` as parameters.  You may also set a
-`timeout`, which defaults to `3000`. You may then call the function
-corresponding to a specific end point, passing it the IP address you want
-to lookup.
+your MaxMind `accountID` and `licenseKey` as parameters. The third argument is
+the `timeout`, which defaults to `3000`. The fourth argument is the `host`; set
+this to `geolite.info` to use the GeoLite2 web service instead of GeoIP2. You
+may then call the function corresponding to a specific end point, passing it
+the IP address you want to lookup.
 
 If the request succeeds, the function's Promise will resolve with the model
 for the end point you called. This model in turn contains multiple
@@ -52,6 +53,9 @@ const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
 // Typescript:
 // import { WebServiceClient } from '@maxmind/geoip2-node';
 
+// To use the GeoLite2 web service instead of GeoIP2 Precision, set the
+// host to geolite.info, e.g.:
+// new WebServiceClient('1234', 'licenseKey', 3000, 'geolite.info');
 const client = new WebServiceClient('1234', 'licenseKey');
 
 client.country('142.1.1.1').then(response => {
@@ -66,6 +70,9 @@ const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
 // Typescript:
 // import { WebServiceClient } from '@maxmind/geoip2-node';
 
+// To use the GeoLite2 web service instead of GeoIP2 Precision, set the
+// host to geolite.info, e.g.:
+// new WebServiceClient('1234', 'licenseKey', 3000, 'geolite.info');
 const client = new WebServiceClient('1234', 'licenseKey');
 
 client.city('142.1.1.1').then(response => {
@@ -81,6 +88,8 @@ const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
 // Typescript:
 // import { WebServiceClient } from '@maxmind/geoip2-node';
 
+// Note that the Insights web service is only supported by GeoIP2
+// Precision, not the GeoLite2 web service.
 const client = new WebServiceClient('1234', 'licenseKey');
 
 client.insights('142.1.1.1').then(response => {
