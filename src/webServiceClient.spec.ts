@@ -12,9 +12,10 @@ const auth = {
   pass: 'foo',
   user: '123',
 };
-const client = new Client(auth.user, auth.pass);
 
 describe('WebServiceClient', () => {
+  const client = new Client(auth.user, auth.pass);
+
   describe('city()', () => {
     const testFixture = {
       city: geoip2Fixture.city,
@@ -202,5 +203,40 @@ describe('WebServiceClient', () => {
         url: baseUrl + fullPath('city', ip),
       });
     });
+  });
+});
+
+describe('WebServiceClient with options', () => {
+  const client = new Client(auth.user, auth.pass, {
+    host: 'geolite.info',
+    timeout: 1000,
+  });
+
+  it('sets host', () => {
+    expect((client as any).host).toEqual('geolite.info');
+  });
+
+  it('sets timeout', () => {
+    expect((client as any).timeout).toEqual(1000);
+  });
+});
+
+describe('WebServiceClient with empty options', () => {
+  const client = new Client(auth.user, auth.pass, {});
+
+  it('sets host', () => {
+    expect((client as any).host).toEqual('geoip.maxmind.com');
+  });
+
+  it('sets timeout', () => {
+    expect((client as any).timeout).toEqual(3000);
+  });
+});
+
+describe('WebServiceClient with timeout', () => {
+  const client = new Client(auth.user, auth.pass, 1000);
+
+  it('sets timeout', () => {
+    expect((client as any).timeout).toEqual(1000);
   });
 });
