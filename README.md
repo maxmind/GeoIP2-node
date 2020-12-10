@@ -31,9 +31,11 @@ should not be used to identify a particular address or household.
 
 To use the web service API, you must create a new `WebServiceClient`, using
 your MaxMind `accountID` and `licenseKey` as parameters. The third argument is
-the `timeout`, which defaults to `3000`. The fourth argument is the `host`; set
-this to `geolite.info` to use the GeoLite2 web service instead of GeoIP2. You
-may then call the function corresponding to a specific end point, passing it
+an object holding additional option. The `timeout` option defaults to `3000`.
+The `host` option defaults to `geoip.maxmind.com`. Set `host` to `geolite.info`
+to use the GeoLite2 web service instead of GeoIP2.
+
+You may then call the function corresponding to a specific end point, passing it
 the IP address you want to lookup.
 
 If the request succeeds, the function's Promise will resolve with the model
@@ -55,7 +57,7 @@ const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
 
 // To use the GeoLite2 web service instead of GeoIP2 Precision, set the
 // host to geolite.info, e.g.:
-// new WebServiceClient('1234', 'licenseKey', 3000, 'geolite.info');
+// new WebServiceClient('1234', 'licenseKey', {host: 'geolite.info'});
 const client = new WebServiceClient('1234', 'licenseKey');
 
 client.country('142.1.1.1').then(response => {
@@ -72,7 +74,7 @@ const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
 
 // To use the GeoLite2 web service instead of GeoIP2 Precision, set the
 // host to geolite.info, e.g.:
-// new WebServiceClient('1234', 'licenseKey', 3000, 'geolite.info');
+// new WebServiceClient('1234', 'licenseKey', {host: 'geolite.info'});
 const client = new WebServiceClient('1234', 'licenseKey');
 
 client.city('142.1.1.1').then(response => {

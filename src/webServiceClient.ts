@@ -5,6 +5,16 @@ import { version } from '../package.json';
 import * as models from './models';
 import { WebServiceClientError } from './types';
 
+/** Option for the WebServiceClient constructor */
+interface Options {
+  /** The host to use when connecting to the web service. The default is
+   *  "geoip.maxmind.com". To call the GeoLite2 web service instead of
+   *  GeoIP2 Precision, set this to "geolite.info".
+   */
+  host?: string;
+  /** The timeout. The default is 3000 */
+  timeout?: number;
+}
 interface ResponseError {
   code?: string;
   error?: string;
@@ -15,15 +25,19 @@ type servicePath = 'city' | 'country' | 'insights';
 export default class WebServiceClient {
   private accountID: string;
   private licenseKey: string;
-  private timeout: number;
-  private host: string;
+  private timeout: number = 3000;
+  private host: string = 'geoip.maxmind.com';
 
   /**
    * Instantiates a WebServiceClient
    *
    * @param accountID The account ID
    * @param licenseKey The license key
-   * @param timeout The timeout. The default is 3000 ms.
+   * @param options Additional option to use when connecting to the web
+   *                service. If you pass a number as the third parameter, it
+   *                will be treated as the timeout; however, passing in a number
+   *                should be considered deprecated and may be removed in a
+   *                future major version.
    * @param host The host to use. The default is "geoip.maxmind.com". To call
    *             the GeoLite2 web service instead of GeoIP2 Precision, use
    *             "geolite.info".
@@ -31,13 +45,28 @@ export default class WebServiceClient {
   public constructor(
     accountID: string,
     licenseKey: string,
-    timeout?: number,
-    host?: string
+    // We support a number, which will be treated as the timeout for historical
+    // reasons.
+    options?: Options | number
   ) {
     this.accountID = accountID;
     this.licenseKey = licenseKey;
-    this.timeout = timeout || 3000;
-    this.host = host || 'geoip.maxmind.com';
+    if (options === undefined) {
+      return;
+    }
+
+    if (typeof options === 'object') {
+      if (options.host !== undefined) {
+        this.host = options.host;
+      }
+
+      if (options.timeout !== undefined) {
+        this.timeout = options.timeout;
+      }
+      return;
+    }
+
+    this.timeout = options;
   }
 
   /**
