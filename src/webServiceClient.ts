@@ -16,7 +16,7 @@ export default class WebServiceClient {
   private accountID: string;
   private licenseKey: string;
   private timeout: number;
-  private readonly host: string = 'geoip.maxmind.com';
+  private host: string;
 
   /**
    * Instantiates a WebServiceClient
@@ -24,10 +24,16 @@ export default class WebServiceClient {
    * @param accountID The account ID
    * @param licenseKey The license key
    */
-  public constructor(accountID: string, licenseKey: string, timeout?: number) {
+  public constructor(
+    accountID: string,
+    licenseKey: string,
+    timeout?: number,
+    host?: string
+  ) {
     this.accountID = accountID;
     this.licenseKey = licenseKey;
     this.timeout = timeout || 3000;
+    this.host = host || 'geoip.maxmind.com';
   }
 
   /**

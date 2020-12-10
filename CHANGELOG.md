@@ -1,12 +1,19 @@
 CHANGELOG
 =========
 
+2.1.0
+------------------
+
+* The `WebServiceClient` class now accepts the host as the fourth parameter.
+  To use the GeoLite2 web service instead of GeoIP2 Precision, set this to
+  `geolite.info`.
+
 2.0.0 (2020-11-02)
 ------------------
 
 ### Breaking change
-* `country` and `city` values return `undefined` instead of `{}` when empty.
 
+* `country` and `city` values return `undefined` instead of `{}` when empty.
 
 1.6.0 (2020-09-29)
 ------------------
