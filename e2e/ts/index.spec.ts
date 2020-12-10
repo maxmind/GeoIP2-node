@@ -8,6 +8,18 @@ describe('WebServiceClient', () => {
   });
 });
 
+describe('WebServiceClient', () => {
+  it('exists', () => {
+    const client = () =>
+      new WebServiceClient('1234', 'foo', {
+        host: 'geolite.info',
+        timeout: 1000,
+      });
+
+    expect(client).not.toThrowError();
+  });
+});
+
 describe('Reader', () => {
   it('exists', async () => {
     expect.assertions(1);
