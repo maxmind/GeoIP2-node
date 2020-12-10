@@ -4,9 +4,12 @@ CHANGELOG
 2.1.0
 ------------------
 
-* The `WebServiceClient` class now accepts the host as the fourth parameter.
-  To use the GeoLite2 web service instead of GeoIP2 Precision, set this to
-  `geolite.info`.
+* The `WebServiceClient` class now accepts an options object as the third
+  parameter. The currently valid options are `timeout` and `host`. To use the
+  GeoLite2 web service instead of GeoIP2 Precision, set `host` to
+  `geolite.info`. If you were previously passing the timeout as the third
+  parameter, this is deprecated and you should transition to passing it in
+  the options object.
 
 2.0.0 (2020-11-02)
 ------------------
