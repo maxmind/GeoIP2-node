@@ -61,7 +61,7 @@
   },
   "scripts": {
     "build": "rimraf dist && tsc",
-    "build:docs": "rimraf docs && typedoc --out docs --exclude \"**/*.spec.ts\" --mode file --readme README.md && ./bin/sanitize-doc-refs.sh",
+    "build:docs": "rimraf docs && typedoc src/index.ts --out docs --exclude \"**/*.spec.ts\" --readme README.md && ./bin/sanitize-doc-refs.sh",
     "deploy:docs": "gh-pages -d docs",
     "lint": "tslint -p ./tsconfig.lint.json -t stylish",
     "prettier:ts": "prettier --parser typescript --single-quote true --trailing-comma es5 --write 'src/**/*.ts'",
