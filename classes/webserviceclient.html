@@ -119,13 +119,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Web<wbr>Service<wbr>Client<span class="tsd-signature-symbol">(</span>accountID<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, licenseKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="webserviceclient.html" class="tsd-signature-type">WebServiceClient</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Web<wbr>Service<wbr>Client<span class="tsd-signature-symbol">(</span>accountID<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, licenseKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="webserviceclient.html" class="tsd-signature-type">WebServiceClient</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/347343f/src/webServiceClient.ts#L19">src/webServiceClient.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/36b9fbd/src/webServiceClient.ts#L29">src/webServiceClient.ts:29</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -152,7 +152,16 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> timeout: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Additional option to use when connecting to the web
+												service. If you pass a number as the third parameter, it
+												will be treated as the timeout; however, passing in a number
+												should be considered deprecated and may be removed in a
+											future major version.</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="webserviceclient.html" class="tsd-signature-type">WebServiceClient</a></h4>
@@ -168,17 +177,17 @@
 					<div class="tsd-signature tsd-kind-icon">accountID<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/347343f/src/webServiceClient.ts#L16">src/webServiceClient.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/36b9fbd/src/webServiceClient.ts#L26">src/webServiceClient.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="host" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> host</h3>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> host</h3>
 					<div class="tsd-signature tsd-kind-icon">host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;geoip.maxmind.com&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/347343f/src/webServiceClient.ts#L19">src/webServiceClient.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/36b9fbd/src/webServiceClient.ts#L29">src/webServiceClient.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -188,17 +197,17 @@
 					<div class="tsd-signature tsd-kind-icon">license<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/347343f/src/webServiceClient.ts#L17">src/webServiceClient.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/36b9fbd/src/webServiceClient.ts#L27">src/webServiceClient.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="timeout" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> timeout</h3>
-					<div class="tsd-signature tsd-kind-icon">timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<div class="tsd-signature tsd-kind-icon">timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 3000</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/347343f/src/webServiceClient.ts#L18">src/webServiceClient.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/36b9fbd/src/webServiceClient.ts#L28">src/webServiceClient.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -215,7 +224,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/347343f/src/webServiceClient.ts#L38">src/webServiceClient.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/36b9fbd/src/webServiceClient.ts#L77">src/webServiceClient.ts:77</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -246,7 +255,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/347343f/src/webServiceClient.ts#L47">src/webServiceClient.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/36b9fbd/src/webServiceClient.ts#L86">src/webServiceClient.ts:86</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -277,7 +286,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/347343f/src/webServiceClient.ts#L132">src/webServiceClient.ts:132</a></li>
+									<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/36b9fbd/src/webServiceClient.ts#L174">src/webServiceClient.ts:174</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -306,13 +315,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/347343f/src/webServiceClient.ts#L60">src/webServiceClient.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/36b9fbd/src/webServiceClient.ts#L102">src/webServiceClient.ts:102</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Returns a Promise with the Insights Precision data for an IP address.</p>
 								</div>
+								<p>Insights is only supported by GeoIP2 Precision. It is not supported by the
+								GeoLite2 web service.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -337,7 +348,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/347343f/src/webServiceClient.ts#L68">src/webServiceClient.ts:68</a></li>
+									<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/36b9fbd/src/webServiceClient.ts#L110">src/webServiceClient.ts:110</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -484,6 +495,9 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/names.html" class="tsd-kind-icon">Names</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/options.html" class="tsd-kind-icon">Options</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/postalrecord.html" class="tsd-kind-icon">Postal<wbr>Record</a>

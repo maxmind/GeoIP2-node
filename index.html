@@ -79,9 +79,9 @@
 				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
 					<h2>Installation</h2>
 				</a>
-				<pre><code>yarn add @maxmind/geoip2-<span class="hljs-keyword">node</span><span class="hljs-title"></span></code></pre>
+				<pre><code class="language-sh">yarn add @maxmind/geoip2-node</code></pre>
 				<p>If you are not able to use <code>yarn</code>, you may also use <code>npm</code>:</p>
-				<pre><code>npm install @maxmind/geoip2-<span class="hljs-keyword">node</span><span class="hljs-title"></span></code></pre>
+				<pre><code class="language-sh">npm install @maxmind/geoip2-node</code></pre>
 				<a href="#ip-geolocation-usage" id="ip-geolocation-usage" style="color: inherit; text-decoration: none;">
 					<h2>IP Geolocation Usage</h2>
 				</a>
@@ -92,10 +92,12 @@
 					<h2>Web Service Usage</h2>
 				</a>
 				<p>To use the web service API, you must create a new <code>WebServiceClient</code>, using
-					your MaxMind <code>accountID</code> and <code>licenseKey</code> as parameters.  You may also set a
-					<code>timeout</code>, which defaults to <code>3000</code>. You may then call the function
-					corresponding to a specific end point, passing it the IP address you want
-				to lookup.</p>
+					your MaxMind <code>accountID</code> and <code>licenseKey</code> as parameters. The third argument is
+					an object holding additional option. The <code>timeout</code> option defaults to <code>3000</code>.
+					The <code>host</code> option defaults to <code>geoip.maxmind.com</code>. Set <code>host</code> to <code>geolite.info</code>
+				to use the GeoLite2 web service instead of GeoIP2.</p>
+				<p>You may then call the function corresponding to a specific end point, passing it
+				the IP address you want to lookup.</p>
 				<p>If the request succeeds, the function&#39;s Promise will resolve with the model
 					for the end point you called. This model in turn contains multiple
 				records, each of which represents part of the data returned by the web service.</p>
@@ -111,6 +113,9 @@
 <span class="hljs-comment">// Typescript:</span>
 <span class="hljs-comment">// import { WebServiceClient } from &#x27;@maxmind/geoip2-node&#x27;;</span>
 
+<span class="hljs-comment">// To use the GeoLite2 web service instead of GeoIP2 Precision, set the</span>
+<span class="hljs-comment">// host to geolite.info, e.g.:</span>
+<span class="hljs-comment">// new WebServiceClient(&#x27;1234&#x27;, &#x27;licenseKey&#x27;, {host: &#x27;geolite.info&#x27;});</span>
 <span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> WebServiceClient(<span class="hljs-string">&#x27;1234&#x27;</span>, <span class="hljs-string">&#x27;licenseKey&#x27;</span>);
 
 client.country(<span class="hljs-string">&#x27;142.1.1.1&#x27;</span>).then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
@@ -123,6 +128,9 @@ client.country(<span class="hljs-string">&#x27;142.1.1.1&#x27;</span>).then(<spa
 <span class="hljs-comment">// Typescript:</span>
 <span class="hljs-comment">// import { WebServiceClient } from &#x27;@maxmind/geoip2-node&#x27;;</span>
 
+<span class="hljs-comment">// To use the GeoLite2 web service instead of GeoIP2 Precision, set the</span>
+<span class="hljs-comment">// host to geolite.info, e.g.:</span>
+<span class="hljs-comment">// new WebServiceClient(&#x27;1234&#x27;, &#x27;licenseKey&#x27;, {host: &#x27;geolite.info&#x27;});</span>
 <span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> WebServiceClient(<span class="hljs-string">&#x27;1234&#x27;</span>, <span class="hljs-string">&#x27;licenseKey&#x27;</span>);
 
 client.city(<span class="hljs-string">&#x27;142.1.1.1&#x27;</span>).then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
@@ -136,6 +144,8 @@ client.city(<span class="hljs-string">&#x27;142.1.1.1&#x27;</span>).then(<span c
 <span class="hljs-comment">// Typescript:</span>
 <span class="hljs-comment">// import { WebServiceClient } from &#x27;@maxmind/geoip2-node&#x27;;</span>
 
+<span class="hljs-comment">// Note that the Insights web service is only supported by GeoIP2</span>
+<span class="hljs-comment">// Precision, not the GeoLite2 web service.</span>
 <span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> WebServiceClient(<span class="hljs-string">&#x27;1234&#x27;</span>, <span class="hljs-string">&#x27;licenseKey&#x27;</span>);
 
 client.insights(<span class="hljs-string">&#x27;142.1.1.1&#x27;</span>).then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
@@ -336,7 +346,8 @@ Reader.open(<span class="hljs-string">&#x27;/usr/local/share/GeoIP/GeoIP2-ISP.mm
 				<p>If the IP address is not found in the database, an <code>AddressNotFoundError</code> will
 				be thrown.</p>
 				<p>If the IP address is not valid, a <code>ValueError</code> will be thrown.</p>
-				<p>If the database buffer is not a valid database, an <code>InvalidDbBufferError</code> will be thrown.</p>
+				<p>If the database buffer is not a valid database, an <code>InvalidDbBufferError</code> will
+				be thrown.</p>
 				<a href="#values-to-use-for-database-or-object-keys" id="values-to-use-for-database-or-object-keys" style="color: inherit; text-decoration: none;">
 					<h2>Values to use for Database or Object Keys</h2>
 				</a>
@@ -347,7 +358,8 @@ Reader.open(<span class="hljs-string">&#x27;/usr/local/share/GeoIP/GeoIP2-ISP.mm
 				<ul>
 					<li>geoip2-node.CityRecord - <code>city.geonameId</code></li>
 					<li>geoip2-node.ContinentRecord - <code>continent.code</code> or <code>continent.geonameId</code></li>
-					<li>geoip2-node.CountryRecord and geoip2.records.RepresentedCountry - <code>country.isoCode</code> or <code>country.geonameId</code></li>
+					<li>geoip2-node.CountryRecord and geoip2.records.RepresentedCountry -
+					<code>country.isoCode</code> or <code>country.geonameId</code></li>
 					<li>geoip2-node.SubdivisionsRecord - <code>subdivision.isoCode</code> or <code>subdivision.geonameId</code></li>
 				</ul>
 				<a href="#what-data-is-returned" id="what-data-is-returned" style="color: inherit; text-decoration: none;">
@@ -500,6 +512,9 @@ Reader.open(<span class="hljs-string">&#x27;/usr/local/share/GeoIP/GeoIP2-ISP.mm
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/names.html" class="tsd-kind-icon">Names</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/options.html" class="tsd-kind-icon">Options</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/postalrecord.html" class="tsd-kind-icon">Postal<wbr>Record</a>

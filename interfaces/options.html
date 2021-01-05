@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>RegisteredCountryRecord | @maxmind/geoip2-node</title>
+	<title>Options | @maxmind/geoip2-node</title>
 	<meta name="description" content="Documentation for @maxmind/geoip2-node">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="registeredcountryrecord.html">RegisteredCountryRecord</a>
+					<a href="options.html">Options</a>
 				</li>
 			</ul>
-			<h1>Interface RegisteredCountryRecord</h1>
+			<h1>Interface Options</h1>
 		</div>
 	</div>
 </header>
@@ -69,9 +69,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Contains data for the registered country record associated with an IP address. Do not
-							use any of the country names as a database or dictionary key. Use the ID or
-						relevant code instead.</p>
+						<p>Option for the WebServiceClient constructor</p>
 					</div>
 				</div>
 			</section>
@@ -79,15 +77,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">RegisteredCountryRecord</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<a href="countryrecord.html" class="tsd-signature-type">CountryRecord</a>
-							</li>
-							<li>
-								<a href="representedcountryrecord.html" class="tsd-signature-type">RepresentedCountryRecord</a>
-							</li>
-						</ul>
+						<span class="target">Options</span>
 					</li>
 				</ul>
 			</section>
@@ -98,10 +88,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="registeredcountryrecord.html#geonameid" class="tsd-kind-icon">geoname<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="registeredcountryrecord.html#isineuropeanunion" class="tsd-kind-icon">is<wbr>InEuropean<wbr>Union</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="registeredcountryrecord.html#isocode" class="tsd-kind-icon">iso<wbr>Code</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="registeredcountryrecord.html#names" class="tsd-kind-icon">names</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="options.html#host" class="tsd-kind-icon">host</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="options.html#timeout" class="tsd-kind-icon">timeout</a></li>
 							</ul>
 						</section>
 					</div>
@@ -110,64 +98,34 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="geonameid" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> geoname<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">geoname<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="host" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> host</h3>
+					<div class="tsd-signature tsd-kind-icon">host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/36b9fbd/src/records.ts#L83">src/records.ts:83</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/36b9fbd/src/webServiceClient.ts#L14">src/webServiceClient.ts:14</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The GeoName ID for the country.</p>
+							<p>The host to use when connecting to the web service. The default is
+								&quot;geoip.maxmind.com&quot;. To call the GeoLite2 web service instead of
+							GeoIP2 Precision, set this to &quot;geolite.info&quot;.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="isineuropeanunion" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> is<wbr>InEuropean<wbr>Union</h3>
-					<div class="tsd-signature tsd-kind-icon">is<wbr>InEuropean<wbr>Union<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
+					<a name="timeout" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> timeout</h3>
+					<div class="tsd-signature tsd-kind-icon">timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/36b9fbd/src/records.ts#L87">src/records.ts:87</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/36b9fbd/src/webServiceClient.ts#L16">src/webServiceClient.ts:16</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>This is true if the country is a member state of the European Union. This is available from all location services and databases.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="isocode" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> iso<wbr>Code</h3>
-					<div class="tsd-signature tsd-kind-icon">iso<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/36b9fbd/src/records.ts#L91">src/records.ts:91</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The two-character ISO 3166-1 alpha code for the country.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="names" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> names</h3>
-					<div class="tsd-signature tsd-kind-icon">names<span class="tsd-signature-symbol">:</span> <a href="names.html" class="tsd-signature-type">Names</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/36b9fbd/src/records.ts#L97">src/records.ts:97</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>An object of locale codes to the name in that locale. Don&#39;t use any of
-								these names as a database or dictionary key. Use the ID or relevant code
-							instead.</p>
+							<p>The timeout. The default is 3000</p>
 						</div>
 					</div>
 				</section>
@@ -258,33 +216,27 @@
 					<li class=" tsd-kind-interface">
 						<a href="names.html" class="tsd-kind-icon">Names</a>
 					</li>
-					<li class=" tsd-kind-interface">
-						<a href="options.html" class="tsd-kind-icon">Options</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="postalrecord.html" class="tsd-kind-icon">Postal<wbr>Record</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="registeredcountryrecord.html" class="tsd-kind-icon">Registered<wbr>Country<wbr>Record</a>
+						<a href="options.html" class="tsd-kind-icon">Options</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="registeredcountryrecord.html#geonameid" class="tsd-kind-icon">geoname<wbr>Id</a>
+								<a href="options.html#host" class="tsd-kind-icon">host</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="registeredcountryrecord.html#isineuropeanunion" class="tsd-kind-icon">is<wbr>InEuropean<wbr>Union</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="registeredcountryrecord.html#isocode" class="tsd-kind-icon">iso<wbr>Code</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="registeredcountryrecord.html#names" class="tsd-kind-icon">names</a>
+								<a href="options.html#timeout" class="tsd-kind-icon">timeout</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface">
+						<a href="postalrecord.html" class="tsd-kind-icon">Postal<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="registeredcountryrecord.html" class="tsd-kind-icon">Registered<wbr>Country<wbr>Record</a>
+					</li>
 					<li class=" tsd-kind-interface">
 						<a href="representedcountryrecord.html" class="tsd-kind-icon">Represented<wbr>Country<wbr>Record</a>
 					</li>
