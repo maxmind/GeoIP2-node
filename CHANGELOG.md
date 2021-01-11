@@ -1,7 +1,7 @@
 CHANGELOG
 =========
 
-2.1.0
+2.1.0 (2021-01-05)
 ------------------
 
 * The `WebServiceClient` class now accepts an options object as the third
