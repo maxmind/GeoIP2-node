@@ -7,6 +7,7 @@
 	<meta name="description" content="Documentation for @maxmind/geoip2-node">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
 </head>
 <body>
 <header>
@@ -40,8 +41,6 @@
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
 							<input type="checkbox" id="tsd-filter-externals" checked />
 							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-							<input type="checkbox" id="tsd-filter-only-exported" />
-							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -51,12 +50,7 @@
 	</div>
 	<div class="tsd-page-title">
 		<div class="container">
-			<ul class="tsd-breadcrumb">
-				<li>
-					<a href="globals.html">Globals</a>
-				</li>
-			</ul>
-			<h1>@maxmind/geoip2-node</h1>
+			<h1>Project @maxmind/geoip2-node</h1>
 		</div>
 	</div>
 </header>
@@ -79,9 +73,11 @@
 				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
 					<h2>Installation</h2>
 				</a>
-				<pre><code class="language-sh">yarn add @maxmind/geoip2-node</code></pre>
+				<pre><code class="language-sh"><span style="color: #000000">yarn add @maxmind/geoip2-node</span>
+</code></pre>
 				<p>If you are not able to use <code>yarn</code>, you may also use <code>npm</code>:</p>
-				<pre><code class="language-sh">npm install @maxmind/geoip2-node</code></pre>
+				<pre><code class="language-sh"><span style="color: #000000">npm install @maxmind/geoip2-node</span>
+</code></pre>
 				<a href="#ip-geolocation-usage" id="ip-geolocation-usage" style="color: inherit; text-decoration: none;">
 					<h2>IP Geolocation Usage</h2>
 				</a>
@@ -109,50 +105,53 @@
 				<a href="#country-service" id="country-service" style="color: inherit; text-decoration: none;">
 					<h3>Country Service</h3>
 				</a>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> WebServiceClient = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@maxmind/geoip2-node&#x27;</span>).WebServiceClient;
-<span class="hljs-comment">// Typescript:</span>
-<span class="hljs-comment">// import { WebServiceClient } from &#x27;@maxmind/geoip2-node&#x27;;</span>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">WebServiceClient</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">WebServiceClient</span><span style="color: #000000">;</span>
+<span style="color: #008000">// Typescript:</span>
+<span style="color: #008000">// import { WebServiceClient } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-<span class="hljs-comment">// To use the GeoLite2 web service instead of GeoIP2 Precision, set the</span>
-<span class="hljs-comment">// host to geolite.info, e.g.:</span>
-<span class="hljs-comment">// new WebServiceClient(&#x27;1234&#x27;, &#x27;licenseKey&#x27;, {host: &#x27;geolite.info&#x27;});</span>
-<span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> WebServiceClient(<span class="hljs-string">&#x27;1234&#x27;</span>, <span class="hljs-string">&#x27;licenseKey&#x27;</span>);
+<span style="color: #008000">// To use the GeoLite2 web service instead of GeoIP2 Precision, set the</span>
+<span style="color: #008000">// host to geolite.info, e.g.:</span>
+<span style="color: #008000">// new WebServiceClient(&#039;1234&#039;, &#039;licenseKey&#039;, {host: &#039;geolite.info&#039;});</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">WebServiceClient</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;1234&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;licenseKey&#039;</span><span style="color: #000000">);</span>
 
-client.country(<span class="hljs-string">&#x27;142.1.1.1&#x27;</span>).then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
-  <span class="hljs-built_in">console</span>.log(response.country.isoCode); <span class="hljs-comment">// &#x27;CA&#x27;</span>
-});</code></pre>
+<span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">country</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;142.1.1.1&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">country</span><span style="color: #000000">.</span><span style="color: #001080">isoCode</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;CA&#039;</span>
+<span style="color: #000000">});</span>
+</code></pre>
 				<a href="#city-service" id="city-service" style="color: inherit; text-decoration: none;">
 					<h3>City Service</h3>
 				</a>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> WebServiceClient = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@maxmind/geoip2-node&#x27;</span>).WebServiceClient;
-<span class="hljs-comment">// Typescript:</span>
-<span class="hljs-comment">// import { WebServiceClient } from &#x27;@maxmind/geoip2-node&#x27;;</span>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">WebServiceClient</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">WebServiceClient</span><span style="color: #000000">;</span>
+<span style="color: #008000">// Typescript:</span>
+<span style="color: #008000">// import { WebServiceClient } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-<span class="hljs-comment">// To use the GeoLite2 web service instead of GeoIP2 Precision, set the</span>
-<span class="hljs-comment">// host to geolite.info, e.g.:</span>
-<span class="hljs-comment">// new WebServiceClient(&#x27;1234&#x27;, &#x27;licenseKey&#x27;, {host: &#x27;geolite.info&#x27;});</span>
-<span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> WebServiceClient(<span class="hljs-string">&#x27;1234&#x27;</span>, <span class="hljs-string">&#x27;licenseKey&#x27;</span>);
+<span style="color: #008000">// To use the GeoLite2 web service instead of GeoIP2 Precision, set the</span>
+<span style="color: #008000">// host to geolite.info, e.g.:</span>
+<span style="color: #008000">// new WebServiceClient(&#039;1234&#039;, &#039;licenseKey&#039;, {host: &#039;geolite.info&#039;});</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">WebServiceClient</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;1234&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;licenseKey&#039;</span><span style="color: #000000">);</span>
 
-client.city(<span class="hljs-string">&#x27;142.1.1.1&#x27;</span>).then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
-  <span class="hljs-built_in">console</span>.log(response.country.isoCode); <span class="hljs-comment">// &#x27;CA&#x27;</span>
-  <span class="hljs-built_in">console</span>.log(response.postal.code); <span class="hljs-comment">// &#x27;M5S&#x27;</span>
-});</code></pre>
+<span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">city</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;142.1.1.1&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">country</span><span style="color: #000000">.</span><span style="color: #001080">isoCode</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;CA&#039;</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">postal</span><span style="color: #000000">.</span><span style="color: #001080">code</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;M5S&#039;</span>
+<span style="color: #000000">});</span>
+</code></pre>
 				<a href="#insights-service" id="insights-service" style="color: inherit; text-decoration: none;">
 					<h3>Insights Service</h3>
 				</a>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> WebServiceClient = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@maxmind/geoip2-node&#x27;</span>).WebServiceClient;
-<span class="hljs-comment">// Typescript:</span>
-<span class="hljs-comment">// import { WebServiceClient } from &#x27;@maxmind/geoip2-node&#x27;;</span>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">WebServiceClient</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">WebServiceClient</span><span style="color: #000000">;</span>
+<span style="color: #008000">// Typescript:</span>
+<span style="color: #008000">// import { WebServiceClient } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-<span class="hljs-comment">// Note that the Insights web service is only supported by GeoIP2</span>
-<span class="hljs-comment">// Precision, not the GeoLite2 web service.</span>
-<span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> WebServiceClient(<span class="hljs-string">&#x27;1234&#x27;</span>, <span class="hljs-string">&#x27;licenseKey&#x27;</span>);
+<span style="color: #008000">// Note that the Insights web service is only supported by GeoIP2</span>
+<span style="color: #008000">// Precision, not the GeoLite2 web service.</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">WebServiceClient</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;1234&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;licenseKey&#039;</span><span style="color: #000000">);</span>
 
-client.insights(<span class="hljs-string">&#x27;142.1.1.1&#x27;</span>).then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
-  <span class="hljs-built_in">console</span>.log(response.country.isoCode); <span class="hljs-comment">// &#x27;CA&#x27;</span>
-  <span class="hljs-built_in">console</span>.log(response.postal.code); <span class="hljs-comment">// &#x27;M5S&#x27;</span>
-  <span class="hljs-built_in">console</span>.log(response.traits.userType); <span class="hljs-comment">// &#x27;school&#x27;</span>
-});</code></pre>
+<span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">insights</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;142.1.1.1&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">country</span><span style="color: #000000">.</span><span style="color: #001080">isoCode</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;CA&#039;</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">postal</span><span style="color: #000000">.</span><span style="color: #001080">code</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;M5S&#039;</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">traits</span><span style="color: #000000">.</span><span style="color: #001080">userType</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;school&#039;</span>
+<span style="color: #000000">});</span>
+</code></pre>
 				<a href="#web-service-errors" id="web-service-errors" style="color: inherit; text-decoration: none;">
 					<h2>Web Service Errors</h2>
 				</a>
@@ -161,11 +160,12 @@ client.insights(<span class="hljs-string">&#x27;142.1.1.1&#x27;</span>).then(<sp
 				documentation</a>.</p>
 				<p>If the web service returns an explicit error document, the promise will be rejected
 				with the following object structure:</p>
-				<pre><code class="language-js">{
-  <span class="hljs-attr">code</span>: <span class="hljs-string">&#x27;THE_ERROR_CODE&#x27;</span>,
-  <span class="hljs-attr">error</span>: <span class="hljs-string">&#x27;some human readable error&#x27;</span>,
-  <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;https://geoip.maxmind.com...&#x27;</span>,
-}</code></pre>
+				<pre><code class="language-js"><span style="color: #000000">{</span>
+<span style="color: #000000">  code: </span><span style="color: #A31515">&#039;THE_ERROR_CODE&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  error: </span><span style="color: #A31515">&#039;some human readable error&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  url: </span><span style="color: #A31515">&#039;https://geoip.maxmind.com...&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">}</span>
+</code></pre>
 				<p>In addition to the possible errors returned by the web service, the following error
 				codes are provided:</p>
 				<ul>
@@ -190,17 +190,18 @@ client.insights(<span class="hljs-string">&#x27;142.1.1.1&#x27;</span>).then(<sp
 					database reader. As such, you have access to the same
 					<a href="https://github.com/runk/node-maxmind#options">options</a> found in that library
 				and can be used like this:</p>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@maxmind/geoip2-node&#x27;</span>).Reader;
-<span class="hljs-comment">// Typescript:</span>
-<span class="hljs-comment">// import { Reader } from &#x27;@maxmind/geoip2-node&#x27;;</span>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">Reader</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Reader</span><span style="color: #000000">;</span>
+<span style="color: #008000">// Typescript:</span>
+<span style="color: #008000">// import { Reader } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-<span class="hljs-keyword">const</span> options = {
-  <span class="hljs-comment">// you can use options like `cache` or `watchForUpdates`</span>
-};
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">options</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">  </span><span style="color: #008000">// you can use options like `cache` or `watchForUpdates`</span>
+<span style="color: #000000">};</span>
 
-Reader.open(<span class="hljs-string">&#x27;/usr/local/database.mmdb&#x27;</span>, options).then(<span class="hljs-function"><span class="hljs-params">reader</span> =&gt;</span> {
-  <span class="hljs-built_in">console</span>.log(reader.country(<span class="hljs-string">&#x27;1.1.1.1&#x27;</span>));
-});</code></pre>
+<span style="color: #001080">Reader</span><span style="color: #000000">.</span><span style="color: #795E26">open</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/usr/local/database.mmdb&#039;</span><span style="color: #000000">, </span><span style="color: #001080">options</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">reader</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">reader</span><span style="color: #000000">.</span><span style="color: #795E26">country</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;1.1.1.1&#039;</span><span style="color: #000000">));</span>
+<span style="color: #000000">});</span>
+</code></pre>
 				<a href="#using-a-buffer" id="using-a-buffer" style="color: inherit; text-decoration: none;">
 					<h3>Using a Buffer</h3>
 				</a>
@@ -210,130 +211,139 @@ Reader.open(<span class="hljs-string">&#x27;/usr/local/database.mmdb&#x27;</span
 					<li>You want to open the database in a synchronous manner.</li>
 					<li>You want to fetch the database from an external source.</li>
 				</ul>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);
-<span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@maxmind/geoip2-node&#x27;</span>).Reader;
-<span class="hljs-comment">// Typescript:</span>
-<span class="hljs-comment">// import { Reader } from &#x27;@maxmind/geoip2-node&#x27;;</span>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">fs</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;fs&#039;</span><span style="color: #000000">);</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">Reader</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Reader</span><span style="color: #000000">;</span>
+<span style="color: #008000">// Typescript:</span>
+<span style="color: #008000">// import { Reader } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-<span class="hljs-keyword">const</span> dbBuffer = fs.readFileSync(<span class="hljs-string">&#x27;/usr/local/city-database.mmdb&#x27;</span>);
-<span class="hljs-keyword">const</span> reader = Reader.openBuffer(dbBuffer);
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">dbBuffer</span><span style="color: #000000"> = </span><span style="color: #001080">fs</span><span style="color: #000000">.</span><span style="color: #795E26">readFileSync</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/usr/local/city-database.mmdb&#039;</span><span style="color: #000000">);</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">reader</span><span style="color: #000000"> = </span><span style="color: #001080">Reader</span><span style="color: #000000">.</span><span style="color: #795E26">openBuffer</span><span style="color: #000000">(</span><span style="color: #001080">dbBuffer</span><span style="color: #000000">);</span>
 
-<span class="hljs-built_in">console</span>.log(reader.city(<span class="hljs-string">&#x27;1.1.1.1&#x27;</span>));</code></pre>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">reader</span><span style="color: #000000">.</span><span style="color: #795E26">city</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;1.1.1.1&#039;</span><span style="color: #000000">));</span>
+</code></pre>
 				<a href="#database-examples" id="database-examples" style="color: inherit; text-decoration: none;">
 					<h2>Database Examples</h2>
 				</a>
 				<a href="#anonymous-ip-database-example" id="anonymous-ip-database-example" style="color: inherit; text-decoration: none;">
 					<h3>Anonymous IP Database Example</h3>
 				</a>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@maxmind/geoip2-node&#x27;</span>).Reader;
-<span class="hljs-comment">// Typescript:</span>
-<span class="hljs-comment">// import { Reader } from &#x27;@maxmind/geoip2-node&#x27;;</span>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">Reader</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Reader</span><span style="color: #000000">;</span>
+<span style="color: #008000">// Typescript:</span>
+<span style="color: #008000">// import { Reader } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-Reader.open(<span class="hljs-string">&#x27;/usr/local/share/GeoIP/GeoIP2-Anonymous-IP.mmdb&#x27;</span>).then(<span class="hljs-function"><span class="hljs-params">reader</span> =&gt;</span> {
-  <span class="hljs-keyword">const</span> response = reader.anonymousIP(<span class="hljs-string">&#x27;85.25.43.84&#x27;</span>);
+<span style="color: #001080">Reader</span><span style="color: #000000">.</span><span style="color: #795E26">open</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/usr/local/share/GeoIP/GeoIP2-Anonymous-IP.mmdb&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">reader</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">response</span><span style="color: #000000"> = </span><span style="color: #001080">reader</span><span style="color: #000000">.</span><span style="color: #795E26">anonymousIP</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;85.25.43.84&#039;</span><span style="color: #000000">);</span>
 
-  <span class="hljs-built_in">console</span>.log(response.isAnonymous); <span class="hljs-comment">// true</span>
-  <span class="hljs-built_in">console</span>.log(response.isAnonymousVpn); <span class="hljs-comment">// false</span>
-  <span class="hljs-built_in">console</span>.log(response.isHostingProvider); <span class="hljs-comment">// true</span>
-  <span class="hljs-built_in">console</span>.log(response.isPublicProxy); <span class="hljs-comment">// false</span>
-  <span class="hljs-built_in">console</span>.log(response.isResidentialProxy); <span class="hljs-comment">// false</span>
-  <span class="hljs-built_in">console</span>.log(response.isTorExitNode); <span class="hljs-comment">// false</span>
-  <span class="hljs-built_in">console</span>.log(response.ipAddress); <span class="hljs-comment">// &#x27;85.25.43.84&#x27;</span>
-});</code></pre>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">isAnonymous</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">isAnonymousVpn</span><span style="color: #000000">); </span><span style="color: #008000">// false</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">isHostingProvider</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">isPublicProxy</span><span style="color: #000000">); </span><span style="color: #008000">// false</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">isResidentialProxy</span><span style="color: #000000">); </span><span style="color: #008000">// false</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">isTorExitNode</span><span style="color: #000000">); </span><span style="color: #008000">// false</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">ipAddress</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;85.25.43.84&#039;</span>
+<span style="color: #000000">});</span>
+</code></pre>
 				<a href="#asn-example" id="asn-example" style="color: inherit; text-decoration: none;">
 					<h3>ASN Example</h3>
 				</a>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@maxmind/geoip2-node&#x27;</span>).Reader;
-<span class="hljs-comment">// Typescript:</span>
-<span class="hljs-comment">// import { Reader } from &#x27;@maxmind/geoip2-node&#x27;;</span>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">Reader</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Reader</span><span style="color: #000000">;</span>
+<span style="color: #008000">// Typescript:</span>
+<span style="color: #008000">// import { Reader } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-Reader.open(<span class="hljs-string">&#x27;/usr/local/share/GeoIP/GeoLite2-ASN.mmdb&#x27;</span>).then(<span class="hljs-function"><span class="hljs-params">reader</span> =&gt;</span> {
-  <span class="hljs-keyword">const</span> response = reader.asn(<span class="hljs-string">&#x27;128.101.101.101&#x27;</span>);
+<span style="color: #001080">Reader</span><span style="color: #000000">.</span><span style="color: #795E26">open</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/usr/local/share/GeoIP/GeoLite2-ASN.mmdb&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">reader</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">response</span><span style="color: #000000"> = </span><span style="color: #001080">reader</span><span style="color: #000000">.</span><span style="color: #795E26">asn</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;128.101.101.101&#039;</span><span style="color: #000000">);</span>
 
-  <span class="hljs-built_in">console</span>.log(response.autonomousSystemNumber); <span class="hljs-comment">// 217</span>
-  <span class="hljs-built_in">console</span>.log(response.autonomousSystemOrganization); <span class="hljs-comment">// &#x27;University of Minnesota&#x27;</span>
-});</code></pre>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">autonomousSystemNumber</span><span style="color: #000000">); </span><span style="color: #008000">// 217</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">autonomousSystemOrganization</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;University of Minnesota&#039;</span>
+<span style="color: #000000">});</span>
+</code></pre>
 				<a href="#city-example" id="city-example" style="color: inherit; text-decoration: none;">
 					<h3>City Example</h3>
 				</a>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@maxmind/geoip2-node&#x27;</span>).Reader;
-<span class="hljs-comment">// Typescript:</span>
-<span class="hljs-comment">// import { Reader } from &#x27;@maxmind/geoip2-node&#x27;;</span>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">Reader</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Reader</span><span style="color: #000000">;</span>
+<span style="color: #008000">// Typescript:</span>
+<span style="color: #008000">// import { Reader } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-Reader.open(<span class="hljs-string">&#x27;/usr/local/share/GeoIP/GeoIP2-City.mmdb&#x27;</span>).then(<span class="hljs-function"><span class="hljs-params">reader</span> =&gt;</span> {
-  <span class="hljs-keyword">const</span> response = reader.city(<span class="hljs-string">&#x27;128.101.101.101&#x27;</span>);
+<span style="color: #001080">Reader</span><span style="color: #000000">.</span><span style="color: #795E26">open</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/usr/local/share/GeoIP/GeoIP2-City.mmdb&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">reader</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">response</span><span style="color: #000000"> = </span><span style="color: #001080">reader</span><span style="color: #000000">.</span><span style="color: #795E26">city</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;128.101.101.101&#039;</span><span style="color: #000000">);</span>
 
-  <span class="hljs-built_in">console</span>.log(response.country.isoCode); <span class="hljs-comment">// &#x27;US&#x27;</span>
-  <span class="hljs-built_in">console</span>.log(response.city.names.en); <span class="hljs-comment">// &#x27;Minneapolis&#x27;</span>
-  <span class="hljs-built_in">console</span>.log(response.postal.code); <span class="hljs-comment">// &#x27;55407&#x27;</span>
-});</code></pre>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">country</span><span style="color: #000000">.</span><span style="color: #001080">isoCode</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;US&#039;</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">city</span><span style="color: #000000">.</span><span style="color: #001080">names</span><span style="color: #000000">.</span><span style="color: #001080">en</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;Minneapolis&#039;</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">postal</span><span style="color: #000000">.</span><span style="color: #001080">code</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;55407&#039;</span>
+<span style="color: #000000">});</span>
+</code></pre>
 				<a href="#connection-type-example" id="connection-type-example" style="color: inherit; text-decoration: none;">
 					<h3>Connection-Type Example</h3>
 				</a>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@maxmind/geoip2-node&#x27;</span>).Reader;
-<span class="hljs-comment">// Typescript:</span>
-<span class="hljs-comment">// import { Reader } from &#x27;@maxmind/geoip2-node&#x27;;</span>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">Reader</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Reader</span><span style="color: #000000">;</span>
+<span style="color: #008000">// Typescript:</span>
+<span style="color: #008000">// import { Reader } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-Reader.open(<span class="hljs-string">&#x27;/usr/local/share/GeoIP/GeoIP2-Connection-Type.mmdb&#x27;</span>).then(<span class="hljs-function"><span class="hljs-params">reader</span> =&gt;</span> {
-  <span class="hljs-keyword">const</span> response = reader.connectionType(<span class="hljs-string">&#x27;128.101.101.101&#x27;</span>);
+<span style="color: #001080">Reader</span><span style="color: #000000">.</span><span style="color: #795E26">open</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/usr/local/share/GeoIP/GeoIP2-Connection-Type.mmdb&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">reader</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">response</span><span style="color: #000000"> = </span><span style="color: #001080">reader</span><span style="color: #000000">.</span><span style="color: #795E26">connectionType</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;128.101.101.101&#039;</span><span style="color: #000000">);</span>
 
-  <span class="hljs-built_in">console</span>.log(response.connectionType) <span class="hljs-comment">// &#x27;Cable/DSL&#x27;</span>
-  <span class="hljs-built_in">console</span>.log(response.ipAddress) <span class="hljs-comment">// &#x27;128.101.101.101&#x27;</span>
-});</code></pre>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">connectionType</span><span style="color: #000000">) </span><span style="color: #008000">// &#039;Cable/DSL&#039;</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">ipAddress</span><span style="color: #000000">) </span><span style="color: #008000">// &#039;128.101.101.101&#039;</span>
+<span style="color: #000000">});</span>
+</code></pre>
 				<a href="#country-example" id="country-example" style="color: inherit; text-decoration: none;">
 					<h3>Country Example</h3>
 				</a>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@maxmind/geoip2-node&#x27;</span>).Reader;
-<span class="hljs-comment">// Typescript:</span>
-<span class="hljs-comment">// import { Reader } from &#x27;@maxmind/geoip2-node&#x27;;</span>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">Reader</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Reader</span><span style="color: #000000">;</span>
+<span style="color: #008000">// Typescript:</span>
+<span style="color: #008000">// import { Reader } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-Reader.open(<span class="hljs-string">&#x27;/usr/local/share/GeoIP/GeoIP2-Country.mmdb&#x27;</span>).then(<span class="hljs-function"><span class="hljs-params">reader</span> =&gt;</span> {
-  <span class="hljs-keyword">const</span> response = reader.country(<span class="hljs-string">&#x27;128.101.101.101&#x27;</span>);
+<span style="color: #001080">Reader</span><span style="color: #000000">.</span><span style="color: #795E26">open</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/usr/local/share/GeoIP/GeoIP2-Country.mmdb&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">reader</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">response</span><span style="color: #000000"> = </span><span style="color: #001080">reader</span><span style="color: #000000">.</span><span style="color: #795E26">country</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;128.101.101.101&#039;</span><span style="color: #000000">);</span>
 
-  <span class="hljs-built_in">console</span>.log(response.country.isoCode); <span class="hljs-comment">// &#x27;US&#x27;</span>
-});</code></pre>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">country</span><span style="color: #000000">.</span><span style="color: #001080">isoCode</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;US&#039;</span>
+<span style="color: #000000">});</span>
+</code></pre>
 				<a href="#domain-example" id="domain-example" style="color: inherit; text-decoration: none;">
 					<h3>Domain Example</h3>
 				</a>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@maxmind/geoip2-node&#x27;</span>).Reader;
-<span class="hljs-comment">// Typescript:</span>
-<span class="hljs-comment">// import { Reader } from &#x27;@maxmind/geoip2-node&#x27;;</span>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">Reader</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Reader</span><span style="color: #000000">;</span>
+<span style="color: #008000">// Typescript:</span>
+<span style="color: #008000">// import { Reader } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-Reader.open(<span class="hljs-string">&#x27;/usr/local/share/GeoIP/GeoIP2-Domain.mmdb&#x27;</span>).then(<span class="hljs-function"><span class="hljs-params">reader</span> =&gt;</span> {
-  <span class="hljs-keyword">const</span> response = reader.domain(<span class="hljs-string">&#x27;128.101.101.101&#x27;</span>);
+<span style="color: #001080">Reader</span><span style="color: #000000">.</span><span style="color: #795E26">open</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/usr/local/share/GeoIP/GeoIP2-Domain.mmdb&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">reader</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">response</span><span style="color: #000000"> = </span><span style="color: #001080">reader</span><span style="color: #000000">.</span><span style="color: #795E26">domain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;128.101.101.101&#039;</span><span style="color: #000000">);</span>
 
-  <span class="hljs-built_in">console</span>.log(response.domain) <span class="hljs-comment">// &#x27;umn.edu&#x27;</span>
-  <span class="hljs-built_in">console</span>.log(response.ipAddress) <span class="hljs-comment">// &#x27;128.101.101.101&#x27;</span>
-});</code></pre>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">domain</span><span style="color: #000000">) </span><span style="color: #008000">// &#039;umn.edu&#039;</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">ipAddress</span><span style="color: #000000">) </span><span style="color: #008000">// &#039;128.101.101.101&#039;</span>
+<span style="color: #000000">});</span>
+</code></pre>
 				<a href="#enterprise-example" id="enterprise-example" style="color: inherit; text-decoration: none;">
 					<h3>Enterprise Example</h3>
 				</a>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@maxmind/geoip2-node&#x27;</span>).Reader;
-<span class="hljs-comment">// Typescript:</span>
-<span class="hljs-comment">// import { Reader } from &#x27;@maxmind/geoip2-node&#x27;;</span>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">Reader</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Reader</span><span style="color: #000000">;</span>
+<span style="color: #008000">// Typescript:</span>
+<span style="color: #008000">// import { Reader } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-Reader.open(<span class="hljs-string">&#x27;/usr/local/share/GeoIP/GeoIP2-Enterprise.mmdb&#x27;</span>).then(<span class="hljs-function"><span class="hljs-params">reader</span> =&gt;</span> {
-  <span class="hljs-keyword">const</span> response = reader.enterprise(<span class="hljs-string">&#x27;128.101.101.101&#x27;</span>);
+<span style="color: #001080">Reader</span><span style="color: #000000">.</span><span style="color: #795E26">open</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/usr/local/share/GeoIP/GeoIP2-Enterprise.mmdb&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">reader</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">response</span><span style="color: #000000"> = </span><span style="color: #001080">reader</span><span style="color: #000000">.</span><span style="color: #795E26">enterprise</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;128.101.101.101&#039;</span><span style="color: #000000">);</span>
 
-  <span class="hljs-built_in">console</span>.log(response.country.isoCode) <span class="hljs-comment">// &#x27;US&#x27;</span>
-});</code></pre>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">country</span><span style="color: #000000">.</span><span style="color: #001080">isoCode</span><span style="color: #000000">) </span><span style="color: #008000">// &#039;US&#039;</span>
+<span style="color: #000000">});</span>
+</code></pre>
 				<a href="#isp-example" id="isp-example" style="color: inherit; text-decoration: none;">
 					<h3>ISP Example</h3>
 				</a>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> Reader = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@maxmind/geoip2-node&#x27;</span>).Reader;
-<span class="hljs-comment">// Typescript:</span>
-<span class="hljs-comment">// import { Reader } from &#x27;@maxmind/geoip2-node&#x27;;</span>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">Reader</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Reader</span><span style="color: #000000">;</span>
+<span style="color: #008000">// Typescript:</span>
+<span style="color: #008000">// import { Reader } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-Reader.open(<span class="hljs-string">&#x27;/usr/local/share/GeoIP/GeoIP2-ISP.mmdb&#x27;</span>).then(<span class="hljs-function"><span class="hljs-params">reader</span> =&gt;</span> {
-  <span class="hljs-keyword">const</span> response = reader.isp(<span class="hljs-string">&#x27;128.101.101.101&#x27;</span>);
+<span style="color: #001080">Reader</span><span style="color: #000000">.</span><span style="color: #795E26">open</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/usr/local/share/GeoIP/GeoIP2-ISP.mmdb&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">reader</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">response</span><span style="color: #000000"> = </span><span style="color: #001080">reader</span><span style="color: #000000">.</span><span style="color: #795E26">isp</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;128.101.101.101&#039;</span><span style="color: #000000">);</span>
 
-  <span class="hljs-built_in">console</span>.log(response.autonomousSystemNumber); <span class="hljs-comment">// 217</span>
-  <span class="hljs-built_in">console</span>.log(response.autonomousSystemOrganization); <span class="hljs-comment">// &#x27;University of Minnesota&#x27;</span>
-  <span class="hljs-built_in">console</span>.log(response.isp); <span class="hljs-comment">// &#x27;University of Minnesota&#x27;</span>
-  <span class="hljs-built_in">console</span>.log(response.organization); <span class="hljs-comment">// &#x27;University of Minnesota&#x27;</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">autonomousSystemNumber</span><span style="color: #000000">); </span><span style="color: #008000">// 217</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">autonomousSystemOrganization</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;University of Minnesota&#039;</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">isp</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;University of Minnesota&#039;</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">organization</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;University of Minnesota&#039;</span>
 
-  <span class="hljs-built_in">console</span>.log(response.ipAddress); <span class="hljs-comment">// &#x27;128.101.101.101&#x27;</span>
-});</code></pre>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">ipAddress</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;128.101.101.101&#039;</span>
+<span style="color: #000000">});</span>
+</code></pre>
 				<a href="#database-exceptions" id="database-exceptions" style="color: inherit; text-decoration: none;">
 					<h2>Database Exceptions</h2>
 				</a>
@@ -424,31 +434,25 @@ Reader.open(<span class="hljs-string">&#x27;/usr/local/share/GeoIP/GeoIP2-ISP.mm
 				<a href="#copyright-and-license" id="copyright-and-license" style="color: inherit; text-decoration: none;">
 					<h2>Copyright and License</h2>
 				</a>
-				<p>This software is Copyright (c) 2018-2020 by MaxMind, Inc.</p>
+				<p>This software is Copyright (c) 2018-2021 by MaxMind, Inc.</p>
 				<p>This is free software, licensed under the Apache License, Version 2.0.</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
-						<a href="globals.html"><em>Globals</em></a>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class">
-						<a href="classes/addressnotfounderror.html" class="tsd-kind-icon">Address<wbr>Not<wbr>Found<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-class">
 						<a href="classes/anonymousip.html" class="tsd-kind-icon">AnonymousIP</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/asn.html" class="tsd-kind-icon">Asn</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/badmethodcallerror.html" class="tsd-kind-icon">Bad<wbr>Method<wbr>Call<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/city.html" class="tsd-kind-icon">City</a>
@@ -469,9 +473,6 @@ Reader.open(<span class="hljs-string">&#x27;/usr/local/share/GeoIP/GeoIP2-ISP.mm
 						<a href="classes/insights.html" class="tsd-kind-icon">Insights</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/invaliddbbuffererror.html" class="tsd-kind-icon">Invalid<wbr>DbBuffer<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-class">
 						<a href="classes/isp.html" class="tsd-kind-icon">Isp</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -481,28 +482,16 @@ Reader.open(<span class="hljs-string">&#x27;/usr/local/share/GeoIP/GeoIP2-ISP.mm
 						<a href="classes/readermodel.html" class="tsd-kind-icon">Reader<wbr>Model</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/valueerror.html" class="tsd-kind-icon">Value<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-class">
 						<a href="classes/webserviceclient.html" class="tsd-kind-icon">Web<wbr>Service<wbr>Client</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/cityrecord.html" class="tsd-kind-icon">City<wbr>Record</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/cityresponse.html" class="tsd-kind-icon">City<wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-interface">
 						<a href="interfaces/continentrecord.html" class="tsd-kind-icon">Continent<wbr>Record</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/countryrecord.html" class="tsd-kind-icon">Country<wbr>Record</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/countryresponse.html" class="tsd-kind-icon">Country<wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/json.html" class="tsd-kind-icon">Json</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/locationrecord.html" class="tsd-kind-icon">Location<wbr>Record</a>
@@ -514,9 +503,6 @@ Reader.open(<span class="hljs-string">&#x27;/usr/local/share/GeoIP/GeoIP2-ISP.mm
 						<a href="interfaces/names.html" class="tsd-kind-icon">Names</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/options.html" class="tsd-kind-icon">Options</a>
-					</li>
-					<li class=" tsd-kind-interface">
 						<a href="interfaces/postalrecord.html" class="tsd-kind-icon">Postal<wbr>Record</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -526,37 +512,10 @@ Reader.open(<span class="hljs-string">&#x27;/usr/local/share/GeoIP/GeoIP2-ISP.mm
 						<a href="interfaces/representedcountryrecord.html" class="tsd-kind-icon">Represented<wbr>Country<wbr>Record</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/responseerror.html" class="tsd-kind-icon">Response<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-interface">
 						<a href="interfaces/subdivisionsrecord.html" class="tsd-kind-icon">Subdivisions<wbr>Record</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/traitsrecord.html" class="tsd-kind-icon">Traits<wbr>Record</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/webserviceclienterror.html" class="tsd-kind-icon">Web<wbr>Service<wbr>Client<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#servicepath" class="tsd-kind-icon">service<wbr>Path</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="globals.html#camelcasekeys" class="tsd-kind-icon">camelcase<wbr>Keys</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="globals.html#http" class="tsd-kind-icon">http</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="globals.html#https" class="tsd-kind-icon">https</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="globals.html#ip6addr" class="tsd-kind-icon">ip6addr</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="globals.html#mmdb" class="tsd-kind-icon">mmdb</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="globals.html#set" class="tsd-kind-icon">set</a>
 					</li>
 				</ul>
 			</nav>
@@ -573,18 +532,18 @@ Reader.open(<span class="hljs-string">&#x27;/usr/local/share/GeoIP/GeoIP2-ISP.mm
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
 			</ul>
 		</div>
 	</div>
