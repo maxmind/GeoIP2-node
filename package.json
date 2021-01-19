@@ -53,8 +53,7 @@
     "*.json": ["prettier --parser json --write", "git add"],
     "*.ts": [
       "prettier --parser typescript --single-quote true --trailing-comma es5 --write",
-      "tslint -p tsconfig.lint.json -t stylish",
-      "git add"
+      "tslint -p tsconfig.lint.json -t stylish"
     ]
   },
   "publishConfig": {
