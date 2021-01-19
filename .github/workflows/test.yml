@@ -22,6 +22,7 @@ jobs:
       - run: yarn install
       - run: yarn test --coverage
       - run: yarn build
+      - run: yarn build:docs
       - run: yarn link
       - run: yarn
         working-directory: e2e/js
