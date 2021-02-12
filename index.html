@@ -50,7 +50,7 @@
 	</div>
 	<div class="tsd-page-title">
 		<div class="container">
-			<h1>Project @maxmind/geoip2-node</h1>
+			<h1>@maxmind/geoip2-node</h1>
 		</div>
 	</div>
 </header>
@@ -112,7 +112,7 @@
 <span style="color: #008000">// To use the GeoLite2 web service instead of GeoIP2 Precision, set the</span>
 <span style="color: #008000">// host to geolite.info, e.g.:</span>
 <span style="color: #008000">// new WebServiceClient(&#039;1234&#039;, &#039;licenseKey&#039;, {host: &#039;geolite.info&#039;});</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">WebServiceClient</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;1234&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;licenseKey&#039;</span><span style="color: #000000">);</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">WebServiceClient</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;1234&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;licenseKey&#039;</span><span style="color: #000000">);</span>
 
 <span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">country</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;142.1.1.1&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">country</span><span style="color: #000000">.</span><span style="color: #001080">isoCode</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;CA&#039;</span>
@@ -128,7 +128,7 @@
 <span style="color: #008000">// To use the GeoLite2 web service instead of GeoIP2 Precision, set the</span>
 <span style="color: #008000">// host to geolite.info, e.g.:</span>
 <span style="color: #008000">// new WebServiceClient(&#039;1234&#039;, &#039;licenseKey&#039;, {host: &#039;geolite.info&#039;});</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">WebServiceClient</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;1234&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;licenseKey&#039;</span><span style="color: #000000">);</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">WebServiceClient</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;1234&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;licenseKey&#039;</span><span style="color: #000000">);</span>
 
 <span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">city</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;142.1.1.1&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">country</span><span style="color: #000000">.</span><span style="color: #001080">isoCode</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;CA&#039;</span>
@@ -144,7 +144,7 @@
 
 <span style="color: #008000">// Note that the Insights web service is only supported by GeoIP2</span>
 <span style="color: #008000">// Precision, not the GeoLite2 web service.</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">WebServiceClient</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;1234&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;licenseKey&#039;</span><span style="color: #000000">);</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">WebServiceClient</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;1234&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;licenseKey&#039;</span><span style="color: #000000">);</span>
 
 <span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">insights</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;142.1.1.1&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">country</span><span style="color: #000000">.</span><span style="color: #001080">isoCode</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;CA&#039;</span>
