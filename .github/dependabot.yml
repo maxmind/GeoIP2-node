@@ -4,4 +4,7 @@ updates:
   directory: "/"
   schedule:
     interval: weekly
-  open-pull-requests-limit: 10
+  # We are disabling Dependabot for Node repos until it supports
+  # grouped updates:
+  # https://github.com/dependabot/dependabot-core/issues/1190
+  open-pull-requests-limit: 0
