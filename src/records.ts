@@ -324,7 +324,7 @@ export interface TraitsRecord {
    * For example, many IP addresses with a `userType` of `cellular` have a lifetime
    * under one. Static Cable/DSL IPs typically have a lifetime above thirty.
    */
-  readonly staticIPScore?: number;
+  readonly staticIpScore?: number;
   /**
    * The estimated number of users sharing the IP/network during the past 24
    * hours. For IPv4, the count is for the individual IP. For IPv6, the count
