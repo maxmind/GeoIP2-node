@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+2.3.2
+------------------
+
+* The `staticIpScore` property was incorrectly spelled `staticIPScore`.
+  This is now fixed. Reported by griffyn-showit. GitHub #402.
+
 2.3.1 (2021-03-17)
 ------------------
 
