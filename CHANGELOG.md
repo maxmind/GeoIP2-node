@@ -1,7 +1,7 @@
 CHANGELOG
 =========
 
-2.3.2
+2.3.2 (2021-04-13)
 ------------------
 
 * The `staticIpScore` property was incorrectly spelled `staticIPScore`.
