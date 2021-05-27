@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+3.0.0 (XXXX)
+------------------
+
+* **Breaking** Drop node 10 support
+* Upgrade yarn dependencies
+
 2.3.2 (2021-04-13)
 ------------------
 
