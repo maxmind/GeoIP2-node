@@ -40,10 +40,10 @@ export default class Country {
    * @param response The GeoIP2 response
    */
   public constructor(response: CountryResponse) {
-    const camelcaseResponse = (camelcaseKeys(response as Json, {
+    const camelcaseResponse = camelcaseKeys(response as Json, {
       deep: true,
       exclude: [/\-/],
-    }) as unknown) as Country;
+    }) as unknown as Country;
 
     this.continent = camelcaseResponse.continent || undefined;
     this.country = camelcaseResponse.country || undefined;

@@ -385,7 +385,7 @@ correction, please [contact MaxMind support for help](https://support.maxmind.co
 
 ## Requirements
 
-MaxMind has tested this API with Node.js versions 10 and 12.  We aim to support
+MaxMind has tested this API with Node.js versions 12 and 14.  We aim to support
 active LTS versions of Node.js, as well as the latest stable release.
 
 ## Contributing

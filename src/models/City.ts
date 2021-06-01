@@ -35,10 +35,10 @@ export default class City extends Country {
   public constructor(response: CityResponse) {
     super(response);
 
-    const camelcaseResponse = (camelcaseKeys(response as Json, {
+    const camelcaseResponse = camelcaseKeys(response as Json, {
       deep: true,
       exclude: [/\-/],
-    }) as unknown) as City;
+    }) as unknown as City;
 
     this.city = camelcaseResponse.city || undefined;
     this.location = camelcaseResponse.location || undefined;
