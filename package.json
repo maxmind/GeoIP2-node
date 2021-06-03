@@ -1,6 +1,6 @@
 {
   "name": "@maxmind/geoip2-node",
-  "version": "2.3.2",
+  "version": "3.0.0",
   "description": "Node.js API for GeoIP2 webservice client and database reader",
   "main": "dist/src/index.js",
   "homepage": "https://github.com/maxmind/GeoIP2-node",
@@ -63,7 +63,6 @@
     "prettier:json": "prettier --parser json --write '**/*.json'",
     "test": "jest",
     "test:watch": "jest --watch",
-    "version": "yarn build:docs && yarn deploy:docs",
     "postinstall": "husky install",
     "prepublishOnly": "yarn build && yarn test && yarn lint && yarn build:docs && yarn deploy:docs && pinst --disable",
     "postpublish": "pinst --enable"
