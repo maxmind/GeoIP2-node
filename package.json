@@ -34,7 +34,6 @@
     "lint-staged": "^11.0.0",
     "lodash": "^4.17.11",
     "nock": "^13.0.2",
-    "np": "^7.0.0",
     "pinst": "^2.1.4",
     "prettier": "^2.0.3",
     "ts-jest": "^27.0.1",
@@ -62,12 +61,11 @@
     "prettier:ts": "prettier --parser typescript --single-quote true --trailing-comma es5 --write 'src/**/*.ts'",
     "prettier:ci": "prettier --parser typescript --single-quote true --trailing-comma es5 --list-different 'src/**/*.ts'",
     "prettier:json": "prettier --parser json --write '**/*.json'",
-    "release": "yarn build && np",
     "test": "jest",
     "test:watch": "jest --watch",
     "version": "yarn build:docs && yarn deploy:docs",
     "postinstall": "husky install",
-    "prepublishOnly": "pinst --disable",
+    "prepublishOnly": "yarn build && yarn test && yarn lint && yarn build:docs && yarn deploy:docs && pinst --disable",
     "postpublish": "pinst --enable"
   },
   "dependencies": {
