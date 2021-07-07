@@ -27,9 +27,9 @@
   "devDependencies": {
     "@types/jest": "^26.0.0",
     "@types/lodash.set": "^4.3.4",
-    "@types/node": "^15.6.1",
+    "@types/node": "^16.0.1",
     "gh-pages": "^3.0.0",
-    "husky": "6",
+    "husky": "7.0.1",
     "jest": "^27.0.1",
     "lint-staged": "^11.0.0",
     "lodash": "^4.17.11",
@@ -40,8 +40,8 @@
     "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.15.0",
     "tslint-eslint-rules": "^5.4.0",
-    "typedoc": "^0.20.16",
-    "typescript": "4.2"
+    "typedoc": "^0.21.2",
+    "typescript": "4.3.5"
   },
   "lint-staged": {
     "*.json": ["prettier --parser json --write"],
@@ -68,7 +68,7 @@
     "postpublish": "pinst --enable"
   },
   "dependencies": {
-    "camelcase-keys": "^6.0.1",
+    "camelcase-keys": "^7.0.0",
     "ip6addr": "^0.2.3",
     "lodash.set": "^4.3.2",
     "maxmind": "^4.2.0"
