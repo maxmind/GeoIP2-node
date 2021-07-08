@@ -1,7 +1,7 @@
 CHANGELOG
 =========
 
-3.1.0 (XXXX)
+3.1.0 (2021-07-08)
 ------------------
 
 * Upgrade yarn dependencies
