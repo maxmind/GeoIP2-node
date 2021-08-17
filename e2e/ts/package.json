@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@types/jest": "^26.0.22",
+    "@types/jest": "^27.0.1",
     "jest": "^27.0.1",
     "ts-jest": "^27.0.1",
     "typescript": "^4.2.4"
