@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>RepresentedCountryRecord | @maxmind/geoip2-node</title>
+	<title>CountryRecord | @maxmind/geoip2-node</title>
 	<meta name="description" content="Documentation for @maxmind/geoip2-node">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@maxmind/geoip2-node</a>
 				</li>
 				<li>
-					<a href="representedcountryrecord.html">RepresentedCountryRecord</a>
+					<a href="CountryRecord.html">CountryRecord</a>
 				</li>
 			</ul>
-			<h1>Interface RepresentedCountryRecord</h1>
+			<h1>Interface CountryRecord</h1>
 		</div>
 	</div>
 </header>
@@ -68,11 +68,9 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Contains data for the represented country associated with an IP address.
-							This class contains the country-level data associated with an IP address for
-							the IP&#39;s represented country. The represented country is the country
-							represented by something like a military base. Do not use any of the country
-						names as a database or dictionary key. Use the ID or relevant instead.</p>
+						<p>Contains data for the country record associated with an IP address. Do not
+							use any of the country names as a database or dictionary key. Use the ID or
+						relevant code instead.</p>
 					</div>
 				</div>
 			</section>
@@ -80,10 +78,10 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="registeredcountryrecord.html" class="tsd-signature-type" data-tsd-kind="Interface">RegisteredCountryRecord</a>
+						<a href="RegisteredCountryRecord.html" class="tsd-signature-type" data-tsd-kind="Interface">RegisteredCountryRecord</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">RepresentedCountryRecord</span>
+								<span class="target">CountryRecord</span>
 							</li>
 						</ul>
 					</li>
@@ -96,11 +94,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="representedcountryrecord.html#geonameid" class="tsd-kind-icon">geoname<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="representedcountryrecord.html#isineuropeanunion" class="tsd-kind-icon">is<wbr>InEuropean<wbr>Union</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="representedcountryrecord.html#isocode" class="tsd-kind-icon">iso<wbr>Code</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="representedcountryrecord.html#names" class="tsd-kind-icon">names</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="representedcountryrecord.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="CountryRecord.html#confidence" class="tsd-kind-icon">confidence</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="CountryRecord.html#geonameId" class="tsd-kind-icon">geoname<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="CountryRecord.html#isInEuropeanUnion" class="tsd-kind-icon">is<wbr>InEuropean<wbr>Union</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="CountryRecord.html#isoCode" class="tsd-kind-icon">iso<wbr>Code</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="CountryRecord.html#names" class="tsd-kind-icon">names</a></li>
 							</ul>
 						</section>
 					</div>
@@ -108,14 +106,31 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="confidence" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> confidence</h3>
+					<div class="tsd-signature tsd-kind-icon">confidence<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/6b0e07e/src/records.ts#L111">records.ts:111</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A value from 0-100 indicating MaxMind&#39;s confidence that the country is
+								correct. This value is only set when using the Insights web service or the
+							Enterprise database.</p>
+						</div>
+					</div>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="geonameid" class="tsd-anchor"></a>
+					<a name="geonameId" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> geoname<wbr>Id</h3>
 					<div class="tsd-signature tsd-kind-icon">geoname<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="registeredcountryrecord.html">RegisteredCountryRecord</a>.<a href="registeredcountryrecord.html#geonameid">geonameId</a></p>
+						<p>Inherited from <a href="RegisteredCountryRecord.html">RegisteredCountryRecord</a>.<a href="RegisteredCountryRecord.html#geonameId">geonameId</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/9110fbb/src/records.ts#L83">records.ts:83</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/6b0e07e/src/records.ts#L83">records.ts:83</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -125,13 +140,13 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="isineuropeanunion" class="tsd-anchor"></a>
+					<a name="isInEuropeanUnion" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> is<wbr>InEuropean<wbr>Union</h3>
 					<div class="tsd-signature tsd-kind-icon">is<wbr>InEuropean<wbr>Union<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="registeredcountryrecord.html">RegisteredCountryRecord</a>.<a href="registeredcountryrecord.html#isineuropeanunion">isInEuropeanUnion</a></p>
+						<p>Inherited from <a href="RegisteredCountryRecord.html">RegisteredCountryRecord</a>.<a href="RegisteredCountryRecord.html#isInEuropeanUnion">isInEuropeanUnion</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/9110fbb/src/records.ts#L87">records.ts:87</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/6b0e07e/src/records.ts#L87">records.ts:87</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -141,13 +156,13 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="isocode" class="tsd-anchor"></a>
+					<a name="isoCode" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> iso<wbr>Code</h3>
 					<div class="tsd-signature tsd-kind-icon">iso<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="registeredcountryrecord.html">RegisteredCountryRecord</a>.<a href="registeredcountryrecord.html#isocode">isoCode</a></p>
+						<p>Inherited from <a href="RegisteredCountryRecord.html">RegisteredCountryRecord</a>.<a href="RegisteredCountryRecord.html#isoCode">isoCode</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/9110fbb/src/records.ts#L91">records.ts:91</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/6b0e07e/src/records.ts#L91">records.ts:91</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -159,11 +174,11 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="names" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> names</h3>
-					<div class="tsd-signature tsd-kind-icon">names<span class="tsd-signature-symbol">:</span> <a href="names.html" class="tsd-signature-type" data-tsd-kind="Interface">Names</a></div>
+					<div class="tsd-signature tsd-kind-icon">names<span class="tsd-signature-symbol">:</span> <a href="Names.html" class="tsd-signature-type" data-tsd-kind="Interface">Names</a></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="registeredcountryrecord.html">RegisteredCountryRecord</a>.<a href="registeredcountryrecord.html#names">names</a></p>
+						<p>Inherited from <a href="RegisteredCountryRecord.html">RegisteredCountryRecord</a>.<a href="RegisteredCountryRecord.html#names">names</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/9110fbb/src/records.ts#L97">records.ts:97</a></li>
+							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/6b0e07e/src/records.ts#L97">records.ts:97</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -171,23 +186,6 @@
 							<p>An object of locale codes to the name in that locale. Don&#39;t use any of
 								these names as a database or dictionary key. Use the ID or relevant code
 							instead.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="type" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/maxmind/GeoIP2-node/blob/9110fbb/src/records.ts#L188">records.ts:188</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>A string indicating the type of entity that is representing the country.
-								Currently we only return military but this could expand to include other
-							types in the future.</p>
 						</div>
 					</div>
 				</section>
@@ -204,94 +202,94 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class">
-						<a href="../classes/anonymousip.html" class="tsd-kind-icon">AnonymousIP</a>
+						<a href="../classes/AnonymousIP.html" class="tsd-kind-icon">AnonymousIP</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="../classes/asn.html" class="tsd-kind-icon">Asn</a>
+						<a href="../classes/Asn.html" class="tsd-kind-icon">Asn</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="../classes/city.html" class="tsd-kind-icon">City</a>
+						<a href="../classes/City.html" class="tsd-kind-icon">City</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="../classes/connectiontype.html" class="tsd-kind-icon">Connection<wbr>Type</a>
+						<a href="../classes/ConnectionType.html" class="tsd-kind-icon">Connection<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="../classes/country.html" class="tsd-kind-icon">Country</a>
+						<a href="../classes/Country.html" class="tsd-kind-icon">Country</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="../classes/domain.html" class="tsd-kind-icon">Domain</a>
+						<a href="../classes/Domain.html" class="tsd-kind-icon">Domain</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="../classes/enterprise.html" class="tsd-kind-icon">Enterprise</a>
+						<a href="../classes/Enterprise.html" class="tsd-kind-icon">Enterprise</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="../classes/insights.html" class="tsd-kind-icon">Insights</a>
+						<a href="../classes/Insights.html" class="tsd-kind-icon">Insights</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="../classes/isp.html" class="tsd-kind-icon">Isp</a>
+						<a href="../classes/Isp.html" class="tsd-kind-icon">Isp</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="../classes/reader.html" class="tsd-kind-icon">Reader</a>
+						<a href="../classes/Reader.html" class="tsd-kind-icon">Reader</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="../classes/readermodel.html" class="tsd-kind-icon">Reader<wbr>Model</a>
+						<a href="../classes/ReaderModel.html" class="tsd-kind-icon">Reader<wbr>Model</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="../classes/webserviceclient.html" class="tsd-kind-icon">Web<wbr>Service<wbr>Client</a>
+						<a href="../classes/WebServiceClient.html" class="tsd-kind-icon">Web<wbr>Service<wbr>Client</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="cityrecord.html" class="tsd-kind-icon">City<wbr>Record</a>
+						<a href="CityRecord.html" class="tsd-kind-icon">City<wbr>Record</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="continentrecord.html" class="tsd-kind-icon">Continent<wbr>Record</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="countryrecord.html" class="tsd-kind-icon">Country<wbr>Record</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="locationrecord.html" class="tsd-kind-icon">Location<wbr>Record</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="maxmindrecord.html" class="tsd-kind-icon">Max<wbr>Mind<wbr>Record</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="names.html" class="tsd-kind-icon">Names</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="postalrecord.html" class="tsd-kind-icon">Postal<wbr>Record</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="registeredcountryrecord.html" class="tsd-kind-icon">Registered<wbr>Country<wbr>Record</a>
+						<a href="ContinentRecord.html" class="tsd-kind-icon">Continent<wbr>Record</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="representedcountryrecord.html" class="tsd-kind-icon">Represented<wbr>Country<wbr>Record</a>
+						<a href="CountryRecord.html" class="tsd-kind-icon">Country<wbr>Record</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="representedcountryrecord.html#geonameid" class="tsd-kind-icon">geoname<wbr>Id</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="representedcountryrecord.html#isineuropeanunion" class="tsd-kind-icon">is<wbr>InEuropean<wbr>Union</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="representedcountryrecord.html#isocode" class="tsd-kind-icon">iso<wbr>Code</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="representedcountryrecord.html#names" class="tsd-kind-icon">names</a>
-							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="representedcountryrecord.html#type" class="tsd-kind-icon">type</a>
+								<a href="CountryRecord.html#confidence" class="tsd-kind-icon">confidence</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="CountryRecord.html#geonameId" class="tsd-kind-icon">geoname<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="CountryRecord.html#isInEuropeanUnion" class="tsd-kind-icon">is<wbr>InEuropean<wbr>Union</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="CountryRecord.html#isoCode" class="tsd-kind-icon">iso<wbr>Code</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="CountryRecord.html#names" class="tsd-kind-icon">names</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface">
-						<a href="subdivisionsrecord.html" class="tsd-kind-icon">Subdivisions<wbr>Record</a>
+						<a href="LocationRecord.html" class="tsd-kind-icon">Location<wbr>Record</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="traitsrecord.html" class="tsd-kind-icon">Traits<wbr>Record</a>
+						<a href="MaxMindRecord.html" class="tsd-kind-icon">Max<wbr>Mind<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="Names.html" class="tsd-kind-icon">Names</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="PostalRecord.html" class="tsd-kind-icon">Postal<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="RegisteredCountryRecord.html" class="tsd-kind-icon">Registered<wbr>Country<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="RepresentedCountryRecord.html" class="tsd-kind-icon">Represented<wbr>Country<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="SubdivisionsRecord.html" class="tsd-kind-icon">Subdivisions<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="TraitsRecord.html" class="tsd-kind-icon">Traits<wbr>Record</a>
 					</li>
 				</ul>
 			</nav>
