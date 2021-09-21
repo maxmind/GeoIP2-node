@@ -1,6 +1,10 @@
 import * as fs from 'fs';
 import mmdb = require('maxmind');
-import { InvalidDbBufferError } from './errors';
+import {
+  AddressNotFoundError,
+  InvalidDbBufferError,
+  UnknownError,
+} from './errors';
 import Reader from './reader';
 import ReaderModel from './readerModel';
 
@@ -45,15 +49,65 @@ describe('Reader', () => {
   describe('openBuffer()', () => {
     const file = './test/data/test-data/GeoIP2-City-Test.mmdb';
 
-    it('returns a reader model if the buffer is a valid DB', () => {
+    it('returns a reader model if the buffer is a valid DB', async () => {
       const buffer = fs.readFileSync(file);
       expect(Reader.openBuffer(buffer)).toBeInstanceOf(ReaderModel);
     });
 
-    it('throws an InvalidDbBufferError if buffer is not a valid DB', () => {
-      expect(() => Reader.openBuffer(Buffer.from('foo'))).toThrowError(
-        InvalidDbBufferError
-      );
+    describe('errors', () => {
+      it('throws an InvalidDbBufferError if buffer is not a valid DB', () => {
+        expect(() => Reader.openBuffer(Buffer.from('foo'))).toThrow(
+          new InvalidDbBufferError('Unknown type 109 at offset 1')
+        );
+      });
+
+      it('throws an InvalidDbBufferError thrown error is a string', async () => {
+        const message = 'foo message';
+
+        jest.resetModules();
+        const actual = jest.requireActual('maxmind');
+
+        jest.doMock('maxmind', () => {
+          return {
+            ...actual,
+            Reader: jest.fn(() => {
+              throw message;
+            }),
+          };
+        });
+
+        const mockedReader: typeof Reader = await (
+          await import('./reader')
+        ).default;
+
+        expect(() => mockedReader.openBuffer(Buffer.from('foo'))).toThrow(
+          new InvalidDbBufferError(message)
+        );
+      });
+
+      it('throws an UnknownError if error is a not an Error instance or string', async () => {
+        const message = 1;
+
+        jest.resetModules();
+        const actual = jest.requireActual('maxmind');
+
+        jest.doMock('maxmind', () => {
+          return {
+            ...actual,
+            Reader: jest.fn(() => {
+              throw message;
+            }),
+          };
+        });
+
+        const mockedReader: typeof Reader = await (
+          await import('./reader')
+        ).default;
+
+        expect(() => mockedReader.openBuffer(Buffer.from('foo'))).toThrow(
+          'An unknown error has occured.'
+        );
+      });
     });
   });
 });
