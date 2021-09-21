@@ -1,5 +1,5 @@
 import mmdb = require('maxmind');
-import { InvalidDbBufferError, UnknownError } from './errors';
+import { InvalidDbBufferError } from './errors';
 import ReaderModel from './readerModel';
 
 /** Class representing the mmdb reader **/
@@ -41,7 +41,9 @@ export default class Reader {
         throw new InvalidDbBufferError(e.message);
       }
 
-      throw new UnknownError();
+      throw new InvalidDbBufferError(
+        'There was an error parsing the mmdb buffer'
+      );
     }
 
     return new ReaderModel(reader);

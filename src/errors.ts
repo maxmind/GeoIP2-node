@@ -41,13 +41,3 @@ export class ValueError extends Error {
     this.name = this.constructor.name;
   }
 }
-
-/**
- * This error is thrown when unknown errors occur.
- */
-export class UnknownError extends Error {
-  constructor() {
-    super('An unknown error has occured.');
-    this.name = this.constructor.name;
-  }
-}
