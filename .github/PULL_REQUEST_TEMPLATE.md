@@ -9,4 +9,4 @@
 
 
 ---
-1. You can use `yarn test --coverage` to generate a coverage report.
+1. You can use `npm test --coverage` to generate a coverage report.
