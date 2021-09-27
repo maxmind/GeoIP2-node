@@ -25,8 +25,8 @@ type servicePath = 'city' | 'country' | 'insights';
 export default class WebServiceClient {
   private accountID: string;
   private licenseKey: string;
-  private timeout: number = 3000;
-  private host: string = 'geoip.maxmind.com';
+  private timeout = 3000;
+  private host = 'geoip.maxmind.com';
 
   /**
    * Instantiates a WebServiceClient
@@ -110,7 +110,7 @@ export default class WebServiceClient {
   private responseFor<T>(
     path: servicePath,
     ipAddress: string,
-    modelClass: any
+    modelClass: new (data: any) => T
   ): Promise<T> {
     const parsedPath = `/geoip/v2.1/${path}/${ipAddress}`;
     const url = `https://${this.host}${parsedPath}`;
@@ -137,7 +137,7 @@ export default class WebServiceClient {
 
     return new Promise((resolve, reject) => {
       const req = https.request(options, (response) => {
-        let data = '';
+        let data: string | T = '';
 
         response.on('data', (chunk) => {
           data += chunk;
@@ -145,7 +145,7 @@ export default class WebServiceClient {
 
         response.on('end', () => {
           try {
-            data = JSON.parse(data);
+            data = JSON.parse(data as string) as T;
           } catch {
             return reject(this.handleError({}, response, url));
           }

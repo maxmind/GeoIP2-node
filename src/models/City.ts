@@ -37,7 +37,7 @@ export default class City extends Country {
 
     const camelcaseResponse = camelcaseKeys(response as Json, {
       deep: true,
-      exclude: [/\-/],
+      exclude: [/-/],
     }) as unknown as City;
 
     this.city = camelcaseResponse.city || undefined;

@@ -1,19 +1,19 @@
-import ip6addr = require('ip6addr');
+import { createCIDR } from 'ip6addr';
 import set = require('lodash.set');
-import mmdb = require('maxmind');
+import * as mmdb from 'maxmind';
 import { AddressNotFoundError, BadMethodCallError, ValueError } from './errors';
 import * as models from './models';
 
 /** Class representing the ReaderModel **/
 export default class ReaderModel {
-  private mmdbReader: mmdb.Reader<any>;
+  private mmdbReader: mmdb.Reader<mmdb.Response>;
 
   /**
    * Instantiates a ReaderModel using node-maxmind reader
    *
    * @param mmdbReader The mmdbReader
    */
-  public constructor(mmdbReader: mmdb.Reader<any>) {
+  public constructor(mmdbReader: mmdb.Reader<mmdb.Response>) {
     this.mmdbReader = mmdbReader;
   }
 
@@ -136,7 +136,11 @@ export default class ReaderModel {
     );
   }
 
-  private getRecord(dbType: string, ipAddress: string, fnName: string) {
+  private getResponse(
+    dbType: string,
+    ipAddress: string,
+    fnName: string
+  ): [mmdb.Response, string] {
     const metaDbType = this.mmdbReader.metadata.databaseType;
 
     if (!mmdb.validate(ipAddress)) {
@@ -149,29 +153,29 @@ export default class ReaderModel {
       );
     }
 
-    let record;
-    let prefixLength;
+    const [response, prefixLength] =
+      this.mmdbReader.getWithPrefixLength(ipAddress);
 
-    [record, prefixLength] = this.mmdbReader.getWithPrefixLength(ipAddress);
-
-    if (!record) {
+    if (!response) {
       throw new AddressNotFoundError(
         `The address ${ipAddress} is not in the database`
       );
     }
 
-    return [record, ip6addr.createCIDR(ipAddress, prefixLength).toString()];
+    const CIDR = createCIDR(ipAddress, prefixLength);
+
+    return [response, CIDR.toString()];
   }
 
-  private modelFor(
-    modelClass: any,
+  private modelFor<T1 extends mmdb.Response, T2>(
+    modelClass: new (response: T1) => T2,
     dbType: string,
     ipAddress: string,
     fnName: string
   ) {
-    const [record, network] = this.getRecord(dbType, ipAddress, fnName);
+    const [response, network] = this.getResponse(dbType, ipAddress, fnName);
 
-    const model = new modelClass(record);
+    const model: T2 = new modelClass(response as T1);
 
     switch (dbType) {
       case 'ASN':
@@ -179,12 +183,12 @@ export default class ReaderModel {
       case 'Domain':
       case 'GeoIP2-Anonymous-IP':
       case 'ISP':
-        set(model, 'ipAddress', ipAddress);
-        set(model, 'network', network);
+        set(model as any, 'ipAddress', ipAddress);
+        set(model as any, 'network', network);
         break;
       default:
-        set(model, 'traits.ipAddress', ipAddress);
-        set(model, 'traits.network', network);
+        set(model as any, 'traits.ipAddress', ipAddress);
+        set(model as any, 'traits.network', network);
     }
 
     return model;

@@ -42,7 +42,7 @@ export default class Country {
   public constructor(response: CountryResponse) {
     const camelcaseResponse = camelcaseKeys(response as Json, {
       deep: true,
-      exclude: [/\-/],
+      exclude: [/-/],
     }) as unknown as Country;
 
     this.continent = camelcaseResponse.continent || undefined;
@@ -55,7 +55,7 @@ export default class Country {
     this.traits = this.setBooleanTraits(camelcaseResponse.traits || {});
   }
 
-  private setBooleanTraits(traits: any) {
+  private setBooleanTraits(traits: Record<string, any>) {
     const booleanTraits = [
       'isAnonymous',
       'isAnonymousProxy',
@@ -75,7 +75,7 @@ export default class Country {
     return traits as records.TraitsRecord;
   }
 
-  private setBooleanRegisteredCountry(country: any) {
+  private setBooleanRegisteredCountry(country?: Record<string, any>) {
     if (country) {
       country.isInEuropeanUnion = !!country.isInEuropeanUnion;
     }

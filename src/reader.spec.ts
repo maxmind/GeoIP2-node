@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import mmdb = require('maxmind');
+import mmdb from 'maxmind';
 import { InvalidDbBufferError } from './errors';
 import Reader from './reader';
 import ReaderModel from './readerModel';
@@ -45,7 +45,7 @@ describe('Reader', () => {
   describe('openBuffer()', () => {
     const file = './test/data/test-data/GeoIP2-City-Test.mmdb';
 
-    it('returns a reader model if the buffer is a valid DB', async () => {
+    it('returns a reader model if the buffer is a valid DB', () => {
       const buffer = fs.readFileSync(file);
       expect(Reader.openBuffer(buffer)).toBeInstanceOf(ReaderModel);
     });
@@ -58,7 +58,7 @@ describe('Reader', () => {
         expect(openBufferFoo).toThrow('Unknown type 109 at offset 1');
       });
 
-      it('throws an InvalidDbBufferError if thrown error is a string', async () => {
+      it('throws an InvalidDbBufferError if thrown error is a string', () => {
         const message = 'foo message';
 
         const spy = jest.spyOn(mmdb, 'Reader').mockImplementation(() => {
@@ -71,7 +71,7 @@ describe('Reader', () => {
         spy.mockRestore();
       });
 
-      it('throws an InvalidDbBufferError if error is a not an Error instance or string', async () => {
+      it('throws an InvalidDbBufferError if error is a not an Error instance or string', () => {
         const spy = jest.spyOn(mmdb, 'Reader').mockImplementation(() => {
           throw 1;
         });

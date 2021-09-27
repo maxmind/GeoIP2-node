@@ -10,7 +10,7 @@ describe('ReaderModel', () => {
         './test/data/test-data/GeoIP2-City-Test.mmdb'
       );
 
-      const cityModel: any = cityInstance.city('2.125.160.216');
+      const cityModel = cityInstance.city('2.125.160.216');
 
       const expected = {
         city: {
