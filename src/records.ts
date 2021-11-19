@@ -313,6 +313,22 @@ export interface TraitsRecord {
    */
   readonly isp?: string;
   /**
+   * The mobile country code (MCC) associated with the IP address and ISP.
+   * See https://en.wikipedia.org/wiki/Mobile_country_code.
+   *
+   * This value is only set when using the City or Insights web service or the
+   * Enterprise database.
+   */
+  readonly mobileCountryCode?: string;
+  /**
+   * The mobile network code (MNC) associated with the IP address and ISP.
+   * See https://en.wikipedia.org/wiki/Mobile_country_code.
+   *
+   * This value is only set when using the City or Insights web service or the
+   * Enterprise database.
+   */
+  readonly mobileNetworkCode?: string;
+  /**
    * The name of the organization associated with the IP address. This value is
    * only set when using the City or Insights web service or the Enterprise
    * database.
