@@ -35,7 +35,6 @@ describe('ReaderModel', () => {
         },
         country: {
           geonameId: 2635167,
-          isInEuropeanUnion: true,
           isoCode: 'GB',
           names: {
             de: 'Vereinigtes Königreich',
@@ -265,7 +264,6 @@ describe('ReaderModel', () => {
         },
         country: {
           geonameId: 2635167,
-          isInEuropeanUnion: true,
           isoCode: 'GB',
           names: {
             de: 'Vereinigtes Königreich',
@@ -566,7 +564,6 @@ describe('ReaderModel', () => {
         country: {
           confidence: 95,
           geonameId: 2635167,
-          isInEuropeanUnion: true,
           isoCode: 'GB',
           names: {
             de: 'Vereinigtes Königreich',
