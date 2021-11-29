@@ -69,7 +69,7 @@
   },
   "dependencies": {
     "camelcase-keys": "^7.0.0",
-    "ip6addr": "^0.2.3",
+    "ip6addr": "^0.2.5",
     "lodash.set": "^4.3.2",
     "maxmind": "^4.2.0"
   }
