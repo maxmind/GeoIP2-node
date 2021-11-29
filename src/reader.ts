@@ -32,7 +32,7 @@ export default class Reader {
     let reader;
     try {
       reader = new mmdb.Reader(buffer);
-    } catch (e) {
+    } catch (e: any) {
       throw new InvalidDbBufferError(e);
     }
 
