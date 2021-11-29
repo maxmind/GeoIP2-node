@@ -1,556 +1,272 @@
-<!doctype html>
-<html class="default no-js">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@maxmind/geoip2-node</title>
-	<meta name="description" content="Documentation for @maxmind/geoip2-node">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/main.css">
-	<script async src="assets/js/search.js" id="search-script"></script>
-</head>
-<body>
-<header>
-	<div class="tsd-page-toolbar">
-		<div class="container">
-			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
-					<div class="field">
-						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
-						<input id="tsd-search-field" type="text" />
-					</div>
-					<ul class="results">
-						<li class="state loading">Preparing search index...</li>
-						<li class="state failure">The search index is not available</li>
-					</ul>
-					<a href="index.html" class="title">@maxmind/geoip2-node</a>
-				</div>
-				<div class="table-cell" id="tsd-widgets">
-					<div id="tsd-filter">
-						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
-						<div class="tsd-filter-group">
-							<div class="tsd-select" id="tsd-filter-visibility">
-								<span class="tsd-select-label">All</span>
-								<ul class="tsd-select-list">
-									<li data-value="public">Public</li>
-									<li data-value="protected">Public/Protected</li>
-									<li data-value="private" class="selected">All</li>
-								</ul>
-							</div>
-							<input type="checkbox" id="tsd-filter-inherited" checked />
-							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-						</div>
-					</div>
-					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="tsd-page-title">
-		<div class="container">
-			<h1>@maxmind/geoip2-node</h1>
-		</div>
-	</div>
-</header>
-<div class="container container-main">
-	<div class="row">
-		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<a href="#maxmind-geoip2-nodejs-api" id="maxmind-geoip2-nodejs-api" style="color: inherit; text-decoration: none;">
-					<h1>MaxMind GeoIP2 Node.js API</h1>
-				</a>
-				<a href="#description" id="description" style="color: inherit; text-decoration: none;">
-					<h2>Description</h2>
-				</a>
-				<p>This package provides an API for the <a href="https://dev.maxmind.com/geoip/geoip2/downloadable">GeoIP2
-					databases</a>, and an API for
-					the <a href="https://dev.maxmind.com/geoip/geoip2/web-services">GeoIP2 Precision web
-					services</a>.  This API also
-					works with MaxMind&#39;s free <a href="https://dev.maxmind.com/geoip/geoip2/geolite2/">GeoLite2
-				databases</a>.</p>
-				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
-					<h2>Installation</h2>
-				</a>
-				<pre><code class="language-sh"><span style="color: #000000">yarn add @maxmind/geoip2-node</span>
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@maxmind/geoip2-node</title><meta name="description" content="Documentation for @maxmind/geoip2-node"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">@maxmind/geoip2-node</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>@maxmind/geoip2-node</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<a href="#maxmind-geoip2-nodejs-api" id="maxmind-geoip2-nodejs-api" style="color: inherit; text-decoration: none;">
+  <h1>MaxMind GeoIP2 Node.js API</h1>
+</a>
+
+<a href="#description" id="description" style="color: inherit; text-decoration: none;">
+  <h2>Description</h2>
+</a>
+<p>This package provides an API for the <a href="https://dev.maxmind.com/geoip/docs/databases?lang=en">GeoIP2 databases and GeoLite2
+databases</a>, and an API
+for the <a href="https://dev.maxmind.com/geoip/docs/web-services?lang=en">GeoIP2 Precision web services and GeoLite2 web
+services</a>.</p>
+
+<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+  <h2>Installation</h2>
+</a>
+<pre><code class="language-sh"><span class="hl-0">yarn add @maxmind/geoip2-node</span>
 </code></pre>
-				<p>If you are not able to use <code>yarn</code>, you may also use <code>npm</code>:</p>
-				<pre><code class="language-sh"><span style="color: #000000">npm install @maxmind/geoip2-node</span>
+<p>If you are not able to use <code>yarn</code>, you may also use <code>npm</code>:</p>
+<pre><code class="language-sh"><span class="hl-0">npm install @maxmind/geoip2-node</span>
 </code></pre>
-				<a href="#ip-geolocation-usage" id="ip-geolocation-usage" style="color: inherit; text-decoration: none;">
-					<h2>IP Geolocation Usage</h2>
-				</a>
-				<p>IP geolocation is inherently imprecise. Locations are often near the center of
-					the population. Any location provided by a GeoIP2 database or web service
-				should not be used to identify a particular address or household.</p>
-				<a href="#web-service-usage" id="web-service-usage" style="color: inherit; text-decoration: none;">
-					<h2>Web Service Usage</h2>
-				</a>
-				<p>To use the web service API, you must create a new <code>WebServiceClient</code>, using
-					your MaxMind <code>accountID</code> and <code>licenseKey</code> as parameters. The third argument is
-					an object holding additional option. The <code>timeout</code> option defaults to <code>3000</code>.
-					The <code>host</code> option defaults to <code>geoip.maxmind.com</code>. Set <code>host</code> to <code>geolite.info</code>
-				to use the GeoLite2 web service instead of GeoIP2.</p>
-				<p>You may then call the function corresponding to a specific end point, passing it
-				the IP address you want to lookup.</p>
-				<p>If the request succeeds, the function&#39;s Promise will resolve with the model
-					for the end point you called. This model in turn contains multiple
-				records, each of which represents part of the data returned by the web service.</p>
-				<p>If the request fails, the function&#39;s Promise will reject with an error object.</p>
-				<p>See the API documentation for more details.</p>
-				<a href="#web-service-example" id="web-service-example" style="color: inherit; text-decoration: none;">
-					<h2>Web Service Example</h2>
-				</a>
-				<a href="#country-service" id="country-service" style="color: inherit; text-decoration: none;">
-					<h3>Country Service</h3>
-				</a>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">WebServiceClient</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">WebServiceClient</span><span style="color: #000000">;</span>
-<span style="color: #008000">// Typescript:</span>
-<span style="color: #008000">// import { WebServiceClient } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-<span style="color: #008000">// To use the GeoLite2 web service instead of GeoIP2 Precision, set the</span>
-<span style="color: #008000">// host to geolite.info, e.g.:</span>
-<span style="color: #008000">// new WebServiceClient(&#039;1234&#039;, &#039;licenseKey&#039;, {host: &#039;geolite.info&#039;});</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">WebServiceClient</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;1234&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;licenseKey&#039;</span><span style="color: #000000">);</span>
+<a href="#ip-geolocation-usage" id="ip-geolocation-usage" style="color: inherit; text-decoration: none;">
+  <h2>IP Geolocation Usage</h2>
+</a>
+<p>IP geolocation is inherently imprecise. Locations are often near the center of
+the population. Any location provided by a GeoIP2 database or web service
+should not be used to identify a particular address or household.</p>
 
-<span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">country</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;142.1.1.1&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">country</span><span style="color: #000000">.</span><span style="color: #001080">isoCode</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;CA&#039;</span>
-<span style="color: #000000">});</span>
+<a href="#web-service-usage" id="web-service-usage" style="color: inherit; text-decoration: none;">
+  <h2>Web Service Usage</h2>
+</a>
+<p>To use the web service API, you must create a new <code>WebServiceClient</code>, using
+your MaxMind <code>accountID</code> and <code>licenseKey</code> as parameters. The third argument is
+an object holding additional option. The <code>timeout</code> option defaults to <code>3000</code>.
+The <code>host</code> option defaults to <code>geoip.maxmind.com</code>. Set <code>host</code> to <code>geolite.info</code>
+to use the GeoLite2 web service instead of GeoIP2.</p>
+<p>You may then call the function corresponding to a specific end point, passing it
+the IP address you want to lookup.</p>
+<p>If the request succeeds, the function&#39;s Promise will resolve with the model
+for the end point you called. This model in turn contains multiple
+records, each of which represents part of the data returned by the web service.</p>
+<p>If the request fails, the function&#39;s Promise will reject with an error object.</p>
+<p>See the API documentation for more details.</p>
+
+<a href="#web-service-example" id="web-service-example" style="color: inherit; text-decoration: none;">
+  <h2>Web Service Example</h2>
+</a>
+
+<a href="#country-service" id="country-service" style="color: inherit; text-decoration: none;">
+  <h3>Country Service</h3>
+</a>
+<pre><code class="language-js"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">WebServiceClient</span><span class="hl-0"> = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&#39;@maxmind/geoip2-node&#39;</span><span class="hl-0">).</span><span class="hl-5">WebServiceClient</span><span class="hl-0">;</span><br/><span class="hl-6">// Typescript:</span><br/><span class="hl-6">// import { WebServiceClient } from &#39;@maxmind/geoip2-node&#39;;</span><br/><br/><span class="hl-6">// To use the GeoLite2 web service instead of GeoIP2 Precision, set the</span><br/><span class="hl-6">// host to geolite.info, e.g.:</span><br/><span class="hl-6">// new WebServiceClient(&#39;1234&#39;, &#39;licenseKey&#39;, {host: &#39;geolite.info&#39;});</span><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">client</span><span class="hl-0"> = </span><span class="hl-1">new</span><span class="hl-0"> </span><span class="hl-3">WebServiceClient</span><span class="hl-0">(</span><span class="hl-4">&#39;1234&#39;</span><span class="hl-0">, </span><span class="hl-4">&#39;licenseKey&#39;</span><span class="hl-0">);</span><br/><br/><span class="hl-5">client</span><span class="hl-0">.</span><span class="hl-3">country</span><span class="hl-0">(</span><span class="hl-4">&#39;142.1.1.1&#39;</span><span class="hl-0">).</span><span class="hl-3">then</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0"> </span><span class="hl-1">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">country</span><span class="hl-0">.</span><span class="hl-5">isoCode</span><span class="hl-0">); </span><span class="hl-6">// &#39;CA&#39;</span><br/><span class="hl-0">});</span>
 </code></pre>
-				<a href="#city-service" id="city-service" style="color: inherit; text-decoration: none;">
-					<h3>City Service</h3>
-				</a>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">WebServiceClient</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">WebServiceClient</span><span style="color: #000000">;</span>
-<span style="color: #008000">// Typescript:</span>
-<span style="color: #008000">// import { WebServiceClient } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-<span style="color: #008000">// To use the GeoLite2 web service instead of GeoIP2 Precision, set the</span>
-<span style="color: #008000">// host to geolite.info, e.g.:</span>
-<span style="color: #008000">// new WebServiceClient(&#039;1234&#039;, &#039;licenseKey&#039;, {host: &#039;geolite.info&#039;});</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">WebServiceClient</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;1234&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;licenseKey&#039;</span><span style="color: #000000">);</span>
-
-<span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">city</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;142.1.1.1&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">country</span><span style="color: #000000">.</span><span style="color: #001080">isoCode</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;CA&#039;</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">postal</span><span style="color: #000000">.</span><span style="color: #001080">code</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;M5S&#039;</span>
-<span style="color: #000000">});</span>
+<a href="#city-service" id="city-service" style="color: inherit; text-decoration: none;">
+  <h3>City Service</h3>
+</a>
+<pre><code class="language-js"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">WebServiceClient</span><span class="hl-0"> = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&#39;@maxmind/geoip2-node&#39;</span><span class="hl-0">).</span><span class="hl-5">WebServiceClient</span><span class="hl-0">;</span><br/><span class="hl-6">// Typescript:</span><br/><span class="hl-6">// import { WebServiceClient } from &#39;@maxmind/geoip2-node&#39;;</span><br/><br/><span class="hl-6">// To use the GeoLite2 web service instead of GeoIP2 Precision, set the</span><br/><span class="hl-6">// host to geolite.info, e.g.:</span><br/><span class="hl-6">// new WebServiceClient(&#39;1234&#39;, &#39;licenseKey&#39;, {host: &#39;geolite.info&#39;});</span><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">client</span><span class="hl-0"> = </span><span class="hl-1">new</span><span class="hl-0"> </span><span class="hl-3">WebServiceClient</span><span class="hl-0">(</span><span class="hl-4">&#39;1234&#39;</span><span class="hl-0">, </span><span class="hl-4">&#39;licenseKey&#39;</span><span class="hl-0">);</span><br/><br/><span class="hl-5">client</span><span class="hl-0">.</span><span class="hl-3">city</span><span class="hl-0">(</span><span class="hl-4">&#39;142.1.1.1&#39;</span><span class="hl-0">).</span><span class="hl-3">then</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0"> </span><span class="hl-1">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">country</span><span class="hl-0">.</span><span class="hl-5">isoCode</span><span class="hl-0">); </span><span class="hl-6">// &#39;CA&#39;</span><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">postal</span><span class="hl-0">.</span><span class="hl-5">code</span><span class="hl-0">); </span><span class="hl-6">// &#39;M5S&#39;</span><br/><span class="hl-0">});</span>
 </code></pre>
-				<a href="#insights-service" id="insights-service" style="color: inherit; text-decoration: none;">
-					<h3>Insights Service</h3>
-				</a>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">WebServiceClient</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">WebServiceClient</span><span style="color: #000000">;</span>
-<span style="color: #008000">// Typescript:</span>
-<span style="color: #008000">// import { WebServiceClient } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-<span style="color: #008000">// Note that the Insights web service is only supported by GeoIP2</span>
-<span style="color: #008000">// Precision, not the GeoLite2 web service.</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">WebServiceClient</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;1234&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;licenseKey&#039;</span><span style="color: #000000">);</span>
-
-<span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">insights</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;142.1.1.1&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">country</span><span style="color: #000000">.</span><span style="color: #001080">isoCode</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;CA&#039;</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">postal</span><span style="color: #000000">.</span><span style="color: #001080">code</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;M5S&#039;</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">traits</span><span style="color: #000000">.</span><span style="color: #001080">userType</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;school&#039;</span>
-<span style="color: #000000">});</span>
+<a href="#insights-service" id="insights-service" style="color: inherit; text-decoration: none;">
+  <h3>Insights Service</h3>
+</a>
+<pre><code class="language-js"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">WebServiceClient</span><span class="hl-0"> = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&#39;@maxmind/geoip2-node&#39;</span><span class="hl-0">).</span><span class="hl-5">WebServiceClient</span><span class="hl-0">;</span><br/><span class="hl-6">// Typescript:</span><br/><span class="hl-6">// import { WebServiceClient } from &#39;@maxmind/geoip2-node&#39;;</span><br/><br/><span class="hl-6">// Note that the Insights web service is only supported by GeoIP2</span><br/><span class="hl-6">// Precision, not the GeoLite2 web service.</span><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">client</span><span class="hl-0"> = </span><span class="hl-1">new</span><span class="hl-0"> </span><span class="hl-3">WebServiceClient</span><span class="hl-0">(</span><span class="hl-4">&#39;1234&#39;</span><span class="hl-0">, </span><span class="hl-4">&#39;licenseKey&#39;</span><span class="hl-0">);</span><br/><br/><span class="hl-5">client</span><span class="hl-0">.</span><span class="hl-3">insights</span><span class="hl-0">(</span><span class="hl-4">&#39;142.1.1.1&#39;</span><span class="hl-0">).</span><span class="hl-3">then</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0"> </span><span class="hl-1">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">country</span><span class="hl-0">.</span><span class="hl-5">isoCode</span><span class="hl-0">); </span><span class="hl-6">// &#39;CA&#39;</span><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">postal</span><span class="hl-0">.</span><span class="hl-5">code</span><span class="hl-0">); </span><span class="hl-6">// &#39;M5S&#39;</span><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">traits</span><span class="hl-0">.</span><span class="hl-5">userType</span><span class="hl-0">); </span><span class="hl-6">// &#39;school&#39;</span><br/><span class="hl-0">});</span>
 </code></pre>
-				<a href="#web-service-errors" id="web-service-errors" style="color: inherit; text-decoration: none;">
-					<h2>Web Service Errors</h2>
-				</a>
-				<p>For details on the possible errors returned by the web service itself, <a href="https://dev.maxmind.com/geoip2/geoip/web-services">see
-						the GeoIP2 Precision web service
-				documentation</a>.</p>
-				<p>If the web service returns an explicit error document, the promise will be rejected
-				with the following object structure:</p>
-				<pre><code class="language-js"><span style="color: #000000">{</span>
-<span style="color: #000000">  code: </span><span style="color: #A31515">&#039;THE_ERROR_CODE&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  error: </span><span style="color: #A31515">&#039;some human readable error&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  url: </span><span style="color: #A31515">&#039;https://geoip.maxmind.com...&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">}</span>
+
+<a href="#web-service-errors" id="web-service-errors" style="color: inherit; text-decoration: none;">
+  <h2>Web Service Errors</h2>
+</a>
+<p>For details on the possible errors returned by the web service itself, <a href="https://dev.maxmind.com/geoip2/geoip/web-services">see
+the GeoIP2 Precision web service
+documentation</a>.</p>
+<p>If the web service returns an explicit error document, the promise will be rejected
+with the following object structure:</p>
+<pre><code class="language-js"><span class="hl-0">{</span><br/><span class="hl-0">  </span><span class="hl-7">code</span><span class="hl-0">: </span><span class="hl-4">&#39;THE_ERROR_CODE&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-7">error</span><span class="hl-0">: </span><span class="hl-4">&#39;some human readable error&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-7">url</span><span class="hl-0">: </span><span class="hl-4">&#39;https://geoip.maxmind.com...&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">}</span>
 </code></pre>
-				<p>In addition to the possible errors returned by the web service, the following error
-				codes are provided:</p>
-				<ul>
-					<li><code>SERVER_ERROR</code> for 5xx level errors</li>
-					<li><code>HTTP_STATUS_CODE_ERROR</code> for unexpected HTTP status codes</li>
-					<li><code>INVALID_RESPONSE_BODY</code> for invalid JSON responses or unparseable response bodies</li>
-					<li><a href="https://nodejs.org/api/errors.html#errors_node_js_error_codes">General Node.js error codes</a></li>
-				</ul>
-				<a href="#database-usage" id="database-usage" style="color: inherit; text-decoration: none;">
-					<h2>Database Usage</h2>
-				</a>
-				<p>The database reader returns a promise that resolves with a reader instance.
-					You may then call the function corresponding to the request type (e.g.
-				<code>city</code> or <code>country</code>), passing it the IP address you want to look up.</p>
-				<p>If the request succeeds, the function call will return an object for the GeoIP2
-					lookup. The object in turn contains multiple record objects, each of which
-				represents part of the data returned by the database.</p>
-				<a href="#options" id="options" style="color: inherit; text-decoration: none;">
-					<h3>Options</h3>
-				</a>
-				<p>We use the <a href="https://github.com/runk/node-maxmind">node-maxmind</a> library as the
-					database reader. As such, you have access to the same
-					<a href="https://github.com/runk/node-maxmind#options">options</a> found in that library
-				and can be used like this:</p>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">Reader</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Reader</span><span style="color: #000000">;</span>
-<span style="color: #008000">// Typescript:</span>
-<span style="color: #008000">// import { Reader } from &#039;@maxmind/geoip2-node&#039;;</span>
+<p>In addition to the possible errors returned by the web service, the following error
+codes are provided:</p>
+<ul>
+<li><code>SERVER_ERROR</code> for 5xx level errors</li>
+<li><code>HTTP_STATUS_CODE_ERROR</code> for unexpected HTTP status codes</li>
+<li><code>INVALID_RESPONSE_BODY</code> for invalid JSON responses or unparseable response bodies</li>
+<li><a href="https://nodejs.org/api/errors.html#errors_node_js_error_codes">General Node.js error codes</a></li>
+</ul>
 
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">options</span><span style="color: #000000"> = {</span>
-<span style="color: #000000">  </span><span style="color: #008000">// you can use options like `cache` or `watchForUpdates`</span>
-<span style="color: #000000">};</span>
+<a href="#database-usage" id="database-usage" style="color: inherit; text-decoration: none;">
+  <h2>Database Usage</h2>
+</a>
+<p>The database reader returns a promise that resolves with a reader instance.
+You may then call the function corresponding to the request type (e.g.
+<code>city</code> or <code>country</code>), passing it the IP address you want to look up.</p>
+<p>If the request succeeds, the function call will return an object for the GeoIP2
+lookup. The object in turn contains multiple record objects, each of which
+represents part of the data returned by the database.</p>
 
-<span style="color: #001080">Reader</span><span style="color: #000000">.</span><span style="color: #795E26">open</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/usr/local/database.mmdb&#039;</span><span style="color: #000000">, </span><span style="color: #001080">options</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">reader</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">reader</span><span style="color: #000000">.</span><span style="color: #795E26">country</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;1.1.1.1&#039;</span><span style="color: #000000">));</span>
-<span style="color: #000000">});</span>
+<a href="#options" id="options" style="color: inherit; text-decoration: none;">
+  <h3>Options</h3>
+</a>
+<p>We use the <a href="https://github.com/runk/node-maxmind">node-maxmind</a> library as the
+database reader. As such, you have access to the same
+<a href="https://github.com/runk/node-maxmind#options">options</a> found in that library
+and can be used like this:</p>
+<pre><code class="language-js"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">Reader</span><span class="hl-0"> = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&#39;@maxmind/geoip2-node&#39;</span><span class="hl-0">).</span><span class="hl-5">Reader</span><span class="hl-0">;</span><br/><span class="hl-6">// Typescript:</span><br/><span class="hl-6">// import { Reader } from &#39;@maxmind/geoip2-node&#39;;</span><br/><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">options</span><span class="hl-0"> = {</span><br/><span class="hl-0">  </span><span class="hl-6">// you can use options like `cache` or `watchForUpdates`</span><br/><span class="hl-0">};</span><br/><br/><span class="hl-5">Reader</span><span class="hl-0">.</span><span class="hl-3">open</span><span class="hl-0">(</span><span class="hl-4">&#39;/usr/local/database.mmdb&#39;</span><span class="hl-0">, </span><span class="hl-5">options</span><span class="hl-0">).</span><span class="hl-3">then</span><span class="hl-0">(</span><span class="hl-5">reader</span><span class="hl-0"> </span><span class="hl-1">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">reader</span><span class="hl-0">.</span><span class="hl-3">country</span><span class="hl-0">(</span><span class="hl-4">&#39;1.1.1.1&#39;</span><span class="hl-0">));</span><br/><span class="hl-0">});</span>
 </code></pre>
-				<a href="#using-a-buffer" id="using-a-buffer" style="color: inherit; text-decoration: none;">
-					<h3>Using a Buffer</h3>
-				</a>
-				<p>If you prefer to use a <code>Buffer</code> instead of using a <code>Promise</code> to open the
-				database, you can use <code>Reader.openBuffer()</code>.  Use cases include:</p>
-				<ul>
-					<li>You want to open the database in a synchronous manner.</li>
-					<li>You want to fetch the database from an external source.</li>
-				</ul>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">fs</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;fs&#039;</span><span style="color: #000000">);</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">Reader</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Reader</span><span style="color: #000000">;</span>
-<span style="color: #008000">// Typescript:</span>
-<span style="color: #008000">// import { Reader } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">dbBuffer</span><span style="color: #000000"> = </span><span style="color: #001080">fs</span><span style="color: #000000">.</span><span style="color: #795E26">readFileSync</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/usr/local/city-database.mmdb&#039;</span><span style="color: #000000">);</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">reader</span><span style="color: #000000"> = </span><span style="color: #001080">Reader</span><span style="color: #000000">.</span><span style="color: #795E26">openBuffer</span><span style="color: #000000">(</span><span style="color: #001080">dbBuffer</span><span style="color: #000000">);</span>
-
-<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">reader</span><span style="color: #000000">.</span><span style="color: #795E26">city</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;1.1.1.1&#039;</span><span style="color: #000000">));</span>
+<a href="#using-a-buffer" id="using-a-buffer" style="color: inherit; text-decoration: none;">
+  <h3>Using a Buffer</h3>
+</a>
+<p>If you prefer to use a <code>Buffer</code> instead of using a <code>Promise</code> to open the
+database, you can use <code>Reader.openBuffer()</code>.  Use cases include:</p>
+<ul>
+<li>You want to open the database in a synchronous manner.</li>
+<li>You want to fetch the database from an external source.</li>
+</ul>
+<pre><code class="language-js"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">fs</span><span class="hl-0"> = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&#39;fs&#39;</span><span class="hl-0">);</span><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">Reader</span><span class="hl-0"> = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&#39;@maxmind/geoip2-node&#39;</span><span class="hl-0">).</span><span class="hl-5">Reader</span><span class="hl-0">;</span><br/><span class="hl-6">// Typescript:</span><br/><span class="hl-6">// import { Reader } from &#39;@maxmind/geoip2-node&#39;;</span><br/><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">dbBuffer</span><span class="hl-0"> = </span><span class="hl-5">fs</span><span class="hl-0">.</span><span class="hl-3">readFileSync</span><span class="hl-0">(</span><span class="hl-4">&#39;/usr/local/city-database.mmdb&#39;</span><span class="hl-0">);</span><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">reader</span><span class="hl-0"> = </span><span class="hl-5">Reader</span><span class="hl-0">.</span><span class="hl-3">openBuffer</span><span class="hl-0">(</span><span class="hl-5">dbBuffer</span><span class="hl-0">);</span><br/><br/><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">reader</span><span class="hl-0">.</span><span class="hl-3">city</span><span class="hl-0">(</span><span class="hl-4">&#39;1.1.1.1&#39;</span><span class="hl-0">));</span>
 </code></pre>
-				<a href="#database-examples" id="database-examples" style="color: inherit; text-decoration: none;">
-					<h2>Database Examples</h2>
-				</a>
-				<a href="#anonymous-ip-database-example" id="anonymous-ip-database-example" style="color: inherit; text-decoration: none;">
-					<h3>Anonymous IP Database Example</h3>
-				</a>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">Reader</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Reader</span><span style="color: #000000">;</span>
-<span style="color: #008000">// Typescript:</span>
-<span style="color: #008000">// import { Reader } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-<span style="color: #001080">Reader</span><span style="color: #000000">.</span><span style="color: #795E26">open</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/usr/local/share/GeoIP/GeoIP2-Anonymous-IP.mmdb&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">reader</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">response</span><span style="color: #000000"> = </span><span style="color: #001080">reader</span><span style="color: #000000">.</span><span style="color: #795E26">anonymousIP</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;85.25.43.84&#039;</span><span style="color: #000000">);</span>
+<a href="#database-examples" id="database-examples" style="color: inherit; text-decoration: none;">
+  <h2>Database Examples</h2>
+</a>
 
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">isAnonymous</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">isAnonymousVpn</span><span style="color: #000000">); </span><span style="color: #008000">// false</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">isHostingProvider</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">isPublicProxy</span><span style="color: #000000">); </span><span style="color: #008000">// false</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">isResidentialProxy</span><span style="color: #000000">); </span><span style="color: #008000">// false</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">isTorExitNode</span><span style="color: #000000">); </span><span style="color: #008000">// false</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">ipAddress</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;85.25.43.84&#039;</span>
-<span style="color: #000000">});</span>
+<a href="#anonymous-ip-database-example" id="anonymous-ip-database-example" style="color: inherit; text-decoration: none;">
+  <h3>Anonymous IP Database Example</h3>
+</a>
+<pre><code class="language-js"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">Reader</span><span class="hl-0"> = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&#39;@maxmind/geoip2-node&#39;</span><span class="hl-0">).</span><span class="hl-5">Reader</span><span class="hl-0">;</span><br/><span class="hl-6">// Typescript:</span><br/><span class="hl-6">// import { Reader } from &#39;@maxmind/geoip2-node&#39;;</span><br/><br/><span class="hl-5">Reader</span><span class="hl-0">.</span><span class="hl-3">open</span><span class="hl-0">(</span><span class="hl-4">&#39;/usr/local/share/GeoIP/GeoIP2-Anonymous-IP.mmdb&#39;</span><span class="hl-0">).</span><span class="hl-3">then</span><span class="hl-0">(</span><span class="hl-5">reader</span><span class="hl-0"> </span><span class="hl-1">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">response</span><span class="hl-0"> = </span><span class="hl-5">reader</span><span class="hl-0">.</span><span class="hl-3">anonymousIP</span><span class="hl-0">(</span><span class="hl-4">&#39;85.25.43.84&#39;</span><span class="hl-0">);</span><br/><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">isAnonymous</span><span class="hl-0">); </span><span class="hl-6">// true</span><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">isAnonymousVpn</span><span class="hl-0">); </span><span class="hl-6">// false</span><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">isHostingProvider</span><span class="hl-0">); </span><span class="hl-6">// true</span><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">isPublicProxy</span><span class="hl-0">); </span><span class="hl-6">// false</span><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">isResidentialProxy</span><span class="hl-0">); </span><span class="hl-6">// false</span><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">isTorExitNode</span><span class="hl-0">); </span><span class="hl-6">// false</span><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">ipAddress</span><span class="hl-0">); </span><span class="hl-6">// &#39;85.25.43.84&#39;</span><br/><span class="hl-0">});</span>
 </code></pre>
-				<a href="#asn-example" id="asn-example" style="color: inherit; text-decoration: none;">
-					<h3>ASN Example</h3>
-				</a>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">Reader</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Reader</span><span style="color: #000000">;</span>
-<span style="color: #008000">// Typescript:</span>
-<span style="color: #008000">// import { Reader } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-<span style="color: #001080">Reader</span><span style="color: #000000">.</span><span style="color: #795E26">open</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/usr/local/share/GeoIP/GeoLite2-ASN.mmdb&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">reader</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">response</span><span style="color: #000000"> = </span><span style="color: #001080">reader</span><span style="color: #000000">.</span><span style="color: #795E26">asn</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;128.101.101.101&#039;</span><span style="color: #000000">);</span>
-
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">autonomousSystemNumber</span><span style="color: #000000">); </span><span style="color: #008000">// 217</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">autonomousSystemOrganization</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;University of Minnesota&#039;</span>
-<span style="color: #000000">});</span>
+<a href="#asn-example" id="asn-example" style="color: inherit; text-decoration: none;">
+  <h3>ASN Example</h3>
+</a>
+<pre><code class="language-js"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">Reader</span><span class="hl-0"> = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&#39;@maxmind/geoip2-node&#39;</span><span class="hl-0">).</span><span class="hl-5">Reader</span><span class="hl-0">;</span><br/><span class="hl-6">// Typescript:</span><br/><span class="hl-6">// import { Reader } from &#39;@maxmind/geoip2-node&#39;;</span><br/><br/><span class="hl-5">Reader</span><span class="hl-0">.</span><span class="hl-3">open</span><span class="hl-0">(</span><span class="hl-4">&#39;/usr/local/share/GeoIP/GeoLite2-ASN.mmdb&#39;</span><span class="hl-0">).</span><span class="hl-3">then</span><span class="hl-0">(</span><span class="hl-5">reader</span><span class="hl-0"> </span><span class="hl-1">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">response</span><span class="hl-0"> = </span><span class="hl-5">reader</span><span class="hl-0">.</span><span class="hl-3">asn</span><span class="hl-0">(</span><span class="hl-4">&#39;128.101.101.101&#39;</span><span class="hl-0">);</span><br/><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">autonomousSystemNumber</span><span class="hl-0">); </span><span class="hl-6">// 217</span><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">autonomousSystemOrganization</span><span class="hl-0">); </span><span class="hl-6">// &#39;University of Minnesota&#39;</span><br/><span class="hl-0">});</span>
 </code></pre>
-				<a href="#city-example" id="city-example" style="color: inherit; text-decoration: none;">
-					<h3>City Example</h3>
-				</a>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">Reader</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Reader</span><span style="color: #000000">;</span>
-<span style="color: #008000">// Typescript:</span>
-<span style="color: #008000">// import { Reader } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-<span style="color: #001080">Reader</span><span style="color: #000000">.</span><span style="color: #795E26">open</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/usr/local/share/GeoIP/GeoIP2-City.mmdb&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">reader</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">response</span><span style="color: #000000"> = </span><span style="color: #001080">reader</span><span style="color: #000000">.</span><span style="color: #795E26">city</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;128.101.101.101&#039;</span><span style="color: #000000">);</span>
-
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">country</span><span style="color: #000000">.</span><span style="color: #001080">isoCode</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;US&#039;</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">city</span><span style="color: #000000">.</span><span style="color: #001080">names</span><span style="color: #000000">.</span><span style="color: #001080">en</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;Minneapolis&#039;</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">postal</span><span style="color: #000000">.</span><span style="color: #001080">code</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;55407&#039;</span>
-<span style="color: #000000">});</span>
+<a href="#city-example" id="city-example" style="color: inherit; text-decoration: none;">
+  <h3>City Example</h3>
+</a>
+<pre><code class="language-js"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">Reader</span><span class="hl-0"> = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&#39;@maxmind/geoip2-node&#39;</span><span class="hl-0">).</span><span class="hl-5">Reader</span><span class="hl-0">;</span><br/><span class="hl-6">// Typescript:</span><br/><span class="hl-6">// import { Reader } from &#39;@maxmind/geoip2-node&#39;;</span><br/><br/><span class="hl-5">Reader</span><span class="hl-0">.</span><span class="hl-3">open</span><span class="hl-0">(</span><span class="hl-4">&#39;/usr/local/share/GeoIP/GeoIP2-City.mmdb&#39;</span><span class="hl-0">).</span><span class="hl-3">then</span><span class="hl-0">(</span><span class="hl-5">reader</span><span class="hl-0"> </span><span class="hl-1">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">response</span><span class="hl-0"> = </span><span class="hl-5">reader</span><span class="hl-0">.</span><span class="hl-3">city</span><span class="hl-0">(</span><span class="hl-4">&#39;128.101.101.101&#39;</span><span class="hl-0">);</span><br/><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">country</span><span class="hl-0">.</span><span class="hl-5">isoCode</span><span class="hl-0">); </span><span class="hl-6">// &#39;US&#39;</span><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">city</span><span class="hl-0">.</span><span class="hl-5">names</span><span class="hl-0">.</span><span class="hl-5">en</span><span class="hl-0">); </span><span class="hl-6">// &#39;Minneapolis&#39;</span><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">postal</span><span class="hl-0">.</span><span class="hl-5">code</span><span class="hl-0">); </span><span class="hl-6">// &#39;55407&#39;</span><br/><span class="hl-0">});</span>
 </code></pre>
-				<a href="#connection-type-example" id="connection-type-example" style="color: inherit; text-decoration: none;">
-					<h3>Connection-Type Example</h3>
-				</a>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">Reader</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Reader</span><span style="color: #000000">;</span>
-<span style="color: #008000">// Typescript:</span>
-<span style="color: #008000">// import { Reader } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-<span style="color: #001080">Reader</span><span style="color: #000000">.</span><span style="color: #795E26">open</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/usr/local/share/GeoIP/GeoIP2-Connection-Type.mmdb&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">reader</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">response</span><span style="color: #000000"> = </span><span style="color: #001080">reader</span><span style="color: #000000">.</span><span style="color: #795E26">connectionType</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;128.101.101.101&#039;</span><span style="color: #000000">);</span>
-
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">connectionType</span><span style="color: #000000">) </span><span style="color: #008000">// &#039;Cable/DSL&#039;</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">ipAddress</span><span style="color: #000000">) </span><span style="color: #008000">// &#039;128.101.101.101&#039;</span>
-<span style="color: #000000">});</span>
+<a href="#connection-type-example" id="connection-type-example" style="color: inherit; text-decoration: none;">
+  <h3>Connection-Type Example</h3>
+</a>
+<pre><code class="language-js"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">Reader</span><span class="hl-0"> = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&#39;@maxmind/geoip2-node&#39;</span><span class="hl-0">).</span><span class="hl-5">Reader</span><span class="hl-0">;</span><br/><span class="hl-6">// Typescript:</span><br/><span class="hl-6">// import { Reader } from &#39;@maxmind/geoip2-node&#39;;</span><br/><br/><span class="hl-5">Reader</span><span class="hl-0">.</span><span class="hl-3">open</span><span class="hl-0">(</span><span class="hl-4">&#39;/usr/local/share/GeoIP/GeoIP2-Connection-Type.mmdb&#39;</span><span class="hl-0">).</span><span class="hl-3">then</span><span class="hl-0">(</span><span class="hl-5">reader</span><span class="hl-0"> </span><span class="hl-1">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">response</span><span class="hl-0"> = </span><span class="hl-5">reader</span><span class="hl-0">.</span><span class="hl-3">connectionType</span><span class="hl-0">(</span><span class="hl-4">&#39;128.101.101.101&#39;</span><span class="hl-0">);</span><br/><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">connectionType</span><span class="hl-0">) </span><span class="hl-6">// &#39;Cable/DSL&#39;</span><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">ipAddress</span><span class="hl-0">) </span><span class="hl-6">// &#39;128.101.101.101&#39;</span><br/><span class="hl-0">});</span>
 </code></pre>
-				<a href="#country-example" id="country-example" style="color: inherit; text-decoration: none;">
-					<h3>Country Example</h3>
-				</a>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">Reader</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Reader</span><span style="color: #000000">;</span>
-<span style="color: #008000">// Typescript:</span>
-<span style="color: #008000">// import { Reader } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-<span style="color: #001080">Reader</span><span style="color: #000000">.</span><span style="color: #795E26">open</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/usr/local/share/GeoIP/GeoIP2-Country.mmdb&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">reader</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">response</span><span style="color: #000000"> = </span><span style="color: #001080">reader</span><span style="color: #000000">.</span><span style="color: #795E26">country</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;128.101.101.101&#039;</span><span style="color: #000000">);</span>
-
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">country</span><span style="color: #000000">.</span><span style="color: #001080">isoCode</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;US&#039;</span>
-<span style="color: #000000">});</span>
+<a href="#country-example" id="country-example" style="color: inherit; text-decoration: none;">
+  <h3>Country Example</h3>
+</a>
+<pre><code class="language-js"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">Reader</span><span class="hl-0"> = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&#39;@maxmind/geoip2-node&#39;</span><span class="hl-0">).</span><span class="hl-5">Reader</span><span class="hl-0">;</span><br/><span class="hl-6">// Typescript:</span><br/><span class="hl-6">// import { Reader } from &#39;@maxmind/geoip2-node&#39;;</span><br/><br/><span class="hl-5">Reader</span><span class="hl-0">.</span><span class="hl-3">open</span><span class="hl-0">(</span><span class="hl-4">&#39;/usr/local/share/GeoIP/GeoIP2-Country.mmdb&#39;</span><span class="hl-0">).</span><span class="hl-3">then</span><span class="hl-0">(</span><span class="hl-5">reader</span><span class="hl-0"> </span><span class="hl-1">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">response</span><span class="hl-0"> = </span><span class="hl-5">reader</span><span class="hl-0">.</span><span class="hl-3">country</span><span class="hl-0">(</span><span class="hl-4">&#39;128.101.101.101&#39;</span><span class="hl-0">);</span><br/><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">country</span><span class="hl-0">.</span><span class="hl-5">isoCode</span><span class="hl-0">); </span><span class="hl-6">// &#39;US&#39;</span><br/><span class="hl-0">});</span>
 </code></pre>
-				<a href="#domain-example" id="domain-example" style="color: inherit; text-decoration: none;">
-					<h3>Domain Example</h3>
-				</a>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">Reader</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Reader</span><span style="color: #000000">;</span>
-<span style="color: #008000">// Typescript:</span>
-<span style="color: #008000">// import { Reader } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-<span style="color: #001080">Reader</span><span style="color: #000000">.</span><span style="color: #795E26">open</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/usr/local/share/GeoIP/GeoIP2-Domain.mmdb&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">reader</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">response</span><span style="color: #000000"> = </span><span style="color: #001080">reader</span><span style="color: #000000">.</span><span style="color: #795E26">domain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;128.101.101.101&#039;</span><span style="color: #000000">);</span>
-
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">domain</span><span style="color: #000000">) </span><span style="color: #008000">// &#039;umn.edu&#039;</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">ipAddress</span><span style="color: #000000">) </span><span style="color: #008000">// &#039;128.101.101.101&#039;</span>
-<span style="color: #000000">});</span>
+<a href="#domain-example" id="domain-example" style="color: inherit; text-decoration: none;">
+  <h3>Domain Example</h3>
+</a>
+<pre><code class="language-js"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">Reader</span><span class="hl-0"> = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&#39;@maxmind/geoip2-node&#39;</span><span class="hl-0">).</span><span class="hl-5">Reader</span><span class="hl-0">;</span><br/><span class="hl-6">// Typescript:</span><br/><span class="hl-6">// import { Reader } from &#39;@maxmind/geoip2-node&#39;;</span><br/><br/><span class="hl-5">Reader</span><span class="hl-0">.</span><span class="hl-3">open</span><span class="hl-0">(</span><span class="hl-4">&#39;/usr/local/share/GeoIP/GeoIP2-Domain.mmdb&#39;</span><span class="hl-0">).</span><span class="hl-3">then</span><span class="hl-0">(</span><span class="hl-5">reader</span><span class="hl-0"> </span><span class="hl-1">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">response</span><span class="hl-0"> = </span><span class="hl-5">reader</span><span class="hl-0">.</span><span class="hl-3">domain</span><span class="hl-0">(</span><span class="hl-4">&#39;128.101.101.101&#39;</span><span class="hl-0">);</span><br/><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">domain</span><span class="hl-0">) </span><span class="hl-6">// &#39;umn.edu&#39;</span><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">ipAddress</span><span class="hl-0">) </span><span class="hl-6">// &#39;128.101.101.101&#39;</span><br/><span class="hl-0">});</span>
 </code></pre>
-				<a href="#enterprise-example" id="enterprise-example" style="color: inherit; text-decoration: none;">
-					<h3>Enterprise Example</h3>
-				</a>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">Reader</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Reader</span><span style="color: #000000">;</span>
-<span style="color: #008000">// Typescript:</span>
-<span style="color: #008000">// import { Reader } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-<span style="color: #001080">Reader</span><span style="color: #000000">.</span><span style="color: #795E26">open</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/usr/local/share/GeoIP/GeoIP2-Enterprise.mmdb&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">reader</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">response</span><span style="color: #000000"> = </span><span style="color: #001080">reader</span><span style="color: #000000">.</span><span style="color: #795E26">enterprise</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;128.101.101.101&#039;</span><span style="color: #000000">);</span>
-
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">country</span><span style="color: #000000">.</span><span style="color: #001080">isoCode</span><span style="color: #000000">) </span><span style="color: #008000">// &#039;US&#039;</span>
-<span style="color: #000000">});</span>
+<a href="#enterprise-example" id="enterprise-example" style="color: inherit; text-decoration: none;">
+  <h3>Enterprise Example</h3>
+</a>
+<pre><code class="language-js"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">Reader</span><span class="hl-0"> = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&#39;@maxmind/geoip2-node&#39;</span><span class="hl-0">).</span><span class="hl-5">Reader</span><span class="hl-0">;</span><br/><span class="hl-6">// Typescript:</span><br/><span class="hl-6">// import { Reader } from &#39;@maxmind/geoip2-node&#39;;</span><br/><br/><span class="hl-5">Reader</span><span class="hl-0">.</span><span class="hl-3">open</span><span class="hl-0">(</span><span class="hl-4">&#39;/usr/local/share/GeoIP/GeoIP2-Enterprise.mmdb&#39;</span><span class="hl-0">).</span><span class="hl-3">then</span><span class="hl-0">(</span><span class="hl-5">reader</span><span class="hl-0"> </span><span class="hl-1">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">response</span><span class="hl-0"> = </span><span class="hl-5">reader</span><span class="hl-0">.</span><span class="hl-3">enterprise</span><span class="hl-0">(</span><span class="hl-4">&#39;128.101.101.101&#39;</span><span class="hl-0">);</span><br/><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">country</span><span class="hl-0">.</span><span class="hl-5">isoCode</span><span class="hl-0">) </span><span class="hl-6">// &#39;US&#39;</span><br/><span class="hl-0">});</span>
 </code></pre>
-				<a href="#isp-example" id="isp-example" style="color: inherit; text-decoration: none;">
-					<h3>ISP Example</h3>
-				</a>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">Reader</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@maxmind/geoip2-node&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Reader</span><span style="color: #000000">;</span>
-<span style="color: #008000">// Typescript:</span>
-<span style="color: #008000">// import { Reader } from &#039;@maxmind/geoip2-node&#039;;</span>
 
-<span style="color: #001080">Reader</span><span style="color: #000000">.</span><span style="color: #795E26">open</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/usr/local/share/GeoIP/GeoIP2-ISP.mmdb&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">reader</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">response</span><span style="color: #000000"> = </span><span style="color: #001080">reader</span><span style="color: #000000">.</span><span style="color: #795E26">isp</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;128.101.101.101&#039;</span><span style="color: #000000">);</span>
-
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">autonomousSystemNumber</span><span style="color: #000000">); </span><span style="color: #008000">// 217</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">autonomousSystemOrganization</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;University of Minnesota&#039;</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">isp</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;University of Minnesota&#039;</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">organization</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;University of Minnesota&#039;</span>
-
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">ipAddress</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;128.101.101.101&#039;</span>
-<span style="color: #000000">});</span>
+<a href="#isp-example" id="isp-example" style="color: inherit; text-decoration: none;">
+  <h3>ISP Example</h3>
+</a>
+<pre><code class="language-js"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">Reader</span><span class="hl-0"> = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&#39;@maxmind/geoip2-node&#39;</span><span class="hl-0">).</span><span class="hl-5">Reader</span><span class="hl-0">;</span><br/><span class="hl-6">// Typescript:</span><br/><span class="hl-6">// import { Reader } from &#39;@maxmind/geoip2-node&#39;;</span><br/><br/><span class="hl-5">Reader</span><span class="hl-0">.</span><span class="hl-3">open</span><span class="hl-0">(</span><span class="hl-4">&#39;/usr/local/share/GeoIP/GeoIP2-ISP.mmdb&#39;</span><span class="hl-0">).</span><span class="hl-3">then</span><span class="hl-0">(</span><span class="hl-5">reader</span><span class="hl-0"> </span><span class="hl-1">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">response</span><span class="hl-0"> = </span><span class="hl-5">reader</span><span class="hl-0">.</span><span class="hl-3">isp</span><span class="hl-0">(</span><span class="hl-4">&#39;128.101.101.101&#39;</span><span class="hl-0">);</span><br/><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">autonomousSystemNumber</span><span class="hl-0">); </span><span class="hl-6">// 217</span><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">autonomousSystemOrganization</span><span class="hl-0">); </span><span class="hl-6">// &#39;University of Minnesota&#39;</span><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">isp</span><span class="hl-0">); </span><span class="hl-6">// &#39;University of Minnesota&#39;</span><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">organization</span><span class="hl-0">); </span><span class="hl-6">// &#39;University of Minnesota&#39;</span><br/><br/><span class="hl-0">  </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">ipAddress</span><span class="hl-0">); </span><span class="hl-6">// &#39;128.101.101.101&#39;</span><br/><span class="hl-0">});</span>
 </code></pre>
-				<a href="#database-exceptions" id="database-exceptions" style="color: inherit; text-decoration: none;">
-					<h2>Database Exceptions</h2>
-				</a>
-				<p>If the database file does not exist, is not readable, is invalid, or there is a bug
-					in the reader, the promise will be rejected with an <code>Error</code> with a message
-				explaining the issue.</p>
-				<p>If the database file and the reader method do not match (e.g.
-					<code>reader.city</code> is used with a Country database), a <code>BadMethodCalledError</code> will
-				be thrown.</p>
-				<p>If the IP address is not found in the database, an <code>AddressNotFoundError</code> will
-				be thrown.</p>
-				<p>If the IP address is not valid, a <code>ValueError</code> will be thrown.</p>
-				<p>If the database buffer is not a valid database, an <code>InvalidDbBufferError</code> will
-				be thrown.</p>
-				<a href="#values-to-use-for-database-or-object-keys" id="values-to-use-for-database-or-object-keys" style="color: inherit; text-decoration: none;">
-					<h2>Values to use for Database or Object Keys</h2>
-				</a>
-				<p>We strongly discourage you from using a value from any <code>names</code> property as a
-				key in a database or object.</p>
-				<p>These names may change between releases. Instead we recommend using one of the
-				following:</p>
-				<ul>
-					<li>geoip2-node.CityRecord - <code>city.geonameId</code></li>
-					<li>geoip2-node.ContinentRecord - <code>continent.code</code> or <code>continent.geonameId</code></li>
-					<li>geoip2-node.CountryRecord and geoip2.records.RepresentedCountry -
-					<code>country.isoCode</code> or <code>country.geonameId</code></li>
-					<li>geoip2-node.SubdivisionsRecord - <code>subdivision.isoCode</code> or <code>subdivision.geonameId</code></li>
-				</ul>
-				<a href="#what-data-is-returned" id="what-data-is-returned" style="color: inherit; text-decoration: none;">
-					<h2>What data is returned?</h2>
-				</a>
-				<p>While many of the models contain the same basic records, the attributes which
-					can be populated vary between web service end points or databases. In addition,
-					while a model may offer a particular piece of data, MaxMind does not always
-				have every piece of data for any given IP address.</p>
-				<p>Because of these factors, it is possible for any request to return a record
-				where some or all of the attributes are unpopulated.</p>
-				<p>The only piece of data which is always returned is the <code>ipAddress</code> attribute in
-				the <code>geoip2-node.TraitsRecord</code> record.</p>
-				<a href="#integration-with-geonames" id="integration-with-geonames" style="color: inherit; text-decoration: none;">
-					<h2>Integration with GeoNames</h2>
-				</a>
-				<p><a href="https://www.geonames.org/">GeoNames</a> offers web services and downloadable
-					databases with data on geographical features around the world, including
-					populated places. They offer both free and paid premium data. Each feature
-				is uniquely identified by a <code>geonameId</code>, which is an integer.</p>
-				<p>Many of the records returned by the GeoIP web services and databases include a
-					<code>geonameId</code> field. This is the ID of a geographical feature (city, region,
-				country, etc.) in the GeoNames database.</p>
-				<p>Some of the data that MaxMind provides is also sourced from GeoNames. We source
-					things like place names, ISO codes, and other similar data from the GeoNames
-				premium data set.</p>
-				<a href="#reporting-data-problems" id="reporting-data-problems" style="color: inherit; text-decoration: none;">
-					<h2>Reporting Data Problems</h2>
-				</a>
-				<p>If the problem you find is that an IP address is incorrectly mapped, please
-				<a href="https://support.maxmind.com/geoip-data-correction-request/">submit your correction to MaxMind</a>.</p>
-				<p>If you find some other sort of mistake, like an incorrect spelling,
-					please check <a href="https://www.geonames.org/">the GeoNames site</a> first. Once
-					you&#39;ve searched for a place and found it on the GeoNames map view, there
-					are a number of links you can use to correct data (&quot;move&quot;, &quot;edit&quot;,
-					&quot;alternate names&quot;, etc.). Once the correction is part of the GeoNames
-					data set, it will be automatically incorporated into future MaxMind
-				releases.</p>
-				<p>If you are a paying MaxMind customer and you&#39;re not sure where to submit a
-				correction, please <a href="https://support.maxmind.com/contact-us/">contact MaxMind support for help</a>.</p>
-				<a href="#requirements" id="requirements" style="color: inherit; text-decoration: none;">
-					<h2>Requirements</h2>
-				</a>
-				<p>MaxMind has tested this API with Node.js versions 12 and 14.  We aim to support
-				active LTS versions of Node.js, as well as the latest stable release.</p>
-				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
-					<h2>Contributing</h2>
-				</a>
-				<p>Patches and pull requests are encouraged. Please include unit tests
-				whenever possible, as we strive to maintain 100% code coverage.</p>
-				<a href="#versioning" id="versioning" style="color: inherit; text-decoration: none;">
-					<h2>Versioning</h2>
-				</a>
-				<p>The GeoIP2 Node.js API uses <a href="https://semver.org/">Semantic Versioning</a>.</p>
-				<a href="#support" id="support" style="color: inherit; text-decoration: none;">
-					<h2>Support</h2>
-				</a>
-				<p>Please report all issues with this code using the <a href="https://github.com/maxmind/GeoIP2-node/issues">GitHub issue
-				tracker</a></p>
-				<p>If you are having an issue with a MaxMind service that is not specific to the
-				client API, please contact <a href="https://support.maxmind.com/contact-us/">MaxMind support for assistance</a>.</p>
-				<a href="#copyright-and-license" id="copyright-and-license" style="color: inherit; text-decoration: none;">
-					<h2>Copyright and License</h2>
-				</a>
-				<p>This software is Copyright (c) 2018-2021 by MaxMind, Inc.</p>
-				<p>This is free software, licensed under the Apache License, Version 2.0.</p>
-			</div>
-		</div>
-		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation primary">
-				<ul>
-					<li class=" ">
-						<a href="modules.html">Exports</a>
-					</li>
-				</ul>
-			</nav>
-			<nav class="tsd-navigation secondary menu-sticky">
-				<ul class="before-current">
-					<li class=" tsd-kind-class">
-						<a href="classes/AnonymousIP.html" class="tsd-kind-icon">AnonymousIP</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/Asn.html" class="tsd-kind-icon">Asn</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/City.html" class="tsd-kind-icon">City</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/ConnectionType.html" class="tsd-kind-icon">Connection<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/Country.html" class="tsd-kind-icon">Country</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/Domain.html" class="tsd-kind-icon">Domain</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/Enterprise.html" class="tsd-kind-icon">Enterprise</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/Insights.html" class="tsd-kind-icon">Insights</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/Isp.html" class="tsd-kind-icon">Isp</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/Reader.html" class="tsd-kind-icon">Reader</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/ReaderModel.html" class="tsd-kind-icon">Reader<wbr>Model</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/WebServiceClient.html" class="tsd-kind-icon">Web<wbr>Service<wbr>Client</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/CityRecord.html" class="tsd-kind-icon">City<wbr>Record</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/ContinentRecord.html" class="tsd-kind-icon">Continent<wbr>Record</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/CountryRecord.html" class="tsd-kind-icon">Country<wbr>Record</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/LocationRecord.html" class="tsd-kind-icon">Location<wbr>Record</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/MaxMindRecord.html" class="tsd-kind-icon">Max<wbr>Mind<wbr>Record</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/Names.html" class="tsd-kind-icon">Names</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/PostalRecord.html" class="tsd-kind-icon">Postal<wbr>Record</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/RegisteredCountryRecord.html" class="tsd-kind-icon">Registered<wbr>Country<wbr>Record</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/RepresentedCountryRecord.html" class="tsd-kind-icon">Represented<wbr>Country<wbr>Record</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/SubdivisionsRecord.html" class="tsd-kind-icon">Subdivisions<wbr>Record</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/TraitsRecord.html" class="tsd-kind-icon">Traits<wbr>Record</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div>
-</div>
-<footer class="with-border-bottom">
-	<div class="container">
-		<h2>Legend</h2>
-		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
-<div class="overlay"></div>
-<script src="assets/js/main.js"></script>
-</body>
-</html>
+
+<a href="#database-exceptions" id="database-exceptions" style="color: inherit; text-decoration: none;">
+  <h2>Database Exceptions</h2>
+</a>
+<p>If the database file does not exist, is not readable, is invalid, or there is a bug
+in the reader, the promise will be rejected with an <code>Error</code> with a message
+explaining the issue.</p>
+<p>If the database file and the reader method do not match (e.g.
+<code>reader.city</code> is used with a Country database), a <code>BadMethodCalledError</code> will
+be thrown.</p>
+<p>If the IP address is not found in the database, an <code>AddressNotFoundError</code> will
+be thrown.</p>
+<p>If the IP address is not valid, a <code>ValueError</code> will be thrown.</p>
+<p>If the database buffer is not a valid database, an <code>InvalidDbBufferError</code> will
+be thrown.</p>
+
+<a href="#values-to-use-for-database-or-object-keys" id="values-to-use-for-database-or-object-keys" style="color: inherit; text-decoration: none;">
+  <h2>Values to use for Database or Object Keys</h2>
+</a>
+<p>We strongly discourage you from using a value from any <code>names</code> property as a
+key in a database or object.</p>
+<p>These names may change between releases. Instead we recommend using one of the
+following:</p>
+<ul>
+<li>geoip2-node.CityRecord - <code>city.geonameId</code></li>
+<li>geoip2-node.ContinentRecord - <code>continent.code</code> or <code>continent.geonameId</code></li>
+<li>geoip2-node.CountryRecord and geoip2.records.RepresentedCountry -
+<code>country.isoCode</code> or <code>country.geonameId</code></li>
+<li>geoip2-node.SubdivisionsRecord - <code>subdivision.isoCode</code> or <code>subdivision.geonameId</code></li>
+</ul>
+
+<a href="#what-data-is-returned" id="what-data-is-returned" style="color: inherit; text-decoration: none;">
+  <h2>What data is returned?</h2>
+</a>
+<p>While many of the models contain the same basic records, the attributes which
+can be populated vary between web service end points or databases. In addition,
+while a model may offer a particular piece of data, MaxMind does not always
+have every piece of data for any given IP address.</p>
+<p>Because of these factors, it is possible for any request to return a record
+where some or all of the attributes are unpopulated.</p>
+<p>The only piece of data which is always returned is the <code>ipAddress</code> attribute in
+the <code>geoip2-node.TraitsRecord</code> record.</p>
+
+<a href="#integration-with-geonames" id="integration-with-geonames" style="color: inherit; text-decoration: none;">
+  <h2>Integration with GeoNames</h2>
+</a>
+<p><a href="https://www.geonames.org/">GeoNames</a> offers web services and downloadable
+databases with data on geographical features around the world, including
+populated places. They offer both free and paid premium data. Each feature
+is uniquely identified by a <code>geonameId</code>, which is an integer.</p>
+<p>Many of the records returned by the GeoIP web services and databases include a
+<code>geonameId</code> field. This is the ID of a geographical feature (city, region,
+country, etc.) in the GeoNames database.</p>
+<p>Some of the data that MaxMind provides is also sourced from GeoNames. We source
+things like place names, ISO codes, and other similar data from the GeoNames
+premium data set.</p>
+
+<a href="#reporting-data-problems" id="reporting-data-problems" style="color: inherit; text-decoration: none;">
+  <h2>Reporting Data Problems</h2>
+</a>
+<p>If the problem you find is that an IP address is incorrectly mapped, please
+<a href="https://support.maxmind.com/geoip-data-correction-request/">submit your correction to MaxMind</a>.</p>
+<p>If you find some other sort of mistake, like an incorrect spelling,
+please check <a href="https://www.geonames.org/">the GeoNames site</a> first. Once
+you&#39;ve searched for a place and found it on the GeoNames map view, there
+are a number of links you can use to correct data (&quot;move&quot;, &quot;edit&quot;,
+&quot;alternate names&quot;, etc.). Once the correction is part of the GeoNames
+data set, it will be automatically incorporated into future MaxMind
+releases.</p>
+<p>If you are a paying MaxMind customer and you&#39;re not sure where to submit a
+correction, please <a href="https://support.maxmind.com/contact-us/">contact MaxMind support for help</a>.</p>
+
+<a href="#requirements" id="requirements" style="color: inherit; text-decoration: none;">
+  <h2>Requirements</h2>
+</a>
+<p>MaxMind has tested this API with Node.js versions 12 and 14.  We aim to support
+active LTS versions of Node.js, as well as the latest stable release.</p>
+
+<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
+  <h2>Contributing</h2>
+</a>
+<p>Patches and pull requests are encouraged. Please include unit tests
+whenever possible, as we strive to maintain 100% code coverage.</p>
+
+<a href="#versioning" id="versioning" style="color: inherit; text-decoration: none;">
+  <h2>Versioning</h2>
+</a>
+<p>The GeoIP2 Node.js API uses <a href="https://semver.org/">Semantic Versioning</a>.</p>
+
+<a href="#support" id="support" style="color: inherit; text-decoration: none;">
+  <h2>Support</h2>
+</a>
+<p>Please report all issues with this code using the <a href="https://github.com/maxmind/GeoIP2-node/issues">GitHub issue
+tracker</a></p>
+<p>If you are having an issue with a MaxMind service that is not specific to the
+client API, please contact <a href="https://support.maxmind.com/contact-us/">MaxMind support for assistance</a>.</p>
+
+<a href="#copyright-and-license" id="copyright-and-license" style="color: inherit; text-decoration: none;">
+  <h2>Copyright and License</h2>
+</a>
+<p>This software is Copyright (c) 2018-2021 by MaxMind, Inc.</p>
+<p>This is free software, licensed under the Apache License, Version 2.0.</p>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-class"><a href="classes/AnonymousIP.html" class="tsd-kind-icon">AnonymousIP</a></li><li class="tsd-kind-class"><a href="classes/Asn.html" class="tsd-kind-icon">Asn</a></li><li class="tsd-kind-class"><a href="classes/City.html" class="tsd-kind-icon">City</a></li><li class="tsd-kind-class"><a href="classes/ConnectionType.html" class="tsd-kind-icon">Connection<wbr/>Type</a></li><li class="tsd-kind-class"><a href="classes/Country.html" class="tsd-kind-icon">Country</a></li><li class="tsd-kind-class"><a href="classes/Domain.html" class="tsd-kind-icon">Domain</a></li><li class="tsd-kind-class"><a href="classes/Enterprise.html" class="tsd-kind-icon">Enterprise</a></li><li class="tsd-kind-class"><a href="classes/Insights.html" class="tsd-kind-icon">Insights</a></li><li class="tsd-kind-class"><a href="classes/Isp.html" class="tsd-kind-icon">Isp</a></li><li class="tsd-kind-class"><a href="classes/Reader.html" class="tsd-kind-icon">Reader</a></li><li class="tsd-kind-class"><a href="classes/ReaderModel.html" class="tsd-kind-icon">Reader<wbr/>Model</a></li><li class="tsd-kind-class"><a href="classes/WebServiceClient.html" class="tsd-kind-icon">Web<wbr/>Service<wbr/>Client</a></li><li class="tsd-kind-interface"><a href="interfaces/CityRecord.html" class="tsd-kind-icon">City<wbr/>Record</a></li><li class="tsd-kind-interface"><a href="interfaces/ContinentRecord.html" class="tsd-kind-icon">Continent<wbr/>Record</a></li><li class="tsd-kind-interface"><a href="interfaces/CountryRecord.html" class="tsd-kind-icon">Country<wbr/>Record</a></li><li class="tsd-kind-interface"><a href="interfaces/LocationRecord.html" class="tsd-kind-icon">Location<wbr/>Record</a></li><li class="tsd-kind-interface"><a href="interfaces/MaxMindRecord.html" class="tsd-kind-icon">Max<wbr/>Mind<wbr/>Record</a></li><li class="tsd-kind-interface"><a href="interfaces/Names.html" class="tsd-kind-icon">Names</a></li><li class="tsd-kind-interface"><a href="interfaces/PostalRecord.html" class="tsd-kind-icon">Postal<wbr/>Record</a></li><li class="tsd-kind-interface"><a href="interfaces/RegisteredCountryRecord.html" class="tsd-kind-icon">Registered<wbr/>Country<wbr/>Record</a></li><li class="tsd-kind-interface"><a href="interfaces/RepresentedCountryRecord.html" class="tsd-kind-icon">Represented<wbr/>Country<wbr/>Record</a></li><li class="tsd-kind-interface"><a href="interfaces/SubdivisionsRecord.html" class="tsd-kind-icon">Subdivisions<wbr/>Record</a></li><li class="tsd-kind-interface"><a href="interfaces/TraitsRecord.html" class="tsd-kind-icon">Traits<wbr/>Record</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li><li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
