@@ -19,20 +19,20 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.version }}
-      - run: yarn install
-      - run: yarn test --coverage
-      - run: yarn build
-      - run: yarn build:docs
-      - run: yarn link
-      - run: yarn
+      - run: npm install
+      - run: npm test --coverage
+      - run: npm run build
+      - run: npm run build:docs
+      - run: npm link
+      - run: npm install
         working-directory: e2e/js
-      - run: yarn link '@maxmind/geoip2-node'
+      - run: npm link '@maxmind/geoip2-node'
         working-directory: e2e/js
-      - run: yarn jest
+      - run: npx jest
         working-directory: e2e/js
-      - run: yarn
+      - run: npm install
         working-directory: e2e/ts
-      - run: yarn link '@maxmind/geoip2-node'
+      - run: npm link '@maxmind/geoip2-node'
         working-directory: e2e/ts
-      - run: yarn jest
+      - run: npx jest
         working-directory: e2e/ts
