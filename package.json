@@ -25,6 +25,7 @@
   "files": ["dist"],
   "types": "dist/src/index.d.ts",
   "devDependencies": {
+    "@types/ip6addr": "^0.2.3",
     "@types/jest": "^27.0.1",
     "@types/lodash.set": "^4.3.4",
     "@types/node": "^16.0.1",
