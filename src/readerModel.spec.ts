@@ -10,7 +10,7 @@ describe('ReaderModel', () => {
         './test/data/test-data/GeoIP2-City-Test.mmdb'
       );
 
-      const cityModel: any = cityInstance.city('2.125.160.216');
+      const cityModel = cityInstance.city('2.125.160.216');
 
       const expected = {
         city: {
@@ -120,7 +120,7 @@ describe('ReaderModel', () => {
         './test/data/test-data/GeoIP2-City-Test.mmdb'
       );
 
-      const model: any = reader.city('2.2.3.1');
+      const model = reader.city('2.2.3.1');
 
       const expected = {
         city: {
@@ -162,7 +162,7 @@ describe('ReaderModel', () => {
         './test/data/test-data/GeoIP2-City-Test.mmdb'
       );
 
-      const model: any = reader.city('2.3.3.1');
+      const model = reader.city('2.3.3.1');
 
       const expected = {
         city: undefined,
@@ -246,7 +246,7 @@ describe('ReaderModel', () => {
         './test/data/test-data/GeoIP2-Country-Test.mmdb'
       );
 
-      const countryModel: any = countryInstance.country('2.125.160.216');
+      const countryModel = countryInstance.country('2.125.160.216');
 
       const expected = {
         continent: {
@@ -356,7 +356,7 @@ describe('ReaderModel', () => {
         './test/data/test-data/GeoIP2-Anonymous-IP-Test.mmdb'
       );
 
-      const model: any = reader.anonymousIP('81.2.69.1');
+      const model = reader.anonymousIP('81.2.69.1');
 
       const expected = {
         ipAddress: '81.2.69.1',
@@ -411,7 +411,7 @@ describe('ReaderModel', () => {
         './test/data/test-data/GeoIP2-Anonymous-IP-Test.mmdb'
       );
 
-      const model: any = reader.anonymousIP('2.125.160.216');
+      const model = reader.anonymousIP('2.125.160.216');
 
       const expected = {
         ipAddress: '2.125.160.216',
@@ -436,7 +436,7 @@ describe('ReaderModel', () => {
         './test/data/test-data/GeoLite2-ASN-Test.mmdb'
       );
 
-      const model: any = reader.asn('1.128.0.1');
+      const model = reader.asn('1.128.0.1');
 
       const expected = {
         autonomousSystemNumber: 1221,
@@ -487,7 +487,7 @@ describe('ReaderModel', () => {
         './test/data/test-data/GeoIP2-Connection-Type-Test.mmdb'
       );
 
-      const model: any = reader.connectionType('1.0.0.1');
+      const model = reader.connectionType('1.0.0.1');
 
       const expected = {
         connectionType: 'Dialup',
@@ -539,7 +539,7 @@ describe('ReaderModel', () => {
         './test/data/test-data/GeoIP2-Enterprise-Test.mmdb'
       );
 
-      const model: any = reader.enterprise('2.125.160.216');
+      const model = reader.enterprise('2.125.160.216');
 
       const expected = {
         city: {
@@ -686,7 +686,7 @@ describe('ReaderModel', () => {
         './test/data/test-data/GeoIP2-ISP-Test.mmdb'
       );
 
-      const model: any = reader.isp('1.128.0.1');
+      const model = reader.isp('1.128.0.1');
 
       const expected = {
         autonomousSystemNumber: 1221,
@@ -739,7 +739,7 @@ describe('ReaderModel', () => {
         './test/data/test-data/GeoIP2-Domain-Test.mmdb'
       );
 
-      const model: any = reader.domain('1.2.0.1');
+      const model = reader.domain('1.2.0.1');
 
       const expected = {
         domain: 'maxmind.com',

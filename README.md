@@ -10,14 +10,10 @@ services](https://dev.maxmind.com/geoip/docs/web-services?lang=en).
 ## Installation
 
 ```sh
-yarn add @maxmind/geoip2-node
-```
-
-If you are not able to use `yarn`, you may also use `npm`:
-
-```sh
 npm install @maxmind/geoip2-node
 ```
+
+You can also use `yarn` or `pnpm`.
 
 ## IP Geolocation Usage
 

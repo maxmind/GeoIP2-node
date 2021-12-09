@@ -25,8 +25,8 @@ type servicePath = 'city' | 'country' | 'insights';
 export default class WebServiceClient {
   private accountID: string;
   private licenseKey: string;
-  private timeout: number = 3000;
-  private host: string = 'geoip.maxmind.com';
+  private timeout = 3000;
+  private host = 'geoip.maxmind.com';
 
   /**
    * Instantiates a WebServiceClient

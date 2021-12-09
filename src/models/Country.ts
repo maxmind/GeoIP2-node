@@ -42,7 +42,7 @@ export default class Country {
   public constructor(response: CountryResponse) {
     const camelcaseResponse = camelcaseKeys(response as Json, {
       deep: true,
-      exclude: [/\-/],
+      exclude: [/-/],
     }) as unknown as Country;
 
     this.continent = camelcaseResponse.continent || undefined;
