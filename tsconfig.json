@@ -13,7 +13,8 @@
     "skipLibCheck": true,
     "sourceMap": false,
     "strict": true,
-    "target": "es6"
+    "target": "es6",
+    "esModuleInterop": true
   },
   "compileOnSave": false,
   "include": ["src"],

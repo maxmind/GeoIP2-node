@@ -28,6 +28,11 @@
     "@types/jest": "^27.0.1",
     "@types/lodash.set": "^4.3.4",
     "@types/node": "^16.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.6.0",
+    "@typescript-eslint/parser": "^5.6.0",
+    "eslint": "^8.4.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
     "gh-pages": "^3.0.0",
     "husky": "^7.0.4",
     "jest": "^27.0.1",
@@ -37,9 +42,6 @@
     "pinst": "^2.1.4",
     "prettier": "^2.0.3",
     "ts-jest": "^27.0.1",
-    "tslint": "^6.1.3",
-    "tslint-config-prettier": "^1.15.0",
-    "tslint-eslint-rules": "^5.4.0",
     "typedoc": "^0.22.10",
     "typescript": "^4.5.2"
   },
@@ -47,7 +49,7 @@
     "*.json": ["prettier --parser json --write"],
     "*.ts": [
       "prettier --parser typescript --single-quote true --trailing-comma es5 --write",
-      "tslint -p tsconfig.lint.json -t stylish"
+      "eslint -c .eslintrc.js --ext ts,js . --fix"
     ]
   },
   "publishConfig": {
@@ -57,7 +59,7 @@
     "build": "rimraf dist && tsc",
     "build:docs": "rimraf docs && typedoc src/index.ts --out docs --exclude \"**/*.spec.ts\" --readme README.md && ./bin/sanitize-doc-refs.sh",
     "deploy:docs": "gh-pages -d docs",
-    "lint": "tslint -p ./tsconfig.lint.json -t stylish",
+    "lint": "eslint -c .eslintrc.js --ext ts,js .",
     "prettier:ts": "prettier --parser typescript --single-quote true --trailing-comma es5 --write 'src/**/*.ts'",
     "prettier:ci": "prettier --parser typescript --single-quote true --trailing-comma es5 --list-different 'src/**/*.ts'",
     "prettier:json": "prettier --parser json --write '**/*.json'",

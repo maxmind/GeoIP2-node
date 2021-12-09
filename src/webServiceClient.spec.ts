@@ -1,5 +1,5 @@
-import mmdb = require('maxmind');
-import nock = require('nock');
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import nock from 'nock';
 import * as geoip2Fixture from '../fixtures/geoip2.json';
 import Client from './webServiceClient';
 import * as models from './models';
@@ -483,36 +483,46 @@ describe('WebServiceClient', () => {
 });
 
 describe('WebServiceClient with options', () => {
-  const client = new Client(auth.user, auth.pass, {
-    host: 'geolite.info',
-    timeout: 1000,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let client: any;
+
+  beforeAll(() => {
+    client = new Client(auth.user, auth.pass, {
+      host: 'geolite.info',
+      timeout: 1000,
+    });
   });
 
   it('sets host', () => {
-    expect((client as any).host).toEqual('geolite.info');
+    expect(client.host).toEqual('geolite.info');
   });
 
   it('sets timeout', () => {
-    expect((client as any).timeout).toEqual(1000);
+    expect(client.timeout).toEqual(1000);
   });
 });
 
 describe('WebServiceClient with empty options', () => {
-  const client = new Client(auth.user, auth.pass, {});
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let client: any;
+
+  beforeAll(() => {
+    client = new Client(auth.user, auth.pass, {});
+  });
 
   it('sets host', () => {
-    expect((client as any).host).toEqual('geoip.maxmind.com');
+    expect(client.host).toEqual('geoip.maxmind.com');
   });
 
   it('sets timeout', () => {
-    expect((client as any).timeout).toEqual(3000);
+    expect(client.timeout).toEqual(3000);
   });
 });
 
 describe('WebServiceClient with timeout', () => {
-  const client = new Client(auth.user, auth.pass, 1000);
-
   it('sets timeout', () => {
-    expect((client as any).timeout).toEqual(1000);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const client: any = new Client(auth.user, auth.pass, 1000);
+    expect(client.timeout).toEqual(1000);
   });
 });
