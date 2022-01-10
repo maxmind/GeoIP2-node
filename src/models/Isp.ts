@@ -14,7 +14,7 @@ export default class Isp extends Asn {
   /**
    * Instantiates an "Isp" using fields from the response
    *
-   * @param response The GeoLite2 response
+   * @param response The GeoIP2-ISP response
    */
   public constructor(response: mmdb.IspResponse) {
     super(response);
