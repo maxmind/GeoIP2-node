@@ -254,7 +254,7 @@ export interface TraitsRecord {
   ipAddress?: string;
   /**
    * This is true if the IP address belongs to any sort of anonymous network.
-   * This value is only available from GeoIP2 Precision Insights.
+   * This value is only available from GeoIP2 Insights.
    */
   readonly isAnonymous?: boolean;
   /**
@@ -265,13 +265,13 @@ export interface TraitsRecord {
   readonly isAnonymousProxy?: boolean;
   /**
    * This is true if the IP address is registered to an anonymous VPN provider.
-   * This value is only available from GeoIP2 Precision Insights.
+   * This value is only available from GeoIP2 Insights.
    */
   readonly isAnonymousVpn?: boolean;
   /**
    * This is true if the IP address belongs to a hosting or VPN provider (see
    * description of `IsAnonymousVpn` property). This value is only available from
-   * GeoIP2 Precision Insights.
+   * GeoIP2 Insights.
    */
   readonly isHostingProvider?: boolean;
   /**
@@ -282,13 +282,13 @@ export interface TraitsRecord {
   readonly isLegitimateProxy?: boolean;
   /**
    * This is true if the IP address belongs to a public proxy. This value is
-   * only available from GeoIP2 Precision Insights.
+   * only available from GeoIP2 Insights.
    */
   readonly isPublicProxy?: boolean;
   /**
    * This is true if the IP address is on a suspected anonymizing network and
    * belongs to a residential ISP. This value is only available from GeoIP2
-   * Precision Insights.
+   * Insights.
    */
   readonly isResidentialProxy?: boolean;
   /**
@@ -299,7 +299,7 @@ export interface TraitsRecord {
   readonly isSatelliteProvider?: boolean;
   /**
    * This is true if the IP address belongs to a Tor exit node. This value is
-   * only available from GeoIP2 Precision Insights.
+   * only available from GeoIP2 Insights.
    */
   readonly isTorExitNode?: boolean;
   /**
@@ -345,8 +345,7 @@ export interface TraitsRecord {
   /**
    * The estimated number of users sharing the IP/network during the past 24
    * hours. For IPv4, the count is for the individual IP. For IPv6, the count
-   * is for the /64 network. This value is only available from GeoIP2 Precision
-   * Insights.
+   * is for the /64 network. This value is only available from GeoIP2 Insights.
    */
   readonly userCount?: number;
   /**

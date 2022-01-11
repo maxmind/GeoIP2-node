@@ -4,7 +4,7 @@
 
 This package provides an API for the [GeoIP2 databases and GeoLite2
 databases](https://dev.maxmind.com/geoip/docs/databases?lang=en), and an API
-for the [GeoIP2 Precision web services and GeoLite2 web
+for the [GeoIP2 web services and GeoLite2 web
 services](https://dev.maxmind.com/geoip/docs/web-services?lang=en).
 
 ## Installation
@@ -49,8 +49,8 @@ const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
 // Typescript:
 // import { WebServiceClient } from '@maxmind/geoip2-node';
 
-// To use the GeoLite2 web service instead of GeoIP2 Precision, set the
-// host to geolite.info, e.g.:
+// To use the GeoLite2 web service instead of the GeoIP2 web service, set
+// the host to geolite.info, e.g.:
 // new WebServiceClient('1234', 'licenseKey', {host: 'geolite.info'});
 const client = new WebServiceClient('1234', 'licenseKey');
 
@@ -66,8 +66,8 @@ const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
 // Typescript:
 // import { WebServiceClient } from '@maxmind/geoip2-node';
 
-// To use the GeoLite2 web service instead of GeoIP2 Precision, set the
-// host to geolite.info, e.g.:
+// To use the GeoLite2 web service instead of the GeoIP2 web service, set
+// the host to geolite.info, e.g.:
 // new WebServiceClient('1234', 'licenseKey', {host: 'geolite.info'});
 const client = new WebServiceClient('1234', 'licenseKey');
 
@@ -84,8 +84,8 @@ const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
 // Typescript:
 // import { WebServiceClient } from '@maxmind/geoip2-node';
 
-// Note that the Insights web service is only supported by GeoIP2
-// Precision, not the GeoLite2 web service.
+// Note that the Insights web service is only supported by the GeoIP2
+// web service, not the GeoLite2 web service.
 const client = new WebServiceClient('1234', 'licenseKey');
 
 client.insights('142.1.1.1').then(response => {
@@ -98,8 +98,7 @@ client.insights('142.1.1.1').then(response => {
 ## Web Service Errors
 
 For details on the possible errors returned by the web service itself, [see
-the GeoIP2 Precision web service
-documentation](https://dev.maxmind.com/geoip2/geoip/web-services).
+the GeoIP2 web service documentation](https://dev.maxmind.com/geoip2/geoip/web-services).
 
 If the web service returns an explicit error document, the promise will be rejected
 with the following object structure:
