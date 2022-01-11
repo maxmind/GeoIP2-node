@@ -1,7 +1,7 @@
 CHANGELOG
 =========
 
-3.4.0
+3.4.0 (2022-01-11)
 ------------------
 
 * Upgrade dependencies
