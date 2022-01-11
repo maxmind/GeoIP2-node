@@ -9,7 +9,7 @@ import { WebServiceClientError } from './types';
 interface Options {
   /** The host to use when connecting to the web service. The default is
    *  "geoip.maxmind.com". To call the GeoLite2 web service instead of
-   *  GeoIP2 Precision, set this to "geolite.info".
+   *  the GeoIP2 web service, set this to "geolite.info".
    */
   host?: string;
   /** The timeout. The default is 3000 */
@@ -39,7 +39,7 @@ export default class WebServiceClient {
    *                should be considered deprecated and may be removed in a
    *                future major version.
    * @param host The host to use. The default is "geoip.maxmind.com". To call
-   *             the GeoLite2 web service instead of GeoIP2 Precision, use
+   *             the GeoLite2 web service instead of the GeoIP2 web service, use
    *             "geolite.info".
    */
   public constructor(
@@ -70,16 +70,17 @@ export default class WebServiceClient {
   }
 
   /**
-   * Returns a Promise with the City Precision data for an IP address.
+   * Returns a Promise with the City Plus data for an IP address.
    *
-   * @param ipAddress The IP Address you want to query the City web service with
+   * @param ipAddress The IP Address you want to query the City Plus web
+   * service with
    */
   public city(ipAddress: string): Promise<models.City> {
     return this.responseFor<models.City>('city', ipAddress, models.City);
   }
 
   /**
-   * Returns a Promise with the Country Precision data for an IP address.
+   * Returns a Promise with the Country data for an IP address.
    *
    * @param ipAddress The IP Address you want to query the Country web service with
    */
@@ -92,10 +93,10 @@ export default class WebServiceClient {
   }
 
   /**
-   * Returns a Promise with the Insights Precision data for an IP address.
+   * Returns a Promise with the Insights data for an IP address.
    *
-   * Insights is only supported by GeoIP2 Precision. It is not supported by the
-   * GeoLite2 web service.
+   * Insights is only supported by the GeoIP2 web service. It is not supported
+   * by the GeoLite2 web service.
    *
    * @param ipAddress The IP Address you want to query the Insights web service with
    */
