@@ -32,7 +32,7 @@ describe('WebServiceClient', () => {
 
     it('returns a city class', async () => {
       const ip = '8.8.8.8';
-      expect.assertions(93);
+      expect.assertions(95);
 
       nockInstance
         .get(fullPath('city', ip))
@@ -140,6 +140,8 @@ describe('WebServiceClient', () => {
       expect(got.traits.isSatelliteProvider).toEqual(true);
       expect(got.traits.isTorExitNode).toEqual(true);
       expect(got.traits.isp).toEqual('Linkem spa');
+      expect(got.traits.mobileCountryCode).toEqual('310');
+      expect(got.traits.mobileNetworkCode).toEqual('004');
       expect(got.traits.network).toEqual('11.11.11.0/24');
       expect(got.traits.organization).toEqual('Linkem IR WiMax Network');
       expect(got.traits.staticIpScore).toEqual(1.3);
@@ -259,7 +261,7 @@ describe('WebServiceClient', () => {
 
     it('returns an insight class', async () => {
       const ip = '8.8.8.8';
-      expect.assertions(93);
+      expect.assertions(95);
 
       nockInstance
         .get(fullPath('insights', ip))
@@ -367,6 +369,8 @@ describe('WebServiceClient', () => {
       expect(got.traits.isSatelliteProvider).toEqual(true);
       expect(got.traits.isTorExitNode).toEqual(true);
       expect(got.traits.isp).toEqual('Linkem spa');
+      expect(got.traits.mobileCountryCode).toEqual('310');
+      expect(got.traits.mobileNetworkCode).toEqual('004');
       expect(got.traits.network).toEqual('11.11.11.0/24');
       expect(got.traits.organization).toEqual('Linkem IR WiMax Network');
       expect(got.traits.staticIpScore).toEqual(1.3);

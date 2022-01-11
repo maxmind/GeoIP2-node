@@ -35,7 +35,6 @@ describe('ReaderModel', () => {
         },
         country: {
           geonameId: 2635167,
-          isInEuropeanUnion: true,
           isoCode: 'GB',
           names: {
             de: 'Vereinigtes Königreich',
@@ -265,7 +264,6 @@ describe('ReaderModel', () => {
         },
         country: {
           geonameId: 2635167,
-          isInEuropeanUnion: true,
           isoCode: 'GB',
           names: {
             de: 'Vereinigtes Königreich',
@@ -566,7 +564,6 @@ describe('ReaderModel', () => {
         country: {
           confidence: 95,
           geonameId: 2635167,
-          isInEuropeanUnion: true,
           isoCode: 'GB',
           names: {
             de: 'Vereinigtes Königreich',
@@ -647,6 +644,95 @@ describe('ReaderModel', () => {
       expect(model).toEqual(expected);
     });
 
+    it('returns enterprise data with MCC/MNC fields', async () => {
+      expect.assertions(1);
+
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-Enterprise-Test.mmdb'
+      );
+
+      const model = reader.enterprise('149.101.100.0');
+
+      const expected = {
+        city: undefined,
+        continent: {
+          code: 'NA',
+          geonameId: 6255149,
+          names: {
+            de: 'Nordamerika',
+            en: 'North America',
+            es: 'América del Norte',
+            fr: 'Amérique du Nord',
+            ja: '北アメリカ',
+            'pt-BR': 'América do Norte',
+            ru: 'Северная Америка',
+            'zh-CN': '北美洲',
+          },
+        },
+        country: {
+          confidence: 99,
+          geonameId: 6252001,
+          isoCode: 'US',
+          names: {
+            de: 'USA',
+            en: 'United States',
+            es: 'Estados Unidos',
+            fr: 'États-Unis',
+            ja: 'アメリカ合衆国',
+            'pt-BR': 'Estados Unidos',
+            ru: 'США',
+            'zh-CN': '美国',
+          },
+        },
+        location: {
+          accuracyRadius: 1000,
+          latitude: 37.751,
+          longitude: -97.822,
+          timeZone: 'America/Chicago',
+        },
+        maxmind: undefined,
+        postal: undefined,
+        registeredCountry: {
+          geonameId: 2635167,
+          isInEuropeanUnion: false,
+          isoCode: 'GB',
+          names: {
+            de: 'Vereinigtes Königreich',
+            en: 'United Kingdom',
+            es: 'Reino Unido',
+            fr: 'Royaume-Uni',
+            ja: 'イギリス',
+            'pt-BR': 'Reino Unido',
+            ru: 'Великобритания',
+            'zh-CN': '英国',
+          },
+        },
+        representedCountry: undefined,
+        subdivisions: undefined,
+        traits: {
+          autonomousSystemNumber: 6167,
+          autonomousSystemOrganization: 'CELLCO-PART',
+          ipAddress: '149.101.100.0',
+          isAnonymous: false,
+          isAnonymousProxy: false,
+          isAnonymousVpn: false,
+          isHostingProvider: false,
+          isLegitimateProxy: false,
+          isPublicProxy: false,
+          isResidentialProxy: false,
+          isSatelliteProvider: false,
+          isTorExitNode: false,
+          isp: 'Verizon Wireless',
+          mobileCountryCode: '310',
+          mobileNetworkCode: '004',
+          network: '149.101.100.0/28',
+          organization: 'Verizon Wireless',
+        },
+      };
+
+      expect(model).toEqual(expected);
+    });
+
     it('throws an error if db types do not match', async () => {
       expect.assertions(1);
 
@@ -695,6 +781,29 @@ describe('ReaderModel', () => {
         isp: 'Telstra Internet',
         network: '1.128.0.0/11',
         organization: 'Telstra Internet',
+      };
+
+      expect(model).toEqual(expected);
+    });
+
+    it('returns isp data with MCC/MNC fields', async () => {
+      expect.assertions(1);
+
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-ISP-Test.mmdb'
+      );
+
+      const model = reader.isp('149.101.100.0');
+
+      const expected = {
+        autonomousSystemNumber: 6167,
+        autonomousSystemOrganization: 'CELLCO-PART',
+        ipAddress: '149.101.100.0',
+        isp: 'Verizon Wireless',
+        mobileCountryCode: '310',
+        mobileNetworkCode: '004',
+        network: '149.101.100.0/28',
+        organization: 'Verizon Wireless',
       };
 
       expect(model).toEqual(expected);
