@@ -59,7 +59,7 @@ client.country('142.1.1.1').then(response => {
 });
 ```
 
-### City Service
+### City Plus Service
 
 ```js
 const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
