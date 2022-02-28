@@ -374,7 +374,7 @@ data set, it will be automatically incorporated into future MaxMind
 releases.
 
 If you are a paying MaxMind customer and you're not sure where to submit a
-correction, please [contact MaxMind support for help](https://support.maxmind.com/contact-us/).
+correction, please [contact MaxMind support for help](https://support.maxmind.com/hc/en-us/requests/new).
 
 ## Requirements
 
@@ -396,7 +396,7 @@ Please report all issues with this code using the [GitHub issue
 tracker](https://github.com/maxmind/GeoIP2-node/issues)
 
 If you are having an issue with a MaxMind service that is not specific to the
-client API, please contact [MaxMind support for assistance](https://support.maxmind.com/contact-us/).
+client API, please contact [MaxMind support for assistance](https://support.maxmind.com/hc/en-us/requests/new).
 
 ## Copyright and License
 
