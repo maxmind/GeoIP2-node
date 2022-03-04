@@ -357,6 +357,7 @@ export interface TraitsRecord {
     | 'cafe'
     | 'cellular'
     | 'college'
+    | 'consumer_privacy_network'
     | 'content_delivery_network'
     | 'dialup'
     | 'government'
