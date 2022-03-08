@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+3.5.0
+------------------
+
+* `consumer_privacy_network` was added to the type union for the `userType`
+  property in the `TraitsRecord` interface.
+
 3.4.0 (2022-01-11)
 ------------------
 
