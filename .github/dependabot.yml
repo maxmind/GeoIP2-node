@@ -1,10 +1,7 @@
 version: 2
 updates:
-- package-ecosystem: npm
-  directory: "/"
-  schedule:
-    interval: weekly
-  # We are disabling Dependabot for Node repos until it supports
-  # grouped updates:
-  # https://github.com/dependabot/dependabot-core/issues/1190
-  open-pull-requests-limit: 0
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 20
