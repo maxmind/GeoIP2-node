@@ -31,7 +31,9 @@ module.exports = {
       "plugins": [
         "@typescript-eslint"
       ],
-      "rules": {}
+      "rules": {
+        "@typescript-eslint/no-explicit-any":0
+      }
     }
   ],
   "parserOptions": {
