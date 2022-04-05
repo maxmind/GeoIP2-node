@@ -55,6 +55,7 @@ export default class Country {
     this.traits = this.setBooleanTraits(camelcaseResponse.traits || {});
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private setBooleanTraits(traits: any) {
     const booleanTraits = [
       'isAnonymous',
@@ -75,6 +76,7 @@ export default class Country {
     return traits as records.TraitsRecord;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private setBooleanRegisteredCountry(country: any) {
     if (country) {
       country.isInEuropeanUnion = !!country.isInEuropeanUnion;
