@@ -32,7 +32,7 @@ module.exports = {
         "@typescript-eslint"
       ],
       "rules": {
-        "@typescript-eslint/no-explicit-any":2
+
       }
     }
   ],
@@ -43,5 +43,7 @@ module.exports = {
   "plugins": [
       "eslint-plugin-prefer-arrow",
   ],
-  "rules": {}
+  "rules": {
+
+  }
 };
