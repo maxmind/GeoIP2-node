@@ -2,10 +2,12 @@
 
 ## Description
 
-This package provides an API for the [GeoIP2 databases and GeoLite2
-databases](https://dev.maxmind.com/geoip/docs/databases?lang=en), and an API
-for the [GeoIP2 web services and GeoLite2 web
+This package provides a server-side API for the [GeoIP2 databases and GeoLite2
+databases](https://dev.maxmind.com/geoip/docs/databases?lang=en), and a server-side
+API for the [GeoIP2 web services and GeoLite2 web
 services](https://dev.maxmind.com/geoip/docs/web-services?lang=en).
+
+**This package will not work client-side.**
 
 ## Installation
 
