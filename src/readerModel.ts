@@ -6,6 +6,7 @@ import * as models from './models';
 
 /** Class representing the ReaderModel **/
 export default class ReaderModel {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private mmdbReader: mmdb.Reader<any>;
 
   /**
@@ -13,6 +14,7 @@ export default class ReaderModel {
    *
    * @param mmdbReader The mmdbReader
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public constructor(mmdbReader: mmdb.Reader<any>) {
     this.mmdbReader = mmdbReader;
   }
@@ -162,6 +164,7 @@ export default class ReaderModel {
   }
 
   private modelFor(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     modelClass: any,
     dbType: string,
     ipAddress: string,

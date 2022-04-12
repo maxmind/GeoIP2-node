@@ -111,6 +111,7 @@ export default class WebServiceClient {
   private responseFor<T>(
     path: servicePath,
     ipAddress: string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     modelClass: any
   ): Promise<T> {
     const parsedPath = `/geoip/v2.1/${path}/${ipAddress}`;

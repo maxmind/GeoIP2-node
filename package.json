@@ -50,7 +50,7 @@
     "*.json": ["prettier --parser json --write"],
     "*.ts": [
       "prettier --parser typescript --single-quote true --trailing-comma es5 --write",
-      "eslint -c .eslintrc.js --ext ts,js . --fix"
+      "eslint -c .eslintrc.js --ext ts,js . --fix --max-warnings=0"
     ]
   },
   "publishConfig": {
@@ -60,7 +60,7 @@
     "build": "rimraf dist && tsc",
     "build:docs": "rimraf docs && typedoc src/index.ts --out docs --exclude \"**/*.spec.ts\" --readme README.md && ./bin/sanitize-doc-refs.sh",
     "deploy:docs": "gh-pages -d docs",
-    "lint": "eslint -c .eslintrc.js --ext ts,js .",
+    "lint": "eslint -c .eslintrc.js --ext ts,js . --max-warnings=0",
     "prettier:ts": "prettier --parser typescript --single-quote true --trailing-comma es5 --write 'src/**/*.ts'",
     "prettier:ci": "prettier --parser typescript --single-quote true --trailing-comma es5 --list-different 'src/**/*.ts'",
     "prettier:json": "prettier --parser json --write '**/*.json'",
