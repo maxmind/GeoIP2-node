@@ -32,6 +32,7 @@ export default class Reader {
     let reader;
     try {
       reader = new mmdb.Reader(buffer);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
       throw new InvalidDbBufferError(e);
     }
