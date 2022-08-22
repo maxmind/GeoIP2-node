@@ -365,7 +365,7 @@ premium data set.
 ## Reporting Data Problems
 
 If the problem you find is that an IP address is incorrectly mapped, please
-[submit your correction to MaxMind](https://support.maxmind.com/geoip-data-correction-request/).
+[submit your correction to MaxMind](https://www.maxmind.com/en/geoip-data-correction-request).
 
 If you find some other sort of mistake, like an incorrect spelling,
 please check [the GeoNames site](https://www.geonames.org/) first. Once
