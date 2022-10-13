@@ -380,8 +380,8 @@ correction, please [contact MaxMind support for help](https://support.maxmind.co
 
 ## Requirements
 
-MaxMind has tested this API with Node.js versions 12 and 14.  We aim to support
-active LTS versions of Node.js, as well as the latest stable release.
+MaxMind has tested this API with Node.js versions 14, 16, and 18.  We aim to support
+active and maintained LTS versions of Node.js.
 
 ## Contributing
 
