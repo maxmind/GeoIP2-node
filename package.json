@@ -71,7 +71,7 @@
     "postpublish": "pinst --enable"
   },
   "dependencies": {
-    "camelcase-keys": "^7.0.0",
+    "camelcase-keys": "^8.0.2",
     "ip6addr": "^0.2.5",
     "maxmind": "^4.2.0"
   }
