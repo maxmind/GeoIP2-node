@@ -1,5 +1,4 @@
 import ip6addr = require('ip6addr');
-import set = require('lodash.set');
 import mmdb = require('maxmind');
 import { AddressNotFoundError, BadMethodCallError, ValueError } from './errors';
 import * as models from './models';
@@ -180,12 +179,12 @@ export default class ReaderModel {
       case 'Domain':
       case 'GeoIP2-Anonymous-IP':
       case 'ISP':
-        set(model, 'ipAddress', ipAddress);
-        set(model, 'network', network);
+        model.ipAddress = ipAddress;
+        model.network = network;
         break;
       default:
-        set(model, 'traits.ipAddress', ipAddress);
-        set(model, 'traits.network', network);
+        model.traits.ipAddress = ipAddress;
+        model.traits.network = network;
     }
 
     return model;
