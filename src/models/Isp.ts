@@ -26,8 +26,12 @@ export default class Isp extends Asn {
    *
    * @param response The GeoIP2-ISP response
    */
-  public constructor(response: mmdb.IspResponse) {
-    super(response);
+  public constructor(
+    response: mmdb.IspResponse,
+    ipAddress?: string,
+    network?: string
+  ) {
+    super(response, ipAddress, network);
     this.isp = response.isp;
     this.mobileCountryCode = response.mobile_country_code;
     this.mobileNetworkCode = response.mobile_network_code;

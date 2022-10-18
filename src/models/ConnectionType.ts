@@ -26,8 +26,13 @@ export default class ConnectionType {
    *
    * @param response The GeoIP2 response
    */
-  public constructor(response: mmdb.ConnectionTypeResponse) {
+  public constructor(
+    response: mmdb.ConnectionTypeResponse,
+    ipAddress?: string,
+    network?: string
+  ) {
     this.connectionType = response.connection_type as ConnType;
-    this.ipAddress = response.ip_address;
+    this.ipAddress = ipAddress;
+    this.network = network;
   }
 }

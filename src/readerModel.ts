@@ -171,22 +171,6 @@ export default class ReaderModel {
   ) {
     const [record, network] = this.getRecord(dbType, ipAddress, fnName);
 
-    const model = new modelClass(record);
-
-    switch (dbType) {
-      case 'ASN':
-      case 'Connection-Type':
-      case 'Domain':
-      case 'GeoIP2-Anonymous-IP':
-      case 'ISP':
-        model.ipAddress = ipAddress;
-        model.network = network;
-        break;
-      default:
-        model.traits.ipAddress = ipAddress;
-        model.traits.network = network;
-    }
-
-    return model;
+    return new modelClass(record, ipAddress, network);
   }
 }

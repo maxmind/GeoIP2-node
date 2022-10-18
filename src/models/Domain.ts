@@ -25,8 +25,13 @@ export default class Domain {
    *
    * @param response The GeoIP2 response
    */
-  public constructor(response: DomainResponse) {
+  public constructor(
+    response: DomainResponse,
+    ipAddress?: string,
+    network?: string
+  ) {
     this.domain = response.domain;
-    this.ipAddress = response.ip_address;
+    this.ipAddress = ipAddress;
+    this.network = network;
   }
 }
