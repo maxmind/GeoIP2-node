@@ -39,7 +39,11 @@ export default class Country {
    *
    * @param response The GeoIP2 response
    */
-  public constructor(response: CountryResponse) {
+  public constructor(
+    response: CountryResponse,
+    ipAddress?: string,
+    network?: string
+  ) {
     const camelcaseResponse = camelcaseKeys(response as Json, {
       deep: true,
       exclude: [/-/],
@@ -53,6 +57,8 @@ export default class Country {
       undefined;
     this.representedCountry = camelcaseResponse.representedCountry || undefined;
     this.traits = this.setBooleanTraits(camelcaseResponse.traits || {});
+    this.traits.ipAddress ??= ipAddress;
+    this.traits.network ??= network;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -29,9 +29,14 @@ export default class Asn {
    *
    * @param response The GeoLite2 response
    */
-  public constructor(response: mmdb.AsnResponse) {
+  public constructor(
+    response: mmdb.AsnResponse,
+    ipAddress?: string,
+    network?: string
+  ) {
     this.autonomousSystemNumber = response.autonomous_system_number;
     this.autonomousSystemOrganization = response.autonomous_system_organization;
-    this.ipAddress = response.ip_address;
+    this.ipAddress = ipAddress;
+    this.network = network;
   }
 }

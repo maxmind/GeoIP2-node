@@ -32,8 +32,12 @@ export default class City extends Country {
    *
    * @param response The GeoIP2 response
    */
-  public constructor(response: CityResponse) {
-    super(response);
+  public constructor(
+    response: CityResponse,
+    ipAddress?: string,
+    network?: string
+  ) {
+    super(response, ipAddress, network);
 
     const camelcaseResponse = camelcaseKeys(response as Json, {
       deep: true,

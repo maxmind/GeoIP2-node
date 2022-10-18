@@ -8,7 +8,11 @@ export default class Enterprise extends City {
    *
    * @param response The GeoIP2 response
    */
-  public constructor(response: CityResponse) {
-    super(response);
+  public constructor(
+    response: CityResponse,
+    ipAddress?: string,
+    network?: string
+  ) {
+    super(response, ipAddress, network);
   }
 }

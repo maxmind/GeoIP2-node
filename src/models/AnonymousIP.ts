@@ -46,13 +46,18 @@ export default class AnonymousIP {
    *
    * @param response The GeoIP2 response
    */
-  public constructor(response: mmdb.AnonymousIPResponse) {
-    this.ipAddress = response.ip_address;
+  public constructor(
+    response: mmdb.AnonymousIPResponse,
+    ipAddress?: string,
+    network?: string
+  ) {
+    this.ipAddress = ipAddress;
     this.isAnonymous = !!response.is_anonymous;
     this.isAnonymousVpn = !!response.is_anonymous_vpn;
     this.isHostingProvider = !!response.is_hosting_provider;
     this.isPublicProxy = !!response.is_public_proxy;
     this.isResidentialProxy = !!response.is_residential_proxy;
     this.isTorExitNode = !!response.is_tor_exit_node;
+    this.network = network;
   }
 }
