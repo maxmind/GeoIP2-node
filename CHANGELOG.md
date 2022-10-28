@@ -1,11 +1,12 @@
 CHANGELOG
 =========
 
-3.5.0
+3.5.0 (2022-10-28)
 ------------------
 
 * `consumer_privacy_network` was added to the type union for the `userType`
   property in the `TraitsRecord` interface.
+* Address lodash security vulnerability.
 
 3.4.0 (2022-01-11)
 ------------------
