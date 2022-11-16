@@ -1,11 +1,14 @@
-import mmdb = require('maxmind');
+import {
+  CityResponse as mmdbCityResponse,
+  CountryResponse as mmdbCountryResponse,
+} from 'maxmind';
 import { MaxMindRecord } from './records';
 
-export interface CountryResponse extends mmdb.CountryResponse {
+export interface CountryResponse extends mmdbCountryResponse {
   maxmind?: MaxMindRecord;
 }
 
-export interface CityResponse extends mmdb.CityResponse {
+export interface CityResponse extends mmdbCityResponse {
   maxmind?: MaxMindRecord;
 }
 

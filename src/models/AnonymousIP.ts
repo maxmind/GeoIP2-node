@@ -1,4 +1,4 @@
-import mmdb = require('maxmind');
+import { AnonymousIPResponse } from 'maxmind';
 
 /** Class representing the model of an "AnonymousIP" response **/
 export default class AnonymousIP {
@@ -47,7 +47,7 @@ export default class AnonymousIP {
    * @param response The GeoIP2 response
    */
   public constructor(
-    response: mmdb.AnonymousIPResponse,
+    response: AnonymousIPResponse,
     ipAddress?: string,
     network?: string
   ) {

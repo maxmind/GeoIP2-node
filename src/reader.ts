@@ -1,4 +1,9 @@
-import mmdb = require('maxmind');
+import {
+  open as mmdbOpen,
+  Reader as mmdbReader,
+  OpenOpts,
+  Response,
+} from 'maxmind';
 import { InvalidDbBufferError } from './errors';
 import ReaderModel from './readerModel';
 
@@ -19,8 +24,10 @@ export default class Reader {
    * @param file The file to open
    * @param opts Options for opening the file.  See https://github.com/runk/node-maxmind#options
    */
-  public static open(file: string, opts?: mmdb.OpenOpts): Promise<ReaderModel> {
-    return mmdb.open(file, opts).then((reader) => new ReaderModel(reader));
+  public static open(file: string, opts?: OpenOpts): Promise<ReaderModel> {
+    return mmdbOpen<Response>(file, opts).then(
+      (reader) => new ReaderModel(reader)
+    );
   }
 
   /**
@@ -31,7 +38,7 @@ export default class Reader {
   public static openBuffer(buffer: Buffer): ReaderModel {
     let reader;
     try {
-      reader = new mmdb.Reader(buffer);
+      reader = new mmdbReader(buffer);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
       throw new InvalidDbBufferError(e);

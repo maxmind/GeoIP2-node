@@ -1,4 +1,4 @@
-import mmdb = require('maxmind');
+import { ConnectionTypeResponse } from 'maxmind';
 import { ConnectionType as ConnType } from '../types';
 
 /** Class representing the model of a "ConnectionType" response **/
@@ -27,7 +27,7 @@ export default class ConnectionType {
    * @param response The GeoIP2 response
    */
   public constructor(
-    response: mmdb.ConnectionTypeResponse,
+    response: ConnectionTypeResponse,
     ipAddress?: string,
     network?: string
   ) {

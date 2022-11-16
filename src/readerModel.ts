@@ -1,20 +1,18 @@
 import ip6addr = require('ip6addr');
-import mmdb = require('maxmind');
+import { Reader, Response, validate } from 'maxmind';
 import { AddressNotFoundError, BadMethodCallError, ValueError } from './errors';
 import * as models from './models';
 
 /** Class representing the ReaderModel **/
 export default class ReaderModel {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private mmdbReader: mmdb.Reader<any>;
+  private mmdbReader: Reader<Response>;
 
   /**
    * Instantiates a ReaderModel using node-maxmind reader
    *
    * @param mmdbReader The mmdbReader
    */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public constructor(mmdbReader: mmdb.Reader<any>) {
+  public constructor(mmdbReader: Reader<Response>) {
     this.mmdbReader = mmdbReader;
   }
 
@@ -140,7 +138,7 @@ export default class ReaderModel {
   private getRecord(dbType: string, ipAddress: string, fnName: string) {
     const metaDbType = this.mmdbReader.metadata.databaseType;
 
-    if (!mmdb.validate(ipAddress)) {
+    if (!validate(ipAddress)) {
       throw new ValueError(`${ipAddress} is invalid`);
     }
 

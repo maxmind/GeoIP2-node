@@ -1,4 +1,4 @@
-import mmdb = require('maxmind');
+import { IspResponse } from 'maxmind';
 import Asn from './Asn';
 
 export default class Isp extends Asn {
@@ -27,7 +27,7 @@ export default class Isp extends Asn {
    * @param response The GeoIP2-ISP response
    */
   public constructor(
-    response: mmdb.IspResponse,
+    response: IspResponse,
     ipAddress?: string,
     network?: string
   ) {

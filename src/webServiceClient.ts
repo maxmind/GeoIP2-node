@@ -1,6 +1,6 @@
 import http = require('http');
 import https = require('https');
-import mmdb = require('maxmind');
+import { validate } from 'maxmind';
 import { version } from '../package.json';
 import * as models from './models';
 import { WebServiceClientError } from './types';
@@ -117,7 +117,7 @@ export default class WebServiceClient {
     const parsedPath = `/geoip/v2.1/${path}/${ipAddress}`;
     const url = `https://${this.host}${parsedPath}`;
 
-    if (!mmdb.validate(ipAddress)) {
+    if (!validate(ipAddress)) {
       return Promise.reject({
         code: 'IP_ADDRESS_INVALID',
         error: 'The IP address provided is invalid',

@@ -1,4 +1,4 @@
-import mmdb = require('maxmind');
+import { AsnResponse } from 'maxmind';
 
 /** Class representing the model of an "ASN" response **/
 export default class Asn {
@@ -30,7 +30,7 @@ export default class Asn {
    * @param response The GeoLite2 response
    */
   public constructor(
-    response: mmdb.AsnResponse,
+    response: AsnResponse,
     ipAddress?: string,
     network?: string
   ) {
