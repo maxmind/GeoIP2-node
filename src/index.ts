@@ -5,3 +5,4 @@ import ReaderModel from './readerModel';
 export { Reader, ReaderModel, WebServiceClient };
 export * from './records';
 export * from './models';
+export * from './errors';
