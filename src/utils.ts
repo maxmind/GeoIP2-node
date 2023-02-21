@@ -1,26 +1,12 @@
 /**
  * Converts snake_case to camelCase
  * @param {string} input - snake_case string
- * @param {string} exclude - `input` that contains `exclude` will be returned unmodified
  * @returns {string} - camelCase string
  */
-export function snakeToCamelCase(input: string, exclude = '-'): string {
-  // Return the input string unchanged if there are no underscores
-  // or it includes the `exclude` character.
-  if (!input.includes('_') || input.includes(exclude)) {
-    return input;
-  }
-  // remove trailing/leading underscores
-  let output = input.replace(/^_+/, '').replace(/_+$/, '');
-  let currentIndex = output.indexOf('_');
-  while (currentIndex !== -1) {
-    output =
-      output.slice(0, currentIndex) +
-      output[currentIndex + 1].toUpperCase() +
-      output.slice(currentIndex + 2);
-    currentIndex = output.indexOf('_', currentIndex);
-  }
-  return output;
+export function snakeToCamelCase(input: string): string {
+  return input.replace(/_+(\w?)/g, (_, p, o) =>
+    o === 0 ? p : p.toUpperCase()
+  );
 }
 
 const isObject = (value: unknown) =>
