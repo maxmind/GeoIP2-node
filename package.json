@@ -44,7 +44,7 @@
     "prettier": "^2.0.3",
     "ts-jest": "^29.0.3",
     "typedoc": "^0.23.16",
-    "typescript": "^4.5.2"
+    "typescript": "^5.0.2"
   },
   "lint-staged": {
     "*.json": ["prettier --parser json --write"],
