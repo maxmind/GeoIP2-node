@@ -234,7 +234,7 @@ export interface TraitsRecord {
   readonly autonomousSystemOrganization?: string;
   /**
    * The connection type may take the following values:
-   * "Dialup", "Cable/DSL", "Corporate", "Cellular".
+   * "Dialup", "Cable/DSL", "Corporate", "Cellular", and "Satellite".
    * Additional values may be added in the future.
    */
   readonly connectionType?: ConnectionType;

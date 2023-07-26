@@ -5,7 +5,7 @@ import { ConnectionType as ConnType } from '../types';
 export default class ConnectionType {
   /**
    * The connection type may take the following values:
-   * "Dialup", "Cable/DSL", "Corporate", "Cellular".
+   * "Dialup", "Cable/DSL", "Corporate", "Cellular", and "Satellite".
    * Additional values may be added in the future.
    */
   public readonly connectionType: ConnType;

@@ -19,4 +19,9 @@ export interface Json {
   [key: string]: unknown;
 }
 
-export type ConnectionType = 'Cable/DSL' | 'Cellular' | 'Corporate' | 'Dialup';
+export type ConnectionType =
+  | 'Cable/DSL'
+  | 'Cellular'
+  | 'Corporate'
+  | 'Dialup'
+  | 'Satellite';
