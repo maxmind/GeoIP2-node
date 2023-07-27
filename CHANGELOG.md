@@ -1,7 +1,7 @@
 CHANGELOG
 =========
 
-4.2.0
+4.2.0 (2023-07-27)
 ------------------
 
 * Added `Satellite` to `ConnectionType` type.
