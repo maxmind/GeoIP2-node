@@ -1,6 +1,6 @@
 {
   "name": "@maxmind/geoip2-node",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "description": "Node.js API for GeoIP2 webservice client and database reader",
   "main": "dist/src/index.js",
   "homepage": "https://github.com/maxmind/GeoIP2-node",
