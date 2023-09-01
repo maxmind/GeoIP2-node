@@ -8,8 +8,11 @@ import { WebServiceClientError } from './types';
 /** Option for the WebServiceClient constructor */
 interface Options {
   /** The host to use when connecting to the web service. The default is
-   *  "geoip.maxmind.com". To call the GeoLite2 web service instead of
-   *  the GeoIP2 web service, set this to "geolite.info".
+   *  "geoip.maxmind.com". To call the GeoLite2 web service instead of the
+   *  GeoIP2 web service, set this to "geolite.info". To call the Sandbox
+   *  GeoIP2 web service instead of the production GeoIP2 web service, set this
+   *  to "sandbox.maxmind.com". The sandbox allows you to experiment with the
+   *  API without affecting your production data.
    */
   host?: string;
   /** The timeout. The default is 3000 */
