@@ -40,7 +40,8 @@ records, each of which represents part of the data returned by the web service.
 
 If the request fails, the function's Promise will reject with an error object.
 
-See the API documentation for more details.
+See the [API documentation](https://maxmind.github.io/GeoIP2-node/) for
+more details.
 
 ## Web Service Example
 
