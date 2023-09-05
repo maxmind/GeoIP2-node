@@ -29,7 +29,8 @@ To use the web service API, you must create a new `WebServiceClient`, using
 your MaxMind `accountID` and `licenseKey` as parameters. The third argument is
 an object holding additional option. The `timeout` option defaults to `3000`.
 The `host` option defaults to `geoip.maxmind.com`. Set `host` to `geolite.info`
-to use the GeoLite2 web service instead of GeoIP2.
+to use the GeoLite2 web service instead of GeoIP2. Set `host` to
+`sandbox.maxmind.com` to use the Sandbox environment.
 
 You may then call the function corresponding to a specific end point, passing it
 the IP address you want to lookup.
@@ -40,7 +41,8 @@ records, each of which represents part of the data returned by the web service.
 
 If the request fails, the function's Promise will reject with an error object.
 
-See the API documentation for more details.
+See the [API documentation](https://maxmind.github.io/GeoIP2-node/) for
+more details.
 
 ## Web Service Example
 
@@ -54,6 +56,10 @@ const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
 // To use the GeoLite2 web service instead of the GeoIP2 web service, set
 // the host to geolite.info, e.g.:
 // new WebServiceClient('1234', 'licenseKey', {host: 'geolite.info'});
+//
+// To use the Sandbox GeoIP2 web service instead of the production GeoIP2
+// web service, set the host to sandbox.maxmind.com, e.g.:
+// new WebServiceClient('1234', 'licenseKey', {host: 'sandbox.maxmind.com'});
 const client = new WebServiceClient('1234', 'licenseKey');
 
 client.country('142.1.1.1').then(response => {
@@ -88,6 +94,10 @@ const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
 
 // Note that the Insights web service is only supported by the GeoIP2
 // web service, not the GeoLite2 web service.
+//
+// To use the Sandbox GeoIP2 web service instead of the production GeoIP2
+// web service, set the host to sandbox.maxmind.com, e.g.:
+// new WebServiceClient('1234', 'licenseKey', {host: 'sandbox.maxmind.com'});
 const client = new WebServiceClient('1234', 'licenseKey');
 
 client.insights('142.1.1.1').then(response => {
