@@ -31,7 +31,9 @@ module.exports = {
       "plugins": [
         "@typescript-eslint"
       ],
-      "rules": {}
+      "rules": {
+        '@typescript-eslint/await-thenable': 'error',
+      }
     }
   ],
   "parserOptions": {
