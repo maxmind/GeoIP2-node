@@ -40,7 +40,6 @@
     "lint-staged": "^15.0.1",
     "lodash": "^4.17.11",
     "nock": "^13.0.2",
-    "pinst": "^3.0.0",
     "prettier": "^3.0.0",
     "ts-jest": "^29.1.0",
     "typedoc": "^0.25.0",
@@ -64,11 +63,10 @@
     "prettier:ts": "prettier --parser typescript --single-quote true --trailing-comma es5 --write 'src/**/*.ts'",
     "prettier:ci": "prettier --parser typescript --single-quote true --trailing-comma es5 --list-different 'src/**/*.ts'",
     "prettier:json": "prettier --parser json --write '**/*.json'",
+    "setup": "husky install",
     "test": "jest",
     "test:watch": "jest --watch",
-    "postinstall": "husky install",
-    "prepublishOnly": "npm run build && npm run test && npm run lint && npm run build:docs && npm run deploy:docs && pinst --disable",
-    "postpublish": "pinst --enable"
+    "prepublishOnly": "npm run build && npm run test && npm run lint && npm run build:docs && npm run deploy:docs"
   },
   "dependencies": {
     "ip6addr": "^0.2.5",

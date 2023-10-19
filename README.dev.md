@@ -1,4 +1,4 @@
-Steps for releasing:
+## Steps for releasing:
 
 1. Review open issues and PRs to see if any can easily be fixed, closed, or
    merged.
@@ -16,3 +16,7 @@ Steps for releasing:
 9. Tag the release, e.g. `git tag -a v1.2.3 -m v1.2.3`
 10. Push the tag: `git push --tags`
 11. Create the release on GitHub. You can use the web interface.
+
+## Set up pre-commit hooks
+
+`npm run setup` to install husky pre-commit hooks
