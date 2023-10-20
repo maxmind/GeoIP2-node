@@ -235,7 +235,8 @@ export interface TraitsRecord {
   /**
    * The connection type may take the following values:
    * "Dialup", "Cable/DSL", "Corporate", "Cellular", and "Satellite".
-   * Additional values may be added in the future.
+   * Additional values may be added in the future. This value is only set when
+   * using the City Plus or Insights web service or the Enterprise database.
    */
   readonly connectionType?: ConnectionType;
   /**
