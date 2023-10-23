@@ -19,18 +19,18 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.version }}
-      - run: npm install
+      - run: npm ci
       - run: npm test --coverage
       - run: npm run build
       - run: npm run build:docs
       - run: npm link
-      - run: npm install
+      - run: npm ci
         working-directory: e2e/js
       - run: npm link '@maxmind/geoip2-node'
         working-directory: e2e/js
       - run: npx jest
         working-directory: e2e/js
-      - run: npm install
+      - run: npm ci
         working-directory: e2e/ts
       - run: npm link '@maxmind/geoip2-node'
         working-directory: e2e/ts
