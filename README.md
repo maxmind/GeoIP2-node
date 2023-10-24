@@ -390,7 +390,7 @@ correction, please [contact MaxMind support for help](https://support.maxmind.co
 
 ## Requirements
 
-MaxMind has tested this API with Node.js versions 16, 18, and 20.  We aim to support
+MaxMind has tested this API with Node.js versions 18 and 20.  We aim to support
 active and maintained LTS versions of Node.js.
 
 ## Contributing
