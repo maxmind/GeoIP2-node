@@ -22,8 +22,8 @@ const processArray = (arr: Array<unknown>): unknown[] =>
     Array.isArray(el)
       ? processArray(el)
       : isObject(el)
-      ? camelcaseKeys(el as Record<string, unknown>)
-      : el
+        ? camelcaseKeys(el as Record<string, unknown>)
+        : el
   );
 
 /**
