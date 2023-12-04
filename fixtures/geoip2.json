@@ -113,6 +113,7 @@
     "is_anonymous": true,
     "is_anonymous_proxy": true,
     "is_anonymous_vpn": false,
+    "is_anycast": true,
     "is_hosting_provider": false,
     "is_legitimate_proxy": true,
     "is_public_proxy": true,

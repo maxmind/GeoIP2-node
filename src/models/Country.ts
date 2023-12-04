@@ -66,6 +66,7 @@ export default class Country {
       'isAnonymous',
       'isAnonymousProxy',
       'isAnonymousVpn',
+      'isAnycast',
       'isHostingProvider',
       'isLegitimateProxy',
       'isPublicProxy',

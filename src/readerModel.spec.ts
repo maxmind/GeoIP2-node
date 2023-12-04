@@ -98,6 +98,7 @@ describe('ReaderModel', () => {
           isAnonymous: false,
           isAnonymousProxy: false,
           isAnonymousVpn: false,
+          isAnycast: false,
           isHostingProvider: false,
           isLegitimateProxy: false,
           isPublicProxy: false,
@@ -141,6 +142,7 @@ describe('ReaderModel', () => {
           isAnonymous: false,
           isAnonymousProxy: false,
           isAnonymousVpn: false,
+          isAnycast: false,
           isHostingProvider: false,
           isLegitimateProxy: false,
           isPublicProxy: false,
@@ -191,6 +193,7 @@ describe('ReaderModel', () => {
           isAnonymous: false,
           isAnonymousProxy: false,
           isAnonymousVpn: false,
+          isAnycast: false,
           isHostingProvider: false,
           isLegitimateProxy: false,
           isPublicProxy: false,
@@ -198,6 +201,42 @@ describe('ReaderModel', () => {
           isSatelliteProvider: false,
           isTorExitNode: false,
           network: '2.3.3.0/24',
+        },
+      };
+
+      expect(model).toEqual(expected);
+    });
+
+    it('returns data with anycast record', async () => {
+      expect.assertions(1);
+
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-City-Test.mmdb'
+      );
+
+      const model = reader.city('214.1.1.0');
+
+      const expected = {
+        country: undefined,
+        location: undefined,
+        maxmind: undefined,
+        postal: undefined,
+        registeredCountry: undefined,
+        representedCountry: undefined,
+        subdivisions: undefined,
+        traits: {
+          ipAddress: '214.1.1.0',
+          isAnonymous: false,
+          isAnonymousProxy: false,
+          isAnonymousVpn: false,
+          isAnycast: true,
+          isHostingProvider: false,
+          isLegitimateProxy: false,
+          isPublicProxy: false,
+          isResidentialProxy: false,
+          isSatelliteProvider: false,
+          isTorExitNode: false,
+          network: '214.1.1.0/24',
         },
       };
 
@@ -298,6 +337,7 @@ describe('ReaderModel', () => {
           isAnonymous: false,
           isAnonymousProxy: false,
           isAnonymousVpn: false,
+          isAnycast: false,
           isHostingProvider: false,
           isLegitimateProxy: false,
           isPublicProxy: false,
@@ -309,6 +349,40 @@ describe('ReaderModel', () => {
       };
 
       expect(countryModel).toEqual(expected);
+    });
+
+    it('returns data with anycast record', async () => {
+      expect.assertions(1);
+
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-Country-Test.mmdb'
+      );
+
+      const model = reader.country('214.1.1.0');
+
+      const expected = {
+        country: undefined,
+        location: undefined,
+        maxmind: undefined,
+        registeredCountry: undefined,
+        representedCountry: undefined,
+        traits: {
+          ipAddress: '214.1.1.0',
+          isAnonymous: false,
+          isAnonymousProxy: false,
+          isAnonymousVpn: false,
+          isAnycast: true,
+          isHostingProvider: false,
+          isLegitimateProxy: false,
+          isPublicProxy: false,
+          isResidentialProxy: false,
+          isSatelliteProvider: false,
+          isTorExitNode: false,
+          network: '214.1.1.0/24',
+        },
+      };
+
+      expect(model).toEqual(expected);
     });
 
     it('throws an error if db types do not match', async () => {
@@ -630,6 +704,7 @@ describe('ReaderModel', () => {
           isAnonymous: false,
           isAnonymousProxy: false,
           isAnonymousVpn: false,
+          isAnycast: false,
           isHostingProvider: false,
           isLegitimateProxy: false,
           isPublicProxy: false,
@@ -638,6 +713,42 @@ describe('ReaderModel', () => {
           isTorExitNode: false,
           network: '2.125.160.216/29',
           staticIpScore: 0.27,
+        },
+      };
+
+      expect(model).toEqual(expected);
+    });
+
+    it('returns data with anycast record', async () => {
+      expect.assertions(1);
+
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP2-Enterprise-Test.mmdb'
+      );
+
+      const model = reader.enterprise('214.1.1.0');
+
+      const expected = {
+        country: undefined,
+        location: undefined,
+        maxmind: undefined,
+        postal: undefined,
+        registeredCountry: undefined,
+        representedCountry: undefined,
+        subdivisions: undefined,
+        traits: {
+          ipAddress: '214.1.1.0',
+          isAnonymous: false,
+          isAnonymousProxy: false,
+          isAnonymousVpn: false,
+          isAnycast: true,
+          isHostingProvider: false,
+          isLegitimateProxy: false,
+          isPublicProxy: false,
+          isResidentialProxy: false,
+          isSatelliteProvider: false,
+          isTorExitNode: false,
+          network: '214.1.1.0/24',
         },
       };
 
@@ -716,6 +827,7 @@ describe('ReaderModel', () => {
           isAnonymous: false,
           isAnonymousProxy: false,
           isAnonymousVpn: false,
+          isAnycast: false,
           isHostingProvider: false,
           isLegitimateProxy: false,
           isPublicProxy: false,

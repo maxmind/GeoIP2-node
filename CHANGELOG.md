@@ -5,6 +5,11 @@ CHANGELOG
 ------------------
 
 * **Breaking** Drop node 16 support
+* The `isAnycast` attribute was added to `TraitsRecord`. This is `true` if
+  the IP address belongs to an [anycast
+  network](https://en.wikipedia.org/wiki/Anycast). This is available for the
+  GeoIP2 Country, City Plus, and Insights web services and the GeoIP2 Country,
+  City, and Enterprise databases.
 
 4.2.0 (2023-07-27)
 ------------------

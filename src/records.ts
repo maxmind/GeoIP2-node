@@ -270,6 +270,13 @@ export interface TraitsRecord {
    */
   readonly isAnonymousVpn?: boolean;
   /**
+   * This is true if the IP address belongs to an anycast network.
+   * See https://en.wikipedia.org/wiki/Anycast.
+   *
+   * This is not available from GeoLite databases or web services.
+   */
+  readonly isAnycast?: boolean;
+  /**
    * This is true if the IP address belongs to a hosting or VPN provider (see
    * description of `IsAnonymousVpn` property). This value is only available from
    * GeoIP2 Insights.
