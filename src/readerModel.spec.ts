@@ -488,7 +488,7 @@ describe('ReaderModel', () => {
       const model = reader.connectionType('1.0.0.1');
 
       const expected = {
-        connectionType: 'Dialup',
+        connectionType: 'Cable/DSL',
         ipAddress: '1.0.0.1',
         network: '1.0.0.0/24',
       };
