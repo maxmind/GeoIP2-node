@@ -12,29 +12,29 @@ export default class AnonymousIP {
   /**
    * `true if the IP address belongs to any sort of anonymous network.
    */
-  public readonly isAnonymous?: boolean;
+  public readonly isAnonymous: boolean;
   /**
    * `true` if the IP address is registered to an anonymous VPN provider.
    */
-  public readonly isAnonymousVpn?: boolean;
+  public readonly isAnonymousVpn: boolean;
   /**
    * `true` if the IP address belongs to a hosting or VPN provider (see
    * description of `isAnonymousVpn` property).
    */
-  public readonly isHostingProvider?: boolean;
+  public readonly isHostingProvider: boolean;
   /**
    * `true` if the IP address belongs to a public proxy.
    */
-  public readonly isPublicProxy?: boolean;
+  public readonly isPublicProxy: boolean;
   /**
    * `true` if the IP address is on a suspected anonymizing network and belongs
    * to a residential ISP.
    */
-  public readonly isResidentialProxy?: boolean;
+  public readonly isResidentialProxy: boolean;
   /**
    * `true` if IP is a Tor exit node.
    */
-  public readonly isTorExitNode?: boolean;
+  public readonly isTorExitNode: boolean;
   /**
    * The network associated with the record. In particular, this is the largest
    * network where all of the fields besides `ipAddress` have the same value.

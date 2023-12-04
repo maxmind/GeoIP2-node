@@ -10,6 +10,8 @@ CHANGELOG
   network](https://en.wikipedia.org/wiki/Anycast). This is available for the
   GeoIP2 Country, City Plus, and Insights web services and the GeoIP2 Country,
   City, and Enterprise databases.
+* The boolean attributes on the record models are no longer optional. We
+  set missing values to false during construction.
 
 4.2.0 (2023-07-27)
 ------------------
