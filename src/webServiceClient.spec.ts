@@ -32,7 +32,7 @@ describe('WebServiceClient', () => {
 
     it('returns a city class', async () => {
       const ip = '8.8.8.8';
-      expect.assertions(95);
+      expect.assertions(96);
 
       nockInstance
         .get(fullPath('city', ip))
@@ -133,6 +133,7 @@ describe('WebServiceClient', () => {
       expect(got.traits.isAnonymous).toEqual(true);
       expect(got.traits.isAnonymousProxy).toEqual(true);
       expect(got.traits.isAnonymousVpn).toEqual(false);
+      expect(got.traits.isAnycast).toEqual(true);
       expect(got.traits.isHostingProvider).toEqual(false);
       expect(got.traits.isLegitimateProxy).toEqual(true);
       expect(got.traits.isPublicProxy).toEqual(true);
@@ -261,7 +262,7 @@ describe('WebServiceClient', () => {
 
     it('returns an insight class', async () => {
       const ip = '8.8.8.8';
-      expect.assertions(95);
+      expect.assertions(96);
 
       nockInstance
         .get(fullPath('insights', ip))
@@ -361,6 +362,7 @@ describe('WebServiceClient', () => {
       expect(got.traits.ipAddress).toEqual('11.11.11.11');
       expect(got.traits.isAnonymous).toEqual(true);
       expect(got.traits.isAnonymousProxy).toEqual(true);
+      expect(got.traits.isAnycast).toEqual(true);
       expect(got.traits.isAnonymousVpn).toEqual(false);
       expect(got.traits.isHostingProvider).toEqual(false);
       expect(got.traits.isLegitimateProxy).toEqual(true);

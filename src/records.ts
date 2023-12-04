@@ -84,7 +84,7 @@ export interface RegisteredCountryRecord {
   /**
    * This is true if the country is a member state of the European Union. This is available from all location services and databases.
    */
-  readonly isInEuropeanUnion?: boolean;
+  readonly isInEuropeanUnion: boolean;
   /**
    * The two-character ISO 3166-1 alpha code for the country.
    */
@@ -257,52 +257,59 @@ export interface TraitsRecord {
    * This is true if the IP address belongs to any sort of anonymous network.
    * This value is only available from GeoIP2 Insights.
    */
-  readonly isAnonymous?: boolean;
+  readonly isAnonymous: boolean;
   /**
    * This is true if the IP is an anonymous proxy. See MaxMind's GeoIP FAQ
    * @category deprecated
    * @deprecated
    */
-  readonly isAnonymousProxy?: boolean;
+  readonly isAnonymousProxy: boolean;
   /**
    * This is true if the IP address is registered to an anonymous VPN provider.
    * This value is only available from GeoIP2 Insights.
    */
-  readonly isAnonymousVpn?: boolean;
+  readonly isAnonymousVpn: boolean;
+  /**
+   * This is true if the IP address belongs to an anycast network.
+   * See https://en.wikipedia.org/wiki/Anycast.
+   *
+   * This is not available from GeoLite databases or web services.
+   */
+  readonly isAnycast: boolean;
   /**
    * This is true if the IP address belongs to a hosting or VPN provider (see
    * description of `IsAnonymousVpn` property). This value is only available from
    * GeoIP2 Insights.
    */
-  readonly isHostingProvider?: boolean;
+  readonly isHostingProvider: boolean;
   /**
    * True if MaxMind believes this IP address to be a legitimate proxy, such as
    * an internal VPN used by a corporation. This is only available in the
    * GeoIP2 Enterprise database.
    */
-  readonly isLegitimateProxy?: boolean;
+  readonly isLegitimateProxy: boolean;
   /**
    * This is true if the IP address belongs to a public proxy. This value is
    * only available from GeoIP2 Insights.
    */
-  readonly isPublicProxy?: boolean;
+  readonly isPublicProxy: boolean;
   /**
    * This is true if the IP address is on a suspected anonymizing network and
    * belongs to a residential ISP. This value is only available from GeoIP2
    * Insights.
    */
-  readonly isResidentialProxy?: boolean;
+  readonly isResidentialProxy: boolean;
   /**
    * This is true if the IP belong to a satellite Internet provider.
    * @category deprecated
    * @deprecated
    */
-  readonly isSatelliteProvider?: boolean;
+  readonly isSatelliteProvider: boolean;
   /**
    * This is true if the IP address belongs to a Tor exit node. This value is
    * only available from GeoIP2 Insights.
    */
-  readonly isTorExitNode?: boolean;
+  readonly isTorExitNode: boolean;
   /**
    * The network associated with the record. In particular, this is the largest
    * network where all of the fields besides `ipAddress` have the same value.
