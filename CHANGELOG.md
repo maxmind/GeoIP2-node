@@ -1,7 +1,7 @@
 CHANGELOG
 =========
 
-5.0.0
+5.0.0 (2023-12-05)
 ------------------
 
 * **Breaking** Drop node 16 support
