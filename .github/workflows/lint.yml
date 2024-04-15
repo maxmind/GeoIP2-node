@@ -14,6 +14,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run prettier:ci
+      - name: Check that package-lock.json is valid JSON
+        run: jq empty package-lock.json
+      - name: Install npm packages
+        run: npm ci
+      - name: Run eslint
+        run: npm run lint
+      - name: Run prettier
+        run: npm run prettier:ci
