@@ -42,7 +42,7 @@
     "nock": "^13.0.2",
     "prettier": "^3.0.0",
     "ts-jest": "^29.1.0",
-    "typedoc": "^0.25.0",
+    "typedoc": "^0.26.2",
     "typescript": "^5.0.2"
   },
   "lint-staged": {
