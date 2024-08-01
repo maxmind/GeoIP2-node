@@ -28,7 +28,7 @@
     "@types/ip6addr": "^0.2.3",
     "@types/jest": "^29.2.0",
     "@types/lodash.set": "^4.3.4",
-    "@types/node": "^20.0.0",
+    "@types/node": "^22.0.2",
     "@typescript-eslint/eslint-plugin": "^7.0.0",
     "@typescript-eslint/parser": "^7.1.0",
     "eslint": "^8.4.1",
