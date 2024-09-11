@@ -1,4 +1,4 @@
-import mmdb = require('maxmind');
+import * as mmdb from 'maxmind';
 import Asn from './Asn';
 
 export default class Isp extends Asn {

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import nock from 'nock';
 import * as geoip2Fixture from '../fixtures/geoip2.json';
 import Client from './webServiceClient';

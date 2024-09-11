@@ -1,4 +1,4 @@
-import mmdb = require('maxmind');
+import * as mmdb from 'maxmind';
 import { ConnectionType as ConnType } from '../types';
 
 /** Class representing the model of a "ConnectionType" response **/

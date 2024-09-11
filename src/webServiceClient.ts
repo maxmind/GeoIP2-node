@@ -1,6 +1,6 @@
-import http = require('http');
-import https = require('https');
-import mmdb = require('maxmind');
+import http from 'http';
+import https from 'https';
+import * as mmdb from 'maxmind';
 import { version } from '../package.json';
 import * as models from './models';
 import { WebServiceClientError } from './types';

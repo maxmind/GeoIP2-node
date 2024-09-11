@@ -25,16 +25,15 @@
   "files": ["dist"],
   "types": "dist/src/index.d.ts",
   "devDependencies": {
+    "@eslint/js": "^9.10.0",
     "@types/ip6addr": "^0.2.3",
     "@types/jest": "^29.2.0",
     "@types/lodash.set": "^4.3.4",
     "@types/node": "^22.1.0",
-    "@typescript-eslint/eslint-plugin": "^7.0.0",
-    "@typescript-eslint/parser": "^7.1.0",
-    "eslint": "^8.4.1",
+    "eslint": "^9.10.0",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prefer-arrow": "^1.2.3",
     "gh-pages": "^6.0.0",
+    "globals": "^15.9.0",
     "husky": "^9.0.7",
     "jest": "^29.5.0",
     "lint-staged": "^15.0.1",
@@ -43,23 +42,24 @@
     "prettier": "^3.0.0",
     "ts-jest": "^29.1.0",
     "typedoc": "^0.26.3",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.2",
+    "typescript-eslint": "^8.5.0"
   },
   "lint-staged": {
     "*.json": ["prettier --parser json --write"],
     "*.ts": [
       "prettier --parser typescript --single-quote true --trailing-comma es5 --write",
-      "eslint -c .eslintrc.js --ext ts,js . --fix --max-warnings=0"
+      "npx eslint . --fix --max-warnings=0"
     ]
   },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "build": "rimraf dist && tsc",
-    "build:docs": "rimraf docs && typedoc src/index.ts --out docs --exclude \"**/*.spec.ts\" --readme README.md && ./bin/sanitize-doc-refs.sh",
+    "build": "rm -rf dist && tsc",
+    "build:docs": "rm -rf docs && typedoc src/index.ts --out docs --exclude \"**/*.spec.ts\" --readme README.md && ./bin/sanitize-doc-refs.sh",
     "deploy:docs": "gh-pages -d docs",
-    "lint": "eslint -c .eslintrc.js --ext ts,js . --max-warnings=0",
+    "lint": "npx eslint .",
     "prettier:ts": "prettier --parser typescript --single-quote true --trailing-comma es5 --write 'src/**/*.ts'",
     "prettier:ci": "prettier --parser typescript --single-quote true --trailing-comma es5 --list-different 'src/**/*.ts'",
     "prettier:json": "prettier --parser json --write '**/*.json'",
