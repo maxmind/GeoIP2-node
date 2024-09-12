@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
 const Reader = require('@maxmind/geoip2-node').Reader;
 

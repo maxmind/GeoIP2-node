@@ -1,4 +1,4 @@
-import mmdb = require('maxmind');
+import * as mmdb from 'maxmind';
 import { InvalidDbBufferError } from './errors';
 import ReaderModel from './readerModel';
 

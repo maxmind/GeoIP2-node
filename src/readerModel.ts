@@ -1,5 +1,5 @@
-import ip6addr = require('ip6addr');
-import mmdb = require('maxmind');
+import ip6addr from 'ip6addr';
+import * as mmdb from 'maxmind';
 import { AddressNotFoundError, BadMethodCallError, ValueError } from './errors';
 import * as models from './models';
 

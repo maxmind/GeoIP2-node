@@ -1,4 +1,4 @@
-import mmdb = require('maxmind');
+import * as mmdb from 'maxmind';
 
 /** Class representing the model of an "ASN" response **/
 export default class Asn {
