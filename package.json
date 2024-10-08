@@ -26,7 +26,6 @@
   "types": "dist/src/index.d.ts",
   "devDependencies": {
     "@eslint/js": "^9.10.0",
-    "@types/ip6addr": "^0.2.3",
     "@types/jest": "^29.2.0",
     "@types/node": "^22.1.0",
     "eslint": "^9.10.0",
@@ -67,7 +66,6 @@
     "prepublishOnly": "npm run build && npm run test && npm run lint && npm run build:docs && npm run deploy:docs"
   },
   "dependencies": {
-    "ip6addr": "^0.2.5",
     "maxmind": "^4.2.0"
   }
 }
