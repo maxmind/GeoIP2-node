@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+5.1.0
+------------------
+
+* The `ip6addr` dependency has been removed.
+
 5.0.0 (2023-12-05)
 ------------------
 

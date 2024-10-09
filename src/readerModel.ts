@@ -1,7 +1,7 @@
-import ip6addr from 'ip6addr';
 import * as mmdb from 'maxmind';
 import { AddressNotFoundError, BadMethodCallError, ValueError } from './errors';
 import * as models from './models';
+import { toCidr } from './utils';
 
 /** Class representing the ReaderModel **/
 export default class ReaderModel {
@@ -159,7 +159,7 @@ export default class ReaderModel {
       );
     }
 
-    return [record, ip6addr.createCIDR(ipAddress, prefixLength).toString()];
+    return [record, toCidr(ipAddress, prefixLength)];
   }
 
   private modelFor(
