@@ -1,5 +1,3 @@
-import http from 'http';
-import https from 'https';
 import * as mmdb from 'maxmind';
 import { version } from '../package.json';
 import * as models from './models';
@@ -128,78 +126,84 @@ export default class WebServiceClient {
       } as WebServiceClientError);
     }
 
-    const options = {
-      auth: `${this.accountID}:${this.licenseKey}`,
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), this.timeout);
+    const options: RequestInit = {
       headers: {
         Accept: 'application/json',
+        Authorization:
+          'Basic ' +
+          Buffer.from(`${this.accountID}:${this.licenseKey}`).toString(
+            'base64'
+          ),
         'User-Agent': `GeoIP2-node/${version}`,
       },
-      host: this.host,
       method: 'GET',
-      path: parsedPath,
-      timeout: this.timeout,
+      signal: controller.signal,
     };
 
     return new Promise((resolve, reject) => {
-      const req = https.request(options, (response) => {
-        let data = '';
-
-        response.on('data', (chunk) => {
-          data += chunk;
-        });
-
-        response.on('end', () => {
+      return fetch(url, options)
+        .then(async (response) => {
+          let data;
           try {
-            data = JSON.parse(data);
+            data = await response.json();
           } catch {
             return reject(this.handleError({}, response, url));
           }
 
-          if (response.statusCode && response.statusCode !== 200) {
+          if (response.status && response.status !== 200) {
             return reject(
               this.handleError(data as ResponseError, response, url)
             );
           }
 
           return resolve(new modelClass(data));
+        })
+        .catch((err: NodeJS.ErrnoException) => {
+          if (err.name === 'AbortError') {
+            return reject({
+              code: 'FETCH_TIMEOUT',
+              error: 'The request timed out',
+              url,
+            } as WebServiceClientError);
+          }
+          if (!err.code) {
+            return reject({
+              code: 'INVALID_RESPONSE_BODY',
+              error: err.message,
+              url,
+            } as WebServiceClientError);
+          }
+          return reject({
+            code: err.code,
+            error: err.message,
+            url,
+          } as WebServiceClientError);
+        })
+        .finally(() => {
+          clearTimeout(timeoutId);
         });
-      });
-      req.on('error', (err: NodeJS.ErrnoException) => {
-        return reject({
-          code: err.code,
-          error: err.message,
-          url,
-        } as WebServiceClientError);
-      });
-
-      req.end();
     });
   }
 
   private handleError(
     data: ResponseError,
-    response: http.IncomingMessage,
+    response: Response,
     url: string
   ): WebServiceClientError {
-    if (
-      response.statusCode &&
-      response.statusCode >= 500 &&
-      response.statusCode < 600
-    ) {
+    if (response.status && response.status >= 500 && response.status < 600) {
       return {
         code: 'SERVER_ERROR',
-        error: `Received a server error with HTTP status code: ${response.statusCode}`,
+        error: `Received a server error with HTTP status code: ${response.status}`,
         url,
       };
     }
 
-    if (
-      response.statusCode &&
-      (response.statusCode < 400 || response.statusCode >= 600)
-    ) {
+    if (response.status && (response.status < 400 || response.status >= 600)) {
       return {
         code: 'HTTP_STATUS_CODE_ERROR',
-        error: `Received an unexpected HTTP status code: ${response.statusCode}`,
+        error: `Received an unexpected HTTP status code: ${response.status}`,
         url,
       };
     }

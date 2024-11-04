@@ -380,6 +380,30 @@ describe('WebServiceClient', () => {
     });
   });
 
+  describe('timeout handling', () => {
+    afterEach(() => {
+      nock.cleanAll();
+    });
+    it('should time out if the request takes too long', async () => {
+      const ip = '8.8.8.8';
+
+      const client = new Client(auth.user, auth.pass, {
+        timeout: 10,
+      });
+
+      nock('https://geoip.maxmind.com')
+        .get(`/geoip/v2.1/city/${ip}`)
+        .delay(200) // Delay the response to trigger the timeout
+        .reply(200, geoip2Fixture);
+
+      await expect(client.city(ip)).rejects.toEqual({
+        code: 'FETCH_TIMEOUT',
+        error: 'The request timed out',
+        url: `https://geoip.maxmind.com/geoip/v2.1/city/${ip}`,
+      });
+    });
+  });
+
   describe('error handling', () => {
     it('rejects if the IP address is invalid', () => {
       const ip = 'foo';
@@ -434,17 +458,13 @@ describe('WebServiceClient', () => {
       });
     });
 
-    it('handles general http.request errors', () => {
+    it('handles general network errors', () => {
       const ip = '8.8.8.8';
-
-      const error = {
-        code: 'FOO_ERR',
-        message: 'some foo error',
-      };
+      const error = 'Network Error';
 
       const expected = {
-        code: error.code,
-        error: error.message,
+        code: 'INVALID_RESPONSE_BODY',
+        error: error,
         url: baseUrl + fullPath('city', ip),
       };
 
