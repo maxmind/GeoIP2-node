@@ -22,3 +22,5 @@ jobs:
         run: npm run lint
       - name: Run prettier
         run: npm run prettier:ci
+      - name: Test compile
+        run: npx tsc --noEmit
