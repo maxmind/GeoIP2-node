@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -eu
+
+function timed_run() {
+    description=$1
+    command=$2
+    timer=$(date +%s)
+
+    $command
+    exit_code=$?
+    timer=$(($(date +%s) - timer))
+
+    verbose=${MM_VERBOSE_HOOKS:-0}
+
+    if [ "$verbose" == "1" ]; then
+        echo "ℹ️  $description - $timer seconds"
+        echo "exit code: $exit_code"
+    fi
+
+    if [ $exit_code -ne 0 ]; then
+        echo "ℹ️  $description - failed"
+        exit $exit_code
+    fi
+}
+
+timed_run "local/precious lint" "local/precious lint --staged"

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# This is for installing precious and other 3rd party libs needed for linting
+# in CI
+
+set -euo pipefail
+set -x
+
+if [ -z "${1:-}" ]; then
+    echo "💥 You need to specify where to install precious. usage: ./bin/install-precious /path/to/bin/dir"
+    exit 1
+fi
+
+TARGET=$1
+export TARGET
+
+curl --silent --location \
+    https://raw.githubusercontent.com/houseabsolute/ubi/master/bootstrap/bootstrap-ubi.sh |
+    sh
+
+./"$TARGET"/ubi --project houseabsolute/omegasort --in "$TARGET"
+./"$TARGET"/ubi --project houseabsolute/precious --in "$TARGET"
