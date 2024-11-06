@@ -22,7 +22,9 @@
     "maxminddb",
     "mmdb"
   ],
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "types": "dist/src/index.d.ts",
   "devDependencies": {
     "@eslint/js": "^9.10.0",
@@ -32,22 +34,13 @@
     "eslint-config-prettier": "^9.0.0",
     "gh-pages": "^6.0.0",
     "globals": "^15.9.0",
-    "husky": "^9.0.7",
     "jest": "^29.5.0",
-    "lint-staged": "^15.0.1",
     "nock": "^13.0.2",
     "prettier": "^3.0.0",
     "ts-jest": "^29.1.0",
     "typedoc": "^0.26.3",
     "typescript": "^5.0.2",
     "typescript-eslint": "^8.5.0"
-  },
-  "lint-staged": {
-    "*.json": ["prettier --parser json --write"],
-    "*.ts": [
-      "prettier --parser typescript --single-quote true --trailing-comma es5 --write",
-      "npx eslint . --fix --max-warnings=0"
-    ]
   },
   "publishConfig": {
     "access": "public"
@@ -60,7 +53,6 @@
     "prettier:ts": "prettier --parser typescript --write 'src/**/*.ts'",
     "prettier:ci": "prettier --parser typescript --list-different 'src/**/*.ts'",
     "prettier:json": "prettier --parser json --write '**/*.json'",
-    "setup": "husky install",
     "test": "jest",
     "test:watch": "jest --watch",
     "prepublishOnly": "npm run build && npm run test && npm run lint && npm run build:docs && npm run deploy:docs"
