@@ -65,3 +65,6 @@ typings/
 
 # Text editor backup files
 *~
+
+# Precious install
+local

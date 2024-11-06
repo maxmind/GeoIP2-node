@@ -1,5 +1,5 @@
 import globals from "globals";
-import tseslint from 'typescript-eslint';
+import tseslint from "typescript-eslint";
 import js from "@eslint/js";
 import prettier from "eslint-config-prettier";
 
@@ -30,10 +30,20 @@ export default tseslint.config(
       "@typescript-eslint/await-thenable": "error",
       "prefer-arrow-callback": ["warn"],
     },
-  }, {
-  files: ["**/*.ts", "**/*.js"],
-},
+  },
   {
-    ignores: ["**/dist", "**/docs", "**/node_modules", "jest.config.js", "e2e/ts/jest.config.js", "eslint.config.mjs"],
+    files: ["**/*.ts", "**/*.js"],
+  },
+  {
+    ignores: [
+      "**/dist",
+      "**/docs",
+      "**/node_modules",
+      "coverage/**/*",
+      "jest.config.js",
+      "e2e/ts/jest.config.js",
+      "eslint.config.mjs",
+      "prettier.config.mjs",
+    ],
   },
 );

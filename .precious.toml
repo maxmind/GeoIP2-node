@@ -1,0 +1,53 @@
+[commands.prettier-scripts]
+type = "both"
+cmd = [
+  "npx",
+  "prettier",
+  "--parser",
+  "typescript"
+]
+lint-flags = ["--check"]
+tidy-flags = ["--write"]
+path-args = "absolute-file"
+include = ["src/**/*.ts"]
+ok-exit-codes = 0
+
+[commands.prettier-json]
+type = "both"
+cmd = [
+  "npx",
+  "prettier",
+  "--parser",
+  "json"
+]
+lint-flags = ["--check"]
+tidy-flags = ["--write"]
+path-args = "absolute-file"
+include = ["**/*.json"]
+ok-exit-codes = 0
+
+[commands.eslint-scripts]
+type = "both"
+cmd = [
+  "npx",
+  "eslint",
+  "--config",
+  "eslint.config.mjs",
+]
+lint-flags = []
+tidy-flags = ["--fix"]
+path-args = "absolute-file"
+include = ["src/**/*.ts", "src/**/*.js", "e2e/**/*.ts", "e2e/**/*.js"]
+ok-exit-codes = 0
+
+[commands.tsc-scripts]
+type = "lint"
+cmd = [
+  "npx",
+  "tsc",
+  "--noEmit"
+]
+include = ["src/**/*.ts"]
+invoke = "once"
+path-args = "none"
+ok-exit-codes = 0
