@@ -6,6 +6,7 @@ on:
       - main
   schedule:
     - cron: '3 0 * * SUN'
+  workflow_dispatch:
 jobs:
   lint:
     runs-on: ubuntu-latest
