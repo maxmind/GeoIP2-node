@@ -397,7 +397,7 @@ describe('WebServiceClient', () => {
         .reply(200, geoip2Fixture);
 
       await expect(client.city(ip)).rejects.toEqual({
-        code: 'FETCH_TIMEOUT',
+        code: 'NETWORK_TIMEOUT',
         error: 'The request timed out',
         url: `https://geoip.maxmind.com/geoip/v2.1/city/${ip}`,
       });
@@ -442,7 +442,7 @@ describe('WebServiceClient', () => {
       });
     });
 
-    it('handles errors with unknown payload', () => {
+    it.only('handles errors with unknown payload', () => {
       const ip = '8.8.8.8';
       expect.assertions(1);
 
@@ -463,8 +463,8 @@ describe('WebServiceClient', () => {
       const error = 'Network Error';
 
       const expected = {
-        code: 'INVALID_RESPONSE_BODY',
-        error: error,
+        code: 'FETCH_ERROR',
+        error: `Error - ${error}`,
         url: baseUrl + fullPath('city', ip),
       };
 

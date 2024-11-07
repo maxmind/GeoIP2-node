@@ -109,7 +109,7 @@ export default class WebServiceClient {
     );
   }
 
-  private responseFor<T>(
+  private async responseFor<T>(
     path: servicePath,
     ipAddress: string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -142,56 +142,38 @@ export default class WebServiceClient {
       signal: controller.signal,
     };
 
-    return new Promise((resolve, reject) => {
-      return fetch(url, options)
-        .then(async (response) => {
-          let data;
-          try {
-            data = await response.json();
-          } catch {
-            return reject(this.handleError({}, response, url));
-          }
+    let data;
+    try {
+      const response = await fetch(url, options);
 
-          if (response.status && response.status !== 200) {
-            return reject(
-              this.handleError(data as ResponseError, response, url)
-            );
-          }
-
-          return resolve(new modelClass(data));
-        })
-        .catch((err: NodeJS.ErrnoException) => {
-          if (err.name === 'AbortError') {
-            return reject({
-              code: 'FETCH_TIMEOUT',
-              error: 'The request timed out',
-              url,
-            } as WebServiceClientError);
-          }
-          if (!err.code) {
-            return reject({
-              code: 'INVALID_RESPONSE_BODY',
-              error: err.message,
-              url,
-            } as WebServiceClientError);
-          }
-          return reject({
-            code: err.code,
-            error: err.message,
-            url,
-          } as WebServiceClientError);
-        })
-        .finally(() => {
-          clearTimeout(timeoutId);
-        });
-    });
+      if (!response.ok) {
+        return Promise.reject(await this.handleError(response, url));
+      }
+      data = await response.json();
+    } catch (err) {
+      const error = err as TypeError;
+      if (error.name === 'AbortError') {
+        return Promise.reject({
+          code: 'NETWORK_TIMEOUT',
+          error: 'The request timed out',
+          url,
+        } as WebServiceClientError);
+      }
+      return Promise.reject({
+        code: 'FETCH_ERROR',
+        error: `${error.name} - ${error.message}`,
+        url,
+      } as WebServiceClientError);
+    } finally {
+      clearTimeout(timeoutId);
+    }
+    return new modelClass(data);
   }
 
-  private handleError(
-    data: ResponseError,
+  private async handleError(
     response: Response,
     url: string
-  ): WebServiceClientError {
+  ): Promise<WebServiceClientError> {
     if (response.status && response.status >= 500 && response.status < 600) {
       return {
         code: 'SERVER_ERROR',
@@ -207,6 +189,8 @@ export default class WebServiceClient {
         url,
       };
     }
+
+    const data = (await response.json()) as ResponseError;
 
     if (!data.code || !data.error) {
       return {
