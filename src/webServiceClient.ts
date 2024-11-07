@@ -128,7 +128,7 @@ export default class WebServiceClient {
         code: 'IP_ADDRESS_INVALID',
         error: 'The IP address provided is invalid',
         url,
-      } as WebServiceClientError);
+      });
     }
 
     const controller = new AbortController();
@@ -163,18 +163,18 @@ export default class WebServiceClient {
             code: 'NETWORK_TIMEOUT',
             error: 'The request timed out',
             url,
-          } as WebServiceClientError);
+          });
         case 'SyntaxError':
           return Promise.reject({
             ...invalidResponseBody,
             url,
-          } as WebServiceClientError);
+          });
         default:
           return Promise.reject({
             code: 'FETCH_ERROR',
             error: `${error.name} - ${error.message}`,
             url,
-          } as WebServiceClientError);
+          });
       }
     } finally {
       clearTimeout(timeoutId);
