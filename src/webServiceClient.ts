@@ -22,6 +22,11 @@ interface ResponseError {
 }
 type servicePath = 'city' | 'country' | 'insights';
 
+const invalidResponseBody = {
+  code: 'INVALID_RESPONSE_BODY',
+  error: 'Received an invalid or unparseable response body',
+};
+
 /** Class representing the WebServiceClient **/
 export default class WebServiceClient {
   private accountID: string;
@@ -152,18 +157,25 @@ export default class WebServiceClient {
       data = await response.json();
     } catch (err) {
       const error = err as TypeError;
-      if (error.name === 'AbortError') {
-        return Promise.reject({
-          code: 'NETWORK_TIMEOUT',
-          error: 'The request timed out',
-          url,
-        } as WebServiceClientError);
+      switch (error.name) {
+        case 'AbortError':
+          return Promise.reject({
+            code: 'NETWORK_TIMEOUT',
+            error: 'The request timed out',
+            url,
+          } as WebServiceClientError);
+        case 'SyntaxError':
+          return Promise.reject({
+            ...invalidResponseBody,
+            url,
+          } as WebServiceClientError);
+        default:
+          return Promise.reject({
+            code: 'FETCH_ERROR',
+            error: `${error.name} - ${error.message}`,
+            url,
+          } as WebServiceClientError);
       }
-      return Promise.reject({
-        code: 'FETCH_ERROR',
-        error: `${error.name} - ${error.message}`,
-        url,
-      } as WebServiceClientError);
     } finally {
       clearTimeout(timeoutId);
     }
@@ -190,14 +202,15 @@ export default class WebServiceClient {
       };
     }
 
-    const data = (await response.json()) as ResponseError;
+    let data;
+    try {
+      data = (await response.json()) as ResponseError;
 
-    if (!data.code || !data.error) {
-      return {
-        code: 'INVALID_RESPONSE_BODY',
-        error: 'Received an invalid or unparseable response body',
-        url,
-      };
+      if (!data.code || !data.error) {
+        return { ...invalidResponseBody, url };
+      }
+    } catch {
+      return { ...invalidResponseBody, url };
     }
 
     return { ...data, url } as WebServiceClientError;

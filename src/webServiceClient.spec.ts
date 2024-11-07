@@ -442,7 +442,7 @@ describe('WebServiceClient', () => {
       });
     });
 
-    it.only('handles errors with unknown payload', () => {
+    it('handles errors with unknown payload', () => {
       const ip = '8.8.8.8';
       expect.assertions(1);
 
@@ -450,6 +450,19 @@ describe('WebServiceClient', () => {
         .get(fullPath('city', ip))
         .basicAuth(auth)
         .reply(401, { foo: 'bar' });
+
+      return expect(client.city(ip)).rejects.toEqual({
+        code: 'INVALID_RESPONSE_BODY',
+        error: 'Received an invalid or unparseable response body',
+        url: baseUrl + fullPath('city', ip),
+      });
+    });
+
+    it('handles 200s with bad json', () => {
+      const ip = '8.8.8.8';
+      expect.assertions(1);
+
+      nockInstance.get(fullPath('city', ip)).basicAuth(auth).reply(200, 'foo');
 
       return expect(client.city(ip)).rejects.toEqual({
         code: 'INVALID_RESPONSE_BODY',
