@@ -5,7 +5,7 @@
 This package provides a server-side API for the [GeoIP2 databases and GeoLite2
 databases](https://dev.maxmind.com/geoip/docs/databases?lang=en), and a server-side
 API for the [GeoIP2 web services and GeoLite2 web
-services](https://dev.maxmind.com/geoip/docs/web-services?lang=en).
+services](https://dev.maxmind.com/geoip/docs/web-services/responses/#errors).
 
 **This package will not work client-side.**
 
