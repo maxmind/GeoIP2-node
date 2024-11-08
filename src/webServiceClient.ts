@@ -1,5 +1,3 @@
-import http from 'http';
-import https from 'https';
 import * as mmdb from 'maxmind';
 import { version } from '../package.json';
 import * as models from './models';
@@ -23,6 +21,11 @@ interface ResponseError {
   error?: string;
 }
 type servicePath = 'city' | 'country' | 'insights';
+
+const invalidResponseBody = {
+  code: 'INVALID_RESPONSE_BODY',
+  error: 'Received an invalid or unparseable response body',
+};
 
 /** Class representing the WebServiceClient **/
 export default class WebServiceClient {
@@ -111,7 +114,7 @@ export default class WebServiceClient {
     );
   }
 
-  private responseFor<T>(
+  private async responseFor<T>(
     path: servicePath,
     ipAddress: string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -125,91 +128,89 @@ export default class WebServiceClient {
         code: 'IP_ADDRESS_INVALID',
         error: 'The IP address provided is invalid',
         url,
-      } as WebServiceClientError);
+      });
     }
 
-    const options = {
-      auth: `${this.accountID}:${this.licenseKey}`,
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), this.timeout);
+    const options: RequestInit = {
       headers: {
         Accept: 'application/json',
+        Authorization:
+          'Basic ' +
+          Buffer.from(`${this.accountID}:${this.licenseKey}`).toString(
+            'base64'
+          ),
         'User-Agent': `GeoIP2-node/${version}`,
       },
-      host: this.host,
       method: 'GET',
-      path: parsedPath,
-      timeout: this.timeout,
+      signal: controller.signal,
     };
 
-    return new Promise((resolve, reject) => {
-      const req = https.request(options, (response) => {
-        let data = '';
+    let data;
+    try {
+      const response = await fetch(url, options);
 
-        response.on('data', (chunk) => {
-          data += chunk;
-        });
-
-        response.on('end', () => {
-          try {
-            data = JSON.parse(data);
-          } catch {
-            return reject(this.handleError({}, response, url));
-          }
-
-          if (response.statusCode && response.statusCode !== 200) {
-            return reject(
-              this.handleError(data as ResponseError, response, url)
-            );
-          }
-
-          return resolve(new modelClass(data));
-        });
-      });
-      req.on('error', (err: NodeJS.ErrnoException) => {
-        return reject({
-          code: err.code,
-          error: err.message,
-          url,
-        } as WebServiceClientError);
-      });
-
-      req.end();
-    });
+      if (!response.ok) {
+        return Promise.reject(await this.handleError(response, url));
+      }
+      data = await response.json();
+    } catch (err) {
+      const error = err as TypeError;
+      switch (error.name) {
+        case 'AbortError':
+          return Promise.reject({
+            code: 'NETWORK_TIMEOUT',
+            error: 'The request timed out',
+            url,
+          });
+        case 'SyntaxError':
+          return Promise.reject({
+            ...invalidResponseBody,
+            url,
+          });
+        default:
+          return Promise.reject({
+            code: 'FETCH_ERROR',
+            error: `${error.name} - ${error.message}`,
+            url,
+          });
+      }
+    } finally {
+      clearTimeout(timeoutId);
+    }
+    return new modelClass(data);
   }
 
-  private handleError(
-    data: ResponseError,
-    response: http.IncomingMessage,
+  private async handleError(
+    response: Response,
     url: string
-  ): WebServiceClientError {
-    if (
-      response.statusCode &&
-      response.statusCode >= 500 &&
-      response.statusCode < 600
-    ) {
+  ): Promise<WebServiceClientError> {
+    if (response.status && response.status >= 500 && response.status < 600) {
       return {
         code: 'SERVER_ERROR',
-        error: `Received a server error with HTTP status code: ${response.statusCode}`,
+        error: `Received a server error with HTTP status code: ${response.status}`,
         url,
       };
     }
 
-    if (
-      response.statusCode &&
-      (response.statusCode < 400 || response.statusCode >= 600)
-    ) {
+    if (response.status && (response.status < 400 || response.status >= 600)) {
       return {
         code: 'HTTP_STATUS_CODE_ERROR',
-        error: `Received an unexpected HTTP status code: ${response.statusCode}`,
+        error: `Received an unexpected HTTP status code: ${response.status}`,
         url,
       };
     }
 
-    if (!data.code || !data.error) {
-      return {
-        code: 'INVALID_RESPONSE_BODY',
-        error: 'Received an invalid or unparseable response body',
-        url,
-      };
+    let data;
+    try {
+      data = (await response.json()) as ResponseError;
+
+      if (!data.code || !data.error) {
+        return { ...invalidResponseBody, url };
+      }
+    } catch {
+      return { ...invalidResponseBody, url };
     }
 
     return { ...data, url } as WebServiceClientError;

@@ -129,7 +129,8 @@ codes are provided:
 * `SERVER_ERROR` for 5xx level errors
 * `HTTP_STATUS_CODE_ERROR` for unexpected HTTP status codes
 * `INVALID_RESPONSE_BODY` for invalid JSON responses or unparseable response bodies
-* [General Node.js error codes](https://nodejs.org/api/errors.html#errors_node_js_error_codes)
+* `NETWORK_TIMEOUT` for network request timeouts
+* `FETCH_ERROR` for internal `fetch` errors
 
 ## Database Usage
 
