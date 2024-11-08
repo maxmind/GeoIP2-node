@@ -5,7 +5,7 @@
 This package provides a server-side API for the [GeoIP2 databases and GeoLite2
 databases](https://dev.maxmind.com/geoip/docs/databases?lang=en), and a server-side
 API for the [GeoIP2 web services and GeoLite2 web
-services](https://dev.maxmind.com/geoip/docs/web-services/responses/#errors).
+services](https://dev.maxmind.com/geoip/docs/web-services?lang=en).
 
 **This package will not work client-side.**
 
@@ -110,7 +110,7 @@ client.insights('142.1.1.1').then(response => {
 ## Web Service Errors
 
 For details on the possible errors returned by the web service itself, [see
-the GeoIP2 web service documentation](https://dev.maxmind.com/geoip2/geoip/web-services).
+the GeoIP2 web service documentation](https://dev.maxmind.com/geoip/docs/web-services/responses/#errors).
 
 If the web service returns an explicit error document, the promise will be rejected
 with the following object structure:
