@@ -1,9 +1,13 @@
 CHANGELOG
 =========
 
-5.1.0
+6.0.0
 ------------------
 
+* **Breaking** Internal webservice calls now use Node's built-in `fetch` instead of `http`.  This
+  will affect users who are on unsupported versions of Node, specifically Node 17 and below.
+* Two new error codes have been added: `NETWORK_TIMEOUT` and `FETCH_ERROR`, second of which is returned
+  when there's a `fetch` related error that could not be handled by other errors.
 * The `ip6addr` dependency has been removed.
 
 5.0.0 (2023-12-05)
