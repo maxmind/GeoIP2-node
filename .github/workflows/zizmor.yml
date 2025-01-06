@@ -23,6 +23,8 @@ jobs:
 
       - name: Install the latest version of uv
         uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: false
 
       - name: Run zizmor
         run: uvx zizmor --format sarif . > results.sarif
