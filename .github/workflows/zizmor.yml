@@ -6,6 +6,9 @@ on:
     branches:
       - main
 
+permissions:
+  id-token: write # trusted publishing + attestations
+
 jobs:
   zizmor:
     name: zizmor latest via PyPI
