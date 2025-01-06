@@ -27,12 +27,6 @@ jobs:
           enable-cache: false
 
       - name: Run zizmor
-        run: uvx zizmor --format sarif . > results.sarif
+        run: uvx zizmor --format plain .
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: results.sarif
-          category: zizmor
