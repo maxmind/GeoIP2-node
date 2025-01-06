@@ -7,6 +7,10 @@ on:
   schedule:
     - cron: '3 0 * * SUN'
   workflow_dispatch:
+
+permissions:
+  id-token: write # trusted publishing + attestations
+
 jobs:
   lint:
     runs-on: ubuntu-latest
