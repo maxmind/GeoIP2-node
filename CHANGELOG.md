@@ -9,6 +9,8 @@ CHANGELOG
 * Two new error codes have been added: `NETWORK_TIMEOUT` and `FETCH_ERROR`, second of which is returned
   when there's a `fetch` related error that could not be handled by other errors.
 * The `ip6addr` dependency has been removed.
+* `metroCode` on `LocationRecord` has been marked deprecated. The code values
+  are no longer being updated.
 
 5.0.0 (2023-12-05)
 ------------------
