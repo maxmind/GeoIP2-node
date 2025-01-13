@@ -139,8 +139,10 @@ export interface LocationRecord {
    */
   readonly longitude: number;
   /**
-   * The metro code of the location if the location is in the US. MaxMind
-   * returns the same metro codes as the Google AdWords API.
+   * The metro code is a no-longer-maintained code for targeting
+   * advertisements in Google.
+   * @category deprecated
+   * @deprecated
    */
   readonly metroCode?: number;
   /**
