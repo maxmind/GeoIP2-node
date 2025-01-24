@@ -6,6 +6,7 @@ on:
       - main
   schedule:
     - cron: '3 2 * * SUN'
+permissions: {}
 jobs:
   test:
     runs-on: ubuntu-latest
