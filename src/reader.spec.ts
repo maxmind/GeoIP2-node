@@ -37,7 +37,7 @@ describe('Reader', () => {
 
     it('rejects the promise if node-maxmind errors out', () => {
       return expect(Reader.open('fail.test')).rejects.toThrowError(
-        "ENOENT: no such file or directory, open 'fail.test'"
+        "ENOENT: no such file or directory, stat 'fail.test'"
       );
     });
   });
