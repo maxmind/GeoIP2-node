@@ -1,7 +1,7 @@
 CHANGELOG
 =========
 
-6.0.0
+6.0.0 (2025-02-18)
 ------------------
 
 * **Breaking** Internal webservice calls now use Node's built-in `fetch` instead of `http`.  This
