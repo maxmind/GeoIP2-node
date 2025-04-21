@@ -19,7 +19,7 @@ export default class ReaderModel {
   }
 
   /**
-   * Returns the AnonymousIP db data for an IP address
+   * Returns the Anonymous IP db data for an IP address
    *
    * @param ipAddress The IP Address you want to query the Anonymous IP db with
    *
