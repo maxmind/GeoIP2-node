@@ -457,6 +457,34 @@ describe('ReaderModel', () => {
     });
   });
 
+  describe('anonymousPlus()', () => {
+    it('returns anonymousPlus data', async () => {
+      expect.assertions(1);
+
+      const reader = await Reader.open(
+        './test/data/test-data/GeoIP-Anonymous-Plus-Test.mmdb'
+      );
+
+      const model = reader.anonymousPlus('1.2.0.1');
+
+      const expected = {
+        anonymizerConfidence: 30,
+        ipAddress: '1.2.0.1',
+        isAnonymous: true,
+        isAnonymousVpn: true,
+        isHostingProvider: false,
+        isPublicProxy: false,
+        isResidentialProxy: false,
+        isTorExitNode: false,
+        network: '1.2.0.1/32',
+        networkLastSeen: '2025-04-14',
+        providerName: 'foo',
+      };
+
+      expect(model).toEqual(expected);
+    });
+  });
+
   describe('asn()', () => {
     it('returns asn data', async () => {
       expect.assertions(1);
