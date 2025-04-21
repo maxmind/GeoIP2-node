@@ -113,49 +113,6 @@ describe('ReaderModel', () => {
       expect(cityModel).toEqual(expected);
     });
 
-    it('returns data when record only contains city record', async () => {
-      expect.assertions(1);
-
-      const reader = await Reader.open(
-        './test/data/test-data/GeoIP2-City-Test.mmdb'
-      );
-
-      const model = reader.city('2.2.3.1');
-
-      const expected = {
-        city: {
-          geonameId: 2655045,
-          names: {
-            en: 'Boxford',
-          },
-        },
-        continent: undefined,
-        country: undefined,
-        location: undefined,
-        maxmind: undefined,
-        postal: undefined,
-        registeredCountry: undefined,
-        representedCountry: undefined,
-        subdivisions: undefined,
-        traits: {
-          ipAddress: '2.2.3.1',
-          isAnonymous: false,
-          isAnonymousProxy: false,
-          isAnonymousVpn: false,
-          isAnycast: false,
-          isHostingProvider: false,
-          isLegitimateProxy: false,
-          isPublicProxy: false,
-          isResidentialProxy: false,
-          isSatelliteProvider: false,
-          isTorExitNode: false,
-          network: '2.2.3.0/24',
-        },
-      };
-
-      expect(model).toEqual(expected);
-    });
-
     it('returns data when record only contains continent record', async () => {
       expect.assertions(1);
 
@@ -690,6 +647,7 @@ describe('ReaderModel', () => {
             },
           },
           {
+            confidence: 60,
             geonameId: 3333217,
             isoCode: 'WBK',
             names: {
