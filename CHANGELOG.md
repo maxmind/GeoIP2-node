@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+6.1.0
+------------------
+
+* Support for the GeoIP Anonymous Plus database has been added. To do a
+  lookup in this database, use the `anonymousPlus` method on the
+  database reader.
+
 6.0.0 (2025-02-18)
 ------------------
 

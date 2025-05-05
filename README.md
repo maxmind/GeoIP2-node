@@ -205,6 +205,29 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Anonymous-IP.mmdb').then(reader => {
 });
 ```
 
+### Anonymous Plus Database Example
+
+```js
+const Reader = require('@maxmind/geoip2-node').Reader;
+// Typescript:
+// import { Reader } from '@maxmind/geoip2-node';
+
+Reader.open('/usr/local/share/GeoIP/GeoIP-Anonymous-Plus.mmdb').then(reader => {
+  const response = reader.anonymousPlus('85.25.43.84');
+
+  console.log(response.anonymizerConfidence); // 30
+  console.log(response.isAnonymous); // true
+  console.log(response.isAnonymousVpn); // false
+  console.log(response.isHostingProvider); // true
+  console.log(response.isPublicProxy); // false
+  console.log(response.isResidentialProxy); // false
+  console.log(response.isTorExitNode); // false
+  console.log(response.ipAddress); // '85.25.43.84'
+  console.log(response.networkLastSeen); // '2025-04-14'
+  console.log(response.providerName); // 'FooBar VPN'
+});
+```
+
 ### ASN Example
 
 ```js

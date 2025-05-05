@@ -19,7 +19,7 @@ export default class ReaderModel {
   }
 
   /**
-   * Returns the AnonymousIP db data for an IP address
+   * Returns the Anonymous IP db data for an IP address
    *
    * @param ipAddress The IP Address you want to query the Anonymous IP db with
    *
@@ -33,6 +33,24 @@ export default class ReaderModel {
       'GeoIP2-Anonymous-IP',
       ipAddress,
       'anonymousIP()'
+    );
+  }
+
+  /**
+   * Returns the Anonymous Plus db data for an IP address
+   *
+   * @param ipAddress The IP Address you want to query the Anonymous Plus db with
+   *
+   * @throws {BadMethodCallError} Throws an error when the DB doesn't support Anonymous Plus queries
+   * @throws {AddressNotFoundError} Throws an error when the IP address isn't found in the database
+   * @throws {ValueError} Throws an error when the IP address isn't valid
+   */
+  public anonymousPlus(ipAddress: string): models.AnonymousPlus {
+    return this.modelFor(
+      models.AnonymousPlus,
+      'GeoIP-Anonymous-Plus',
+      ipAddress,
+      'anonymousPlus()'
     );
   }
 
