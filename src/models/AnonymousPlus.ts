@@ -20,7 +20,7 @@ export default class AnonymousPlus extends AnonymousIP {
   public providerName?: string;
 
   /**
-   * Instantiates an "AnonymousIP" using fields from the response
+   * Instantiates an "AnonymousPlus" using fields from the response
    *
    * @param response The GeoIP2 response
    */

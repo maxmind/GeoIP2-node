@@ -205,7 +205,7 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Anonymous-IP.mmdb').then(reader => {
 });
 ```
 
-### Anonymous IP Database Example
+### Anonymous Plus Database Example
 
 ```js
 const Reader = require('@maxmind/geoip2-node').Reader;
