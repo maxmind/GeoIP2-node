@@ -44,9 +44,6 @@ export default class WebServiceClient {
    *                will be treated as the timeout; however, passing in a number
    *                should be considered deprecated and may be removed in a
    *                future major version.
-   * @param host The host to use. The default is "geoip.maxmind.com". To call
-   *             the GeoLite2 web service instead of the GeoIP2 web service, use
-   *             "geolite.info".
    */
   public constructor(
     accountID: string,
