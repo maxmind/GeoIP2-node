@@ -1,7 +1,7 @@
 CHANGELOG
 =========
 
-6.1.0
+6.1.0 (2025-05-05)
 ------------------
 
 * Support for the GeoIP Anonymous Plus database has been added. To do a
