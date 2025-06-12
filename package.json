@@ -29,7 +29,7 @@
   "devDependencies": {
     "@eslint/js": "^9.10.0",
     "@types/jest": "^29.2.0",
-    "@types/node": "^22.1.0",
+    "@types/node": "^24.0.1",
     "eslint": "^9.10.0",
     "eslint-config-prettier": "^10.0.1",
     "gh-pages": "^6.0.0",
