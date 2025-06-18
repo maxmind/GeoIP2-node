@@ -36,7 +36,7 @@ describe('Reader', () => {
     });
 
     it('rejects the promise if node-maxmind errors out', () => {
-      return expect(Reader.open('fail.test')).rejects.toThrowError(
+      return expect(Reader.open('fail.test')).rejects.toThrow(
         "ENOENT: no such file or directory, stat 'fail.test'"
       );
     });
@@ -51,7 +51,7 @@ describe('Reader', () => {
     });
 
     it('throws an InvalidDbBufferError if buffer is not a valid DB', () => {
-      expect(() => Reader.openBuffer(Buffer.from('foo'))).toThrowError(
+      expect(() => Reader.openBuffer(Buffer.from('foo'))).toThrow(
         InvalidDbBufferError
       );
     });

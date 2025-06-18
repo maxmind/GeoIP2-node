@@ -4,7 +4,7 @@ describe('WebServiceClient', () => {
   it('exists', () => {
     const client = () => new WebServiceClient('1234', 'foo');
 
-    expect(client).not.toThrowError();
+    expect(client).not.toThrow();
   });
 });
 
@@ -16,7 +16,7 @@ describe('WebServiceClient', () => {
         timeout: 1000,
       });
 
-    expect(client).not.toThrowError();
+    expect(client).not.toThrow();
   });
 });
 
