@@ -1,7 +1,7 @@
 CHANGELOG
 =========
 
-6.2.0
+6.2.0 (2025-10-07)
 ------------------
 
 * Updated dependency `maxmind` to v5.0.0. This fixes an issue where an
