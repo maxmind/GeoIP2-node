@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+6.2.0
+------------------
+
+* Updated dependency `maxmind` to v5.0.0. This fixes an issue where an
+  older version of `maxmind` was technically allowed which did not support
+  GeoIP Anonymous Plus. Reported by Carlos Alberto Costa Beppler. GitHub #1587.
+
 6.1.0 (2025-05-05)
 ------------------
 
