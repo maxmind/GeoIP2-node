@@ -1,22 +1,24 @@
 version: 2
 updates:
   - package-ecosystem: npm
-    directory: "/"
+    directory: /
     schedule:
       interval: daily
-      time: "14:00"
+      time: '14:00'
     open-pull-requests-limit: 20
     groups:
       minor-and-patch:
         patterns:
-          - "*"
+          - '*'
         update-types:
-          - "minor"
-          - "patch"
+          - minor
+          - patch
     cooldown:
       default-days: 4
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: github-actions
+    directory: /
     schedule:
       interval: daily
-      time: "14:00"
+      time: '14:00'
+    cooldown:
+      default-days: 4
