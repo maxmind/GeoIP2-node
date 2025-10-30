@@ -13,6 +13,8 @@ updates:
         update-types:
           - "minor"
           - "patch"
+    cooldown:
+      default-days: 4
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
