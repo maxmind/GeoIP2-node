@@ -68,3 +68,6 @@ typings/
 
 # Precious install
 local
+
+# Claude config
+.claude
