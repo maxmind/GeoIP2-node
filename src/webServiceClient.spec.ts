@@ -247,6 +247,7 @@ describe('WebServiceClient', () => {
 
   describe('insights()', () => {
     const testFixture = {
+      anonymizer: geoip2Fixture.anonymizer,
       city: geoip2Fixture.city,
       continent: geoip2Fixture.continent,
       country: geoip2Fixture.country,
@@ -261,7 +262,7 @@ describe('WebServiceClient', () => {
 
     it('returns an insight class', async () => {
       const ip = '8.8.8.8';
-      expect.assertions(96);
+      expect.assertions(106);
 
       nockInstance
         .get(fullPath('insights', ip))
@@ -359,6 +360,7 @@ describe('WebServiceClient', () => {
       expect(got.traits.connectionType).toEqual('cable');
       expect(got.traits.domain).toEqual('example.com');
       expect(got.traits.ipAddress).toEqual('11.11.11.11');
+      expect(got.traits.ipRiskSnapshot).toEqual(42.5);
       expect(got.traits.isAnonymous).toEqual(true);
       expect(got.traits.isAnonymousProxy).toEqual(true);
       expect(got.traits.isAnycast).toEqual(true);
@@ -377,6 +379,16 @@ describe('WebServiceClient', () => {
       expect(got.traits.staticIpScore).toEqual(1.3);
       expect(got.traits.userCount).toEqual(2);
       expect(got.traits.userType).toEqual('traveler');
+
+      expect(got.anonymizer!.confidence).toEqual(95);
+      expect(got.anonymizer!.isAnonymous).toEqual(true);
+      expect(got.anonymizer!.isAnonymousVpn).toEqual(true);
+      expect(got.anonymizer!.isHostingProvider).toEqual(true);
+      expect(got.anonymizer!.isPublicProxy).toEqual(false);
+      expect(got.anonymizer!.isResidentialProxy).toEqual(false);
+      expect(got.anonymizer!.isTorExitNode).toEqual(false);
+      expect(got.anonymizer!.networkLastSeen).toEqual('2025-04-14');
+      expect(got.anonymizer!.providerName).toEqual('NordVPN');
     });
   });
 
