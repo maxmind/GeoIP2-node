@@ -24,4 +24,12 @@ function timed_run() {
     fi
 }
 
-timed_run "local/precious lint" "local/precious lint --staged"
+# Check for local/precious first, fall back to global precious
+if [ -x "local/precious" ]; then
+    timed_run "precious lint" "local/precious lint --staged"
+elif command -v precious &> /dev/null; then
+    timed_run "precious lint" "precious lint --staged"
+else
+    echo "❌ precious not found. Please install precious or add local/precious"
+    exit 1
+fi
