@@ -1,6 +1,38 @@
 CHANGELOG
 =========
 
+6.3.0 (unreleased)
+------------------
+
+* A new `anonymizer` object has been added to the `Insights` response model.
+  This object contains information about anonymizing services and VPN providers
+  associated with an IP address. Available from the GeoIP2 Insights web service
+  only. The object includes the following properties:
+  * `confidence`: A score (1-99) representing percent confidence that the
+    network is part of an actively used VPN service
+  * `isAnonymous`: Indicates if the IP belongs to any anonymous network
+  * `isAnonymousVpn`: Identifies IPs registered to anonymous VPN providers
+  * `isHostingProvider`: Flags hosting/VPN providers used for anonymizing
+  * `isPublicProxy`: Identifies public proxy addresses
+  * `isResidentialProxy`: Detects suspected anonymizing networks on
+    residential ISPs
+  * `isTorExitNode`: Identifies Tor exit nodes
+  * `networkLastSeen`: The last day (YYYY-MM-DD) the network was sighted in
+    our analysis of anonymized networks
+  * `providerName`: The name of identified VPN providers (e.g., "NordVPN")
+* A new `ipRiskSnapshot` property has been added to the `traits` object.
+  This provides a risk score ranging from 0.01 to 99, with higher values
+  indicating greater risk. Available from the GeoIP2 Insights web service only.
+* The following properties in the `traits` object have been deprecated in
+  favor of the new `anonymizer` object. These properties will continue to work
+  but users should migrate to using the `anonymizer` object:
+  * `isAnonymous`
+  * `isAnonymousVpn`
+  * `isHostingProvider`
+  * `isPublicProxy`
+  * `isResidentialProxy`
+  * `isTorExitNode`
+
 6.2.0 (2025-10-07)
 ------------------
 
