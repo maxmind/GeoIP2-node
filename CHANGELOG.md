@@ -1,7 +1,7 @@
 CHANGELOG
 =========
 
-6.3.0 (unreleased)
+6.3.0 (2025-11-20)
 ------------------
 
 * A new `anonymizer` object has been added to the `Insights` response model.
