@@ -183,18 +183,22 @@ export default class WebServiceClient {
     response: Response,
     url: string
   ): Promise<WebServiceClientError> {
-    if (response.status && response.status >= 500 && response.status < 600) {
+    const status = response.status;
+
+    if (status && status >= 500 && status < 600) {
       return {
         code: 'SERVER_ERROR',
-        error: `Received a server error with HTTP status code: ${response.status}`,
+        error: `Received a server error with HTTP status code: ${status}`,
+        status,
         url,
       };
     }
 
-    if (response.status && (response.status < 400 || response.status >= 600)) {
+    if (status && (status < 400 || status >= 600)) {
       return {
         code: 'HTTP_STATUS_CODE_ERROR',
-        error: `Received an unexpected HTTP status code: ${response.status}`,
+        error: `Received an unexpected HTTP status code: ${status}`,
+        status,
         url,
       };
     }
@@ -204,12 +208,12 @@ export default class WebServiceClient {
       data = (await response.json()) as ResponseError;
 
       if (!data.code || !data.error) {
-        return { ...invalidResponseBody, url };
+        return { ...invalidResponseBody, status, url };
       }
     } catch {
-      return { ...invalidResponseBody, url };
+      return { ...invalidResponseBody, status, url };
     }
 
-    return { ...data, url } as WebServiceClientError;
+    return { ...data, status, url } as WebServiceClientError;
   }
 }
