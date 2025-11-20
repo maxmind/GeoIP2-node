@@ -32,6 +32,10 @@ CHANGELOG
   * `isPublicProxy`
   * `isResidentialProxy`
   * `isTorExitNode`
+* Added the `status` property to `WebServiceClientError`. This property
+  contains the HTTP status code when the error is the result of an HTTP
+  response error. Network errors (timeouts, fetch errors) will not have a
+  status code.
 
 6.2.0 (2025-10-07)
 ------------------
