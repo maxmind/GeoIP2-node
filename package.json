@@ -32,7 +32,6 @@
     "@types/node": "^24.0.3",
     "eslint": "^9.10.0",
     "eslint-config-prettier": "^10.0.1",
-    "gh-pages": "^6.0.0",
     "globals": "^16.0.0",
     "jest": "^30.0.0",
     "nock": "^14.0.0-beta.15",
@@ -48,7 +47,6 @@
   "scripts": {
     "build": "rm -rf dist && tsc",
     "build:docs": "rm -rf docs && typedoc src/index.ts --out docs --exclude \"**/*.spec.ts\" --readme README.md && ./bin/sanitize-doc-refs.sh",
-    "deploy:docs": "gh-pages -d docs",
     "lint": "npx eslint . && npx tsc --noEmit",
     "prettier:ts": "prettier --parser typescript --write 'src/**/*.ts'",
     "prettier:ci": "prettier --parser typescript --list-different 'src/**/*.ts'",
