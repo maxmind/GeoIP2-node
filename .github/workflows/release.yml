@@ -44,8 +44,9 @@ jobs:
         with:
           node-version: 22
           registry-url: 'https://registry.npmjs.org'
+      - run: npm install -g npm@latest
       - run: npm ci
       - run: npm run build
-      - run: npm publish
+      - run: npm publish --provenance
       - run: npm run build:docs
       - run: npm run deploy:docs
