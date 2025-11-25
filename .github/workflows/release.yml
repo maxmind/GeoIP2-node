@@ -49,4 +49,8 @@ jobs:
       - run: npm run build
       - run: npm publish --provenance
       - run: npm run build:docs
-      - run: npm run deploy:docs
+      - name: Deploy docs to gh-pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          npm run deploy:docs
