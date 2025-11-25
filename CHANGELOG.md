@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+6.3.2 (2025-11-25)
+------------------
+
+* Second release attempt via Trusted Publishing.
+
 6.3.1 (2025-11-25)
 ------------------
 
