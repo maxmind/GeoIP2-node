@@ -1,6 +1,26 @@
 CHANGELOG
 =========
 
+6.3.4 (2025-11-25)
+------------------
+
+* Second attempt to fix doc publishing during release from GitHub.
+
+6.3.3 (2025-11-25)
+------------------
+
+* Doc publishing fix during release from GitHub.
+
+6.3.2 (2025-11-25)
+------------------
+
+* Second release attempt via Trusted Publishing.
+
+6.3.1 (2025-11-25)
+------------------
+
+* First release attempt via Trusted Publishing.
+
 6.3.0 (2025-11-20)
 ------------------
 
