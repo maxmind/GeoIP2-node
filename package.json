@@ -55,7 +55,7 @@
     "prettier:json": "prettier --parser json --write '**/*.json'",
     "test": "jest",
     "test:watch": "jest --watch",
-    "prepublishOnly": "npm run build && npm run test && npm run lint && npm run build:docs && npm run deploy:docs"
+    "prepublishOnly": "if [ -z \"$GITHUB_ACTIONS\" ]; then echo 'Manual publishing is disabled. Use ./dev-bin/release.sh instead.' && exit 1; fi"
   },
   "dependencies": {
     "maxmind": "^5.0.0"
