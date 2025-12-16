@@ -321,6 +321,11 @@ export interface TraitsRecord {
    * responsive to traffic on your network. If you need real-time IP risk
    * scoring based on behavioral signals on your own network, please use
    * minFraud.
+   *
+   * We do not provide an IP risk snapshot for low-risk networks. If this field
+   * is not populated, we either do not have signals for the network or the
+   * signals we have show that the network is low-risk. If you would like to get
+   * signals for low-risk networks, please use the minFraud web services.
    */
   readonly ipRiskSnapshot?: number;
   /**
