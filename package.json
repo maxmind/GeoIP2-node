@@ -34,7 +34,7 @@
     "eslint-config-prettier": "^10.0.1",
     "globals": "^17.0.0",
     "jest": "^30.0.0",
-    "nock": "^14.0.0-beta.15",
+    "nock": "^15.0.0",
     "prettier": "^3.0.0",
     "ts-jest": "^29.1.0",
     "typedoc": "^0.28.1",
