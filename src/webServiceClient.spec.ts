@@ -13,6 +13,11 @@ const auth = {
 };
 
 describe('WebServiceClient', () => {
+  afterEach(() => {
+    nock.cleanAll();
+    nock.abortPendingRequests();
+  });
+
   const client = new Client(auth.user, auth.pass);
 
   describe('city()', () => {
@@ -393,9 +398,6 @@ describe('WebServiceClient', () => {
   });
 
   describe('timeout handling', () => {
-    afterEach(() => {
-      nock.cleanAll();
-    });
     it('should time out if the request takes too long', async () => {
       const ip = '8.8.8.8';
 
