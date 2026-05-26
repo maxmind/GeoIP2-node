@@ -494,7 +494,7 @@ describe('WebServiceClient', () => {
 
       const expected = {
         code: 'FETCH_ERROR',
-        error: `Error - ${error}`,
+        error: `Error - Error: ${error}`,
         url: baseUrl + fullPath('city', ip),
       };
 
