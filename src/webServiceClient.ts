@@ -121,11 +121,11 @@ export default class WebServiceClient {
     const url = `https://${this.host}${parsedPath}`;
 
     if (!mmdb.validate(ipAddress)) {
-      return Promise.reject({
+      throw {
         code: 'IP_ADDRESS_INVALID',
         error: 'The IP address provided is invalid',
         url,
-      });
+      };
     }
 
     const options: RequestInit = {
@@ -138,36 +138,36 @@ export default class WebServiceClient {
       signal: AbortSignal.timeout(this.timeout),
     };
 
-    let data;
+    let response;
     try {
-      const response = await fetch(url, options);
-
-      if (!response.ok) {
-        return Promise.reject(await this.handleError(response, url));
-      }
-      data = await response.json();
+      response = await fetch(url, options);
     } catch (err) {
       const error = err as Error;
-      switch (error.name) {
-        case 'TimeoutError':
-          return Promise.reject({
-            code: 'NETWORK_TIMEOUT',
-            error: 'The request timed out',
-            url,
-          });
-        case 'SyntaxError':
-          return Promise.reject({
-            ...invalidResponseBody,
-            url,
-          });
-        default:
-          return Promise.reject({
-            code: 'FETCH_ERROR',
-            error: `${error.name} - ${error.message}`,
-            url,
-          });
+      if (error.name === 'TimeoutError') {
+        throw {
+          code: 'NETWORK_TIMEOUT',
+          error: 'The request timed out',
+          url,
+        };
       }
+      throw {
+        code: 'FETCH_ERROR',
+        error: `${error.name} - ${error.message}`,
+        url,
+      };
     }
+
+    if (!response.ok) {
+      throw await this.handleError(response, url);
+    }
+
+    let data;
+    try {
+      data = await response.json();
+    } catch {
+      throw { ...invalidResponseBody, url };
+    }
+
     return new modelClass(data);
   }
 

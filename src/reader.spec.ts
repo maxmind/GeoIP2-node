@@ -8,18 +8,17 @@ describe('Reader', () => {
   describe('open()', () => {
     const file = './test/data/test-data/GeoIP2-City-Test.mmdb';
 
-    it('passes the file to node-maxmind and resolves', () => {
+    it('passes the file to node-maxmind and resolves', async () => {
       const spy = jest.spyOn(mmdb, 'open');
 
       expect.assertions(2);
 
-      return Reader.open(file).then((reader) => {
-        expect(spy).toHaveBeenCalledWith(file, undefined);
-        expect(reader).toBeInstanceOf(ReaderModel);
-      });
+      const reader = await Reader.open(file);
+      expect(spy).toHaveBeenCalledWith(file, undefined);
+      expect(reader).toBeInstanceOf(ReaderModel);
     });
 
-    it('passes the file and options to node-maxmind and resolves', () => {
+    it('passes the file and options to node-maxmind and resolves', async () => {
       const spy = jest.spyOn(mmdb, 'open');
       const options = {
         cache: {
@@ -29,10 +28,9 @@ describe('Reader', () => {
 
       expect.assertions(2);
 
-      return Reader.open(file, options).then((reader) => {
-        expect(spy).toHaveBeenCalledWith(file, options);
-        expect(reader).toBeInstanceOf(ReaderModel);
-      });
+      const reader = await Reader.open(file, options);
+      expect(spy).toHaveBeenCalledWith(file, options);
+      expect(reader).toBeInstanceOf(ReaderModel);
     });
 
     it('rejects the promise if node-maxmind errors out', () => {
