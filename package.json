@@ -34,7 +34,7 @@
     "jest": "^30.0.0",
     "nock": "^14.0.0-beta.15",
     "prettier": "^3.0.0",
-    "ts-jest": "^29.1.0",
+    "ts-jest": "^29.4.0",
     "typedoc": "^0.28.1",
     "typescript": "^6.0.2",
     "typescript-eslint": "^8.5.0"
@@ -52,6 +52,9 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "prepublishOnly": "if [ -z \"$GITHUB_ACTIONS\" ]; then echo 'Manual publishing is disabled. Use ./dev-bin/release.sh instead.' && exit 1; fi"
+  },
+  "engines": {
+    "node": ">=22"
   },
   "dependencies": {
     "maxmind": "^5.0.0"

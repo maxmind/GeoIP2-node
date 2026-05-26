@@ -172,7 +172,7 @@ database, you can use `Reader.openBuffer()`.  Use cases include:
 * You want to fetch the database from an external source.
 
 ```js
-const fs = require('fs');
+const fs = require('node:fs');
 const Reader = require('@maxmind/geoip2-node').Reader;
 // Typescript:
 // import { Reader } from '@maxmind/geoip2-node';
@@ -414,7 +414,7 @@ correction, please [contact MaxMind support for help](https://support.maxmind.co
 
 ## Requirements
 
-MaxMind has tested this API with Node.js versions 18, 20, and 22.  We aim to support
+MaxMind has tested this API with Node.js versions 22 and 24.  We aim to support
 active and maintained LTS versions of Node.js.
 
 ## Contributing

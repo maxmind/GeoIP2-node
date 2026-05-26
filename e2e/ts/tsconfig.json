@@ -3,6 +3,7 @@
     "esModuleInterop": true,
     "module": "commonjs",
     "strict": true,
-    "target": "es6"
+    "target": "es2022",
+    "types": ["jest"]
   }
 }

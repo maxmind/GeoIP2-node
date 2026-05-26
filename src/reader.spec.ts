@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import * as fs from 'node:fs';
 import * as mmdb from 'maxmind';
 import { InvalidDbBufferError } from './errors';
 import Reader from './reader';

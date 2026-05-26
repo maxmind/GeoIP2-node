@@ -128,20 +128,14 @@ export default class WebServiceClient {
       });
     }
 
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), this.timeout);
     const options: RequestInit = {
       headers: {
         Accept: 'application/json',
-        Authorization:
-          'Basic ' +
-          Buffer.from(`${this.accountID}:${this.licenseKey}`).toString(
-            'base64'
-          ),
+        Authorization: 'Basic ' + btoa(`${this.accountID}:${this.licenseKey}`),
         'User-Agent': `GeoIP2-node/${version}`,
       },
       method: 'GET',
-      signal: controller.signal,
+      signal: AbortSignal.timeout(this.timeout),
     };
 
     let data;
@@ -153,9 +147,9 @@ export default class WebServiceClient {
       }
       data = await response.json();
     } catch (err) {
-      const error = err as TypeError;
+      const error = err as Error;
       switch (error.name) {
-        case 'AbortError':
+        case 'TimeoutError':
           return Promise.reject({
             code: 'NETWORK_TIMEOUT',
             error: 'The request timed out',
@@ -173,8 +167,6 @@ export default class WebServiceClient {
             url,
           });
       }
-    } finally {
-      clearTimeout(timeoutId);
     }
     return new modelClass(data);
   }

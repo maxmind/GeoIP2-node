@@ -13,7 +13,7 @@
     "skipLibCheck": true,
     "sourceMap": false,
     "strict": true,
-    "target": "es6",
+    "target": "es2022",
     "esModuleInterop": true
   },
   "compileOnSave": false,
