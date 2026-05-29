@@ -6,9 +6,9 @@ import { WebServiceClientError } from './types';
 /** Option for the WebServiceClient constructor */
 interface Options {
   /** The host to use when connecting to the web service. The default is
-   *  "geoip.maxmind.com". To call the GeoLite2 web service instead of the
-   *  GeoIP2 web service, set this to "geolite.info". To call the Sandbox
-   *  GeoIP2 web service instead of the production GeoIP2 web service, set this
+   *  "geoip.maxmind.com". To call the GeoLite web service instead of the
+   *  GeoIP web service, set this to "geolite.info". To call the Sandbox
+   *  GeoIP web service instead of the production GeoIP web service, set this
    *  to "sandbox.maxmind.com". The sandbox allows you to experiment with the
    *  API without affecting your production data.
    */
@@ -98,8 +98,8 @@ export default class WebServiceClient {
   /**
    * Returns a Promise with the Insights data for an IP address.
    *
-   * Insights is only supported by the GeoIP2 web service. It is not supported
-   * by the GeoLite2 web service.
+   * Insights is only supported by the GeoIP web service. It is not supported
+   * by the GeoLite web service.
    *
    * @param ipAddress The IP Address you want to query the Insights web service with
    */

@@ -44,7 +44,7 @@ export default class AnonymousIP {
   /**
    * Instantiates an "AnonymousIP" using fields from the response
    *
-   * @param response The GeoIP2 response
+   * @param response The GeoIP response
    */
   public constructor(
     response: mmdb.AnonymousIPResponse,

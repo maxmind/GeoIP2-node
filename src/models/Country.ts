@@ -37,7 +37,7 @@ export default class Country {
   /**
    * Instantiates a "Country" using fields from the response
    *
-   * @param response The GeoIP2 response
+   * @param response The GeoIP response
    */
   public constructor(
     response: CountryResponse,

@@ -23,7 +23,7 @@ export default class Domain {
   /**
    * Instantiates an "Domain" using fields from the response
    *
-   * @param response The GeoIP2 response
+   * @param response The GeoIP response
    */
   public constructor(
     response: DomainResponse,
