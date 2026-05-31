@@ -22,7 +22,7 @@ export default class AnonymousPlus extends AnonymousIP {
   /**
    * Instantiates an "AnonymousPlus" using fields from the response
    *
-   * @param response The GeoIP2 response
+   * @param response The GeoIP response
    */
   public constructor(
     response: mmdb.AnonymousPlusResponse,

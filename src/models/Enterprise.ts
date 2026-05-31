@@ -6,7 +6,7 @@ export default class Enterprise extends City {
   /**
    * Instantiates an "Enterprise" using fields from the response
    *
-   * @param response The GeoIP2 response
+   * @param response The GeoIP response
    */
   public constructor(
     response: CityResponse,

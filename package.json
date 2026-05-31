@@ -1,7 +1,7 @@
 {
   "name": "@maxmind/geoip2-node",
   "version": "6.3.4",
-  "description": "Node.js API for GeoIP2 webservice client and database reader",
+  "description": "Node.js API for GeoIP webservice client and database reader",
   "main": "dist/src/index.js",
   "homepage": "https://github.com/maxmind/GeoIP2-node",
   "repository": {
@@ -14,8 +14,6 @@
   "keywords": [
     "geoip",
     "geoip2",
-    "geoip precision",
-    "geoip2 precision",
     "geolite",
     "geolite2",
     "maxmind",

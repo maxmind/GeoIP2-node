@@ -8,14 +8,14 @@ export default class Insights extends City {
   /**
    * The anonymizer record for the requested IP address. This contains
    * information about VPN providers and other anonymizing services. This
-   * record is only available from the GeoIP2 Insights web service.
+   * record is only available from the GeoIP Insights web service.
    */
   public readonly anonymizer?: records.AnonymizerRecord;
 
   /**
    * Instantiates an "Insights" using fields from the response
    *
-   * @param response The GeoIP2 response
+   * @param response The GeoIP response
    */
   public constructor(response: CityResponse) {
     super(response);

@@ -220,56 +220,56 @@ export interface SubdivisionsRecord {
 
 /**
  * Contains data for the anonymizer record associated with an IP address.
- * This record is only available from the GeoIP2 Insights web service.
+ * This record is only available from the GeoIP Insights web service.
  */
 export interface AnonymizerRecord {
   /**
    * A score ranging from 1 to 99 that represents our percent confidence that
    * the network is currently part of an actively used VPN service. This value
-   * is only available from GeoIP2 Insights.
+   * is only available from GeoIP Insights.
    */
   readonly confidence?: number;
   /**
    * This is true if the IP address belongs to any sort of anonymous network.
-   * This value is only available from GeoIP2 Insights.
+   * This value is only available from GeoIP Insights.
    */
   readonly isAnonymous: boolean;
   /**
    * This is true if the IP address is registered to an anonymous VPN provider.
-   * This value is only available from GeoIP2 Insights.
+   * This value is only available from GeoIP Insights.
    */
   readonly isAnonymousVpn: boolean;
   /**
    * This is true if the IP address belongs to a hosting or VPN provider (see
    * description of `isAnonymousVpn` property). This value is only available from
-   * GeoIP2 Insights.
+   * GeoIP Insights.
    */
   readonly isHostingProvider: boolean;
   /**
    * This is true if the IP address belongs to a public proxy. This value is
-   * only available from GeoIP2 Insights.
+   * only available from GeoIP Insights.
    */
   readonly isPublicProxy: boolean;
   /**
    * This is true if the IP address is on a suspected anonymizing network and
-   * belongs to a residential ISP. This value is only available from GeoIP2
+   * belongs to a residential ISP. This value is only available from GeoIP
    * Insights.
    */
   readonly isResidentialProxy: boolean;
   /**
    * This is true if the IP address belongs to a Tor exit node. This value is
-   * only available from GeoIP2 Insights.
+   * only available from GeoIP Insights.
    */
   readonly isTorExitNode: boolean;
   /**
    * The last day that the network was sighted in our analysis of anonymized
    * networks. The date is in ISO 8601 format (YYYY-MM-DD). This value is only
-   * available from GeoIP2 Insights.
+   * available from GeoIP Insights.
    */
   readonly networkLastSeen?: string;
   /**
    * The name of the identified VPN provider, such as "NordVPN" or "SurfShark".
-   * This value is only available from GeoIP2 Insights.
+   * This value is only available from GeoIP Insights.
    */
   readonly providerName?: string;
 }
@@ -314,7 +314,7 @@ export interface TraitsRecord {
   /**
    * The risk associated with the IP address. The value ranges from 0.01 to 99,
    * with a higher score indicating a higher risk. This value is only available
-   * from GeoIP2 Insights.
+   * from GeoIP Insights.
    *
    * Please note that the IP risk score provided in GeoIP products and services
    * is more static than the IP risk score provided in minFraud and is not
@@ -330,7 +330,7 @@ export interface TraitsRecord {
   readonly ipRiskSnapshot?: number;
   /**
    * This is true if the IP address belongs to any sort of anonymous network.
-   * This value is only available from GeoIP2 Insights.
+   * This value is only available from GeoIP Insights.
    * @category deprecated
    * @deprecated Use the `anonymizer` object instead.
    */
@@ -343,7 +343,7 @@ export interface TraitsRecord {
   readonly isAnonymousProxy: boolean;
   /**
    * This is true if the IP address is registered to an anonymous VPN provider.
-   * This value is only available from GeoIP2 Insights.
+   * This value is only available from GeoIP Insights.
    * @category deprecated
    * @deprecated Use the `anonymizer` object instead.
    */
@@ -358,7 +358,7 @@ export interface TraitsRecord {
   /**
    * This is true if the IP address belongs to a hosting or VPN provider (see
    * description of `IsAnonymousVpn` property). This value is only available from
-   * GeoIP2 Insights.
+   * GeoIP Insights.
    * @category deprecated
    * @deprecated Use the `anonymizer` object instead.
    */
@@ -366,19 +366,19 @@ export interface TraitsRecord {
   /**
    * True if MaxMind believes this IP address to be a legitimate proxy, such as
    * an internal VPN used by a corporation. This is only available in the
-   * GeoIP2 Enterprise database.
+   * GeoIP Enterprise database.
    */
   readonly isLegitimateProxy: boolean;
   /**
    * This is true if the IP address belongs to a public proxy. This value is
-   * only available from GeoIP2 Insights.
+   * only available from GeoIP Insights.
    * @category deprecated
    * @deprecated Use the `anonymizer` object instead.
    */
   readonly isPublicProxy: boolean;
   /**
    * This is true if the IP address is on a suspected anonymizing network and
-   * belongs to a residential ISP. This value is only available from GeoIP2
+   * belongs to a residential ISP. This value is only available from GeoIP
    * Insights.
    * @category deprecated
    * @deprecated Use the `anonymizer` object instead.
@@ -392,7 +392,7 @@ export interface TraitsRecord {
   readonly isSatelliteProvider: boolean;
   /**
    * This is true if the IP address belongs to a Tor exit node. This value is
-   * only available from GeoIP2 Insights.
+   * only available from GeoIP Insights.
    * @category deprecated
    * @deprecated Use the `anonymizer` object instead.
    */
@@ -440,7 +440,7 @@ export interface TraitsRecord {
   /**
    * The estimated number of users sharing the IP/network during the past 24
    * hours. For IPv4, the count is for the individual IP. For IPv6, the count
-   * is for the /64 network. This value is only available from GeoIP2 Insights.
+   * is for the /64 network. This value is only available from GeoIP Insights.
    */
   readonly userCount?: number;
   /**

@@ -1,10 +1,10 @@
-# MaxMind GeoIP2 Node.js API
+# MaxMind GeoIP Node.js API
 
 ## Description
 
-This package provides a server-side API for the [GeoIP2 databases and GeoLite2
+This package provides a server-side API for the [GeoIP databases and GeoLite
 databases](https://dev.maxmind.com/geoip/docs/databases), and a server-side
-API for the [GeoIP2 web services and GeoLite2 web
+API for the [GeoIP web services and GeoLite web
 services](https://dev.maxmind.com/geoip/docs/web-services).
 
 **This package will not work client-side.**
@@ -20,7 +20,7 @@ You can also use `yarn` or `pnpm`.
 ## IP Geolocation Usage
 
 IP geolocation is inherently imprecise. Locations are often near the center of
-the population. Any location provided by a GeoIP2 database or web service
+the population. Any location provided by a GeoIP database or web service
 should not be used to identify a particular address or household.
 
 ## Web Service Usage
@@ -29,7 +29,7 @@ To use the web service API, you must create a new `WebServiceClient`, using
 your MaxMind `accountID` and `licenseKey` as parameters. The third argument is
 an object holding additional option. The `timeout` option defaults to `3000`.
 The `host` option defaults to `geoip.maxmind.com`. Set `host` to `geolite.info`
-to use the GeoLite2 web service instead of GeoIP2. Set `host` to
+to use the GeoLite web service instead of GeoIP. Set `host` to
 `sandbox.maxmind.com` to use the Sandbox environment.
 
 You may then call the function corresponding to a specific end point, passing it
@@ -53,11 +53,11 @@ const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
 // Typescript:
 // import { WebServiceClient } from '@maxmind/geoip2-node';
 
-// To use the GeoLite2 web service instead of the GeoIP2 web service, set
+// To use the GeoLite web service instead of the GeoIP web service, set
 // the host to geolite.info, e.g.:
 // new WebServiceClient('1234', 'licenseKey', {host: 'geolite.info'});
 //
-// To use the Sandbox GeoIP2 web service instead of the production GeoIP2
+// To use the Sandbox GeoIP web service instead of the production GeoIP
 // web service, set the host to sandbox.maxmind.com, e.g.:
 // new WebServiceClient('1234', 'licenseKey', {host: 'sandbox.maxmind.com'});
 const client = new WebServiceClient('1234', 'licenseKey');
@@ -74,7 +74,7 @@ const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
 // Typescript:
 // import { WebServiceClient } from '@maxmind/geoip2-node';
 
-// To use the GeoLite2 web service instead of the GeoIP2 web service, set
+// To use the GeoLite web service instead of the GeoIP web service, set
 // the host to geolite.info, e.g.:
 // new WebServiceClient('1234', 'licenseKey', {host: 'geolite.info'});
 const client = new WebServiceClient('1234', 'licenseKey');
@@ -92,10 +92,10 @@ const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
 // Typescript:
 // import { WebServiceClient } from '@maxmind/geoip2-node';
 
-// Note that the Insights web service is only supported by the GeoIP2
-// web service, not the GeoLite2 web service.
+// Note that the Insights web service is only supported by the GeoIP
+// web service, not the GeoLite web service.
 //
-// To use the Sandbox GeoIP2 web service instead of the production GeoIP2
+// To use the Sandbox GeoIP web service instead of the production GeoIP
 // web service, set the host to sandbox.maxmind.com, e.g.:
 // new WebServiceClient('1234', 'licenseKey', {host: 'sandbox.maxmind.com'});
 const client = new WebServiceClient('1234', 'licenseKey');
@@ -110,7 +110,7 @@ client.insights('142.1.1.1').then(response => {
 ## Web Service Errors
 
 For details on the possible errors returned by the web service itself, [see
-the GeoIP2 web service documentation](https://dev.maxmind.com/geoip/docs/web-services/responses/#errors).
+the GeoIP web service documentation](https://dev.maxmind.com/geoip/docs/web-services/responses/#errors).
 
 If the web service returns an explicit error document, the promise will be rejected
 with the following object structure:
@@ -138,7 +138,7 @@ The database reader returns a promise that resolves with a reader instance.
 You may then call the function corresponding to the request type (e.g.
 `city` or `country`), passing it the IP address you want to look up.
 
-If the request succeeds, the function call will return an object for the GeoIP2
+If the request succeeds, the function call will return an object for the GeoIP
 lookup. The object in turn contains multiple record objects, each of which
 represents part of the data returned by the database.
 
@@ -424,7 +424,7 @@ whenever possible, as we strive to maintain 100% code coverage.
 
 ## Versioning
 
-The GeoIP2 Node.js API uses [Semantic Versioning](https://semver.org/).
+The GeoIP Node.js API uses [Semantic Versioning](https://semver.org/).
 
 ## Support
 

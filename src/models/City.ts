@@ -30,7 +30,7 @@ export default class City extends Country {
   /**
    * Instantiates a "City" using fields from the response
    *
-   * @param response The GeoIP2 response
+   * @param response The GeoIP response
    */
   public constructor(
     response: CityResponse,
