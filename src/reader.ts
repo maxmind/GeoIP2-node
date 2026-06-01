@@ -1,6 +1,6 @@
 import * as mmdb from 'maxmind';
-import { InvalidDbBufferError } from './errors';
-import ReaderModel from './readerModel';
+import { InvalidDbBufferError } from './errors.js';
+import ReaderModel from './readerModel.js';
 
 /** Class representing the mmdb reader **/
 export default class Reader {

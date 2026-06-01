@@ -1,4 +1,4 @@
-import { snakeToCamelCase, camelcaseKeys, toCidr } from './utils';
+import { snakeToCamelCase, camelcaseKeys, toCidr } from './utils.js';
 
 describe('src/Utils', () => {
   describe('toCidr', () => {

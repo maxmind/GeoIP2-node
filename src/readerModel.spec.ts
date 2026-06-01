@@ -1,5 +1,5 @@
-import { AddressNotFoundError, BadMethodCallError, ValueError } from './errors';
-import Reader from './reader';
+import { AddressNotFoundError, BadMethodCallError, ValueError } from './errors.js';
+import Reader from './reader.js';
 
 describe('ReaderModel', () => {
   describe('city()', () => {

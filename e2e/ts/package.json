@@ -8,5 +8,6 @@
     "jest": "^30.0.0",
     "ts-jest": "^29.1.0",
     "typescript": "^6.0.2"
-  }
+  },
+  "type": "module"
 }

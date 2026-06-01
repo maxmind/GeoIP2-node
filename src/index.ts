@@ -1,8 +1,8 @@
-import Reader from './reader';
-import WebServiceClient from './webServiceClient';
-import ReaderModel from './readerModel';
+import Reader from './reader.js';
+import WebServiceClient from './webServiceClient.js';
+import ReaderModel from './readerModel.js';
 
 export { Reader, ReaderModel, WebServiceClient };
-export * from './records';
-export * from './models';
-export * from './errors';
+export * from './records.js';
+export * from './models/index.js';
+export * from './errors.js';

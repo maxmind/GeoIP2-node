@@ -1,7 +1,7 @@
-import { camelcaseKeys } from '../utils';
-import * as records from '../records';
-import { CityResponse, Json } from '../types';
-import Country from './Country';
+import { camelcaseKeys } from '../utils.js';
+import * as records from '../records.js';
+import { CityResponse, Json } from '../types.js';
+import Country from './Country.js';
 
 /** Class representing the model of a "City" response **/
 export default class City extends Country {

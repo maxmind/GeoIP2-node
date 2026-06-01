@@ -1,7 +1,7 @@
 import * as mmdb from 'maxmind';
-import { version } from '../package.json';
-import * as models from './models';
-import { WebServiceClientError } from './types';
+import packageInfo from '../package.json' with { type: 'json' };
+import * as models from './models/index.js';
+import { WebServiceClientError } from './types.js';
 
 /** Option for the WebServiceClient constructor */
 interface Options {
@@ -132,7 +132,7 @@ export default class WebServiceClient {
       headers: {
         Accept: 'application/json',
         Authorization: 'Basic ' + btoa(`${this.accountID}:${this.licenseKey}`),
-        'User-Agent': `GeoIP2-node/${version}`,
+        'User-Agent': `GeoIP2-node/${packageInfo.version}`,
       },
       method: 'GET',
       signal: AbortSignal.timeout(this.timeout),

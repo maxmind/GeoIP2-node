@@ -1,13 +1,13 @@
-import AnonymousIP from './AnonymousIP';
-import AnonymousPlus from './AnonymousPlus';
-import Asn from './Asn';
-import City from './City';
-import ConnectionType from './ConnectionType';
-import Country from './Country';
-import Domain from './Domain';
-import Enterprise from './Enterprise';
-import Insights from './Insights';
-import Isp from './Isp';
+import AnonymousIP from './AnonymousIP.js';
+import AnonymousPlus from './AnonymousPlus.js';
+import Asn from './Asn.js';
+import City from './City.js';
+import ConnectionType from './ConnectionType.js';
+import Country from './Country.js';
+import Domain from './Domain.js';
+import Enterprise from './Enterprise.js';
+import Insights from './Insights.js';
+import Isp from './Isp.js';
 
 export {
   AnonymousIP,

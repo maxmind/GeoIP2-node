@@ -1,7 +1,7 @@
 import nock from 'nock';
-import * as geoip2Fixture from '../fixtures/geoip2.json';
-import Client from './webServiceClient';
-import * as models from './models';
+import geoip2Fixture from '../fixtures/geoip2.json' with { type: 'json' };
+import Client from './webServiceClient.js';
+import * as models from './models/index.js';
 
 const baseUrl = 'https://geoip.maxmind.com';
 const nockInstance = nock(baseUrl);

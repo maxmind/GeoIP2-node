@@ -1,5 +1,5 @@
 import * as mmdb from 'maxmind';
-import { MaxMindRecord } from './records';
+import { MaxMindRecord } from './records.js';
 
 export interface CountryResponse extends mmdb.CountryResponse {
   maxmind?: MaxMindRecord;

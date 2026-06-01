@@ -5,7 +5,7 @@ CHANGELOG
 ------------------
 
 * **Breaking** Dropped support for Node.js 18 and 20. Node.js 22 or greater is now
-  required.
+* **Breaking** Dropped commonjs support. The package is now only available as an ES module.
 
 6.3.4 (2025-11-25)
 ------------------

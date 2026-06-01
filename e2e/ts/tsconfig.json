@@ -1,9 +1,13 @@
 {
   "compilerOptions": {
     "esModuleInterop": true,
-    "module": "commonjs",
+    "module": "NodeNext",
     "strict": true,
     "target": "es2022",
-    "types": ["jest"]
+    "types": [
+      "jest"
+    ],
+    "moduleResolution": "NodeNext",
+    "isolatedModules": true
   }
 }

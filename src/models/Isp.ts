@@ -1,5 +1,5 @@
 import * as mmdb from 'maxmind';
-import Asn from './Asn';
+import Asn from './Asn.js';
 
 export default class Isp extends Asn {
   /**

@@ -3,9 +3,13 @@
     "allowUnreachableCode": true,
     "allowJs": false,
     "declaration": true,
-    "lib": ["es2022"],
-    "types": ["node"],
-    "module": "commonjs",
+    "lib": [
+      "es2022"
+    ],
+    "types": [
+      "node"
+    ],
+    "module": "NodeNext",
     "outDir": "dist",
     "pretty": true,
     "removeComments": true,
@@ -14,9 +18,14 @@
     "sourceMap": false,
     "strict": true,
     "target": "es2022",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "moduleResolution": "NodeNext"
   },
   "compileOnSave": false,
-  "include": ["src"],
-  "exclude": ["**/*.spec.ts"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "**/*.spec.ts"
+  ]
 }

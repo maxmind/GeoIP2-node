@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
-const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
-const Reader = require('@maxmind/geoip2-node').Reader;
+import { WebServiceClient, Reader } from '@maxmind/geoip2-node';
 
 describe('WebServiceClient', () => {
   it('exists', () => {

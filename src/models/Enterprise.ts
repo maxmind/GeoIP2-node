@@ -1,5 +1,5 @@
-import { CityResponse } from '../types';
-import City from './City';
+import { CityResponse } from '../types.js';
+import City from './City.js';
 
 /** Class representing the model of an "Enterprise" response **/
 export default class Enterprise extends City {

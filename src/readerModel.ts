@@ -1,7 +1,7 @@
 import * as mmdb from 'maxmind';
-import { AddressNotFoundError, BadMethodCallError, ValueError } from './errors';
-import * as models from './models';
-import { toCidr } from './utils';
+import { AddressNotFoundError, BadMethodCallError, ValueError } from './errors.js';
+import * as models from './models/index.js';
+import { toCidr } from './utils.js';
 
 /** Class representing the ReaderModel **/
 export default class ReaderModel {
