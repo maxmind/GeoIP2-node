@@ -1,4 +1,8 @@
-import { AddressNotFoundError, BadMethodCallError, ValueError } from './errors.js';
+import {
+  AddressNotFoundError,
+  BadMethodCallError,
+  ValueError,
+} from './errors.js';
 import Reader from './reader.js';
 
 describe('ReaderModel', () => {

@@ -1,5 +1,9 @@
 import * as mmdb from 'maxmind';
-import { AddressNotFoundError, BadMethodCallError, ValueError } from './errors.js';
+import {
+  AddressNotFoundError,
+  BadMethodCallError,
+  ValueError,
+} from './errors.js';
 import * as models from './models/index.js';
 import { toCidr } from './utils.js';
 
