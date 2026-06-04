@@ -15,7 +15,7 @@
    - Commit changes and push
    - Create a GitHub release (which triggers the npm publish workflow)
 6. Merge the release PR after the workflow succeeds.
-7. Verify the release on [npm](https://npmjs.com/package/@maxmind/geoip2-node).
+7. Verify the release on [npm](https://www.npmjs.com/package/@maxmind/geoip2-node).
 
 Note: Publishing is done via GitHub Actions using npm Trusted Publishing
 (OIDC). Manual `npm publish` is not supported.

@@ -336,7 +336,7 @@ Refer to the GeoIP2-php implementation for guidance on new features (especially 
 ## Additional Resources
 
 - [API Documentation](https://maxmind.github.io/GeoIP2-node/)
-- [GeoIP Web Services Docs](https://dev.maxmind.com/geoip/docs/web-services)
+- [GeoIP Web Services Docs](https://dev.maxmind.com/geoip/docs/web-services/)
 - [MaxMind DB Format](https://maxmind.github.io/MaxMind-DB/)
 - [node-maxmind library](https://github.com/runk/node-maxmind)
 - GitHub Issues: https://github.com/maxmind/GeoIP2-node/issues
