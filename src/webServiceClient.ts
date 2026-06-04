@@ -142,7 +142,7 @@ export default class WebServiceClient {
     try {
       response = await fetch(url, options);
     } catch (err) {
-      const error = err instanceof DOMException ? err : new Error(String(err));
+      const error = err instanceof Error || err instanceof DOMException ? err : new Error(String(err));
       if (error.name === 'TimeoutError') {
         throw {
           code: 'NETWORK_TIMEOUT',
