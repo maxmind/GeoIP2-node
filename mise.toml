@@ -8,6 +8,7 @@ disable_backends = [
 
 [tools]
 node = "latest"
+lychee = "latest"
 
 [hooks]
 enter = "mise install --quiet --locked"
@@ -15,3 +16,7 @@ enter = "mise install --quiet --locked"
 [[watch_files]]
 patterns = ["mise.toml", "mise.lock"]
 run = "mise install --quiet --locked"
+
+[tasks.check-links]
+description = "Check links with lychee"
+run = "lychee --no-progress './**/*.md' './src/**/*.ts' './package.json'"

@@ -1,0 +1,62 @@
+# Lychee link checker configuration
+# https://lychee.cli.rs/#/usage/config
+#
+# Run locally with:
+#   lychee './**/*.md' './src/**/*.ts' './package.json'
+
+# Include URL fragments in checks
+include_fragments = true
+
+# Don't allow any redirects, so links that have moved are surfaced and updated
+# to their canonical destination.
+max_redirects = 0
+
+# Accept these HTTP status codes
+# 100-103: Informational responses
+# 200-299: Success responses
+# 403: Forbidden (some sites use this for rate limiting)
+# 429: Too Many Requests
+# 500-599: Server errors (temporary issues shouldn't fail CI)
+# 999: LinkedIn's custom status code
+accept = ["100..=103", "200..=299", "403", "429", "500..=599", "999"]
+
+# Exclude URL patterns from checking (treated as regular expressions)
+exclude = [
+    '^file://',
+    # Live / auth-gated endpoints that appear as string literals or require login
+    '^https://geoip\.maxmind\.com',
+    '^https://geolite\.info',
+    '^https://minfraud\.maxmind\.com',
+    '^https://sandbox\.maxmind\.com',
+    '^https://updates\.maxmind\.com',
+    '^https://www\.maxmind\.com/en/accounts/',
+    'https://www\.maxmind\.com/en/account/login',
+    # package.json repository.url uses the canonical npm git clone URL
+    # (https://github.com/maxmind/GeoIP2-node.git); the ".git" form 301s to the
+    # web UI but is the correct packaging metadata, so it is not a "link" to fix.
+    '^https://github\.com/maxmind/GeoIP2-node\.git$',
+    # Placeholders / local
+    '^https?://example\.(com|org|net)',
+    '^http://localhost',
+    '127\.0\.0\.1',
+]
+
+# Exclude file paths from getting checked (treated as regular expressions)
+exclude_path = [
+    '(^|/)node_modules/',
+    '(^|/)dist/',
+    '(^|/)build/',
+    '(^|/)coverage/',
+    # docs/ contains generated TypeDoc HTML (gitignored)
+    '(^|/)docs/',
+    '(^|/)\.git/',
+    # Changelog: historical entries are preserved as-is, not rewritten
+    '(^|/)CHANGELOG\.md$',
+]
+
+# Cache results for 1 day to speed up repeated checks
+cache = true
+max_cache_age = "1d"
+
+# Skip missing input files instead of erroring
+skip_missing = true
