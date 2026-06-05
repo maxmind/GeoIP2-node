@@ -3,9 +3,9 @@
 ## Description
 
 This package provides a server-side API for the [GeoIP databases and GeoLite
-databases](https://dev.maxmind.com/geoip/docs/databases), and a server-side
+databases](https://dev.maxmind.com/geoip/docs/databases/), and a server-side
 API for the [GeoIP web services and GeoLite web
-services](https://dev.maxmind.com/geoip/docs/web-services).
+services](https://dev.maxmind.com/geoip/docs/web-services/).
 
 **This package will not work client-side.**
 
@@ -382,7 +382,7 @@ data set, it will be automatically incorporated into future MaxMind
 releases.
 
 If you are a paying MaxMind customer and you're not sure where to submit a
-correction, please [contact MaxMind support for help](https://support.maxmind.com/hc/en-us/requests/new).
+correction, please [contact MaxMind support for help](https://support.maxmind.com/knowledge-base/submit-a-support-request).
 
 ## Requirements
 
@@ -404,7 +404,7 @@ Please report all issues with this code using the [GitHub issue
 tracker](https://github.com/maxmind/GeoIP2-node/issues)
 
 If you are having an issue with a MaxMind service that is not specific to the
-client API, please contact [MaxMind support for assistance](https://support.maxmind.com/hc/en-us/requests/new).
+client API, please contact [MaxMind support for assistance](https://support.maxmind.com/knowledge-base/submit-a-support-request).
 
 ## Copyright and License
 
