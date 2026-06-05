@@ -1,5 +1,5 @@
 import * as mmdb from 'maxmind';
-import AnonymousIP from './AnonymousIP';
+import AnonymousIP from './AnonymousIP.js';
 
 /** Class representing the model of an "AnonymousPlus" response **/
 export default class AnonymousPlus extends AnonymousIP {

@@ -12,7 +12,7 @@ The library provides both web service clients and database readers that return s
 
 **Key Technologies:**
 - TypeScript with strict type checking
-- Node.js 18+ (targets active LTS versions)
+- Node.js 22+ (targets active LTS versions)
 - maxmind (node-maxmind) for MMDB database reading
 - Jest for testing
 - ESLint + Prettier for code quality
@@ -318,9 +318,9 @@ npm run build
 Note: Precious is already set up and handles code formatting and linting. Use `precious tidy -g` to automatically fix issues, and `precious lint -g` to check for remaining problems.
 
 ### Version Requirements
-- **Node.js 18+** required (targets active LTS: 18, 20, 22)
+- **Node.js 22+** required (targets active LTS: 22, 24)
 - Uses Node.js built-in `fetch` (no external HTTP libraries)
-- TypeScript 5.x
+- TypeScript 6.x
 
 ## Cross-Language Consistency
 

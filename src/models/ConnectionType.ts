@@ -1,5 +1,5 @@
 import * as mmdb from 'maxmind';
-import { ConnectionType as ConnType } from '../types';
+import { ConnectionType as ConnType } from '../types.js';
 
 /** Class representing the model of a "ConnectionType" response **/
 export default class ConnectionType {

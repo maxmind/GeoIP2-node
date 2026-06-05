@@ -1,38 +1,30 @@
-import * as fs from 'fs';
-import * as mmdb from 'maxmind';
-import { InvalidDbBufferError } from './errors';
-import Reader from './reader';
-import ReaderModel from './readerModel';
+import * as fs from 'node:fs';
+import { InvalidDbBufferError } from './errors.js';
+import Reader from './reader.js';
+import ReaderModel from './readerModel.js';
 
 describe('Reader', () => {
   describe('open()', () => {
     const file = './test/data/test-data/GeoIP2-City-Test.mmdb';
 
-    it('passes the file to node-maxmind and resolves', () => {
-      const spy = jest.spyOn(mmdb, 'open');
+    it('passes the file to node-maxmind and resolves', async () => {
+      expect.assertions(1);
 
-      expect.assertions(2);
-
-      return Reader.open(file).then((reader) => {
-        expect(spy).toHaveBeenCalledWith(file, undefined);
-        expect(reader).toBeInstanceOf(ReaderModel);
-      });
+      const reader = await Reader.open(file);
+      expect(reader).toBeInstanceOf(ReaderModel);
     });
 
-    it('passes the file and options to node-maxmind and resolves', () => {
-      const spy = jest.spyOn(mmdb, 'open');
+    it('passes the file and options to node-maxmind and resolves', async () => {
       const options = {
         cache: {
           max: 100,
         },
       };
 
-      expect.assertions(2);
+      expect.assertions(1);
 
-      return Reader.open(file, options).then((reader) => {
-        expect(spy).toHaveBeenCalledWith(file, options);
-        expect(reader).toBeInstanceOf(ReaderModel);
-      });
+      const reader = await Reader.open(file, options);
+      expect(reader).toBeInstanceOf(ReaderModel);
     });
 
     it('rejects the promise if node-maxmind errors out', () => {

@@ -1,7 +1,7 @@
 import * as mmdb from 'maxmind';
-import { version } from '../package.json';
-import * as models from './models';
-import { WebServiceClientError } from './types';
+import packageInfo from '../package.json' with { type: 'json' };
+import * as models from './models/index.js';
+import { WebServiceClientError } from './types.js';
 
 /** Option for the WebServiceClient constructor */
 interface Options {
@@ -121,61 +121,56 @@ export default class WebServiceClient {
     const url = `https://${this.host}${parsedPath}`;
 
     if (!mmdb.validate(ipAddress)) {
-      return Promise.reject({
+      throw {
         code: 'IP_ADDRESS_INVALID',
         error: 'The IP address provided is invalid',
         url,
-      });
+      };
     }
 
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), this.timeout);
     const options: RequestInit = {
       headers: {
         Accept: 'application/json',
-        Authorization:
-          'Basic ' +
-          Buffer.from(`${this.accountID}:${this.licenseKey}`).toString(
-            'base64'
-          ),
-        'User-Agent': `GeoIP2-node/${version}`,
+        Authorization: 'Basic ' + btoa(`${this.accountID}:${this.licenseKey}`),
+        'User-Agent': `GeoIP2-node/${packageInfo.version}`,
       },
       method: 'GET',
-      signal: controller.signal,
+      signal: AbortSignal.timeout(this.timeout),
     };
+
+    let response;
+    try {
+      response = await fetch(url, options);
+    } catch (err) {
+      const error =
+        err instanceof Error || err instanceof DOMException
+          ? err
+          : new Error(String(err));
+      if (error.name === 'TimeoutError') {
+        throw {
+          code: 'NETWORK_TIMEOUT',
+          error: 'The request timed out',
+          url,
+        };
+      }
+      throw {
+        code: 'FETCH_ERROR',
+        error: `${error.name} - ${error.message}`,
+        url,
+      };
+    }
+
+    if (!response.ok) {
+      throw await this.handleError(response, url);
+    }
 
     let data;
     try {
-      const response = await fetch(url, options);
-
-      if (!response.ok) {
-        return Promise.reject(await this.handleError(response, url));
-      }
       data = await response.json();
-    } catch (err) {
-      const error = err as TypeError;
-      switch (error.name) {
-        case 'AbortError':
-          return Promise.reject({
-            code: 'NETWORK_TIMEOUT',
-            error: 'The request timed out',
-            url,
-          });
-        case 'SyntaxError':
-          return Promise.reject({
-            ...invalidResponseBody,
-            url,
-          });
-        default:
-          return Promise.reject({
-            code: 'FETCH_ERROR',
-            error: `${error.name} - ${error.message}`,
-            url,
-          });
-      }
-    } finally {
-      clearTimeout(timeoutId);
+    } catch {
+      throw { ...invalidResponseBody, url };
     }
+
     return new modelClass(data);
   }
 

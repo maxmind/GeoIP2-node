@@ -49,9 +49,7 @@ more details.
 ### Country Service
 
 ```js
-const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
-// Typescript:
-// import { WebServiceClient } from '@maxmind/geoip2-node';
+import { WebServiceClient } from '@maxmind/geoip2-node';
 
 // To use the GeoLite web service instead of the GeoIP web service, set
 // the host to geolite.info, e.g.:
@@ -70,9 +68,7 @@ client.country('142.1.1.1').then(response => {
 ### City Plus Service
 
 ```js
-const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
-// Typescript:
-// import { WebServiceClient } from '@maxmind/geoip2-node';
+import { WebServiceClient } from '@maxmind/geoip2-node';
 
 // To use the GeoLite web service instead of the GeoIP web service, set
 // the host to geolite.info, e.g.:
@@ -88,9 +84,7 @@ client.city('142.1.1.1').then(response => {
 ### Insights Service
 
 ```js
-const WebServiceClient = require('@maxmind/geoip2-node').WebServiceClient;
-// Typescript:
-// import { WebServiceClient } from '@maxmind/geoip2-node';
+import { WebServiceClient } from '@maxmind/geoip2-node';
 
 // Note that the Insights web service is only supported by the GeoIP
 // web service, not the GeoLite web service.
@@ -150,9 +144,7 @@ database reader. As such, you have access to the same
 and can be used like this:
 
 ```js
-const Reader = require('@maxmind/geoip2-node').Reader;
-// Typescript:
-// import { Reader } from '@maxmind/geoip2-node';
+import { Reader } from '@maxmind/geoip2-node';
 
 const options = {
   // you can use options like `cache` or `watchForUpdates`
@@ -172,12 +164,10 @@ database, you can use `Reader.openBuffer()`.  Use cases include:
 * You want to fetch the database from an external source.
 
 ```js
-const fs = require('fs');
-const Reader = require('@maxmind/geoip2-node').Reader;
-// Typescript:
-// import { Reader } from '@maxmind/geoip2-node';
+import { readFileSync } from 'node:fs';
+import { Reader } from '@maxmind/geoip2-node';
 
-const dbBuffer = fs.readFileSync('/usr/local/city-database.mmdb');
+const dbBuffer = readFileSync('/usr/local/city-database.mmdb');
 const reader = Reader.openBuffer(dbBuffer);
 
 console.log(reader.city('1.1.1.1'));
@@ -188,9 +178,7 @@ console.log(reader.city('1.1.1.1'));
 ### Anonymous IP Database Example
 
 ```js
-const Reader = require('@maxmind/geoip2-node').Reader;
-// Typescript:
-// import { Reader } from '@maxmind/geoip2-node';
+import { Reader } from '@maxmind/geoip2-node';
 
 Reader.open('/usr/local/share/GeoIP/GeoIP2-Anonymous-IP.mmdb').then(reader => {
   const response = reader.anonymousIP('85.25.43.84');
@@ -208,9 +196,7 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Anonymous-IP.mmdb').then(reader => {
 ### Anonymous Plus Database Example
 
 ```js
-const Reader = require('@maxmind/geoip2-node').Reader;
-// Typescript:
-// import { Reader } from '@maxmind/geoip2-node';
+import { Reader } from '@maxmind/geoip2-node';
 
 Reader.open('/usr/local/share/GeoIP/GeoIP-Anonymous-Plus.mmdb').then(reader => {
   const response = reader.anonymousPlus('85.25.43.84');
@@ -231,9 +217,7 @@ Reader.open('/usr/local/share/GeoIP/GeoIP-Anonymous-Plus.mmdb').then(reader => {
 ### ASN Example
 
 ```js
-const Reader = require('@maxmind/geoip2-node').Reader;
-// Typescript:
-// import { Reader } from '@maxmind/geoip2-node';
+import { Reader } from '@maxmind/geoip2-node';
 
 Reader.open('/usr/local/share/GeoIP/GeoLite2-ASN.mmdb').then(reader => {
   const response = reader.asn('128.101.101.101');
@@ -246,9 +230,7 @@ Reader.open('/usr/local/share/GeoIP/GeoLite2-ASN.mmdb').then(reader => {
 ### City Example
 
 ```js
-const Reader = require('@maxmind/geoip2-node').Reader;
-// Typescript:
-// import { Reader } from '@maxmind/geoip2-node';
+import { Reader } from '@maxmind/geoip2-node';
 
 Reader.open('/usr/local/share/GeoIP/GeoIP2-City.mmdb').then(reader => {
   const response = reader.city('128.101.101.101');
@@ -262,9 +244,7 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-City.mmdb').then(reader => {
 ### Connection-Type Example
 
 ```js
-const Reader = require('@maxmind/geoip2-node').Reader;
-// Typescript:
-// import { Reader } from '@maxmind/geoip2-node';
+import { Reader } from '@maxmind/geoip2-node';
 
 Reader.open('/usr/local/share/GeoIP/GeoIP2-Connection-Type.mmdb').then(reader => {
   const response = reader.connectionType('128.101.101.101');
@@ -277,9 +257,7 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Connection-Type.mmdb').then(reader =>
 ### Country Example
 
 ```js
-const Reader = require('@maxmind/geoip2-node').Reader;
-// Typescript:
-// import { Reader } from '@maxmind/geoip2-node';
+import { Reader } from '@maxmind/geoip2-node';
 
 Reader.open('/usr/local/share/GeoIP/GeoIP2-Country.mmdb').then(reader => {
   const response = reader.country('128.101.101.101');
@@ -291,9 +269,7 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Country.mmdb').then(reader => {
 ### Domain Example
 
 ```js
-const Reader = require('@maxmind/geoip2-node').Reader;
-// Typescript:
-// import { Reader } from '@maxmind/geoip2-node';
+import { Reader } from '@maxmind/geoip2-node';
 
 Reader.open('/usr/local/share/GeoIP/GeoIP2-Domain.mmdb').then(reader => {
   const response = reader.domain('128.101.101.101');
@@ -306,9 +282,7 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Domain.mmdb').then(reader => {
 ### Enterprise Example
 
 ```js
-const Reader = require('@maxmind/geoip2-node').Reader;
-// Typescript:
-// import { Reader } from '@maxmind/geoip2-node';
+import { Reader } from '@maxmind/geoip2-node';
 
 Reader.open('/usr/local/share/GeoIP/GeoIP2-Enterprise.mmdb').then(reader => {
   const response = reader.enterprise('128.101.101.101');
@@ -320,9 +294,7 @@ Reader.open('/usr/local/share/GeoIP/GeoIP2-Enterprise.mmdb').then(reader => {
 ### ISP Example
 
 ```js
-const Reader = require('@maxmind/geoip2-node').Reader;
-// Typescript:
-// import { Reader } from '@maxmind/geoip2-node';
+import { Reader } from '@maxmind/geoip2-node';
 
 Reader.open('/usr/local/share/GeoIP/GeoIP2-ISP.mmdb').then(reader => {
   const response = reader.isp('128.101.101.101');
@@ -414,7 +386,7 @@ correction, please [contact MaxMind support for help](https://support.maxmind.co
 
 ## Requirements
 
-MaxMind has tested this API with Node.js versions 18, 20, and 22.  We aim to support
+MaxMind has tested this API with Node.js versions 22 and 24.  We aim to support
 active and maintained LTS versions of Node.js.
 
 ## Contributing

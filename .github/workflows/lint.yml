@@ -17,7 +17,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
-          node-version: 20
+          node-version: 22
       - name: Check that package-lock.json is valid JSON
         run: jq empty package-lock.json
       - name: Install npm packages

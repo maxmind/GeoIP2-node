@@ -1,6 +1,6 @@
-import { camelcaseKeys } from '../utils';
-import * as records from '../records';
-import { CountryResponse, Json } from '../types';
+import { camelcaseKeys } from '../utils.js';
+import * as records from '../records.js';
+import { CountryResponse, Json } from '../types.js';
 
 /** Class representing the model of a "Country" response **/
 export default class Country {

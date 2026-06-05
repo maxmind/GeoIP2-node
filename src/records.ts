@@ -1,4 +1,4 @@
-import { ConnectionType } from './types';
+import { ConnectionType } from './types.js';
 
 /**
  * The name of the place based on the locales list passed to the

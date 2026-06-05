@@ -1,8 +1,15 @@
 {
   "name": "@maxmind/geoip2-node",
-  "version": "6.3.4",
-  "description": "Node.js API for GeoIP webservice client and database reader",
+  "version": "7.0.0",
+  "description": "Node.js API for GeoIP2 webservice client and database reader",
+  "type": "module",
   "main": "dist/src/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "default": "./dist/src/index.js"
+    }
+  },
   "homepage": "https://github.com/maxmind/GeoIP2-node",
   "repository": {
     "type": "git",
@@ -34,7 +41,7 @@
     "jest": "^30.0.0",
     "nock": "^14.0.0-beta.15",
     "prettier": "^3.0.0",
-    "ts-jest": "^29.1.0",
+    "ts-jest": "^29.4.0",
     "typedoc": "^0.28.1",
     "typescript": "^6.0.2",
     "typescript-eslint": "^8.5.0"
@@ -49,9 +56,12 @@
     "prettier:ts": "prettier --parser typescript --write 'src/**/*.ts'",
     "prettier:ci": "prettier --parser typescript --list-different 'src/**/*.ts'",
     "prettier:json": "prettier --parser json --write '**/*.json'",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watch",
     "prepublishOnly": "if [ -z \"$GITHUB_ACTIONS\" ]; then echo 'Manual publishing is disabled. Use ./dev-bin/release.sh instead.' && exit 1; fi"
+  },
+  "engines": {
+    "node": ">=22"
   },
   "dependencies": {
     "maxmind": "^5.0.0"
