@@ -6,6 +6,10 @@ import { ClientErrorCode } from './types.js';
 
 /** Option for the WebServiceClient constructor */
 interface Options {
+  /** A custom `fetch` implementation to use for requests. Defaults to the
+   *  global `fetch`. This is primarily useful for testing or for routing
+   *  requests through a custom dispatcher or proxy. */
+  fetcher?: typeof fetch;
   /** The host to use when connecting to the web service. The default is
    *  "geoip.maxmind.com". To call the GeoLite web service instead of the
    *  GeoIP web service, set this to "geolite.info". To call the Sandbox
@@ -53,6 +57,7 @@ export default class WebServiceClient {
   private licenseKey: string;
   private timeout = 3000;
   private host = 'geoip.maxmind.com';
+  private fetcher: typeof fetch = fetch;
 
   /**
    * Instantiates a WebServiceClient
@@ -79,6 +84,10 @@ export default class WebServiceClient {
     }
 
     if (typeof options === 'object') {
+      if (options.fetcher !== undefined) {
+        this.fetcher = options.fetcher;
+      }
+
       if (options.host !== undefined) {
         this.host = options.host;
       }
@@ -160,7 +169,7 @@ export default class WebServiceClient {
 
     let response;
     try {
-      response = await fetch(url, options);
+      response = await this.fetcher(url, options);
     } catch (err) {
       const error =
         err instanceof Error || err instanceof DOMException

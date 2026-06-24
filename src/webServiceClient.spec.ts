@@ -56,6 +56,30 @@ describe('WebServiceClient', () => {
 
   const client = new Client(auth.user, auth.pass);
 
+  describe('fetcher option', () => {
+    const ip = '8.8.8.8';
+
+    it('uses an injected fetcher instead of the global fetch', async () => {
+      const calls: { init?: RequestInit; url: RequestInfo | URL }[] = [];
+      const fetcher = ((url: RequestInfo | URL, init?: RequestInit) => {
+        calls.push({ init, url });
+        return Promise.resolve(
+          new Response(JSON.stringify(geoip2Fixture), {
+            headers: { 'content-type': 'application/json' },
+            status: 200,
+          })
+        );
+      }) as typeof fetch;
+      const localClient = new Client(auth.user, auth.pass, { fetcher });
+
+      const got = await localClient.city(ip);
+
+      expect(calls).toHaveLength(1);
+      expect(calls[0].url).toBe(`${baseUrl}${fullPath('city', ip)}`);
+      expect(got.country!.isoCode).toEqual('US');
+    });
+  });
+
   describe('city()', () => {
     const testFixture = {
       city: geoip2Fixture.city,

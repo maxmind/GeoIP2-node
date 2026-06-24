@@ -30,7 +30,9 @@ your MaxMind `accountID` and `licenseKey` as parameters. The third argument is
 an object holding additional option. The `timeout` option defaults to `3000`.
 The `host` option defaults to `geoip.maxmind.com`. Set `host` to `geolite.info`
 to use the GeoLite web service instead of GeoIP. Set `host` to
-`sandbox.maxmind.com` to use the Sandbox environment.
+`sandbox.maxmind.com` to use the Sandbox environment. The `fetcher` option lets
+you supply a custom `fetch` implementation (for example, to route requests
+through a proxy or custom dispatcher); it defaults to the global `fetch`.
 
 You may then call the function corresponding to a specific end point, passing it
 the IP address you want to lookup.
