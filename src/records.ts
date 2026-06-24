@@ -1,9 +1,8 @@
 import { ConnectionType } from './types.js';
 
 /**
- * The name of the place based on the locales list passed to the
- * `WebServiceClient` constructor. Don't use any of these names as a database or
- * dictionary key. Use the ID or relevant code instead.
+ * The name of the place in each available locale. Don't use any of these names
+ * as a database or dictionary key. Use the ID or relevant code instead.
  */
 export interface Names {
   readonly de?: string;
