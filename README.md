@@ -132,7 +132,9 @@ codes are provided:
 * `HTTP_STATUS_CODE_ERROR` for unexpected HTTP status codes
 * `INVALID_RESPONSE_BODY` for invalid JSON responses or unparseable response bodies
 * `NETWORK_TIMEOUT` for network request timeouts
-* `FETCH_ERROR` for internal `fetch` errors
+* `FETCH_ERROR` for internal `fetch` errors. The `error` message includes the
+  underlying failure reason (e.g. a DNS or connection error) when available,
+  and the original error is attached as `cause`.
 
 ## Database Usage
 

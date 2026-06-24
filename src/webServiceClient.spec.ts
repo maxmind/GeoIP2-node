@@ -593,6 +593,27 @@ describe('WebServiceClient', () => {
       expect((err.cause as Error).message).toBe(error);
     });
 
+    it('includes the underlying cause in the FETCH_ERROR message', async () => {
+      const ip = '8.8.8.8';
+      const fetchError = Object.assign(new TypeError('fetch failed'), {
+        cause: new Error('connect ECONNREFUSED 1.2.3.4:443'),
+      });
+
+      nockInstance
+        .get(fullPath('city', ip))
+        .basicAuth(auth)
+        .replyWithError(fetchError);
+
+      const err = await expectError(client.city(ip), {
+        code: 'FETCH_ERROR',
+        error: 'TypeError - fetch failed: connect ECONNREFUSED 1.2.3.4:443',
+        url: baseUrl + fullPath('city', ip),
+        cause: 'defined',
+      });
+      // The original error (with its own cause) is still attached.
+      expect((err.cause as Error).message).toBe('fetch failed');
+    });
+
     test.each`
       status | code                       | error
       ${400} | ${'IP_ADDRESS_INVALID'}    | ${'ip address invalid'}

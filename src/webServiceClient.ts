@@ -160,10 +160,15 @@ export default class WebServiceClient {
           { cause: error }
         );
       }
+      // Include the underlying cause's message in the error string so the
+      // reason (e.g. a DNS or connection failure) is visible to consumers that
+      // only log `code`/`error`, not just available via `cause`.
+      const causeDetail =
+        error.cause instanceof Error ? `: ${error.cause.message}` : '';
       throw new WebServiceError(
         {
           code: 'FETCH_ERROR',
-          error: `${error.name} - ${error.message}`,
+          error: `${error.name} - ${error.message}${causeDetail}`,
           url,
         },
         { cause: error }
