@@ -1,16 +1,43 @@
-import nock from 'nock';
 import geoip2Fixture from '../fixtures/geoip2.json' with { type: 'json' };
 import { WebServiceError } from './errors.js';
 import Client from './webServiceClient.js';
 import * as models from './models/index.js';
 
 const baseUrl = 'https://geoip.maxmind.com';
-const nockInstance = nock(baseUrl);
 const fullPath = (path: string, ipAddress: string) =>
   `/geoip/v2.1/${path}/${ipAddress}`;
 const auth = {
   pass: 'foo',
   user: '123',
+};
+
+interface CapturedRequest {
+  init?: RequestInit;
+  url: RequestInfo | URL;
+}
+
+const jsonResponse = (status: number, body: unknown): Response =>
+  new Response(JSON.stringify(body), {
+    headers: { 'content-type': 'application/json' },
+    status,
+  });
+
+// Builds a client backed by an injected fetcher driven by `handler`, and
+// captures the requests the client makes so they can be asserted on. This
+// replaces HTTP-level mocking: the handler returns the `Response` (or rejects)
+// for each request.
+const clientWith = (
+  handler: (request: CapturedRequest) => Response | Promise<Response>,
+  options: { host?: string; timeout?: number } = {}
+) => {
+  const requests: CapturedRequest[] = [];
+  const fetcher = (async (url: RequestInfo | URL, init?: RequestInit) => {
+    const request = { init, url };
+    requests.push(request);
+    return handler(request);
+  }) as typeof fetch;
+  const client = new Client(auth.user, auth.pass, { fetcher, ...options });
+  return { client, requests };
 };
 
 const expectError = async (
@@ -49,33 +76,23 @@ const expectError = async (
 };
 
 describe('WebServiceClient', () => {
-  afterEach(() => {
-    nock.cleanAll();
-    nock.abortPendingRequests();
-  });
+  describe('request', () => {
+    it('uses the injected fetcher with the correct method, path, and auth', async () => {
+      const ip = '8.8.8.8';
+      const { client, requests } = clientWith(() =>
+        jsonResponse(200, geoip2Fixture)
+      );
 
-  const client = new Client(auth.user, auth.pass);
+      const got = await client.city(ip);
 
-  describe('fetcher option', () => {
-    const ip = '8.8.8.8';
-
-    it('uses an injected fetcher instead of the global fetch', async () => {
-      const calls: { init?: RequestInit; url: RequestInfo | URL }[] = [];
-      const fetcher = ((url: RequestInfo | URL, init?: RequestInit) => {
-        calls.push({ init, url });
-        return Promise.resolve(
-          new Response(JSON.stringify(geoip2Fixture), {
-            headers: { 'content-type': 'application/json' },
-            status: 200,
-          })
-        );
-      }) as typeof fetch;
-      const localClient = new Client(auth.user, auth.pass, { fetcher });
-
-      const got = await localClient.city(ip);
-
-      expect(calls).toHaveLength(1);
-      expect(calls[0].url).toBe(`${baseUrl}${fullPath('city', ip)}`);
+      expect(requests).toHaveLength(1);
+      expect(requests[0].url).toBe(`${baseUrl}${fullPath('city', ip)}`);
+      expect(requests[0].init!.method).toBe('GET');
+      const headers = requests[0].init!.headers as Record<string, string>;
+      expect(headers.Authorization).toBe(
+        'Basic ' + btoa(`${auth.user}:${auth.pass}`)
+      );
+      expect(headers['User-Agent']).toMatch(/^GeoIP2-node\//);
       expect(got.country!.isoCode).toEqual('US');
     });
   });
@@ -96,14 +113,15 @@ describe('WebServiceClient', () => {
 
     it('returns a city class', async () => {
       const ip = '8.8.8.8';
-      expect.assertions(96);
+      expect.assertions(97);
 
-      nockInstance
-        .get(fullPath('city', ip))
-        .basicAuth(auth)
-        .reply(200, testFixture);
+      const { client, requests } = clientWith(() =>
+        jsonResponse(200, testFixture)
+      );
 
       const got: models.City = await client.city(ip);
+
+      expect(requests[0].url).toBe(`${baseUrl}${fullPath('city', ip)}`);
 
       expect(got.city!.confidence).toEqual(25);
       expect(got.city!.geonameId).toEqual(54321);
@@ -227,14 +245,15 @@ describe('WebServiceClient', () => {
 
     it('returns a country class', async () => {
       const ip = '8.8.8.8';
-      expect.assertions(64);
+      expect.assertions(65);
 
-      nockInstance
-        .get(fullPath('country', ip))
-        .basicAuth(auth)
-        .reply(200, testFixture);
+      const { client, requests } = clientWith(() =>
+        jsonResponse(200, testFixture)
+      );
 
       const got: models.Country = await client.country(ip);
+
+      expect(requests[0].url).toBe(`${baseUrl}${fullPath('country', ip)}`);
 
       expect(got.continent!.code).toEqual('NA');
       expect(got.continent!.geonameId).toEqual(123456);
@@ -327,14 +346,15 @@ describe('WebServiceClient', () => {
 
     it('returns an insight class', async () => {
       const ip = '8.8.8.8';
-      expect.assertions(106);
+      expect.assertions(107);
 
-      nockInstance
-        .get(fullPath('insights', ip))
-        .basicAuth(auth)
-        .reply(200, testFixture);
+      const { client, requests } = clientWith(() =>
+        jsonResponse(200, testFixture)
+      );
 
       const got: models.Insights = await client.insights(ip);
+
+      expect(requests[0].url).toBe(`${baseUrl}${fullPath('insights', ip)}`);
 
       expect(got.city!.confidence).toEqual(25);
       expect(got.city!.geonameId).toEqual(54321);
@@ -461,20 +481,25 @@ describe('WebServiceClient', () => {
     it('should time out if the request takes too long', async () => {
       const ip = '8.8.8.8';
 
-      const client = new Client(auth.user, auth.pass, {
-        timeout: 10,
-      });
-
-      nock('https://geoip.maxmind.com')
-        .get(`/geoip/v2.1/city/${ip}`)
-        .delay(200) // Delay the response to trigger the timeout
-        .reply(200, geoip2Fixture);
+      // The handler never resolves on its own; it rejects only when the
+      // request signal aborts, which the client's timeout triggers. This
+      // exercises the real timeout signal and the NETWORK_TIMEOUT mapping
+      // without depending on wall-clock response delays.
+      const { client } = clientWith(
+        (request) =>
+          new Promise<Response>((_resolve, reject) => {
+            request.init?.signal?.addEventListener('abort', () =>
+              reject((request.init!.signal as AbortSignal).reason)
+            );
+          }),
+        { timeout: 10 }
+      );
 
       // The underlying abort/timeout error is preserved as the cause.
       await expectError(client.city(ip), {
         code: 'NETWORK_TIMEOUT',
         error: 'The request timed out',
-        url: `https://geoip.maxmind.com/geoip/v2.1/city/${ip}`,
+        url: `${baseUrl}${fullPath('city', ip)}`,
         cause: 'defined',
       });
     });
@@ -483,6 +508,9 @@ describe('WebServiceClient', () => {
   describe('error handling', () => {
     it('rejects if the IP address is invalid', async () => {
       const ip = 'foo';
+      const { client, requests } = clientWith(() =>
+        jsonResponse(200, geoip2Fixture)
+      );
 
       await expectError(client.city(ip), {
         code: 'IP_ADDRESS_INVALID',
@@ -490,12 +518,13 @@ describe('WebServiceClient', () => {
         url: baseUrl + fullPath('city', ip),
         cause: 'undefined',
       });
+      // The request is rejected before any fetch is attempted.
+      expect(requests).toHaveLength(0);
     });
 
     it('handles 5xx level errors', async () => {
       const ip = '8.8.8.8';
-
-      nockInstance.get(fullPath('city', ip)).basicAuth(auth).reply(500);
+      const { client } = clientWith(() => new Response(null, { status: 500 }));
 
       await expectError(client.city(ip), {
         code: 'SERVER_ERROR',
@@ -508,8 +537,7 @@ describe('WebServiceClient', () => {
 
     it('handles 3xx level errors', async () => {
       const ip = '8.8.8.8';
-
-      nockInstance.get(fullPath('city', ip)).basicAuth(auth).reply(300);
+      const { client } = clientWith(() => new Response(null, { status: 300 }));
 
       await expectError(client.city(ip), {
         code: 'HTTP_STATUS_CODE_ERROR',
@@ -522,11 +550,7 @@ describe('WebServiceClient', () => {
 
     it('handles errors with unknown payload', async () => {
       const ip = '8.8.8.8';
-
-      nockInstance
-        .get(fullPath('city', ip))
-        .basicAuth(auth)
-        .reply(401, { foo: 'bar' });
+      const { client } = clientWith(() => jsonResponse(401, { foo: 'bar' }));
 
       await expectError(client.city(ip), {
         code: 'INVALID_RESPONSE_BODY',
@@ -546,11 +570,7 @@ describe('WebServiceClient', () => {
       'treats $description as an invalid response body',
       async ({ payload }) => {
         const ip = '8.8.8.8';
-
-        nockInstance
-          .get(fullPath('city', ip))
-          .basicAuth(auth)
-          .reply(400, payload);
+        const { client } = clientWith(() => jsonResponse(400, payload));
 
         await expectError(client.city(ip), {
           code: 'INVALID_RESPONSE_BODY',
@@ -564,8 +584,7 @@ describe('WebServiceClient', () => {
 
     it('handles 200s with bad json', async () => {
       const ip = '8.8.8.8';
-
-      nockInstance.get(fullPath('city', ip)).basicAuth(auth).reply(200, 'foo');
+      const { client } = clientWith(() => new Response('foo', { status: 200 }));
 
       const err = await expectError(client.city(ip), {
         code: 'INVALID_RESPONSE_BODY',
@@ -581,11 +600,9 @@ describe('WebServiceClient', () => {
 
     it('preserves the cause when an error response body is not JSON', async () => {
       const ip = '8.8.8.8';
-
-      nockInstance
-        .get(fullPath('city', ip))
-        .basicAuth(auth)
-        .reply(401, 'this is not json');
+      const { client } = clientWith(
+        () => new Response('this is not json', { status: 401 })
+      );
 
       const err = await expectError(client.city(ip), {
         code: 'INVALID_RESPONSE_BODY',
@@ -601,11 +618,7 @@ describe('WebServiceClient', () => {
     it('handles general network errors', async () => {
       const ip = '8.8.8.8';
       const error = 'Network Error';
-
-      nockInstance
-        .get(fullPath('city', ip))
-        .basicAuth(auth)
-        .replyWithError(error);
+      const { client } = clientWith(() => Promise.reject(new Error(error)));
 
       const err = await expectError(client.city(ip), {
         code: 'FETCH_ERROR',
@@ -617,16 +630,27 @@ describe('WebServiceClient', () => {
       expect((err.cause as Error).message).toBe(error);
     });
 
+    it('wraps a non-Error fetcher rejection', async () => {
+      const ip = '8.8.8.8';
+      // A custom fetcher (e.g. a proxy/dispatcher) may reject with a non-Error
+      // value; it should still be normalized into a FETCH_ERROR.
+      const { client } = clientWith(() => Promise.reject('boom'));
+
+      const err = await expectError(client.city(ip), {
+        code: 'FETCH_ERROR',
+        error: 'Error - boom',
+        url: baseUrl + fullPath('city', ip),
+        cause: 'defined',
+      });
+      expect((err.cause as Error).message).toBe('boom');
+    });
+
     it('includes the underlying cause in the FETCH_ERROR message', async () => {
       const ip = '8.8.8.8';
       const fetchError = Object.assign(new TypeError('fetch failed'), {
         cause: new Error('connect ECONNREFUSED 1.2.3.4:443'),
       });
-
-      nockInstance
-        .get(fullPath('city', ip))
-        .basicAuth(auth)
-        .replyWithError(fetchError);
+      const { client } = clientWith(() => Promise.reject(fetchError));
 
       const err = await expectError(client.city(ip), {
         code: 'FETCH_ERROR',
@@ -651,11 +675,9 @@ describe('WebServiceClient', () => {
       ${403} | ${'PERMISSION_REQUIRED'}   | ${'permission required'}
     `('handles $code error', async ({ code, error, status }) => {
       const ip = '8.8.8.8';
-
-      nockInstance
-        .get(fullPath('city', ip))
-        .basicAuth(auth)
-        .reply(status, { code, error });
+      const { client } = clientWith(() =>
+        jsonResponse(status, { code, error })
+      );
 
       await expectError(client.city(ip), {
         code,
