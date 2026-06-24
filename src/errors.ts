@@ -66,8 +66,8 @@ WebServiceError.prototype.name = 'WebServiceError';
  * This generally means that the address was a private or reserved address.
  */
 export class AddressNotFoundError extends Error {
-  constructor(message: string) {
-    super(message);
+  constructor(message: string, options?: { cause?: unknown }) {
+    super(message, options);
     this.name = this.constructor.name;
   }
 }
@@ -77,8 +77,8 @@ export class AddressNotFoundError extends Error {
  * e.g. `reader.city` is used with a Country database
  */
 export class BadMethodCallError extends Error {
-  constructor(message: string) {
-    super(message);
+  constructor(message: string, options?: { cause?: unknown }) {
+    super(message, options);
     this.name = this.constructor.name;
   }
 }
@@ -87,8 +87,8 @@ export class BadMethodCallError extends Error {
  * This error is thrown if a database buffer is not a valid database
  */
 export class InvalidDbBufferError extends Error {
-  constructor(message: string) {
-    super(message);
+  constructor(message: string, options?: { cause?: unknown }) {
+    super(message, options);
     this.name = this.constructor.name;
   }
 }
@@ -97,8 +97,8 @@ export class InvalidDbBufferError extends Error {
  * This error is thrown if the IP address provided is not valid.
  */
 export class ValueError extends Error {
-  constructor(message: string) {
-    super(message);
+  constructor(message: string, options?: { cause?: unknown }) {
+    super(message, options);
     this.name = this.constructor.name;
   }
 }

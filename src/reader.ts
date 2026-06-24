@@ -34,9 +34,9 @@ export default class Reader {
     let reader;
     try {
       reader = new mmdb.Reader(buffer);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (e: any) {
-      throw new InvalidDbBufferError(e);
+    } catch (e) {
+      const error = e instanceof Error ? e : new Error(String(e));
+      throw new InvalidDbBufferError(error.message, { cause: error });
     }
 
     return new ReaderModel(reader);
