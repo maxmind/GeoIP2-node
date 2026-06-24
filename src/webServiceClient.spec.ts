@@ -1,5 +1,6 @@
 import nock from 'nock';
 import geoip2Fixture from '../fixtures/geoip2.json' with { type: 'json' };
+import { WebServiceError } from './errors.js';
 import Client from './webServiceClient.js';
 import * as models from './models/index.js';
 
@@ -10,6 +11,41 @@ const fullPath = (path: string, ipAddress: string) =>
 const auth = {
   pass: 'foo',
   user: '123',
+};
+
+const expectError = async (
+  promise: Promise<unknown>,
+  expected: {
+    code: string;
+    error: string;
+    status?: number;
+    url: string;
+    // Whether the error's `cause` should be present or absent.
+    cause?: 'defined' | 'undefined';
+  }
+): Promise<WebServiceError> => {
+  const { cause, ...fields } = expected;
+  const err = await promise.then(
+    () => {
+      throw new Error('expected the request to reject');
+    },
+    (e: unknown) => e
+  );
+  expect(err).toBeInstanceOf(WebServiceError);
+  const webServiceError = err as WebServiceError;
+  expect(webServiceError).toMatchObject(fields);
+  // The `error` property is retained as an alias of `message`.
+  expect(webServiceError.message).toBe(expected.error);
+  // Assert `status` explicitly (toMatchObject ignores extra own properties),
+  // so a regression leaking a `status` onto a network-error path is caught.
+  expect(webServiceError.status).toBe(expected.status);
+  if (cause === 'defined') {
+    expect(webServiceError.cause).toBeDefined();
+  }
+  if (cause === 'undefined') {
+    expect(webServiceError.cause).toBeUndefined();
+  }
+  return webServiceError;
 };
 
 describe('WebServiceClient', () => {
@@ -410,102 +446,151 @@ describe('WebServiceClient', () => {
         .delay(200) // Delay the response to trigger the timeout
         .reply(200, geoip2Fixture);
 
-      await expect(client.city(ip)).rejects.toEqual({
+      // The underlying abort/timeout error is preserved as the cause.
+      await expectError(client.city(ip), {
         code: 'NETWORK_TIMEOUT',
         error: 'The request timed out',
         url: `https://geoip.maxmind.com/geoip/v2.1/city/${ip}`,
+        cause: 'defined',
       });
     });
   });
 
   describe('error handling', () => {
-    it('rejects if the IP address is invalid', () => {
+    it('rejects if the IP address is invalid', async () => {
       const ip = 'foo';
-      expect.assertions(1);
 
-      return expect(client.city(ip)).rejects.toEqual({
+      await expectError(client.city(ip), {
         code: 'IP_ADDRESS_INVALID',
         error: 'The IP address provided is invalid',
         url: baseUrl + fullPath('city', ip),
+        cause: 'undefined',
       });
     });
 
-    it('handles 5xx level errors', () => {
+    it('handles 5xx level errors', async () => {
       const ip = '8.8.8.8';
-      expect.assertions(1);
 
       nockInstance.get(fullPath('city', ip)).basicAuth(auth).reply(500);
 
-      return expect(client.city(ip)).rejects.toEqual({
+      await expectError(client.city(ip), {
         code: 'SERVER_ERROR',
         error: 'Received a server error with HTTP status code: 500',
         status: 500,
         url: baseUrl + fullPath('city', ip),
+        cause: 'undefined',
       });
     });
 
-    it('handles 3xx level errors', () => {
+    it('handles 3xx level errors', async () => {
       const ip = '8.8.8.8';
-      expect.assertions(1);
 
       nockInstance.get(fullPath('city', ip)).basicAuth(auth).reply(300);
 
-      return expect(client.city(ip)).rejects.toEqual({
+      await expectError(client.city(ip), {
         code: 'HTTP_STATUS_CODE_ERROR',
         error: 'Received an unexpected HTTP status code: 300',
         status: 300,
         url: baseUrl + fullPath('city', ip),
+        cause: 'undefined',
       });
     });
 
-    it('handles errors with unknown payload', () => {
+    it('handles errors with unknown payload', async () => {
       const ip = '8.8.8.8';
-      expect.assertions(1);
 
       nockInstance
         .get(fullPath('city', ip))
         .basicAuth(auth)
         .reply(401, { foo: 'bar' });
 
-      return expect(client.city(ip)).rejects.toEqual({
+      await expectError(client.city(ip), {
         code: 'INVALID_RESPONSE_BODY',
         error: 'Received an invalid or unparseable response body',
         status: 401,
         url: baseUrl + fullPath('city', ip),
+        cause: 'undefined',
       });
     });
 
-    it('handles 200s with bad json', () => {
+    test.each`
+      description              | payload
+      ${'a non-string code'}   | ${{ code: 123, error: 'an error' }}
+      ${'a non-string error'}  | ${{ code: 'A_CODE', error: {} }}
+      ${'empty string fields'} | ${{ code: '', error: '' }}
+    `(
+      'treats $description as an invalid response body',
+      async ({ payload }) => {
+        const ip = '8.8.8.8';
+
+        nockInstance
+          .get(fullPath('city', ip))
+          .basicAuth(auth)
+          .reply(400, payload);
+
+        await expectError(client.city(ip), {
+          code: 'INVALID_RESPONSE_BODY',
+          error: 'Received an invalid or unparseable response body',
+          status: 400,
+          url: baseUrl + fullPath('city', ip),
+          cause: 'undefined',
+        });
+      }
+    );
+
+    it('handles 200s with bad json', async () => {
       const ip = '8.8.8.8';
-      expect.assertions(1);
 
       nockInstance.get(fullPath('city', ip)).basicAuth(auth).reply(200, 'foo');
 
-      return expect(client.city(ip)).rejects.toEqual({
+      const err = await expectError(client.city(ip), {
         code: 'INVALID_RESPONSE_BODY',
         error: 'Received an invalid or unparseable response body',
         url: baseUrl + fullPath('city', ip),
+        cause: 'defined',
       });
+      // The JSON parse error is preserved as the cause. (instanceof Error is
+      // unreliable here: under --experimental-vm-modules the parse error is
+      // created in a different realm than this test file.)
+      expect((err.cause as Error).message).toEqual(expect.any(String));
     });
 
-    it('handles general network errors', () => {
+    it('preserves the cause when an error response body is not JSON', async () => {
+      const ip = '8.8.8.8';
+
+      nockInstance
+        .get(fullPath('city', ip))
+        .basicAuth(auth)
+        .reply(401, 'this is not json');
+
+      const err = await expectError(client.city(ip), {
+        code: 'INVALID_RESPONSE_BODY',
+        error: 'Received an invalid or unparseable response body',
+        status: 401,
+        url: baseUrl + fullPath('city', ip),
+        cause: 'defined',
+      });
+      // The parse failure on a non-2xx response is preserved as the cause.
+      expect((err.cause as Error).message).toEqual(expect.any(String));
+    });
+
+    it('handles general network errors', async () => {
       const ip = '8.8.8.8';
       const error = 'Network Error';
-
-      const expected = {
-        code: 'FETCH_ERROR',
-        error: `Error - ${error}`,
-        url: baseUrl + fullPath('city', ip),
-      };
-
-      expect.assertions(1);
 
       nockInstance
         .get(fullPath('city', ip))
         .basicAuth(auth)
         .replyWithError(error);
 
-      return expect(client.city(ip)).rejects.toEqual(expected);
+      const err = await expectError(client.city(ip), {
+        code: 'FETCH_ERROR',
+        error: `Error - ${error}`,
+        url: baseUrl + fullPath('city', ip),
+        cause: 'defined',
+      });
+      // The original fetch error is preserved as the cause.
+      expect((err.cause as Error).message).toBe(error);
     });
 
     test.each`
@@ -519,19 +604,19 @@ describe('WebServiceClient', () => {
       ${401} | ${'USER_ID_REQUIRED'}      | ${'user id required'}
       ${402} | ${'OUT_OF_QUERIES'}        | ${'out of queries'}
       ${403} | ${'PERMISSION_REQUIRED'}   | ${'permission required'}
-    `('handles $code error', ({ code, error, status }) => {
+    `('handles $code error', async ({ code, error, status }) => {
       const ip = '8.8.8.8';
 
       nockInstance
         .get(fullPath('city', ip))
         .basicAuth(auth)
         .reply(status, { code, error });
-      expect.assertions(1);
 
-      return expect(client.city(ip)).rejects.toEqual({
+      await expectError(client.city(ip), {
         code,
         error,
         status,
+        cause: 'undefined',
         url: baseUrl + fullPath('city', ip),
       });
     });

@@ -6,3 +6,4 @@ export { Reader, ReaderModel, WebServiceClient };
 export * from './records.js';
 export * from './models/index.js';
 export * from './errors.js';
+export type { WebServiceClientError } from './types.js';

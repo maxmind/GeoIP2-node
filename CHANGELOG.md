@@ -6,6 +6,14 @@ CHANGELOG
 
 * **Breaking** Dropped support for Node.js 18 and 20. Node.js 22 or greater is now
 * **Breaking** Dropped commonjs support. The package is now only available as an ES module.
+* **Breaking** Errors from the `WebServiceClient` are now thrown as
+  `WebServiceError` instances, which extend `Error`, rather than as plain
+  objects. The `code`, `error`, `status`, and `url` properties are preserved,
+  so existing field access continues to work, but the thrown value is now an
+  `Error`. The original error is now preserved as the standard `cause`
+  property (for example, the network error behind a `FETCH_ERROR`). The
+  `WebServiceError` class and the `WebServiceClientError` type are now exported
+  from the package.
 
 6.3.4 (2025-11-25)
 ------------------
