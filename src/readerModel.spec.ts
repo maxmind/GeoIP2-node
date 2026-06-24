@@ -3,6 +3,7 @@ import {
   BadMethodCallError,
   ValueError,
 } from './errors.js';
+import * as models from './models/index.js';
 import Reader from './reader.js';
 
 describe('ReaderModel', () => {
@@ -600,7 +601,8 @@ describe('ReaderModel', () => {
         './test/data/test-data/GeoIP2-Enterprise-Test.mmdb'
       );
 
-      const model = reader.enterprise('2.125.160.216');
+      // enterprise() should be typed as Enterprise, not the wider City.
+      const model: models.Enterprise = reader.enterprise('2.125.160.216');
 
       const expected = {
         city: {

@@ -150,7 +150,7 @@ export default class ReaderModel {
    * @throws {AddressNotFoundError} Throws an error when the IP address isn't found in the database
    * @throws {ValueError} Throws an error when the IP address isn't valid
    */
-  public enterprise(ipAddress: string): models.City {
+  public enterprise(ipAddress: string): models.Enterprise {
     return this.modelFor(
       models.Enterprise,
       'Enterprise',
