@@ -39,7 +39,8 @@ If the request succeeds, the function's Promise will resolve with the model
 for the end point you called. This model in turn contains multiple
 records, each of which represents part of the data returned by the web service.
 
-If the request fails, the function's Promise will reject with an error object.
+If the request fails, the function's Promise will reject with a
+`WebServiceError` (see [Web Service Errors](#web-service-errors) below).
 
 See the [API documentation](https://maxmind.github.io/GeoIP2-node/) for
 more details.
@@ -106,16 +107,23 @@ client.insights('142.1.1.1').then(response => {
 For details on the possible errors returned by the web service itself, [see
 the GeoIP web service documentation](https://dev.maxmind.com/geoip/docs/web-services/responses/#errors).
 
-If the web service returns an explicit error document, the promise will be rejected
-with the following object structure:
+Failures reject with a `WebServiceError`, which extends the built-in `Error`.
+It exposes the following properties:
 
 ```js
 {
   code: 'THE_ERROR_CODE',
   error: 'some human readable error',
+  status: 400, // the HTTP status code, when available
   url: 'https://geoip.maxmind.com...',
+  cause: <the underlying error, when one exists>,
 }
 ```
+
+`error` is also available as the standard `Error` `message`, and when the
+failure was caused by another error (for example, a network failure), the
+original error is available as `cause`. Both `WebServiceError` and the
+`WebServiceClientError` type are exported from the package.
 
 In addition to the possible errors returned by the web service, the following error
 codes are provided:
@@ -124,7 +132,9 @@ codes are provided:
 * `HTTP_STATUS_CODE_ERROR` for unexpected HTTP status codes
 * `INVALID_RESPONSE_BODY` for invalid JSON responses or unparseable response bodies
 * `NETWORK_TIMEOUT` for network request timeouts
-* `FETCH_ERROR` for internal `fetch` errors
+* `FETCH_ERROR` for internal `fetch` errors. The `error` message includes the
+  underlying failure reason (e.g. a DNS or connection error) when available,
+  and the original error is attached as `cause`.
 
 ## Database Usage
 
