@@ -194,16 +194,18 @@ const processArray = (arr: Array<unknown>): unknown[] =>
  * @param input - object with some snake_case keys
  * @returns - object with camelCase keys
  */
-export function camelcaseKeys(
-  input: Record<string, unknown> | unknown[]
-): Record<string, unknown> | unknown[] {
+export function camelcaseKeys(input: unknown): unknown {
   if (Array.isArray(input)) {
     return processArray(input);
+  }
+  // Leave primitives (and null/undefined) untouched.
+  if (!isObject(input)) {
+    return input;
   }
 
   const output: Record<string, unknown> = {};
 
-  for (const [key, value] of Object.entries(input)) {
+  for (const [key, value] of Object.entries(input as Record<string, unknown>)) {
     if (Array.isArray(value)) {
       output[snakeToCamelCase(key)] = processArray(value);
     } else if (isObject(value)) {
