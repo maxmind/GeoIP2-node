@@ -4,8 +4,8 @@ import { WebServiceError } from './errors.js';
 import * as models from './models/index.js';
 import { ClientErrorCode } from './types.js';
 
-/** Option for the WebServiceClient constructor */
-interface Options {
+/** Options for the WebServiceClient constructor */
+export interface WebServiceClientOptions {
   /** A custom `fetch` implementation to use for requests. Defaults to the
    *  global `fetch`. This is primarily useful for testing or for routing
    *  requests through a custom dispatcher or proxy. */
@@ -75,7 +75,7 @@ export default class WebServiceClient {
     licenseKey: string,
     // We support a number, which will be treated as the timeout for historical
     // reasons.
-    options?: Options | number
+    options?: WebServiceClientOptions | number
   ) {
     this.accountID = accountID;
     this.licenseKey = licenseKey;
