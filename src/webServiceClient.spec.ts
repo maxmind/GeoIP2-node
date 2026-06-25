@@ -727,6 +727,25 @@ describe('WebServiceClient with empty options', () => {
   });
 });
 
+describe('WebServiceClient with null options', () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let client: any;
+
+  beforeAll(() => {
+    // A JS caller may pass an explicit null; typeof null === 'object', so the
+    // constructor must not treat it as an options object.
+    client = new Client(auth.user, auth.pass, null as unknown as undefined);
+  });
+
+  it('sets host', () => {
+    expect(client.host).toEqual('geoip.maxmind.com');
+  });
+
+  it('sets timeout', () => {
+    expect(client.timeout).toEqual(3000);
+  });
+});
+
 describe('WebServiceClient with timeout', () => {
   it('sets timeout', () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

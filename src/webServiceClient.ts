@@ -79,7 +79,9 @@ export default class WebServiceClient {
   ) {
     this.accountID = accountID;
     this.licenseKey = licenseKey;
-    if (options === undefined) {
+    // `typeof null === 'object'`, so guard null alongside undefined to avoid
+    // dereferencing it in the options branch below.
+    if (options === undefined || options === null) {
       return;
     }
 
