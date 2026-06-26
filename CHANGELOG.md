@@ -1,7 +1,7 @@
 CHANGELOG
 =========
 
-7.0.0
+7.0.0 (unreleased)
 ------------------
 
 * **Breaking** Dropped support for Node.js 18 and 20. Node.js 22 or greater is now
