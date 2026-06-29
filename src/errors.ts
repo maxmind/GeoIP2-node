@@ -94,7 +94,8 @@ export class InvalidDbBufferError extends Error {
 }
 
 /**
- * This error is thrown if the IP address provided is not valid.
+ * This error is thrown when an argument is invalid, such as an invalid IP
+ * address or an invalid `WebServiceClient` option.
  */
 export class ValueError extends Error {
   constructor(message: string, options?: { cause?: unknown }) {
