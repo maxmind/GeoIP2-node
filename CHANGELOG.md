@@ -27,7 +27,8 @@ CHANGELOG
 * Added a `fetcher` option to the `WebServiceClient` options, allowing a
   custom `fetch` implementation to be supplied (for example, to route requests
   through a custom dispatcher or proxy, or for testing). It defaults to the
-  global `fetch`.
+  global `fetch`. The `WebServiceClientOptions` type is exported from the
+  package.
 
 6.3.4 (2025-11-25)
 ------------------
