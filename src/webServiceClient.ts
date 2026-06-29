@@ -1,6 +1,6 @@
 import * as mmdb from 'maxmind';
 import packageInfo from '../package.json' with { type: 'json' };
-import { WebServiceError } from './errors.js';
+import { ValueError, WebServiceError } from './errors.js';
 import * as models from './models/index.js';
 import { ClientErrorCode } from './types.js';
 
@@ -86,15 +86,30 @@ export default class WebServiceClient {
     }
 
     if (typeof options === 'object') {
+      // Validate member types up front so a JS caller passing e.g.
+      // `{ host: null }` gets a ValueError rather than a confusing failure
+      // later (a bad URL, a non-callable fetcher, or a NaN timeout signal).
       if (options.fetcher !== undefined) {
+        if (typeof options.fetcher !== 'function') {
+          throw new ValueError('`fetcher` must be a function');
+        }
         this.fetcher = options.fetcher;
       }
 
       if (options.host !== undefined) {
+        if (typeof options.host !== 'string') {
+          throw new ValueError('`host` must be a string');
+        }
         this.host = options.host;
       }
 
       if (options.timeout !== undefined) {
+        if (
+          typeof options.timeout !== 'number' ||
+          !Number.isFinite(options.timeout)
+        ) {
+          throw new ValueError('`timeout` must be a finite number');
+        }
         this.timeout = options.timeout;
       }
       return;

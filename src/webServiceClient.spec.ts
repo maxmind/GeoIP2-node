@@ -1,5 +1,5 @@
 import geoip2Fixture from '../fixtures/geoip2.json' with { type: 'json' };
-import { WebServiceError } from './errors.js';
+import { ValueError, WebServiceError } from './errors.js';
 import Client from './webServiceClient.js';
 import * as models from './models/index.js';
 
@@ -743,6 +743,18 @@ describe('WebServiceClient with null options', () => {
 
   it('sets timeout', () => {
     expect(client.timeout).toEqual(3000);
+  });
+});
+
+describe('WebServiceClient with invalid options', () => {
+  it.each([
+    ['host', { host: null }],
+    ['timeout', { timeout: null }],
+    ['fetcher', { fetcher: null }],
+  ])('rejects a null %s option', (_name, options) => {
+    expect(() => new Client(auth.user, auth.pass, options as never)).toThrow(
+      ValueError
+    );
   });
 });
 
