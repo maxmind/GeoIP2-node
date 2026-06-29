@@ -28,7 +28,7 @@ const jsonResponse = (status: number, body: unknown): Response =>
 // for each request.
 const clientWith = (
   handler: (request: CapturedRequest) => Response | Promise<Response>,
-  options: { host?: string; timeout?: number } = {}
+  options: { timeout?: number } = {}
 ) => {
   const requests: CapturedRequest[] = [];
   const fetcher = (async (url: RequestInfo | URL, init?: RequestInit) => {
