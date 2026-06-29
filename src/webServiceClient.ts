@@ -1,10 +1,15 @@
 import * as mmdb from 'maxmind';
 import packageInfo from '../package.json' with { type: 'json' };
-import { WebServiceError } from './errors.js';
+import { ValueError, WebServiceError } from './errors.js';
 import * as models from './models/index.js';
+import { ClientErrorCode } from './types.js';
 
-/** Option for the WebServiceClient constructor */
-interface Options {
+/** Options for the WebServiceClient constructor */
+export interface WebServiceClientOptions {
+  /** A custom `fetch` implementation to use for requests. Defaults to the
+   *  global `fetch`. This is primarily useful for testing or for routing
+   *  requests through a custom dispatcher or proxy. */
+  fetcher?: typeof fetch;
   /** The host to use when connecting to the web service. The default is
    *  "geoip.maxmind.com". To call the GeoLite web service instead of the
    *  GeoIP web service, set this to "geolite.info". To call the Sandbox
@@ -21,7 +26,22 @@ type servicePath = 'city' | 'country' | 'insights';
 const invalidResponseBody = {
   code: 'INVALID_RESPONSE_BODY',
   error: 'Received an invalid or unparseable response body',
-};
+} satisfies { code: ClientErrorCode; error: string };
+
+// Builds a WebServiceError for a client-generated failure. Typing `code` as the
+// closed `ClientErrorCode` (rather than the open `WebServiceErrorCode` the
+// WebServiceError constructor accepts) makes a typo at a throw site a compile
+// error and keeps the `ClientErrorCode` union in sync with what the client
+// actually emits.
+const clientError = (
+  properties: {
+    code: ClientErrorCode;
+    error: string;
+    status?: number;
+    url: string;
+  },
+  options?: { cause?: unknown }
+): WebServiceError => new WebServiceError(properties, options);
 
 const isErrorBody = (data: unknown): data is { code: string; error: string } =>
   typeof data === 'object' &&
@@ -37,6 +57,7 @@ export default class WebServiceClient {
   private licenseKey: string;
   private timeout = 3000;
   private host = 'geoip.maxmind.com';
+  private fetcher: typeof fetch = fetch;
 
   /**
    * Instantiates a WebServiceClient
@@ -54,20 +75,41 @@ export default class WebServiceClient {
     licenseKey: string,
     // We support a number, which will be treated as the timeout for historical
     // reasons.
-    options?: Options | number
+    options?: WebServiceClientOptions | number
   ) {
     this.accountID = accountID;
     this.licenseKey = licenseKey;
-    if (options === undefined) {
+    // `typeof null === 'object'`, so guard null alongside undefined to avoid
+    // dereferencing it in the options branch below.
+    if (options === undefined || options === null) {
       return;
     }
 
     if (typeof options === 'object') {
+      // Validate member types up front so a JS caller passing e.g.
+      // `{ host: null }` gets a ValueError rather than a confusing failure
+      // later (a bad URL, a non-callable fetcher, or a NaN timeout signal).
+      if (options.fetcher !== undefined) {
+        if (typeof options.fetcher !== 'function') {
+          throw new ValueError('`fetcher` must be a function');
+        }
+        this.fetcher = options.fetcher;
+      }
+
       if (options.host !== undefined) {
+        if (typeof options.host !== 'string') {
+          throw new ValueError('`host` must be a string');
+        }
         this.host = options.host;
       }
 
       if (options.timeout !== undefined) {
+        if (
+          typeof options.timeout !== 'number' ||
+          !Number.isFinite(options.timeout)
+        ) {
+          throw new ValueError('`timeout` must be a finite number');
+        }
         this.timeout = options.timeout;
       }
       return;
@@ -125,7 +167,7 @@ export default class WebServiceClient {
     const url = `https://${this.host}${parsedPath}`;
 
     if (!mmdb.validate(ipAddress)) {
-      throw new WebServiceError({
+      throw clientError({
         code: 'IP_ADDRESS_INVALID',
         error: 'The IP address provided is invalid',
         url,
@@ -144,14 +186,14 @@ export default class WebServiceClient {
 
     let response;
     try {
-      response = await fetch(url, options);
+      response = await this.fetcher(url, options);
     } catch (err) {
       const error =
         err instanceof Error || err instanceof DOMException
           ? err
           : new Error(String(err));
       if (error.name === 'TimeoutError') {
-        throw new WebServiceError(
+        throw clientError(
           {
             code: 'NETWORK_TIMEOUT',
             error: 'The request timed out',
@@ -165,7 +207,7 @@ export default class WebServiceClient {
       // only log `code`/`error`, not just available via `cause`.
       const causeDetail =
         error.cause instanceof Error ? `: ${error.cause.message}` : '';
-      throw new WebServiceError(
+      throw clientError(
         {
           code: 'FETCH_ERROR',
           error: `${error.name} - ${error.message}${causeDetail}`,
@@ -183,10 +225,7 @@ export default class WebServiceClient {
     try {
       data = await response.json();
     } catch (err) {
-      throw new WebServiceError(
-        { ...invalidResponseBody, url },
-        { cause: err }
-      );
+      throw clientError({ ...invalidResponseBody, url }, { cause: err });
     }
 
     return new modelClass(data);
@@ -199,7 +238,7 @@ export default class WebServiceClient {
     const status = response.status;
 
     if (status && status >= 500 && status < 600) {
-      return new WebServiceError({
+      return clientError({
         code: 'SERVER_ERROR',
         error: `Received a server error with HTTP status code: ${status}`,
         status,
@@ -208,7 +247,7 @@ export default class WebServiceClient {
     }
 
     if (status && (status < 400 || status >= 600)) {
-      return new WebServiceError({
+      return clientError({
         code: 'HTTP_STATUS_CODE_ERROR',
         error: `Received an unexpected HTTP status code: ${status}`,
         status,
@@ -220,14 +259,14 @@ export default class WebServiceClient {
     try {
       data = await response.json();
     } catch (err) {
-      return new WebServiceError(
+      return clientError(
         { ...invalidResponseBody, status, url },
         { cause: err }
       );
     }
 
     if (!isErrorBody(data)) {
-      return new WebServiceError({ ...invalidResponseBody, status, url });
+      return clientError({ ...invalidResponseBody, status, url });
     }
 
     return new WebServiceError({

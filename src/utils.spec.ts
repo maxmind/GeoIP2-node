@@ -119,6 +119,23 @@ describe('src/Utils', () => {
     });
   });
   describe('camelcaseKeys()', () => {
+    it('returns non-object input unchanged', () => {
+      expect(camelcaseKeys('foo')).toBe('foo');
+      expect(camelcaseKeys(42)).toBe(42);
+      expect(camelcaseKeys(true)).toBe(true);
+      expect(camelcaseKeys(null)).toBeNull();
+      expect(camelcaseKeys(undefined)).toBeUndefined();
+    });
+
+    it('returns non-plain objects unchanged', () => {
+      const date = new Date();
+      const error = new Error('boom');
+      const regexp = /snake_case/;
+      expect(camelcaseKeys(date)).toBe(date);
+      expect(camelcaseKeys(error)).toBe(error);
+      expect(camelcaseKeys(regexp)).toBe(regexp);
+    });
+
     it("converts an object's keys from snake_case to camelCase", () => {
       const cases = [
         { input: { snake_case: 1 }, expected: { snakeCase: 1 } },

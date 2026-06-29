@@ -1,4 +1,39 @@
-import { WebServiceError } from './errors.js';
+import {
+  AddressNotFoundError,
+  BadMethodCallError,
+  InvalidDbBufferError,
+  ValueError,
+  WebServiceError,
+} from './errors.js';
+
+describe.each([
+  ['AddressNotFoundError', AddressNotFoundError],
+  ['BadMethodCallError', BadMethodCallError],
+  ['InvalidDbBufferError', InvalidDbBufferError],
+  ['ValueError', ValueError],
+] as const)('%s', (name, ErrorClass) => {
+  it('uses the message and sets the name', () => {
+    const err = new ErrorClass('boom');
+
+    expect(err).toBeInstanceOf(Error);
+    expect(err).toBeInstanceOf(ErrorClass);
+    expect(err.message).toBe('boom');
+    expect(err.name).toBe(name);
+  });
+
+  it('preserves the underlying cause when provided', () => {
+    const cause = new TypeError('underlying');
+    const err = new ErrorClass('boom', { cause });
+
+    expect(err.cause).toBe(cause);
+  });
+
+  it('leaves cause undefined when not provided', () => {
+    const err = new ErrorClass('boom');
+
+    expect(err.cause).toBeUndefined();
+  });
+});
 
 describe('WebServiceError', () => {
   it('is an Error instance', () => {

@@ -1,7 +1,7 @@
 CHANGELOG
 =========
 
-7.0.0
+7.0.0 (unreleased)
 ------------------
 
 * **Breaking** Dropped support for Node.js 18 and 20. Node.js 22 or greater is now
@@ -14,6 +14,21 @@ CHANGELOG
   property (for example, the network error behind a `FETCH_ERROR`). The
   `WebServiceError` class and the `WebServiceClientError` type are now exported
   from the package.
+* The `code` property on `WebServiceError` and the `WebServiceClientError`
+  interface is now typed as `WebServiceErrorCode`
+  (`ClientErrorCode | (string & {})`) instead of `string`, providing
+  autocompletion for the client-generated codes while still accepting any
+  code returned by the web service. The `ClientErrorCode` and
+  `WebServiceErrorCode` types are exported from the package.
+* The `AddressNotFoundError`, `BadMethodCallError`, `InvalidDbBufferError`,
+  and `ValueError` classes now accept an optional `cause` and forward it to
+  `Error`. `Reader.openBuffer()` now preserves the underlying parsing error as
+  the `cause` of the `InvalidDbBufferError` it throws.
+* Added a `fetcher` option to the `WebServiceClient` options, allowing a
+  custom `fetch` implementation to be supplied (for example, to route requests
+  through a custom dispatcher or proxy, or for testing). It defaults to the
+  global `fetch`. The `WebServiceClientOptions` type is exported from the
+  package.
 
 6.3.4 (2025-11-25)
 ------------------

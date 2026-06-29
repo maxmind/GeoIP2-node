@@ -47,5 +47,18 @@ describe('Reader', () => {
         InvalidDbBufferError
       );
     });
+
+    it('preserves the underlying error as the cause', () => {
+      expect.assertions(3);
+
+      try {
+        Reader.openBuffer(Buffer.from('foo'));
+      } catch (e) {
+        expect(e).toBeInstanceOf(InvalidDbBufferError);
+        const err = e as InvalidDbBufferError;
+        expect(typeof err.message).toBe('string');
+        expect(err.cause).toBeInstanceOf(Error);
+      }
+    });
   });
 });
