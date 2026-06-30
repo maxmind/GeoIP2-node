@@ -91,6 +91,15 @@ if [ "$current_version" != "$version" ]; then
     npm version "$version" --no-git-tag-version
 fi
 
+# Verify package.json is now at the target version. This distinguishes the
+# benign "already bumped" case (nothing to commit) from a version update that
+# silently failed to take effect.
+actual_version=$(node -p "require('./package.json').version")
+if [ "$actual_version" != "$version" ]; then
+    echo "Error: package.json version is $actual_version but expected $version." >&2
+    exit 1
+fi
+
 # Build and test
 echo "Running build and tests..."
 npm ci
@@ -111,7 +120,11 @@ if [ "$should_continue" != "y" ]; then
     exit 1
 fi
 
-git commit -m "Prepare for $version" -a
+if [ -n "$(git status --porcelain)" ]; then
+    git commit -m "Prepare for $version" -a
+else
+    echo "No changes to commit; package.json is already at version $version."
+fi
 
 git push
 
