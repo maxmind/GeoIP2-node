@@ -218,6 +218,32 @@ export interface SubdivisionsRecord {
 }
 
 /**
+ * Contains data for one type of anonymizer detection, currently residential
+ * proxies. These records are nested within the anonymizer record, such as
+ * `residential`, and additional feeds may be added in the future. This
+ * record is only available from the GeoIP Insights web service.
+ */
+export interface AnonymizerFeedRecord {
+  /**
+   * A score ranging from 1 to 99 that represents our percent confidence that
+   * the network is currently part of this anonymizer feed. This value is
+   * only available from GeoIP Insights.
+   */
+  readonly confidence?: number;
+  /**
+   * The last day that the network was sighted in our analysis of this
+   * anonymizer feed. The date is in ISO 8601 format (YYYY-MM-DD). This value
+   * is only available from GeoIP Insights.
+   */
+  readonly networkLastSeen?: string;
+  /**
+   * The name of the provider associated with the network in this anonymizer
+   * feed. This value is only available from GeoIP Insights.
+   */
+  readonly providerName?: string;
+}
+
+/**
  * Contains data for the anonymizer record associated with an IP address.
  * This record is only available from the GeoIP Insights web service.
  */
@@ -271,6 +297,12 @@ export interface AnonymizerRecord {
    * This value is only available from GeoIP Insights.
    */
   readonly providerName?: string;
+  /**
+   * Residential proxy data for the network. This may be populated even when
+   * no other anonymizer properties are set. This value is only available
+   * from GeoIP Insights.
+   */
+  readonly residential?: AnonymizerFeedRecord;
 }
 
 /**

@@ -346,7 +346,7 @@ describe('WebServiceClient', () => {
 
     it('returns an insight class', async () => {
       const ip = '8.8.8.8';
-      expect.assertions(107);
+      expect.assertions(110);
 
       const { client, requests } = clientWith(() =>
         jsonResponse(200, testFixture)
@@ -474,6 +474,12 @@ describe('WebServiceClient', () => {
       expect(got.anonymizer!.isTorExitNode).toEqual(false);
       expect(got.anonymizer!.networkLastSeen).toEqual('2025-04-14');
       expect(got.anonymizer!.providerName).toEqual('NordVPN');
+
+      expect(got.anonymizer!.residential!.confidence).toEqual(82);
+      expect(got.anonymizer!.residential!.networkLastSeen).toEqual(
+        '2026-05-11'
+      );
+      expect(got.anonymizer!.residential!.providerName).toEqual('quickshift');
     });
   });
 
