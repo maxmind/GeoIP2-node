@@ -50,7 +50,7 @@
   "scripts": {
     "build": "rm -rf dist && tsc",
     "build:docs": "rm -rf docs && typedoc src/index.ts --out docs --exclude \"**/*.spec.ts\" --readme README.md && ./bin/sanitize-doc-refs.sh",
-    "lint": "npx eslint . && npx tsc --noEmit",
+    "lint": "npx eslint . && npx tsc --noEmit && npx tsc --noEmit -p tsconfig.test.json",
     "prettier:ts": "prettier --parser typescript --write 'src/**/*.ts'",
     "prettier:ci": "prettier --parser typescript --list-different 'src/**/*.ts'",
     "prettier:json": "prettier --parser json --write '**/*.json'",

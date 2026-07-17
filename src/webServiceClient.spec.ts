@@ -12,9 +12,11 @@ const auth = {
   user: '123',
 };
 
+type FetchInput = Parameters<typeof fetch>[0];
+
 interface CapturedRequest {
   init?: RequestInit;
-  url: RequestInfo | URL;
+  url: FetchInput;
 }
 
 const jsonResponse = (status: number, body: unknown): Response =>
@@ -32,7 +34,7 @@ const clientWith = (
   options: { timeout?: number } = {}
 ) => {
   const requests: CapturedRequest[] = [];
-  const fetcher = (async (url: RequestInfo | URL, init?: RequestInit) => {
+  const fetcher = (async (url: FetchInput, init?: RequestInit) => {
     const request = { init, url };
     requests.push(request);
     return handler(request);
