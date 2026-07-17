@@ -90,6 +90,8 @@ function binaryToV4(octets: Uint8Array): string {
 
 // Convert binary network address back to IPv6 notation
 function binaryToV6(octets: Uint8Array): string {
+  // Unreachable: toCidr always produces 16 octets for IPv6.
+  /* v8 ignore next 3 */
   if (octets.length !== 16) {
     throw new Error('Invalid input, IPv6 address requires exactly 16 octets.');
   }

@@ -482,6 +482,17 @@ describe('WebServiceClient', () => {
       );
       expect(got.anonymizer!.residential!.providerName).toEqual('quickshift');
     });
+
+    it('omits the anonymizer record when absent from the response', async () => {
+      // JSON.stringify drops undefined, so the body truly omits the key.
+      const { client } = clientWith(() =>
+        jsonResponse(200, { ...testFixture, anonymizer: undefined })
+      );
+
+      const got: models.Insights = await client.insights('8.8.8.8');
+
+      expect(got.anonymizer).toBeUndefined();
+    });
   });
 
   describe('timeout handling', () => {
