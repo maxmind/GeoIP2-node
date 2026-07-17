@@ -612,10 +612,8 @@ describe('WebServiceClient', () => {
         url: baseUrl + fullPath('city', ip),
         cause: 'defined',
       });
-      // The JSON parse error is preserved as the cause. (instanceof Error is
-      // unreliable here: under --experimental-vm-modules the parse error is
-      // created in a different realm than this test file.)
-      expect((err.cause as Error).message).toEqual(expect.any(String));
+      // The JSON parse error is preserved as the cause.
+      expect(err.cause).toBeInstanceOf(SyntaxError);
     });
 
     it('preserves the cause when an error response body is not JSON', async () => {
@@ -632,7 +630,7 @@ describe('WebServiceClient', () => {
         cause: 'defined',
       });
       // The parse failure on a non-2xx response is preserved as the cause.
-      expect((err.cause as Error).message).toEqual(expect.any(String));
+      expect(err.cause).toBeInstanceOf(SyntaxError);
     });
 
     it('handles general network errors', async () => {
