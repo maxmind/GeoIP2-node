@@ -36,7 +36,7 @@ export default class Reader {
       reader = new mmdb.Reader(buffer);
     } catch (e) {
       // mmdb.Reader only throws Error instances.
-      /* v8 ignore next */
+      /* v8 ignore next -- @preserve */
       const error = e instanceof Error ? e : new Error(String(e));
       throw new InvalidDbBufferError(error.message, { cause: error });
     }
