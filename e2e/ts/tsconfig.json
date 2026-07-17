@@ -4,9 +4,6 @@
     "module": "NodeNext",
     "strict": true,
     "target": "es2022",
-    "types": [
-      "jest"
-    ],
     "moduleResolution": "NodeNext",
     "isolatedModules": true
   }

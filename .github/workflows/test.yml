@@ -30,15 +30,11 @@ jobs:
         working-directory: e2e/js
       - run: npm link '@maxmind/geoip2-node'
         working-directory: e2e/js
-      - run: npx jest
+      - run: npx vitest run
         working-directory: e2e/js
-        env:
-          NODE_OPTIONS: --experimental-vm-modules
       - run: npm ci
         working-directory: e2e/ts
       - run: npm link '@maxmind/geoip2-node'
         working-directory: e2e/ts
-      - run: npx jest
+      - run: npx vitest run
         working-directory: e2e/ts
-        env:
-          NODE_OPTIONS: --experimental-vm-modules

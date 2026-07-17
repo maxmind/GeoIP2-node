@@ -4,10 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@types/jest": "^30.0.0",
-    "jest": "^30.0.0",
-    "ts-jest": "^29.4.0",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.10"
   },
   "type": "module"
 }
