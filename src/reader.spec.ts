@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import * as fs from 'node:fs';
 import { InvalidDbBufferError } from './errors.js';
 import Reader from './reader.js';

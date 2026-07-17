@@ -33,17 +33,16 @@
   "types": "dist/src/index.d.ts",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@types/jest": "^30.0.0",
     "@types/node": "^25.0.3",
+    "@vitest/coverage-v8": "^4.1.10",
     "eslint": "^10.0.2",
     "eslint-config-prettier": "^10.0.1",
     "globals": "^17.0.0",
-    "jest": "^30.0.0",
     "prettier": "^3.0.0",
-    "ts-jest": "^29.4.0",
     "typedoc": "^0.28.1",
     "typescript": "^6.0.2",
-    "typescript-eslint": "^8.5.0"
+    "typescript-eslint": "^8.5.0",
+    "vitest": "^4.1.10"
   },
   "publishConfig": {
     "access": "public"
@@ -55,8 +54,9 @@
     "prettier:ts": "prettier --parser typescript --write 'src/**/*.ts'",
     "prettier:ci": "prettier --parser typescript --list-different 'src/**/*.ts'",
     "prettier:json": "prettier --parser json --write '**/*.json'",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
-    "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watch",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest",
     "prepublishOnly": "if [ -z \"$GITHUB_ACTIONS\" ]; then echo 'Manual publishing is disabled. Use ./dev-bin/release.sh instead.' && exit 1; fi"
   },
   "engines": {

@@ -1,3 +1,4 @@
+import { beforeAll, describe, expect, it, test } from 'vitest';
 import geoip2Fixture from '../fixtures/geoip2.json' with { type: 'json' };
 import { ValueError, WebServiceError } from './errors.js';
 import Client from './webServiceClient.js';
