@@ -15,7 +15,6 @@ export default tseslint.config(
     languageOptions: {
       globals: {
         ...globals.node,
-        ...globals.jest,
       },
 
       ecmaVersion: "latest",
@@ -40,8 +39,7 @@ export default tseslint.config(
       "**/docs",
       "**/node_modules",
       "coverage/**/*",
-      "jest.config.js",
-      "e2e/ts/jest.config.js",
+      "vitest.config.ts",
       "eslint.config.mjs",
       "prettier.config.mjs",
     ],

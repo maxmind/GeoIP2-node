@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "type": "module",
   "dependencies": {
-    "jest": "^30.0.0",
-    "ts-jest": "^29.4.0"
-  },
-  "type": "module"
+    "vitest": "^4.1.10"
+  }
 }

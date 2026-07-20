@@ -1,3 +1,4 @@
+import { beforeAll, describe, expect, it, test } from 'vitest';
 import geoip2Fixture from '../fixtures/geoip2.json' with { type: 'json' };
 import { ValueError, WebServiceError } from './errors.js';
 import Client from './webServiceClient.js';
@@ -11,9 +12,11 @@ const auth = {
   user: '123',
 };
 
+type FetchInput = Parameters<typeof fetch>[0];
+
 interface CapturedRequest {
   init?: RequestInit;
-  url: RequestInfo | URL;
+  url: FetchInput;
 }
 
 const jsonResponse = (status: number, body: unknown): Response =>
@@ -31,7 +34,7 @@ const clientWith = (
   options: { timeout?: number } = {}
 ) => {
   const requests: CapturedRequest[] = [];
-  const fetcher = (async (url: RequestInfo | URL, init?: RequestInit) => {
+  const fetcher = (async (url: FetchInput, init?: RequestInit) => {
     const request = { init, url };
     requests.push(request);
     return handler(request);
@@ -481,6 +484,17 @@ describe('WebServiceClient', () => {
       );
       expect(got.anonymizer!.residential!.providerName).toEqual('quickshift');
     });
+
+    it('omits the anonymizer record when absent from the response', async () => {
+      // JSON.stringify drops undefined, so the body truly omits the key.
+      const { client } = clientWith(() =>
+        jsonResponse(200, { ...testFixture, anonymizer: undefined })
+      );
+
+      const got: models.Insights = await client.insights('8.8.8.8');
+
+      expect(got.anonymizer).toBeUndefined();
+    });
   });
 
   describe('timeout handling', () => {
@@ -598,10 +612,8 @@ describe('WebServiceClient', () => {
         url: baseUrl + fullPath('city', ip),
         cause: 'defined',
       });
-      // The JSON parse error is preserved as the cause. (instanceof Error is
-      // unreliable here: under --experimental-vm-modules the parse error is
-      // created in a different realm than this test file.)
-      expect((err.cause as Error).message).toEqual(expect.any(String));
+      // The JSON parse error is preserved as the cause.
+      expect(err.cause).toBeInstanceOf(SyntaxError);
     });
 
     it('preserves the cause when an error response body is not JSON', async () => {
@@ -618,7 +630,7 @@ describe('WebServiceClient', () => {
         cause: 'defined',
       });
       // The parse failure on a non-2xx response is preserved as the cause.
-      expect((err.cause as Error).message).toEqual(expect.any(String));
+      expect(err.cause).toBeInstanceOf(SyntaxError);
     });
 
     it('handles general network errors', async () => {

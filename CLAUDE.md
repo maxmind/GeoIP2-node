@@ -14,7 +14,7 @@ The library provides both web service clients and database readers that return s
 - TypeScript with strict type checking
 - Node.js 22+ (targets active LTS versions)
 - maxmind (node-maxmind) for MMDB database reading
-- Jest for testing
+- Vitest for testing
 - ESLint + Prettier for code quality
 - TypeDoc for API documentation
 
@@ -123,11 +123,14 @@ npm install
 # Run all tests
 npm test
 
+# Run tests with coverage (thresholds enforced)
+npm run test:coverage
+
 # Run tests in watch mode
 npm run test:watch
 
 # Run specific test file
-npx jest src/readerModel.spec.ts
+npx vitest run src/readerModel.spec.ts
 ```
 
 ### Linting and Building

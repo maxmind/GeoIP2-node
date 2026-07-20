@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { Reader, WebServiceClient } from '@maxmind/geoip2-node';
 
 describe('WebServiceClient', () => {
