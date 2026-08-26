@@ -1,7 +1,8 @@
 [commands.prettier-scripts]
 type = "both"
 cmd = [
-  "npx",
+  "pnpm",
+  "exec",
   "prettier",
   "--parser",
   "typescript"
@@ -15,7 +16,8 @@ ok-exit-codes = 0
 [commands.prettier-json]
 type = "both"
 cmd = [
-  "npx",
+  "pnpm",
+  "exec",
   "prettier",
   "--parser",
   "json"
@@ -29,7 +31,8 @@ ok-exit-codes = 0
 [commands.eslint-scripts]
 type = "both"
 cmd = [
-  "npx",
+  "pnpm",
+  "exec",
   "eslint",
   "--config",
   "eslint.config.mjs",
@@ -43,7 +46,8 @@ ok-exit-codes = 0
 [commands.tsc-scripts]
 type = "lint"
 cmd = [
-  "npx",
+  "pnpm",
+  "exec",
   "tsc",
   "--noEmit"
 ]

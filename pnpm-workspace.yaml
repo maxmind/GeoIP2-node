@@ -1,0 +1,18 @@
+# e2e/js and e2e/ts are members so one root install wires them to the library
+# under test: their workspace:* dependency resolves to a symlink at the repo
+# root, so both suites run against dist/. The root package is always a member
+# and must not be listed. Keep this to one pattern -- a second re-arms pnpm's
+# add-to-root guard, and `pnpm add -D <pkg>` then needs -w.
+packages:
+  - 'e2e/*'
+
+# pnpm 11 reads pnpm-specific settings from here, not .npmrc, which still
+# supplies registry, auth and network settings. Both misplacement and typos fail
+# silently, and `pnpm config get` echoes this file back rather than validating
+# it, so check names against https://pnpm.io/settings and verify behaviour.
+#
+# engineStrict makes an incompatible engines.node a hard install failure, this
+# package's own included: without it the root "node": ">=22" only warns, so
+# deleting this setting silently weakens that guard. engines.pnpm is enforced
+# either way.
+engineStrict: true

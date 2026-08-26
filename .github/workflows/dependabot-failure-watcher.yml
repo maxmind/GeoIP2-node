@@ -48,25 +48,16 @@ name: Dependabot Failure Watcher
 #
 # Outside the root, kinds 2 and 3 cannot be told apart by title, so the filter
 # has to name directories instead. e2e/js and e2e/ts (in the Node repos this
-# workflow is shared with) are consumer smoke tests carrying committed
-# lockfiles, so their transitive dev dependencies attract advisories that no
-# pull request can fix, and nothing in them is shipped code.
+# workflow is shared with) are consumer smoke tests, so their transitive dev
+# dependencies attract advisories that no pull request can fix, and nothing in
+# them is shipped code.
 #
-# Be clear about the cost, because it is not zero: both Node repos configure npm
-# with directories: ["/", "**/*"], and that glob does match e2e/js and e2e/ts,
-# so those directories DO get version updates. Dropping the pattern therefore
-# discards their kind 2 failures as well as their kind 3 ones -- there is an
-# open version-update pull request under e2e/ts in both repos as this is
-# written. The npm ecosystem label does not rescue the distinction either:
-# Dependabot writes "npm_and_yarn" for both kinds, so "npm_and_yarn in /e2e/ts
-# for js-yaml" could be either a security job or the refresh of a
-# version-update pull request.
-#
-# Accepted deliberately anyway. Kind 1 is what this watcher primarily exists to
-# catch and is still reported for those directories, so what is given up is the
-# narrower "one open pull request has gone stale" signal, for two directories of
-# test scaffolding, in exchange for dropping 16 unactionable failures in each of
-# the two Node repos over retained history.
+# Since the pnpm conversion this clause cannot match kind 2: version updates are
+# root-only, so their titles read "in /", never "in /e2e/js". It still discards
+# kind 3, which names the directory holding the vulnerable manifest -- for a
+# transitive e2e dev dependency, one of these paths. That is the intent, so it
+# stays. Keep it in step with dependabot.yml: the ecosystem label cannot rescue
+# the distinction, since Dependabot writes "npm_and_yarn" for both kinds.
 #
 # Reading the directories out of dependabot.yml instead looks more general but is
 # worse: entries may use globs (directories: ["**/*"]), which never match a title

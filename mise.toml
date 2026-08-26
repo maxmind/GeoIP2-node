@@ -6,9 +6,35 @@ disable_backends = [
     "vfox",
 ]
 
+# The platforms we support. Intel macOS (macos-x64) and Windows ARM64
+# (windows-arm64) are absent because we do not support either. Intel macOS also
+# cannot work: pnpm 11.0.5 and later ship no darwin-x64 binary, so mise
+# mis-resolves that platform to the release's unrelated source-maps.tgz asset,
+# producing a lock entry that verifies but contains no pnpm.
+#
+# This list is not a hard guard: `mise lock` always locks the platform it runs
+# on, excluded or not -- verified by dropping the current platform and
+# regenerating, which re-added it. After any regeneration, check
+# `grep -c source-maps mise.lock` prints 0.
+lockfile_platforms = [
+    "linux-arm64",
+    "linux-arm64-musl",
+    "linux-x64",
+    "linux-x64-musl",
+    "macos-arm64",
+    "windows-x64",
+]
+
 [tools]
+# CI never installs this. Every workflow runs mise-action with install: false
+# and add_shims_to_path: false, then puts only pnpm's install directory on
+# PATH. So two things independently keep this "latest" pin out of jobs whose
+# Node actions/setup-node fixed: no shims directory, and no node in that dir.
 node = "latest"
 lychee = "latest"
+# pnpm is on the github backend because aqua-registry's pnpm config keeps
+# breaking on release-asset naming changes (jdx/mise discussions #9453, #9624).
+"github:pnpm/pnpm" = "v11.22.0"
 
 [hooks]
 enter = "mise install --quiet --locked"

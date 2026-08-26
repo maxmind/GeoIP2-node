@@ -31,7 +31,7 @@ if ! git ls-remote origin &>/dev/null; then
 fi
 
 check_command node
-check_command npm
+check_command pnpm
 
 # Check that we're not on the main branch
 current_branch=$(git branch --show-current)
@@ -88,7 +88,7 @@ fi
 current_version=$(node -p "require('./package.json').version")
 if [ "$current_version" != "$version" ]; then
     echo "Updating version in package.json from $current_version to $version..."
-    npm version "$version" --no-git-tag-version
+    pnpm version "$version" --no-git-tag-version
 fi
 
 # Verify package.json is now at the target version. This distinguishes the
@@ -102,10 +102,10 @@ fi
 
 # Build and test
 echo "Running build and tests..."
-npm ci
-npm run build
-npm test
-npm run lint
+pnpm install --frozen-lockfile
+pnpm run build
+pnpm test
+pnpm run lint
 
 echo $'\nDiff:'
 git diff
