@@ -9,4 +9,4 @@
 
 
 ---
-1. You can use `npm test --coverage` to generate a coverage report.
+1. You can use `pnpm run test:coverage` to generate a coverage report.

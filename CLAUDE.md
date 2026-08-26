@@ -118,36 +118,35 @@ const response = await client.city('1.2.3.4');
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Run all tests
-npm test
+pnpm test
 
 # Run tests with coverage (thresholds enforced)
-npm run test:coverage
+pnpm run test:coverage
 
 # Run tests in watch mode
-npm run test:watch
+pnpm run test:watch
 
 # Run specific test file
-npx vitest run src/readerModel.spec.ts
+pnpm exec vitest run src/readerModel.spec.ts
 ```
 
 ### Linting and Building
 
 ```bash
 # Lint code (ESLint)
-npm run lint
+pnpm run lint
 
 # Format code (Prettier)
-npm run prettier:ts
+pnpm run prettier:ts
 
 # Build TypeScript
-npm run build
+pnpm run build
 
-# Build and deploy documentation
-npm run build:docs
-npm run deploy:docs
+# Build documentation
+pnpm run build:docs
 ```
 
 ### Test Structure
@@ -299,8 +298,13 @@ public constructor(response: mmdb.AnonymousPlusResponse) {
 ## Development Workflow
 
 ### Setup
+
+pnpm is pinned in `mise.toml`. On a fresh checkout, install the toolchain
+first:
+
 ```bash
-npm install
+mise install --quiet --locked
+pnpm install
 ```
 
 ### Before Committing
@@ -312,16 +316,22 @@ precious tidy -g
 precious lint -g
 
 # Run tests
-npm test
+pnpm test
 
 # Build
-npm run build
+pnpm run build
 ```
 
 Note: Precious is already set up and handles code formatting and linting. Use `precious tidy -g` to automatically fix issues, and `precious lint -g` to check for remaining problems.
 
 ### Version Requirements
+
 - **Node.js 22+** required (targets active LTS: 22, 24)
+- **pnpm 11+** required. It is pinned in `mise.toml`, so `mise install`
+  provides it. Use pnpm for all local dependency management; do not use npm or
+  corepack. The release workflow is the one exception: it publishes with
+  `npm publish --provenance`. pnpm 11 supports OIDC natively, so that is a
+  deliberate hold on a release path CI never runs, not a limitation.
 - Uses Node.js built-in `fetch` (no external HTTP libraries)
 - TypeScript 6.x
 
