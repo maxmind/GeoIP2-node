@@ -1,9 +1,13 @@
 version: 2
 updates:
+  # `npm` is also the correct ecosystem for pnpm. This root run reads
+  # pnpm-workspace.yaml, so it covers the e2e/* members too, bumping a member
+  # package.json and the root pnpm-lock.yaml in one pull request. Do not add
+  # per-directory entries: a run inside a member treats the parent lockfile as a
+  # support file and drops it, leaving it stale and failing --frozen-lockfile
+  # (dependabot-core#11135).
   - package-ecosystem: npm
-    directories:
-      - /
-      - '**/*'
+    directory: /
     schedule:
       interval: weekly
       day: monday

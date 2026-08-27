@@ -60,8 +60,4 @@ export interface Json {
 }
 
 export type ConnectionType =
-  | 'Cable/DSL'
-  | 'Cellular'
-  | 'Corporate'
-  | 'Dialup'
-  | 'Satellite';
+  'Cable/DSL' | 'Cellular' | 'Corporate' | 'Dialup' | 'Satellite';

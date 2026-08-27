@@ -50,7 +50,7 @@
   "scripts": {
     "build": "rm -rf dist && tsc",
     "build:docs": "rm -rf docs && typedoc src/index.ts --out docs --exclude \"**/*.spec.ts\" --readme README.md && ./bin/sanitize-doc-refs.sh",
-    "lint": "npx eslint . && npx tsc --noEmit && npx tsc --noEmit -p tsconfig.test.json",
+    "lint": "eslint . && tsc --noEmit && tsc --noEmit -p tsconfig.test.json",
     "prettier:ts": "prettier --parser typescript --write 'src/**/*.ts'",
     "prettier:ci": "prettier --parser typescript --list-different 'src/**/*.ts'",
     "prettier:json": "prettier --parser json --write '**/*.json'",
@@ -60,7 +60,8 @@
     "prepublishOnly": "if [ -z \"$GITHUB_ACTIONS\" ]; then echo 'Manual publishing is disabled. Use ./dev-bin/release.sh instead.' && exit 1; fi"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=22",
+    "pnpm": ">=11"
   },
   "dependencies": {
     "maxmind": "^5.0.0"

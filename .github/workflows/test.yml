@@ -21,20 +21,50 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: ${{ matrix.version }}
-      - run: npm ci
-      - run: npm run test:coverage
-      - run: npm run build
-      - run: npm run build:docs
-      - run: npm link
-      - run: npm ci
+          package-manager-cache: false
+      # Install only pnpm, not the repo's full toolchain — Node comes from
+      # actions/setup-node. See mise.toml [tools] comment for why.
+      - name: Setup mise
+        uses: jdx/mise-action@3c2e0cf82a5b2e5249f0d3635a4d83d0ae861518 # v4.2.5
+        with:
+          install: false
+          add_shims_to_path: false
+          # mise-action saves a cache only inside its install branch, so with
+          # install: false nothing here ever writes one. The restore is gated
+          # separately and would still run, always missing, so turn it off.
+          cache: false
+      - name: Install pnpm
+        env:
+          MISE_AUTO_INSTALL: 'false'
+        run: |
+          mise install --locked github:pnpm/pnpm
+          pnpm_bin=$(mise which pnpm)
+          [ -x "$pnpm_bin" ] || { echo "mise which pnpm produced no usable path" >&2; exit 1; }
+          dirname "$pnpm_bin" >> "$GITHUB_PATH"
+      # Assert, don't just print: if mise shadowed the Node that setup-node
+      # selected, every matrix leg would test the same version and still pass.
+      - name: Verify the matrix Node is active
+        env:
+          EXPECTED_MAJOR: ${{ matrix.version }}
+        run: |
+          actual=$(node -p 'process.versions.node.split(".")[0]')
+          echo "node major: $actual (expected $EXPECTED_MAJOR), pnpm $(pnpm --version)"
+          test "$actual" = "$EXPECTED_MAJOR"
+      # One root install links the workspace, so e2e/js and e2e/ts resolve the
+      # library through a symlink to the repo root. `build` must run before
+      # them so dist/ exists.
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run test:coverage
+      - run: pnpm run build
+      - run: pnpm run build:docs
+      - run: pnpm exec vitest run
         working-directory: e2e/js
-      - run: npm link '@maxmind/geoip2-node'
-        working-directory: e2e/js
-      - run: npx vitest run
-        working-directory: e2e/js
-      - run: npm ci
+      - run: pnpm exec vitest run
         working-directory: e2e/ts
-      - run: npm link '@maxmind/geoip2-node'
-        working-directory: e2e/ts
-      - run: npx vitest run
+      # Nothing else type-checks the TypeScript consumer: vitest transpiles
+      # without checking, and both root tsconfigs use include: ["src"]. That
+      # matters because a non-hoisting package manager breaks exactly this --
+      # type resolution in the published surface. Must run after `build`, or
+      # the workspace symlink to dist/src/index.d.ts gives TS2307.
+      - run: pnpm exec tsc --noEmit
         working-directory: e2e/ts

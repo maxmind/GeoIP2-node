@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "private": true,
+  "type": "module",
   "dependencies": {
+    "@maxmind/geoip2-node": "workspace:*"
+  },
+  "devDependencies": {
     "typescript": "^6.0.2",
     "vitest": "^4.1.10"
-  },
-  "type": "module"
+  }
 }
