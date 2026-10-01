@@ -1,73 +1,74 @@
 name: Dependabot Failure Watcher
 
-# Dependabot version updates run as GitHub Actions workflow runs named
-# "Dependabot Updates". This scheduled job looks back over the past week for any
-# version-update run that failed and fails itself if it finds one, so a
-# silently-broken ecosystem surfaces as a red scheduled run instead of only a red
-# triangle in the Dependabot tab that nobody checks. Security-update runs share
-# that workflow name and are deliberately excluded -- see below.
+# Fails if a Dependabot version-update run failed in the last 8 days. A broken
+# ecosystem then shows up as a red scheduled run, not as a red triangle in the
+# Dependabot tab that nobody checks.
 #
-# GitHub reuses the "Dependabot Updates" name for three different kinds of run:
+# Security-update runs at the repo root and in e2e/ are excluded. They often
+# fail in ways no pull request can fix: the advisory is against a dependency
+# this project does not declare directly, or no patched version is reachable.
+# Counting them would keep this workflow red and teach everyone to ignore it.
 #
-#   1. A version update's scheduled scan: one run per .github/dependabot.yml
-#      entry, on the schedule set there. It works out what is out of date and
-#      opens or updates pull requests. This is the kind this watcher primarily
-#      exists to catch -- when a scan breaks, the whole ecosystem quietly stops
-#      being updated and nothing else tells anyone.
-#   2. A version update's per-pull-request refresh: one run per already-open
-#      Dependabot pull request, rebasing or re-checking it. These are not driven
-#      by the schedule at all -- a push to the base branch, a rebase, or an
-#      "@dependabot recreate" comment triggers them, so they arrive in bursts
-#      after merges rather than at the scheduled time. A failure here means one
-#      open pull request has gone stale, which is worth knowing but is much
-#      narrower than a broken scan.
-#   3. A security update: one ad-hoc job per vulnerable package, triggered by a
-#      Dependabot alert rather than by dependabot.yml at all.
+# What the filter must separate
 #
-# Kind 3 routinely fails for reasons no pull request can fix: the advisory is
-# against a dependency this project does not declare directly, or no patched
-# version is reachable. Counting those would keep this workflow permanently red
-# and train everyone to ignore it, so they are filtered out below.
+# GitHub uses one workflow name, "Dependabot Updates", for three kinds of run:
 #
-# Of the fields "gh run list --json" exposes, only the title separates the three
-# -- event, headBranch and actor are identical. Titles come in these shapes:
+#   1. Scheduled scan. One run for each dependabot.yml entry. It opens or
+#      updates pull requests. If it breaks, the ecosystem stops updating and
+#      nothing else tells anyone. This is the main kind to catch.
+#   2. Per-pull-request refresh. One run for each open Dependabot pull request.
+#      A push to the base branch, a rebase, or an "@dependabot recreate"
+#      comment starts it, so runs come in bursts after merges. A failure means
+#      one pull request is stale.
+#   3. Security update. One run for each vulnerable package. A Dependabot alert
+#      starts it. It needs no dependabot.yml entry, but that file can
+#      configure it.
 #
-#   - "<eco> in /."                          -- kind 1 at the repo root, which
-#     has no " for " suffix
-#   - "<eco> in <configured-dir>"            -- kind 1 elsewhere, path verbatim
-#   - "<eco> in / for <deps>"                -- kind 2 at the repo root
-#   - "<eco> in <configured-dir> for <deps>" -- kind 2 elsewhere
-#   - "<eco> in /. for <one-dep>"            -- kind 3 at the repo root
-#   - "<eco> in <manifest-dir> for <one-dep>" -- kind 3 elsewhere, where
-#     <manifest-dir> is wherever the vulnerable manifest was discovered
+# Only the run title (displayTitle) tells the kinds apart. The event,
+# headBranch, and actor fields are identical. Titles have these shapes:
 #
-# At the root, then, kind 3 is marked by "/." AND a " for " suffix together, and
-# BOTH HALVES of " in /. for " are load-bearing -- do not shorten it. Matching on
-# " in /." alone would also discard every kind 1 run, which is most of the runs
-# here and the shape both failures this watcher was written for actually took.
+#   Title                                    Kind
+#   "<eco> in /."                            1, repo root (no " for " suffix)
+#   "<eco> in <configured-dir>"              1, elsewhere
+#   "<eco> in / for <deps>"                  2, repo root
+#   "<eco> in <configured-dir> for <deps>"   2, elsewhere
+#   "<eco> in /. for <one-dep>"              3, repo root
+#   "<eco> in <manifest-dir> for <one-dep>"  3, elsewhere (the directory where
+#                                            the manifest was found)
 #
-# Outside the root, kinds 2 and 3 cannot be told apart by title, so the filter
-# has to name directories instead. e2e/js and e2e/ts (in the Node repos this
-# workflow is shared with) are consumer smoke tests, so their transitive dev
-# dependencies attract advisories that no pull request can fix, and nothing in
-# them is shipped code.
+# The jq filter below drops two title patterns:
 #
-# Since the pnpm conversion this clause cannot match kind 2: version updates are
-# root-only, so their titles read "in /", never "in /e2e/js". It still discards
-# kind 3, which names the directory holding the vulnerable manifest -- for a
-# transitive e2e dev dependency, one of these paths. That is the intent, so it
-# stays. Keep it in step with dependabot.yml: the ecosystem label cannot rescue
-# the distinction, since Dependabot writes "npm_and_yarn" for both kinds.
+#   " in /. for "             Kind 3 at the repo root (root security updates).
+#   " in /e2e/(js|ts) for "   Kind 3 for the e2e dev dependencies.
 #
-# Reading the directories out of dependabot.yml instead looks more general but is
-# worse: entries may use globs (directories: ["**/*"]), which never match a title
-# literally, so genuine failures would be dropped without a word. Prefer a
-# denylist: when it goes stale it re-introduces noise, which is loud, whereas a
-# stale allowlist hides failures, which is silent.
+# BOTH HALVES of " in /. for " are required. Matching " in /." alone would also
+# drop every kind 1 run at the root. Those are most of the runs, and they are
+# the runs this watcher exists to catch.
 #
-# Runs entirely within this repo (no external service). A failed scheduled run
-# emails the person who last edited the cron below. Note: GitHub auto-disables
-# scheduled workflows after 60 days of repo inactivity.
+# Outside the root, a title cannot tell kind 2 from kind 3, so the e2e clause
+# names directories. e2e/js and e2e/ts hold consumer smoke tests. Their
+# transitive dev dependencies attract advisories that no pull request can fix,
+# and none of that code ships. All version updates run at the root (see
+# dependabot.yml), so no kind 2 title names an e2e directory. If dependabot.yml
+# gets an entry for an e2e directory, this clause also hides its kind 2
+# failures. The ecosystem label cannot help: Dependabot writes "npm_and_yarn"
+# for both kinds.
+#
+# The filter is a denylist, not an allowlist read from dependabot.yml. An entry
+# there can be a glob, such as directories: ["**/*"], and a glob never matches a
+# title literally. An allowlist would then drop real failures without a sign. A
+# stale denylist only adds noise, and noise is loud.
+#
+# Limits:
+#
+#   - GitHub disables scheduled workflows after 60 days without repository
+#     activity.
+#   - A failed scheduled run emails the person who last edited the cron entry
+#     below.
+#   - The workflow runs entirely within this repository and uses no external
+#     service.
+#   - The other Node client repositories share this workflow. Edit the copies
+#     together.
 
 on:
   schedule:
