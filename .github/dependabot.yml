@@ -20,6 +20,12 @@ updates:
         update-types:
           - minor
           - patch
+    ignore:
+      # typescript-eslint and typedoc do not support TypeScript 7 yet. Remove
+      # this when they do (typescript-eslint#10940).
+      - dependency-name: typescript
+        versions:
+          - '>= 7'
     cooldown:
       default-days: 7
   - package-ecosystem: github-actions
