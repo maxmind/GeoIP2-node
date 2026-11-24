@@ -26,7 +26,7 @@ jobs:
       # Install only pnpm, not the repo's full toolchain — Node comes from
       # actions/setup-node. See mise.toml [tools] comment for why.
       - name: Setup mise
-        uses: jdx/mise-action@b44d12e7d0d8ee7461bb893e1b1993500433185b # v5.2.7
+        uses: jdx/mise-action@236a21c3b91f5db6d4e174b348674a0f0caac06d # v5.2.9
         with:
           install: false
           add_shims_to_path: false
@@ -74,7 +74,7 @@ jobs:
       # Install only pnpm, not the repo's full toolchain — Node comes from
       # actions/setup-node. See mise.toml [tools] comment for why.
       - name: Setup mise
-        uses: jdx/mise-action@b44d12e7d0d8ee7461bb893e1b1993500433185b # v5.2.7
+        uses: jdx/mise-action@236a21c3b91f5db6d4e174b348674a0f0caac06d # v5.2.9
         with:
           install: false
           add_shims_to_path: false
